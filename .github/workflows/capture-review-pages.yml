@@ -1,0 +1,58 @@
+name: Capture academy review pages
+
+on:
+  push:
+    paths:
+      - '.github/workflows/capture-review-pages.yml'
+      - 'capture-review-pages.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  CI: 'true'
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Korean fonts and Playwright Chromium
+        shell: bash
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-cjk
+          npm init -y
+          npm install playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Capture live review pages
+        shell: bash
+        run: node capture-review-pages.mjs
+
+      - name: Show capture inventory
+        if: always()
+        shell: bash
+        run: |
+          find captures -maxdepth 1 -type f -printf '%f\t%s bytes\n' 2>/dev/null || true
+          cat captures/capture_summary.txt 2>/dev/null || true
+
+      - name: Upload capture evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ericssam-review-captures
+          path: captures/
+          if-no-files-found: error
+          retention-days: 1
+          compression-level: 0
