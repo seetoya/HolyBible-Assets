@@ -8,37 +8,32 @@ await fs.mkdir(OUT, { recursive: true });
 
 const targets = [
   {
-    key: '01_naver_ericssam_english_review_card',
-    platform: 'naver',
+    fileName: '01_naver_ericssam_english_review_card.png',
     url: 'https://m.place.naver.com/place/1177401952/review/visitor',
-    reviewer: '이정용28',
-    required: ['방문일'],
-    exclude: ['win****'],
+    reviewerNames: ['이정용28'],
+    requiredTerms: ['방문일'],
+    excludedTerms: ['win****'],
   },
   {
-    key: '02_naver_ericssam_exam_english_review_card',
-    platform: 'naver',
+    fileName: '02_naver_ericssam_exam_english_review_card.png',
     url: 'https://m.place.naver.com/place/2076083264/review/visitor',
-    reviewer: '온헤이',
-    altReviewers: ['은헤이', '은혜이'],
-    required: ['방문일'],
-    exclude: [],
+    reviewerNames: ['온헤이', '은헤이', '은혜이'],
+    requiredTerms: ['방문일'],
+    excludedTerms: [],
   },
   {
-    key: '03_daangn_ericssam_english_review_card',
-    platform: 'daangn',
+    fileName: '03_daangn_ericssam_english_review_card.png',
     url: 'https://www.daangn.com/kr/local-profile/%EC%97%90%EB%A6%AD%EC%8C%A4%EC%98%81%EC%96%B4%ED%95%99%EC%9B%90-3p2umcgadi7h/',
-    reviewer: '세상돈다내꺼9',
-    required: ['도움돼요'],
-    exclude: ['오여사'],
+    reviewerNames: ['세상돈다내꺼9'],
+    requiredTerms: ['도움돼요'],
+    excludedTerms: ['오여사', '사장님의 답글'],
   },
   {
-    key: '04_daangn_ericssam_exam_english_review_card',
-    platform: 'daangn',
+    fileName: '04_daangn_ericssam_exam_english_review_card.png',
     url: 'https://www.daangn.com/kr/local-profile/%EC%97%90%EB%A6%AD%EC%8C%A4%EC%9E%85%EC%8B%9C%EC%98%81%EC%96%B4-9ea8dgwzru8t/',
-    reviewer: '후추후추',
-    required: ['도움돼요'],
-    exclude: ['미자쏭'],
+    reviewerNames: ['후추후추'],
+    requiredTerms: ['도움돼요'],
+    excludedTerms: ['미자쏭'],
   },
 ];
 
@@ -52,9 +47,9 @@ const browser = await chromium.launch({
   ],
 });
 
-async function createContext() {
+async function newContext() {
   const context = await browser.newContext({
-    viewport: { width: 460, height: 1200 },
+    viewport: { width: 460, height: 1400 },
     deviceScaleFactor: 1,
     locale: 'ko-KR',
     timezoneId: 'Asia/Seoul',
@@ -70,53 +65,59 @@ async function createContext() {
   return context;
 }
 
-async function stableGoto(page, url) {
+async function navigate(page, url) {
   let lastError;
   for (let attempt = 1; attempt <= 3; attempt++) {
     try {
       const response = await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 90000 });
-      await page.waitForTimeout(9000);
-      try { await page.waitForLoadState('networkidle', { timeout: 12000 }); } catch {}
-      await page.waitForTimeout(1500);
+      await page.waitForTimeout(10000);
+      try { await page.waitForLoadState('networkidle', { timeout: 15000 }); } catch {}
+      await page.waitForTimeout(1200);
       return response?.status() ?? null;
     } catch (error) {
       lastError = error;
-      await page.waitForTimeout(3000);
+      await page.waitForTimeout(2500);
     }
   }
   throw lastError;
 }
 
-async function findVisibleReviewer(page, target) {
-  const names = [target.reviewer, ...(target.altReviewers ?? [])];
+async function findReviewer(page, names) {
   for (const name of names) {
-    const loc = page.getByText(name, { exact: true });
-    const count = await loc.count();
+    const matches = page.getByText(name, { exact: true });
+    const count = await matches.count();
     for (let i = 0; i < count; i++) {
-      const item = loc.nth(i);
+      const item = matches.nth(i);
       try {
-        if (await item.isVisible()) return { locator: item, matchedName: name };
+        if (await item.isVisible()) return item;
       } catch {}
     }
   }
   return null;
 }
 
-async function chooseAncestor(reviewerLocator, target) {
+async function chooseCard(reviewer, target) {
   const candidates = [];
-  let current = reviewerLocator;
-  for (let level = 0; level <= 12; level++) {
+  let node = reviewer;
+  for (let level = 0; level <= 14; level++) {
     try {
-      const text = (await current.innerText()).replace(/\s+/g, ' ').trim();
-      const box = await current.boundingBox();
-      const tag = await current.evaluate(el => el.tagName.toLowerCase());
-      const requiredOk = target.required.every(term => text.includes(term));
-      const excludesOk = target.exclude.every(term => !text.includes(term));
-      const nameOk = text.includes(target.reviewer) || (target.altReviewers ?? []).some(name => text.includes(name));
-      if (box && box.width >= 300 && box.height >= 120 && box.height <= 1500 && requiredOk && excludesOk && nameOk) {
-        candidates.push({ level, height: box.height, width: box.width, textLength: text.length, tag, text: text.slice(0, 600) });
+      const text = (await node.innerText()).replace(/\s+/g, ' ').trim();
+      const box = await node.boundingBox();
+      if (!box) break;
+      const hasReviewer = target.reviewerNames.some(name => text.includes(name));
+      const hasRequired = target.requiredTerms.every(term => text.includes(term));
+      const hasExcluded = target.excludedTerms.some(term => text.includes(term));
+      if (
+        hasReviewer &&
+        hasRequired &&
+        !hasExcluded &&
+        box.width >= 300 &&
+        box.height >= 120 &&
+        box.height <= 1700
+      ) {
+        candidates.push({ level, height: box.height, width: box.width, textLength: text.length });
       }
-      current = current.locator('xpath=..');
+      node = node.locator('xpath=..');
     } catch {
       break;
     }
@@ -124,88 +125,62 @@ async function chooseAncestor(reviewerLocator, target) {
   if (!candidates.length) return null;
   candidates.sort((a, b) => a.height - b.height || a.textLength - b.textLength);
   const chosen = candidates[0];
-  let loc = reviewerLocator;
-  for (let i = 0; i < chosen.level; i++) loc = loc.locator('xpath=..');
-  return { locator: loc, candidates, chosen };
+  let card = reviewer;
+  for (let i = 0; i < chosen.level; i++) card = card.locator('xpath=..');
+  return card;
 }
 
-async function clickMoreWithin(container) {
+async function expandReview(page, card) {
   for (const label of ['더보기', '펼쳐보기']) {
-    const loc = container.getByText(label, { exact: true });
-    const count = await loc.count().catch(() => 0);
+    const matches = card.getByText(label, { exact: true });
+    const count = await matches.count().catch(() => 0);
     for (let i = 0; i < count; i++) {
       try {
-        const item = loc.nth(i);
+        const item = matches.nth(i);
         if (await item.isVisible()) {
           await item.click({ timeout: 3000 });
-          await item.page().waitForTimeout(1200);
+          await page.waitForTimeout(1000);
         }
       } catch {}
     }
   }
 }
 
-async function captureTarget(target) {
-  const context = await createContext();
+for (const target of targets) {
+  const context = await newContext();
   const page = await context.newPage();
-  const record = { ...target };
   try {
-    record.httpStatus = await stableGoto(page, target.url);
-    record.finalUrl = page.url();
+    const status = await navigate(page, target.url);
+    console.log(`${target.fileName}: HTTP ${status} ${page.url()}`);
 
-    const reviewer = await findVisibleReviewer(page, target);
-    if (!reviewer) throw new Error(`Reviewer not found: ${target.reviewer}`);
-    record.matchedReviewer = reviewer.matchedName;
-    await reviewer.locator.scrollIntoViewIfNeeded();
-    await page.waitForTimeout(1200);
-
-    let picked = await chooseAncestor(reviewer.locator, target);
-    if (!picked) throw new Error('Could not identify an isolated review-card ancestor');
-    await clickMoreWithin(picked.locator);
-    picked = await chooseAncestor(reviewer.locator, target) ?? picked;
-    await picked.locator.scrollIntoViewIfNeeded();
+    const reviewer = await findReviewer(page, target.reviewerNames);
+    if (!reviewer) throw new Error(`Reviewer not found: ${target.reviewerNames.join(', ')}`);
+    await reviewer.scrollIntoViewIfNeeded();
     await page.waitForTimeout(1000);
 
-    const box = await picked.locator.boundingBox();
-    if (!box) throw new Error('Chosen review card has no bounding box');
+    let card = await chooseCard(reviewer, target);
+    if (!card) throw new Error('Review-card ancestor not found');
+    await expandReview(page, card);
+    card = (await chooseCard(reviewer, target)) ?? card;
+    await card.scrollIntoViewIfNeeded();
+    await page.waitForTimeout(1000);
 
-    const topPadding = 8;
-    const bottomPadding = 8;
-    const x = 0;
-    const y = Math.max(0, box.y - topPadding);
-    const width = 460;
-    const documentHeight = await page.evaluate(() => Math.max(document.body.scrollHeight, document.documentElement.scrollHeight));
-    const height = Math.min(box.height + topPadding + bottomPadding, documentHeight - y);
-
-    const fileName = `${target.key}.png`;
-    await page.screenshot({
-      path: path.join(OUT, fileName),
-      clip: { x, y, width, height },
-      captureBeyondViewport: true,
+    await card.screenshot({
+      path: path.join(OUT, target.fileName),
       animations: 'disabled',
+      type: 'png',
     });
-    record.status = 'SUCCESS';
-    record.fileName = fileName;
-    record.cardBox = box;
-    record.clip = { x, y, width, height };
-    record.chosen = picked.chosen;
-    record.candidates = picked.candidates;
+    console.log(`${target.fileName}: SUCCESS`);
   } catch (error) {
-    record.status = 'FAILED';
-    record.error = String(error?.stack || error);
-    const fallbackName = `${target.key}_fallback_fullpage.png`;
-    try {
-      await page.screenshot({ path: path.join(OUT, fallbackName), fullPage: true, animations: 'disabled' });
-      record.fallbackFile = fallbackName;
-    } catch {}
+    console.error(`${target.fileName}: FAILED`, error);
+    await page.screenshot({
+      path: path.join(OUT, target.fileName.replace('.png', '_FAILED_FULLPAGE.png')),
+      fullPage: true,
+      animations: 'disabled',
+    }).catch(() => {});
   } finally {
-    await fs.writeFile(path.join(OUT, `${target.key}.debug.json`), JSON.stringify(record, null, 2), 'utf8');
     await context.close();
   }
-}
-
-for (const target of targets) {
-  await captureTarget(target);
 }
 
 await browser.close();
