@@ -1,0 +1,167 @@
+    39218: (C, m, o) => {
+      "use strict";
+      o.d(m, { $B: () => M, m6: () => N, p$: () => y });
+      var t = o(2784),
+        e = o(98452),
+        _ = o(41765),
+        u = o(67644),
+        O = o(20690),
+        E = o(2370);
+      const l = { total: 0, filters: { items: [], types: [] }, score: 0 },
+        s = {
+          hairshop: {
+            value:
+              "\uC2A4\uD0C0\uC77C\uB9AC\uC2A4\uD2B8/\uC0C1\uD488 \uC804\uCCB4",
+            i18nKey: E.H.STYLIST_PRODUCTION_ALL,
+          },
+          nailshop: {
+            value:
+              "\uC2A4\uD0C0\uC77C\uB9AC\uC2A4\uD2B8/\uC0C1\uD488 \uC804\uCCB4",
+            i18nKey: E.H.STYLIST_PRODUCTION_ALL,
+          },
+          accommodation: {
+            value: "\uAC1D\uC2E4/\uC0AC\uC774\uD2B8 \uC804\uCCB4",
+            i18nKey: E.H.ROOM_CAMPSITE_ALL,
+          },
+        };
+      var M;
+      (function (a) {
+        ((a.list = "list"), (a.photoView = "photoView"));
+      })(M || (M = {}));
+      const A = (a) => `
+  ${
+    (["hairshop", "nailshop"].includes(a) &&
+      `
+      stylists {
+        id
+        businessId
+        name
+        isNPayUsed
+        desc
+        precautionMessage
+        url
+        bookingUrl
+        imageUrl
+        type
+        bookingTimeUnit
+        hairMentorUrl
+      }
+      bookingProducts {
+        id
+        businessId
+        name
+        isNPayUsed
+        desc
+        precautionMessage
+        url
+        bookingUrl
+        imageUrl
+        type
+        bookingTimeUnit
+      }
+      styles {
+        title
+        updated
+        styleNum
+        styleDesc
+        unsortedIndex
+        category
+        categoryString
+        gender
+        stylistNickName
+        stylistPosition
+        reprImage
+        index
+        images {
+          height
+          width
+          imageRep
+          imageUrl
+          imagesDesc
+        }
+        imageCount
+        styleOptions {
+          num
+          name
+          type
+        }
+        faceOptions {
+          num
+          name
+        }
+        designOptions {
+          num
+          name
+        }
+      }
+    `) ||
+    ""
+  }
+`;
+      function y({
+        business: a,
+        businessType: c,
+        reviewType: P,
+        reviewItem: v,
+      }) {
+        const I = (0, O.A)(),
+          { t: h } = (0, e.$G)(),
+          { rooms: p } = (0, _.iC)({
+            skip: I || !(/accommodation/.test(c) && v),
+          });
+        return (0, t.useMemo)(() => {
+          let S = [];
+          if (!(a && a.base)) return S;
+          const { beautyBookingProducts: b, stylists: w, naverBooking: X } = a,
+            { bookingBusinessId: q } = X || {};
+          if (/hairshop|nailshop/i.test(c)) {
+            const H = w?.items || [],
+              W = (H || []).some((B) => B.businessId),
+              L = q ? ((W && H) || []).concat(b || []) : P === "ugc" ? H : [];
+            if (!(L && L.length > 0)) return S;
+            if (
+              ((S = [
+                {
+                  id: P === "ugc" ? "noQuery" : "0",
+                  name: h(s[c].i18nKey, s[c].value),
+                },
+              ]),
+              P !== "ugc")
+            )
+              return S.concat(L.map((B) => ({ ...B, id: B.id.toString() })));
+            const { styles: Q } = (0, u.W)(a);
+            S = S.concat(
+              L.map(({ id: B, name: F }) => {
+                let Y = F;
+                return (
+                  Q.some(({ stylistNickName: G, stylistPosition: r }) => {
+                    if (G && F.includes(G)) {
+                      const i = (G?.replace(/\s/g, "") + (r || "")).replace(
+                        /\s/g,
+                        "",
+                      );
+                      if (F.replace(/\s/g, "") === i) return ((Y = G), !0);
+                    }
+                    return !1;
+                  }),
+                  { id: B.toString(), name: F, queryName: Y }
+                );
+              }),
+            );
+          }
+          return /accommodation/i.test(c)
+            ? p?.length > 0
+              ? [
+                  { id: "0", name: h(s[c].i18nKey, s[c].value) },
+                  ...p.map((H) => ({
+                    ...H,
+                    id: H.resocId.toString(),
+                    name: H.resocName,
+                  })),
+                ]
+              : []
+            : S;
+        }, [a, c, P, p, h]);
+      }
+      const N = /restaurant|hairshop|nailshop|accommodation/;
+    },

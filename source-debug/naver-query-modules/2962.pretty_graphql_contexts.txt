@@ -1,0 +1,2358 @@
+===== VisitorReviews #1 LINE 4839 =====
+        x6: () => Z,
+        z: () => ir,
+        zA: () => sr,
+        zO: () => w,
+      });
+      const e = null,
+        t = `
+  fragment FsasReviews on FsasReviewsResult {
+    total
+    maxItemCount
+    items {
+      name
+      type
+      typeName
+      url
+      home
+      id
+      title
+      rank
+      contents
+      bySmartEditor3
+      hasNaverReservation
+      thumbnailUrl
+      thumbnailUrlList
+      thumbnailCount
+      date
+      isOfficial
+      isRepresentative
+      profileImageUrl
+      isVideoThumbnail
+      reviewId
+      authorName
+      createdString
+      bypassToken
+      buyWithMyMoneyType
+    }
+  }
+`,
+        i = null,
+        u = `
+  fragment VisitorReviewStats on VisitorReviewStatsResult {
+    id
+    name
+    review {
+      avgRating
+      totalCount
+      scores {
+        count
+        score
+      }
+      imageReviewCount
+      authorCount
+    }
+    analysis {
+      themes {
+        code
+        label
+        count
+      }
+      menus {
+        label
+        count
+      }
+      votedKeyword {
+        totalCount
+        reviewCount
+        userCount
+        details {
+          category
+          code
+          iconUrl
+          iconCode
+          displayName
+          count
+          previousRank
+        }
+      }
+    }
+    visitorReviewsTotal
+    ratingReviewsTotal
+  }
+`,
+        d = `
+  fragment SubwayStations on SubwayStation {
+    no
+    name
+    type
+    typeDesc
+    color
+    priority
+    transfers {
+      no
+      name
+      type
+      color
+      priority
+    }
+    station {
+      id
+      name
+      displayName
+      lat
+      lng
+      nearestExit
+      nearestExitType
+      walkTime
+      walkingDistance
+    }
+  }
+`,
+        c = `
+  fragment BusStation on BusStation {
+    id
+    name
+    displayCode
+    lat
+    lng
+    innerRoutes {
+      routeType {
+        type
+        typeName
+        innerRoute {
+          id
+          name
+        }
+      }
+    }
+    walkTime
+    walkingDistance
+  }
+===== VisitorReviews #2 LINE 4877 =====
+        i = null,
+        u = `
+  fragment VisitorReviewStats on VisitorReviewStatsResult {
+    id
+    name
+    review {
+      avgRating
+      totalCount
+      scores {
+        count
+        score
+      }
+      imageReviewCount
+      authorCount
+    }
+    analysis {
+      themes {
+        code
+        label
+        count
+      }
+      menus {
+        label
+        count
+      }
+      votedKeyword {
+        totalCount
+        reviewCount
+        userCount
+        details {
+          category
+          code
+          iconUrl
+          iconCode
+          displayName
+          count
+          previousRank
+        }
+      }
+    }
+    visitorReviewsTotal
+    ratingReviewsTotal
+  }
+`,
+        d = `
+  fragment SubwayStations on SubwayStation {
+    no
+    name
+    type
+    typeDesc
+    color
+    priority
+    transfers {
+      no
+      name
+      type
+      color
+      priority
+    }
+    station {
+      id
+      name
+      displayName
+      lat
+      lng
+      nearestExit
+      nearestExitType
+      walkTime
+      walkingDistance
+    }
+  }
+`,
+        c = `
+  fragment BusStation on BusStation {
+    id
+    name
+    displayCode
+    lat
+    lng
+    innerRoutes {
+      routeType {
+        type
+        typeName
+        innerRoute {
+          id
+          name
+        }
+      }
+    }
+    walkTime
+    walkingDistance
+  }
+`,
+        _ = `
+  fragment OptionsForMap on OptionsForMap {
+    maxZoom
+    minZoom
+    includeMyLocation
+    maxIncludePoiCount
+    center
+    spotId
+    keepMapBounds
+  }
+`,
+        f = null,
+        C = `
+  fragment KinQna on KinQna {
+    answerCount
+    answerList {
+      detailUrl
+      writeTime
+      contents
+      questionTitle
+      thumbnailUrl
+      dirId
+    }
+    profileUrl
+  }
+`,
+        v = `
+  fragment NewBusinessHours on NewBusinessHour {
+    name
+    businessStatusDescription {
+      status
+      blindDescription
+      description
+      showEndsNextDay
+    }
+    businessHours {
+      day
+===== VisitorReviews #3 LINE 5049 =====
+        S = `
+  fragment PlaceAccessorBanner on PlaceAccessorBanner {
+    promotionSeq
+    displayOrder
+    activeStartDateTime
+    activeEndDateTime
+    promotionDetail {
+      title {
+        first
+        second
+      }
+      subtext
+      images {
+        url
+        suffix
+        width
+        height
+      }
+      buttons {
+        phrase
+        url
+      }
+      bgColor {
+        rgb
+      }
+      target{
+        placeIds
+        categoryIds
+      }
+    }
+  }
+`,
+        E = `
+  fragment PlaceDetailBase on PlaceDetailBase {
+    id
+    name
+    reviewSettings {
+      keyword
+      blog
+      cafe
+      showVisitorReviewScore
+    }
+    siteId
+    road
+    conveniences
+    category
+    categoryCode
+    categoryCodeList
+    defaultCategoryCodeList
+    categoryCount
+    rcode
+    roadAddress
+    address
+    streetPanorama {
+      id
+      pan
+      tilt
+      lon
+      lat
+      fov
+    }
+    isKtis
+    visitorReviewsTotal
+    visitorReviewsScore
+    cafeBlogReviewsTotal
+    missingInfo {
+      businessType
+      isBizHourMissing
+      isMenuImageMissing
+      isAccessorMissing
+      isDescriptionMissing
+      isConveniencesMissing
+      needLargeSuggestionBanner
+      isBoss
+    }
+    hideBusinessHours
+    hidePrice
+    microReviews
+    paymentInfo
+    openingHours {
+      day
+      isDayOff
+      schedule {
+        name
+        descriptions
+        isDayOff
+      }
+    }
+    isGoodStore
+    coordinate {
+      x
+      y
+      mapZoomLevel
+    }
+    poiInfo {
+      polyline {
+        shapeType
+        shapeKey {
+          id
+          name
+          version
+        }
+        boundary {
+          minX
+          minY
+          maxX
+          maxY
+        }
+        details {
+          totalDistance
+          departureAddress
+          arrivalAddress
+          departureCoordX
+          departureCoordY
+          arrivalCoordX
+          arrivalCoordY
+        }
+      }
+      land {
+        shapeType
+        shapeKey {
+          id
+          name
+          version
+        }
+      }
+      polygon {
+        shapeType
+        shapeKey {
+          id
+===== VisitorReviews #4 LINE 5071 =====
+      bgColor {
+        rgb
+      }
+      target{
+        placeIds
+        categoryIds
+      }
+    }
+  }
+`,
+        E = `
+  fragment PlaceDetailBase on PlaceDetailBase {
+    id
+    name
+    reviewSettings {
+      keyword
+      blog
+      cafe
+      showVisitorReviewScore
+    }
+    siteId
+    road
+    conveniences
+    category
+    categoryCode
+    categoryCodeList
+    defaultCategoryCodeList
+    categoryCount
+    rcode
+    roadAddress
+    address
+    streetPanorama {
+      id
+      pan
+      tilt
+      lon
+      lat
+      fov
+    }
+    isKtis
+    visitorReviewsTotal
+    visitorReviewsScore
+    cafeBlogReviewsTotal
+    missingInfo {
+      businessType
+      isBizHourMissing
+      isMenuImageMissing
+      isAccessorMissing
+      isDescriptionMissing
+      isConveniencesMissing
+      needLargeSuggestionBanner
+      isBoss
+    }
+    hideBusinessHours
+    hidePrice
+    microReviews
+    paymentInfo
+    openingHours {
+      day
+      isDayOff
+      schedule {
+        name
+        descriptions
+        isDayOff
+      }
+    }
+    isGoodStore
+    coordinate {
+      x
+      y
+      mapZoomLevel
+    }
+    poiInfo {
+      polyline {
+        shapeType
+        shapeKey {
+          id
+          name
+          version
+        }
+        boundary {
+          minX
+          minY
+          maxX
+          maxY
+        }
+        details {
+          totalDistance
+          departureAddress
+          arrivalAddress
+          departureCoordX
+          departureCoordY
+          arrivalCoordX
+          arrivalCoordY
+        }
+      }
+      land {
+        shapeType
+        shapeKey {
+          id
+          name
+          version
+        }
+      }
+      polygon {
+        shapeType
+        shapeKey {
+          id
+          name
+          version
+        }
+      }
+      relation {
+        shapeType
+        shapeKey {
+          id
+          name
+          version
+        }
+        details {
+          type
+          sid
+          fullName
+          name
+          category
+          x
+          y
+        }
+      }
+      parentRelation {
+===== VisitorReviews #5 LINE 5072 =====
+        rgb
+      }
+      target{
+        placeIds
+        categoryIds
+      }
+    }
+  }
+`,
+        E = `
+  fragment PlaceDetailBase on PlaceDetailBase {
+    id
+    name
+    reviewSettings {
+      keyword
+      blog
+      cafe
+      showVisitorReviewScore
+    }
+    siteId
+    road
+    conveniences
+    category
+    categoryCode
+    categoryCodeList
+    defaultCategoryCodeList
+    categoryCount
+    rcode
+    roadAddress
+    address
+    streetPanorama {
+      id
+      pan
+      tilt
+      lon
+      lat
+      fov
+    }
+    isKtis
+    visitorReviewsTotal
+    visitorReviewsScore
+    cafeBlogReviewsTotal
+    missingInfo {
+      businessType
+      isBizHourMissing
+      isMenuImageMissing
+      isAccessorMissing
+      isDescriptionMissing
+      isConveniencesMissing
+      needLargeSuggestionBanner
+      isBoss
+    }
+    hideBusinessHours
+    hidePrice
+    microReviews
+    paymentInfo
+    openingHours {
+      day
+      isDayOff
+      schedule {
+        name
+        descriptions
+        isDayOff
+      }
+    }
+    isGoodStore
+    coordinate {
+      x
+      y
+      mapZoomLevel
+    }
+    poiInfo {
+      polyline {
+        shapeType
+        shapeKey {
+          id
+          name
+          version
+        }
+        boundary {
+          minX
+          minY
+          maxX
+          maxY
+        }
+        details {
+          totalDistance
+          departureAddress
+          arrivalAddress
+          departureCoordX
+          departureCoordY
+          arrivalCoordX
+          arrivalCoordY
+        }
+      }
+      land {
+        shapeType
+        shapeKey {
+          id
+          name
+          version
+        }
+      }
+      polygon {
+        shapeType
+        shapeKey {
+          id
+          name
+          version
+        }
+      }
+      relation {
+        shapeType
+        shapeKey {
+          id
+          name
+          version
+        }
+        details {
+          type
+          sid
+          fullName
+          name
+          category
+          x
+          y
+        }
+      }
+      parentRelation {
+        shapeType
+===== VisitorReviews #6 LINE 5174 =====
+      }
+      polygon {
+        shapeType
+        shapeKey {
+          id
+          name
+          version
+        }
+      }
+      relation {
+        shapeType
+        shapeKey {
+          id
+          name
+          version
+        }
+        details {
+          type
+          sid
+          fullName
+          name
+          category
+          x
+          y
+        }
+      }
+      parentRelation {
+        shapeType
+      }
+    }
+    routeUrl
+    virtualPhone
+    phone
+    hasMobilePhoneNumber
+    talktalkUrl
+    chatBotUrl
+    naverBlog {
+      id
+      categoryNo
+    }
+    visitorReviewsTextReviewTotal
+    beLocalWeek
+    indoorInfo {
+      name
+      isRepresent
+      zoneId
+      indoorId
+      floor
+      floorText
+      zOrder
+    }
+  }
+`,
+        O = `
+  buttons(input: $buttonsAndBadgesInput) {
+    key
+    name
+    value
+  }
+  badge(input: $buttonsAndBadgesInput) {
+    key
+    text
+  }
+`,
+        R = `
+  fragment PhoneInfo on PlacePhoneInfo {
+    phone
+    isVirtualPhone
+    isPrivatePhone
+    hasMobilePhoneNumber
+  }
+`,
+        F = `
+  fragment HouseBanners on HouseBanner {
+    id
+    slotIndex
+    imageUrl
+    linkUrl
+    bgColor
+    altText
+  }
+`,
+        L = `
+  fragment ShopWindow on ShopWindow {
+    total
+    naverPayYn
+    sales {
+      dayOff
+      weekend
+      weekdays
+    }
+    description
+    itemsFromChannelNo {
+      channelProductNo
+      productName
+      representImageUrl
+      salePrice
+      discountedSalePrice
+      mobileDiscountedSalePrice
+      productEndUrl
+      mobileProductEndUrl
+      payExposure
+      brandName
+      totalReviewCount
+      averageReviewScore
+      deliveryFee
+      installationFee
+    }
+    itemsFromInterlockId {
+      channelProductNo
+      productName
+      representImageUrl
+      salePrice
+      discountedSalePrice
+      mobileDiscountedSalePrice
+      productEndUrl
+      mobileProductEndUrl
+      payExposure
+      brandName
+      totalReviewCount
+      averageReviewScore
+      deliveryFee
+      installationFee
+    }
+    branchNews {
+      bbsId
+      imageUrl
+      bbsTitle
+      contentText
+      inspectionDate
+===== VisitorReviews #7 LINE 5337 =====
+    }
+  }
+`,
+        Y = null,
+        Z = `
+  fragment BrandPromotion on BrandPromotion {
+    promotionMobileUrl
+    promotionType
+    promotionDetail
+    promotionSdayOfWeek
+    brandDirNum
+    brandPcUrl
+    promotionPcUrl
+    promotionImage
+    promotionEdayOfWeek
+    brandMobileUrl
+    promotionEdate
+    brandLogoImage
+    brandPhone
+    sDate
+    promotionSdate
+    promotionPlaceImage
+    promotionDetailColor
+    eDate
+    brandTitle
+    status
+  }
+`,
+        w = `
+  fragment HasCoupon on HasCoupon {
+    count
+  }
+`,
+        k = `
+  fragment HasFeed on HasFeed {
+    blogExist
+    feedExist
+  }
+`,
+        A = `
+  fragment VisitorReviews on VisitorReviewsResult {
+    items {
+      id
+      reviewId
+      rating
+      author {
+        id
+        nickname
+        from
+        imageUrl
+        borderImageUrl
+        objectId
+        url
+        review {
+          totalCount
+          imageCount
+          avgRating
+        }
+        theme {
+          totalCount
+        }
+        apolloCacheId
+        isFollowing
+        followerCount
+        followRequested
+      }
+      body
+      thumbnail
+      media {
+        type
+        thumbnail
+        thumbnailRatio
+        class
+        videoId
+        videoUrl
+        trailerUrl
+      }
+      tags
+      status
+      visitCount
+      viewCount
+      visited
+      visitedDate
+      created
+      reply {
+        editUrl
+        body
+        editedBy
+        created
+        date
+        status
+        replyTitle
+        isReported
+        isSuspended
+      }
+      themes {
+        theme
+        pattern
+        category
+        offsetStart
+        offsetEnd
+        similarity
+        miningValue
+      }
+      originType
+      item {
+        name
+        code
+        options
+      }
+      language
+      translatedText
+      bookingItemName
+      bookingItemOptions
+      businessName
+      showBookingItemName
+      showBookingItemOptions
+      votedKeywords {
+        code
+        iconUrl
+        iconCode
+        name
+      }
+      userIdno
+      isFollowing
+      followerCount
+      followRequested
+      loginIdno
+      apolloCacheId
+      receiptInfoUrl
+===== VisitorReviews #8 LINE 6887 =====
+        d = (_ = "mobile") => {
+          const f = i();
+          return {
+            id: "naver-splugin-sdk",
+            type: "text/javascript",
+            charSet: "utf-8",
+            src: `${e.default.socialPlugin.hostname}${t[_]}?${f}`,
+          };
+        },
+        c = (_ = "mobile") => {
+          const f = Object.entries(d(_)).map(([C, v]) => `${C}="${v}"`);
+          return u(`<script ${f.join(" ")} defer><\/script>`);
+        };
+    },
+    25031: (l, m, r) => {
+      "use strict";
+      r.d(m, { Im: () => u, L3: () => c, rN: () => _, zp: () => d });
+      var e = r(1639),
+        t = r(17804);
+      const i = {
+        id: "",
+        title: "",
+        titleNAddress: "",
+        imageUrl: "",
+        shareUrl: "",
+        shareUrlExtra: "",
+        lineTitle: "",
+        lineDescription: "",
+        kakaotalkTitle: "",
+        kakaotalkDescription: "",
+      };
+      function u(v) {
+        const a = { title: "", description: "", image: "" },
+          {
+            base: T,
+            fsasReviews: b,
+            accommodationBookingDetails: S,
+            cpImages: E,
+            images: O,
+          } = v?.business || {},
+          { name: R, visitorReviewsTotal: F } = T || {},
+          L = f({
+            images: O?.images,
+            cpImages: E,
+            accommodationBookingDetails: S,
+          }),
+          { total: Y } = b || {};
+        if (!R) return a;
+        let Z = "";
+        return (
+          F > 0
+            ? ((Z = `\uBC29\uBB38\uC790\uB9AC\uBDF0 ${(0, e.k6)(F)}`),
+              Y > 0 &&
+                (Z += ` \xB7 \uBE14\uB85C\uADF8\uB9AC\uBDF0 ${(0, e.k6)(Y)}`))
+            : Y > 0 && (Z = `\uBE14\uB85C\uADF8\uB9AC\uBDF0 ${(0, e.k6)(Y)}`),
+          { title: `${R} : \uB124\uC774\uBC84
+`, description: Z, image: L }
+        );
+      }
+      function d({ share: v }) {
+        if (!v) return i;
+        const { title: a, imageUrl: T, shareUrl: b } = v;
+        return {
+          ...(a && { title: a }),
+          ...(T && { imageUrl: T }),
+          ...(b && { shareUrl: b }),
+        };
+      }
+      const c = ({ business: v, share: a }) => {
+          const { id: T, name: b, roadAddress: S, address: E, imageUrl: O } = v;
+          return C({
+            id: T,
+            name: b,
+            roadAddress: S,
+            address: E,
+            imageUrl: O,
+            share: a,
+          });
+        },
+        _ = ({ business: v, share: a }) => {
+          const {
+              base: T,
+              accommodationBookingDetails: b,
+              images: S,
+              cpImages: E,
+            } = v,
+            { id: O, name: R, roadAddress: F, address: L } = T || {},
+            Y = f({
+              images: S?.images,
+              cpImages: E,
+              accommodationBookingDetails: b,
+            });
+          return C({
+            id: O,
+            name: R,
+            roadAddress: F,
+            address: L,
+            imageUrl: Y,
+            share: a,
+          });
+        };
+      function f({ images: v, cpImages: a, accommodationBookingDetails: T }) {
+        return v?.[0]?.origin
+          ? (0, t.gu)(v[0].origin, { width: 640, height: 380, quality: 100 })
+          : a?.images?.[0]?.origin
+            ? (0, t.gu)(a.images[0].origin, { width: 640, height: 380 })
+            : T?.images?.[0]
+              ? (0, t.gu)(T.images[0], { width: 640, height: 380 })
+              : "";
+      }
+      function C({
+        id: v,
+        name: a,
+        roadAddress: T,
+        imageUrl: b,
+        address: S,
+        share: E,
+      }) {
+        const O = E?.title || a || "",
+          R = T || S || "",
+          F = E?.imageUrl || b,
+          L = `${O}
+${R}`;
+        return {
+          id: v,
+          title: O,
+          titleNAddress: L,
+          imageUrl: F,
+          lineTitle: O,
+          lineDescription: R,
+===== visitorReviews #1 LINE 4839 =====
+        x6: () => Z,
+        z: () => ir,
+        zA: () => sr,
+        zO: () => w,
+      });
+      const e = null,
+        t = `
+  fragment FsasReviews on FsasReviewsResult {
+    total
+    maxItemCount
+    items {
+      name
+      type
+      typeName
+      url
+      home
+      id
+      title
+      rank
+      contents
+      bySmartEditor3
+      hasNaverReservation
+      thumbnailUrl
+      thumbnailUrlList
+      thumbnailCount
+      date
+      isOfficial
+      isRepresentative
+      profileImageUrl
+      isVideoThumbnail
+      reviewId
+      authorName
+      createdString
+      bypassToken
+      buyWithMyMoneyType
+    }
+  }
+`,
+        i = null,
+        u = `
+  fragment VisitorReviewStats on VisitorReviewStatsResult {
+    id
+    name
+    review {
+      avgRating
+      totalCount
+      scores {
+        count
+        score
+      }
+      imageReviewCount
+      authorCount
+    }
+    analysis {
+      themes {
+        code
+        label
+        count
+      }
+      menus {
+        label
+        count
+      }
+      votedKeyword {
+        totalCount
+        reviewCount
+        userCount
+        details {
+          category
+          code
+          iconUrl
+          iconCode
+          displayName
+          count
+          previousRank
+        }
+      }
+    }
+    visitorReviewsTotal
+    ratingReviewsTotal
+  }
+`,
+        d = `
+  fragment SubwayStations on SubwayStation {
+    no
+    name
+    type
+    typeDesc
+    color
+    priority
+    transfers {
+      no
+      name
+      type
+      color
+      priority
+    }
+    station {
+      id
+      name
+      displayName
+      lat
+      lng
+      nearestExit
+      nearestExitType
+      walkTime
+      walkingDistance
+    }
+  }
+`,
+        c = `
+  fragment BusStation on BusStation {
+    id
+    name
+    displayCode
+    lat
+    lng
+    innerRoutes {
+      routeType {
+        type
+        typeName
+        innerRoute {
+          id
+          name
+        }
+      }
+    }
+    walkTime
+    walkingDistance
+  }
+===== visitorReviews #2 LINE 4877 =====
+        i = null,
+        u = `
+  fragment VisitorReviewStats on VisitorReviewStatsResult {
+    id
+    name
+    review {
+      avgRating
+      totalCount
+      scores {
+        count
+        score
+      }
+      imageReviewCount
+      authorCount
+    }
+    analysis {
+      themes {
+        code
+        label
+        count
+      }
+      menus {
+        label
+        count
+      }
+      votedKeyword {
+        totalCount
+        reviewCount
+        userCount
+        details {
+          category
+          code
+          iconUrl
+          iconCode
+          displayName
+          count
+          previousRank
+        }
+      }
+    }
+    visitorReviewsTotal
+    ratingReviewsTotal
+  }
+`,
+        d = `
+  fragment SubwayStations on SubwayStation {
+    no
+    name
+    type
+    typeDesc
+    color
+    priority
+    transfers {
+      no
+      name
+      type
+      color
+      priority
+    }
+    station {
+      id
+      name
+      displayName
+      lat
+      lng
+      nearestExit
+      nearestExitType
+      walkTime
+      walkingDistance
+    }
+  }
+`,
+        c = `
+  fragment BusStation on BusStation {
+    id
+    name
+    displayCode
+    lat
+    lng
+    innerRoutes {
+      routeType {
+        type
+        typeName
+        innerRoute {
+          id
+          name
+        }
+      }
+    }
+    walkTime
+    walkingDistance
+  }
+`,
+        _ = `
+  fragment OptionsForMap on OptionsForMap {
+    maxZoom
+    minZoom
+    includeMyLocation
+    maxIncludePoiCount
+    center
+    spotId
+    keepMapBounds
+  }
+`,
+        f = null,
+        C = `
+  fragment KinQna on KinQna {
+    answerCount
+    answerList {
+      detailUrl
+      writeTime
+      contents
+      questionTitle
+      thumbnailUrl
+      dirId
+    }
+    profileUrl
+  }
+`,
+        v = `
+  fragment NewBusinessHours on NewBusinessHour {
+    name
+    businessStatusDescription {
+      status
+      blindDescription
+      description
+      showEndsNextDay
+    }
+    businessHours {
+      day
+===== visitorReviews #3 LINE 5049 =====
+        S = `
+  fragment PlaceAccessorBanner on PlaceAccessorBanner {
+    promotionSeq
+    displayOrder
+    activeStartDateTime
+    activeEndDateTime
+    promotionDetail {
+      title {
+        first
+        second
+      }
+      subtext
+      images {
+        url
+        suffix
+        width
+        height
+      }
+      buttons {
+        phrase
+        url
+      }
+      bgColor {
+        rgb
+      }
+      target{
+        placeIds
+        categoryIds
+      }
+    }
+  }
+`,
+        E = `
+  fragment PlaceDetailBase on PlaceDetailBase {
+    id
+    name
+    reviewSettings {
+      keyword
+      blog
+      cafe
+      showVisitorReviewScore
+    }
+    siteId
+    road
+    conveniences
+    category
+    categoryCode
+    categoryCodeList
+    defaultCategoryCodeList
+    categoryCount
+    rcode
+    roadAddress
+    address
+    streetPanorama {
+      id
+      pan
+      tilt
+      lon
+      lat
+      fov
+    }
+    isKtis
+    visitorReviewsTotal
+    visitorReviewsScore
+    cafeBlogReviewsTotal
+    missingInfo {
+      businessType
+      isBizHourMissing
+      isMenuImageMissing
+      isAccessorMissing
+      isDescriptionMissing
+      isConveniencesMissing
+      needLargeSuggestionBanner
+      isBoss
+    }
+    hideBusinessHours
+    hidePrice
+    microReviews
+    paymentInfo
+    openingHours {
+      day
+      isDayOff
+      schedule {
+        name
+        descriptions
+        isDayOff
+      }
+    }
+    isGoodStore
+    coordinate {
+      x
+      y
+      mapZoomLevel
+    }
+    poiInfo {
+      polyline {
+        shapeType
+        shapeKey {
+          id
+          name
+          version
+        }
+        boundary {
+          minX
+          minY
+          maxX
+          maxY
+        }
+        details {
+          totalDistance
+          departureAddress
+          arrivalAddress
+          departureCoordX
+          departureCoordY
+          arrivalCoordX
+          arrivalCoordY
+        }
+      }
+      land {
+        shapeType
+        shapeKey {
+          id
+          name
+          version
+        }
+      }
+      polygon {
+        shapeType
+        shapeKey {
+          id
+===== visitorReviews #4 LINE 5071 =====
+      bgColor {
+        rgb
+      }
+      target{
+        placeIds
+        categoryIds
+      }
+    }
+  }
+`,
+        E = `
+  fragment PlaceDetailBase on PlaceDetailBase {
+    id
+    name
+    reviewSettings {
+      keyword
+      blog
+      cafe
+      showVisitorReviewScore
+    }
+    siteId
+    road
+    conveniences
+    category
+    categoryCode
+    categoryCodeList
+    defaultCategoryCodeList
+    categoryCount
+    rcode
+    roadAddress
+    address
+    streetPanorama {
+      id
+      pan
+      tilt
+      lon
+      lat
+      fov
+    }
+    isKtis
+    visitorReviewsTotal
+    visitorReviewsScore
+    cafeBlogReviewsTotal
+    missingInfo {
+      businessType
+      isBizHourMissing
+      isMenuImageMissing
+      isAccessorMissing
+      isDescriptionMissing
+      isConveniencesMissing
+      needLargeSuggestionBanner
+      isBoss
+    }
+    hideBusinessHours
+    hidePrice
+    microReviews
+    paymentInfo
+    openingHours {
+      day
+      isDayOff
+      schedule {
+        name
+        descriptions
+        isDayOff
+      }
+    }
+    isGoodStore
+    coordinate {
+      x
+      y
+      mapZoomLevel
+    }
+    poiInfo {
+      polyline {
+        shapeType
+        shapeKey {
+          id
+          name
+          version
+        }
+        boundary {
+          minX
+          minY
+          maxX
+          maxY
+        }
+        details {
+          totalDistance
+          departureAddress
+          arrivalAddress
+          departureCoordX
+          departureCoordY
+          arrivalCoordX
+          arrivalCoordY
+        }
+      }
+      land {
+        shapeType
+        shapeKey {
+          id
+          name
+          version
+        }
+      }
+      polygon {
+        shapeType
+        shapeKey {
+          id
+          name
+          version
+        }
+      }
+      relation {
+        shapeType
+        shapeKey {
+          id
+          name
+          version
+        }
+        details {
+          type
+          sid
+          fullName
+          name
+          category
+          x
+          y
+        }
+      }
+      parentRelation {
+===== visitorReviews #5 LINE 5072 =====
+        rgb
+      }
+      target{
+        placeIds
+        categoryIds
+      }
+    }
+  }
+`,
+        E = `
+  fragment PlaceDetailBase on PlaceDetailBase {
+    id
+    name
+    reviewSettings {
+      keyword
+      blog
+      cafe
+      showVisitorReviewScore
+    }
+    siteId
+    road
+    conveniences
+    category
+    categoryCode
+    categoryCodeList
+    defaultCategoryCodeList
+    categoryCount
+    rcode
+    roadAddress
+    address
+    streetPanorama {
+      id
+      pan
+      tilt
+      lon
+      lat
+      fov
+    }
+    isKtis
+    visitorReviewsTotal
+    visitorReviewsScore
+    cafeBlogReviewsTotal
+    missingInfo {
+      businessType
+      isBizHourMissing
+      isMenuImageMissing
+      isAccessorMissing
+      isDescriptionMissing
+      isConveniencesMissing
+      needLargeSuggestionBanner
+      isBoss
+    }
+    hideBusinessHours
+    hidePrice
+    microReviews
+    paymentInfo
+    openingHours {
+      day
+      isDayOff
+      schedule {
+        name
+        descriptions
+        isDayOff
+      }
+    }
+    isGoodStore
+    coordinate {
+      x
+      y
+      mapZoomLevel
+    }
+    poiInfo {
+      polyline {
+        shapeType
+        shapeKey {
+          id
+          name
+          version
+        }
+        boundary {
+          minX
+          minY
+          maxX
+          maxY
+        }
+        details {
+          totalDistance
+          departureAddress
+          arrivalAddress
+          departureCoordX
+          departureCoordY
+          arrivalCoordX
+          arrivalCoordY
+        }
+      }
+      land {
+        shapeType
+        shapeKey {
+          id
+          name
+          version
+        }
+      }
+      polygon {
+        shapeType
+        shapeKey {
+          id
+          name
+          version
+        }
+      }
+      relation {
+        shapeType
+        shapeKey {
+          id
+          name
+          version
+        }
+        details {
+          type
+          sid
+          fullName
+          name
+          category
+          x
+          y
+        }
+      }
+      parentRelation {
+        shapeType
+===== visitorReviews #6 LINE 5174 =====
+      }
+      polygon {
+        shapeType
+        shapeKey {
+          id
+          name
+          version
+        }
+      }
+      relation {
+        shapeType
+        shapeKey {
+          id
+          name
+          version
+        }
+        details {
+          type
+          sid
+          fullName
+          name
+          category
+          x
+          y
+        }
+      }
+      parentRelation {
+        shapeType
+      }
+    }
+    routeUrl
+    virtualPhone
+    phone
+    hasMobilePhoneNumber
+    talktalkUrl
+    chatBotUrl
+    naverBlog {
+      id
+      categoryNo
+    }
+    visitorReviewsTextReviewTotal
+    beLocalWeek
+    indoorInfo {
+      name
+      isRepresent
+      zoneId
+      indoorId
+      floor
+      floorText
+      zOrder
+    }
+  }
+`,
+        O = `
+  buttons(input: $buttonsAndBadgesInput) {
+    key
+    name
+    value
+  }
+  badge(input: $buttonsAndBadgesInput) {
+    key
+    text
+  }
+`,
+        R = `
+  fragment PhoneInfo on PlacePhoneInfo {
+    phone
+    isVirtualPhone
+    isPrivatePhone
+    hasMobilePhoneNumber
+  }
+`,
+        F = `
+  fragment HouseBanners on HouseBanner {
+    id
+    slotIndex
+    imageUrl
+    linkUrl
+    bgColor
+    altText
+  }
+`,
+        L = `
+  fragment ShopWindow on ShopWindow {
+    total
+    naverPayYn
+    sales {
+      dayOff
+      weekend
+      weekdays
+    }
+    description
+    itemsFromChannelNo {
+      channelProductNo
+      productName
+      representImageUrl
+      salePrice
+      discountedSalePrice
+      mobileDiscountedSalePrice
+      productEndUrl
+      mobileProductEndUrl
+      payExposure
+      brandName
+      totalReviewCount
+      averageReviewScore
+      deliveryFee
+      installationFee
+    }
+    itemsFromInterlockId {
+      channelProductNo
+      productName
+      representImageUrl
+      salePrice
+      discountedSalePrice
+      mobileDiscountedSalePrice
+      productEndUrl
+      mobileProductEndUrl
+      payExposure
+      brandName
+      totalReviewCount
+      averageReviewScore
+      deliveryFee
+      installationFee
+    }
+    branchNews {
+      bbsId
+      imageUrl
+      bbsTitle
+      contentText
+      inspectionDate
+===== visitorReviews #7 LINE 5337 =====
+    }
+  }
+`,
+        Y = null,
+        Z = `
+  fragment BrandPromotion on BrandPromotion {
+    promotionMobileUrl
+    promotionType
+    promotionDetail
+    promotionSdayOfWeek
+    brandDirNum
+    brandPcUrl
+    promotionPcUrl
+    promotionImage
+    promotionEdayOfWeek
+    brandMobileUrl
+    promotionEdate
+    brandLogoImage
+    brandPhone
+    sDate
+    promotionSdate
+    promotionPlaceImage
+    promotionDetailColor
+    eDate
+    brandTitle
+    status
+  }
+`,
+        w = `
+  fragment HasCoupon on HasCoupon {
+    count
+  }
+`,
+        k = `
+  fragment HasFeed on HasFeed {
+    blogExist
+    feedExist
+  }
+`,
+        A = `
+  fragment VisitorReviews on VisitorReviewsResult {
+    items {
+      id
+      reviewId
+      rating
+      author {
+        id
+        nickname
+        from
+        imageUrl
+        borderImageUrl
+        objectId
+        url
+        review {
+          totalCount
+          imageCount
+          avgRating
+        }
+        theme {
+          totalCount
+        }
+        apolloCacheId
+        isFollowing
+        followerCount
+        followRequested
+      }
+      body
+      thumbnail
+      media {
+        type
+        thumbnail
+        thumbnailRatio
+        class
+        videoId
+        videoUrl
+        trailerUrl
+      }
+      tags
+      status
+      visitCount
+      viewCount
+      visited
+      visitedDate
+      created
+      reply {
+        editUrl
+        body
+        editedBy
+        created
+        date
+        status
+        replyTitle
+        isReported
+        isSuspended
+      }
+      themes {
+        theme
+        pattern
+        category
+        offsetStart
+        offsetEnd
+        similarity
+        miningValue
+      }
+      originType
+      item {
+        name
+        code
+        options
+      }
+      language
+      translatedText
+      bookingItemName
+      bookingItemOptions
+      businessName
+      showBookingItemName
+      showBookingItemOptions
+      votedKeywords {
+        code
+        iconUrl
+        iconCode
+        name
+      }
+      userIdno
+      isFollowing
+      followerCount
+      followRequested
+      loginIdno
+      apolloCacheId
+      receiptInfoUrl
+===== visitorReviews #8 LINE 6887 =====
+        d = (_ = "mobile") => {
+          const f = i();
+          return {
+            id: "naver-splugin-sdk",
+            type: "text/javascript",
+            charSet: "utf-8",
+            src: `${e.default.socialPlugin.hostname}${t[_]}?${f}`,
+          };
+        },
+        c = (_ = "mobile") => {
+          const f = Object.entries(d(_)).map(([C, v]) => `${C}="${v}"`);
+          return u(`<script ${f.join(" ")} defer><\/script>`);
+        };
+    },
+    25031: (l, m, r) => {
+      "use strict";
+      r.d(m, { Im: () => u, L3: () => c, rN: () => _, zp: () => d });
+      var e = r(1639),
+        t = r(17804);
+      const i = {
+        id: "",
+        title: "",
+        titleNAddress: "",
+        imageUrl: "",
+        shareUrl: "",
+        shareUrlExtra: "",
+        lineTitle: "",
+        lineDescription: "",
+        kakaotalkTitle: "",
+        kakaotalkDescription: "",
+      };
+      function u(v) {
+        const a = { title: "", description: "", image: "" },
+          {
+            base: T,
+            fsasReviews: b,
+            accommodationBookingDetails: S,
+            cpImages: E,
+            images: O,
+          } = v?.business || {},
+          { name: R, visitorReviewsTotal: F } = T || {},
+          L = f({
+            images: O?.images,
+            cpImages: E,
+            accommodationBookingDetails: S,
+          }),
+          { total: Y } = b || {};
+        if (!R) return a;
+        let Z = "";
+        return (
+          F > 0
+            ? ((Z = `\uBC29\uBB38\uC790\uB9AC\uBDF0 ${(0, e.k6)(F)}`),
+              Y > 0 &&
+                (Z += ` \xB7 \uBE14\uB85C\uADF8\uB9AC\uBDF0 ${(0, e.k6)(Y)}`))
+            : Y > 0 && (Z = `\uBE14\uB85C\uADF8\uB9AC\uBDF0 ${(0, e.k6)(Y)}`),
+          { title: `${R} : \uB124\uC774\uBC84
+`, description: Z, image: L }
+        );
+      }
+      function d({ share: v }) {
+        if (!v) return i;
+        const { title: a, imageUrl: T, shareUrl: b } = v;
+        return {
+          ...(a && { title: a }),
+          ...(T && { imageUrl: T }),
+          ...(b && { shareUrl: b }),
+        };
+      }
+      const c = ({ business: v, share: a }) => {
+          const { id: T, name: b, roadAddress: S, address: E, imageUrl: O } = v;
+          return C({
+            id: T,
+            name: b,
+            roadAddress: S,
+            address: E,
+            imageUrl: O,
+            share: a,
+          });
+        },
+        _ = ({ business: v, share: a }) => {
+          const {
+              base: T,
+              accommodationBookingDetails: b,
+              images: S,
+              cpImages: E,
+            } = v,
+            { id: O, name: R, roadAddress: F, address: L } = T || {},
+            Y = f({
+              images: S?.images,
+              cpImages: E,
+              accommodationBookingDetails: b,
+            });
+          return C({
+            id: O,
+            name: R,
+            roadAddress: F,
+            address: L,
+            imageUrl: Y,
+            share: a,
+          });
+        };
+      function f({ images: v, cpImages: a, accommodationBookingDetails: T }) {
+        return v?.[0]?.origin
+          ? (0, t.gu)(v[0].origin, { width: 640, height: 380, quality: 100 })
+          : a?.images?.[0]?.origin
+            ? (0, t.gu)(a.images[0].origin, { width: 640, height: 380 })
+            : T?.images?.[0]
+              ? (0, t.gu)(T.images[0], { width: 640, height: 380 })
+              : "";
+      }
+      function C({
+        id: v,
+        name: a,
+        roadAddress: T,
+        imageUrl: b,
+        address: S,
+        share: E,
+      }) {
+        const O = E?.title || a || "",
+          R = T || S || "",
+          F = E?.imageUrl || b,
+          L = `${O}
+${R}`;
+        return {
+          id: v,
+          title: O,
+          titleNAddress: L,
+          imageUrl: F,
+          lineTitle: O,
+          lineDescription: R,
+===== after: #1 LINE 10483 =====
+              },
+              G = (Q) => {
+                const J = (D.current > 0 ? Date.now() - D.current : 0) > jr;
+                ((h.current || J) && Q.preventDefault(),
+                  (h.current = !1),
+                  (D.current = -1));
+              };
+            return (
+              B.addEventListener("scroll", U, { passive: !0 }),
+              P.addEventListener("touchstart", I, { passive: !0 }),
+              P.addEventListener("touchend", H, { passive: !0 }),
+              P.addEventListener("click", G, { capture: !0 }),
+              () => {
+                ((h.current = !1),
+                  (D.current = -1),
+                  x.current && (clearTimeout(x.current), (x.current = null)),
+                  B.removeEventListener("scroll", U),
+                  P.removeEventListener("touchstart", I),
+                  P.removeEventListener("touchend", H),
+                  P.removeEventListener("click", G, { capture: !0 }));
+              }
+            );
+          }, [g, n, o]),
+          { isListScrollingRef: h }
+        );
+      }
+      function yi(n, o) {
+        return !o || !n ? !1 : o.contains(n);
+      }
+      const xr = typeof process < "u" && !1,
+        Xt = (0, i.forwardRef)((n, o) => {
+          const {
+              items: g,
+              viewportClassName: h,
+              cameraClassName: x,
+              scrollViewOptions: D,
+              events: P,
+              log: B,
+              renderItemBefore: U,
+              renderItem: I,
+              renderItemAfter: H,
+              buttonClassName: G,
+              buttonIconClassName: Q,
+              disableScroll: J = !1,
+              env: V,
+            } = n,
+            q = V?.isPc ?? !1,
+            ne = V?.isIOS ?? !1,
+            {
+              arrowXPos: me,
+              arrowYPos: ge,
+              hasGradient: Ae,
+              cameraTag: He,
+              scrollDuration: ke,
+              scrollSize: Ce,
+              scrollOffset: Ee,
+              selectedIndex: Ge,
+              showFlickingButtons: pt,
+              showFlickingButtonsOnHover: Bt,
+              moveType: et,
+              allowDynamicHeight: jt,
+              loggingThreshold: Nt,
+              easing: dt,
+              enablePcOverscroll: Tt,
+              verticalListContainerSelector: Dr,
+            } = D || {},
+            [Ri, Si] = (0, i.useState)(null),
+            [Vr, wi] = (0, i.useState)(null),
+            Br = (0, i.useRef)(),
+            Ue = (0, i.useRef)(null),
+            Wt = (0, i.useMemo)(() => {
+              const De = [],
+                mt = Ur(U?.(), "__header__");
+              if ((mt && De.push(mt), typeof I == "function"))
+                if (g !== void 0)
+                  if (Array.isArray(g)) {
+                    const Ye = g.map((Fe, qe) => {
+                        const xt = I(Fe, qe, Ue);
+                        return (
+                          xr &&
+                            Array.isArray(xt) &&
+                            console.warn(
+                              "HorizontalScrollView: Returned array of elements. In structured mode, renderItem should return a single ReactElement per item.",
+                            ),
+                          xt
+                        );
+                      }),
+                      Qe = i.Children.toArray(Ye);
+                    De.push(...Qe);
+                  } else
+                    xr &&
+                      console.warn(
+                        "HorizontalScrollView: items prop must be an array, received:",
+                        typeof g,
+                      );
+                else {
+                  const Ye = I(Ue);
+                  let Qe = Ye;
+                  i.isValidElement(Ye) &&
+                    Ye.type === i.Fragment &&
+                    (Qe = Ye.props.children);
+                  const Fe = i.Children.toArray(Qe);
+                  De.push(...Fe);
+                }
+              const Ve = Ur(H?.(), "__footer__");
+              return (Ve && De.push(Ve), De.filter((Ye) => !!Ye));
+            }, [g, U, I, H]),
+            {
+              isAtStart: Tr,
+              isAtEnd: Ar,
+              isScrollable: it,
+            } = li(Ue, J, Wt.length),
+            Pr = Wt.length,
+            be = (0, i.useMemo)(() => {
+              const De = B?.code;
+              if (!De) return null;
+              const mt = De.postFix || Se.logCode.postFix,
+                Ve = De.areaCode || Se.logCode.areaCode,
+                Ye = De.laimAreaId,
+                Qe = De.contentId || Se.logCode.contentId,
+                Fe = De.scroll || Se.logCode.scroll,
+                qe = De.leftBtn || Se.logCode.leftBtn,
+                xt = De.rightBtn || Se.logCode.rightBtn,
+                Mt = De.hideSimpleLaimPostFix;
+              return {
+                postFix: mt,
+                areaCode: Ve,
+                laimAreaId: Ye,
+                contentId: Qe,
+                scroll: Fe,
+===== after: #2 LINE 10964 =====
+          children: [
+            (0, e.jsx)("span", {
+              className: t.Q.icon_wrapper,
+              children: (0, e.jsx)(F, {
+                className: t.Q.icon,
+                "aria-hidden": "true",
+              }),
+            }),
+            "\uB354\uBCF4\uAE30",
+          ],
+        });
+      }
+      function Di(n) {
+        const {
+            images: o,
+            isNxPc: g,
+            isPcmap: h,
+            scrollViewProps: x,
+            moreButtonProps: D,
+          } = n,
+          P = D?.showImageMoreButton ?? !1;
+        if (g && o.length === 0) return (0, e.jsx)(Bi, { noImageIconSize: 35 });
+        const B = (I) => {
+            const { key: H, thumbArea: G } = I;
+            return (0, e.jsx)(i.Fragment, { children: G }, H);
+          },
+          U = () =>
+            P
+              ? (0, e.jsx)(bi, { isNxPc: g, isPcmap: h, onClick: D?.onClick })
+              : null;
+        return (0, e.jsx)("div", {
+          className: a(t.m.image_area, {
+            [t.m.type_multi]: o.length > 3,
+            [t.m.type_has_more]: P,
+            [t.m.type_pcnx]: g,
+            [t.m.type_pcmap]: h,
+          }),
+          children: (0, e.jsx)(Xt, {
+            items: o,
+            renderItem: B,
+            renderItemAfter: U,
+            viewportClassName: t.m.scroll_viewport,
+            cameraClassName: t.m.scroll_camera,
+            env: { isPc: g || h },
+            scrollViewOptions: {
+              showFlickingButtonsOnHover: !0,
+              ...(h && { arrowXPos: 2 }),
+              scrollSize: 3,
+            },
+            ...x,
+          }),
+        });
+      }
+      function Bi(n) {
+        const { noImageIconSize: o } = n;
+        return (0, e.jsxs)("div", {
+          className: t.m.no_image_area,
+          children: [
+            (0, e.jsx)(de, {
+              className: t.m.icon,
+              "aria-hidden": "true",
+              style: o ? { width: o, height: o } : {},
+            }),
+            (0, e.jsx)("span", {
+              className: "pui__blind",
+              children: "\uC774\uBBF8\uC9C0 \uC900\uBE44\uC911",
+            }),
+          ],
+        });
+      }
+      function Ti(n) {
+        return (
+          typeof n == "object" &&
+          n !== null &&
+          !i.isValidElement(n) &&
+          n.type === "broadcast"
+        );
+      }
+      const Gr = (0, i.forwardRef)(
+        ({ content: n, className: o, style: g }, h) =>
+          n == null
+            ? null
+            : (0, e.jsx)("div", {
+                ref: h,
+                className: a(t.R.etc_area, o),
+                style: g,
+                children: Array.isArray(n)
+                  ? (0, e.jsx)("div", {
+                      className: t.R.etc_inner,
+                      children: n.map((x, D) =>
+                        Ti(x)
+                          ? (0, e.jsxs)(
+                              "span",
+                              {
+                                className: a(t.R.item, t.R.type_broadcast),
+                                children: [
+                                  (0, e.jsx)(ae, {
+                                    className: t.R.icon,
+                                    "aria-hidden": "true",
+                                  }),
+                                  (0, e.jsx)("span", {
+                                    className: "pui__blind",
+                                    children: "TV",
+                                  }),
+                                  (0, e.jsx)("span", {
+                                    className: t.R.info,
+                                    children: x.text,
+                                  }),
+                                ],
+                              },
+                              D,
+                            )
+                          : (0, e.jsx)(
+                              "span",
+                              { className: t.R.item, children: x },
+                              D,
+                            ),
+                      ),
+                    })
+                  : n,
+              }),
+      );
+      Gr.displayName = "PlaceCard.EtcArea";
+      const Ai = Gr;
+      function Pi({
+        items: n,
+        onItemClick: o,
+        isNxPc: g,
+        isPcmap: h,
+        scrollViewProps: x,

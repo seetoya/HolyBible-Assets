@@ -1,0 +1,36 @@
+    62118: (r, _, e) => {
+      "use strict";
+      e.d(_, { h: () => p });
+      var t = e(63001),
+        a = e(35246),
+        n = e(10164),
+        i = e(63602),
+        s = e(31681);
+      const l = "0";
+      function p({ reviewItem: o = "", skip: m = !1 }) {
+        const c = (0, t.Z)(),
+          { businessType: d, businessId: E } = (0, a.Z)(),
+          { business: C } = (0, n.n)(),
+          g = C?.visitorReviewStats?.visitorReviewsTotal,
+          u = C?.base?.visitorReviewsTotal,
+          { reviewItem: f } = c || {},
+          P = o || (f === "noQuery" ? l : f) || l,
+          { data: O, loading: T } = (0, i.Z)(s.TB, {
+            variables: { id: E, itemId: P, businessType: d },
+            skip: m || !((g || u) > 0),
+          }),
+          y = O?.visitorReviewStats?.ratingReviewsTotal || 0,
+          B = O?.visitorReviewStats?.visitorReviewsTotal || 0,
+          v = O?.visitorReviewStats?.analysis?.votedKeyword,
+          h = O?.visitorReviewStats?.analysis?.menus,
+          D = O?.visitorReviewStats?.analysis?.themes;
+        return {
+          statsThemesLoading: T,
+          statsThemesData: O,
+          votedKeyword: v,
+          menus: h,
+          themes: D,
+          onlyShowRatingReviews: y === B,
+        };
+      }
+    },

@@ -1,0 +1,786 @@
+===== VisitorReviews #1 LINE 291 =====
+            data: V,
+            LoadingComponent: $,
+            ErrorComponent: j,
+            fetchMore: J,
+          } = (0, l.Z)(G, { variables: { input: U }, skip: r }),
+          {
+            rooms: x,
+            agencyName: nt,
+            roomTotal: et,
+          } = V?.accommodationBookingDetails || {},
+          Z = x?.length > 0 && et > x.length,
+          ot = (0, t.useCallback)(async () => {
+            Z &&
+              (await J({
+                variables: { input: { ...U, page: Math.ceil(x.length / n) } },
+                updateQuery: (k, { fetchMoreResult: z }) => {
+                  if (!z) return k;
+                  const { rooms: tt } = z?.accommodationBookingDetails || {};
+                  return {
+                    ...k,
+                    accommodationBookingDetails: {
+                      ...k.accommodationBookingDetails,
+                      rooms: [...k.accommodationBookingDetails.rooms, ...tt],
+                    },
+                  };
+                },
+              }));
+          }, [J, Z, x, n, U]);
+        return {
+          ...(!(0, M.Qr)(x) && { rooms: x }),
+          roomTotal: et,
+          agencyName: nt,
+          hasMore: Z,
+          fetchMore: ot,
+          LoadingComponent: $,
+          ErrorComponent: j,
+          isFilterSelected: !!(d && R && f),
+        };
+      }
+      const b = (0, e.gql)`
+  query getVisitorReviewStats($id: String) {
+    visitorReviewStatsByBookingBusinessId(input: { bookingBusinessId: $id }) {
+      items {
+        id
+        itemId
+        score
+        count
+      }
+    }
+  }
+`,
+        w = null;
+      function X() {
+        const { business: r } = useBusinessContext(),
+          { bookingBusinessId: n } = r?.naverBooking || {},
+          { data: i } = useData(b, { variables: { id: n } }),
+          T = i?.visitorReviewStatsByBookingBusinessId?.items || w;
+        return React.useMemo(
+          () => T.reduce((d, R) => ({ ...d, [R.id]: R }), {}),
+          [T],
+        );
+      }
+      function q() {
+        const r = useParams(),
+          n = "resocId",
+          i = r[n],
+          T = r.id,
+          d = i || T,
+          R = useIsSSR(),
+          { rooms: D, LoadingComponent: f, ErrorComponent: g } = S({ skip: R });
+        return !D?.length || f || g
+          ? { rooms: D, room: null, LoadingComponent: f, ErrorComponent: g }
+          : { rooms: D, room: D.find((U) => U[n] === Number(d)) };
+      }
+      function H(r, n) {
+        const { accommodationAdditionalProperty: i, bizItemSubType: T } =
+          r || {};
+        return !i || T === "ACCOMMODATION_NIGHT"
+          ? ""
+          : i.roomType === "CAMPING_SITE" || i.roomType === "GLAMPING"
+            ? n(I18N_KEYS.CAMPNIC, "\uCEA0\uD504\uB2C9")
+            : n(I18N_KEYS.DAY_USE, "\uB370\uC774\uC720\uC988");
+      }
+      function W({
+        resrvUrl: r = "",
+        resocId: n,
+        additionalParams: i = {},
+        bookingTab: T = "details",
+      }) {
+        const d = useQueryParams(),
+          { isNxPc: R } = useProfileContext(),
+          { isNx: D } = useNxContext(),
+          { businessId: f } = useDetailRoute(),
+          g = useNxPcDetailLink(),
+          {
+            deviceType: U,
+            isIOS: V,
+            isNaverMapAppWithBookingTabNavigation: $,
+          } = useDeviceInfoContext(),
+          { locale: j } = useMultiLanguageContext();
+        return React.useMemo(() => {
+          if (!r)
+            return R
+              ? g(`/room/${n}`, { pathParams: { ...d, ...i } })
+              : {
+                  to: getEncodedUrl(
+                    `/accommodation/${f}/room/${n}`,
+                    D ? {} : { ...d, ...i },
+                  ),
+                };
+          const { userCouponSeq: J } = d,
+            x = getBookingPlaceUrl({
+              productionUrl: r,
+              isOnlyMobile: !0,
+              params: {
+                tab: T,
+                ...(J && { userCouponSeq: J }),
+                ...(V && $ && { nmapNewWindow: !0 }),
+              },
+              deviceType: U,
+              locale: j,
+            });
+          return R
+            ? {
+                href:
+                  g("/home", {
+                    pathParams: { bookingRedirectUrl: x, forceRedirect: !0 },
+                  })?.href || "",
+              }
+            : { href: x, target: "_self" };
+===== VisitorReviews #2 LINE 292 =====
+            LoadingComponent: $,
+            ErrorComponent: j,
+            fetchMore: J,
+          } = (0, l.Z)(G, { variables: { input: U }, skip: r }),
+          {
+            rooms: x,
+            agencyName: nt,
+            roomTotal: et,
+          } = V?.accommodationBookingDetails || {},
+          Z = x?.length > 0 && et > x.length,
+          ot = (0, t.useCallback)(async () => {
+            Z &&
+              (await J({
+                variables: { input: { ...U, page: Math.ceil(x.length / n) } },
+                updateQuery: (k, { fetchMoreResult: z }) => {
+                  if (!z) return k;
+                  const { rooms: tt } = z?.accommodationBookingDetails || {};
+                  return {
+                    ...k,
+                    accommodationBookingDetails: {
+                      ...k.accommodationBookingDetails,
+                      rooms: [...k.accommodationBookingDetails.rooms, ...tt],
+                    },
+                  };
+                },
+              }));
+          }, [J, Z, x, n, U]);
+        return {
+          ...(!(0, M.Qr)(x) && { rooms: x }),
+          roomTotal: et,
+          agencyName: nt,
+          hasMore: Z,
+          fetchMore: ot,
+          LoadingComponent: $,
+          ErrorComponent: j,
+          isFilterSelected: !!(d && R && f),
+        };
+      }
+      const b = (0, e.gql)`
+  query getVisitorReviewStats($id: String) {
+    visitorReviewStatsByBookingBusinessId(input: { bookingBusinessId: $id }) {
+      items {
+        id
+        itemId
+        score
+        count
+      }
+    }
+  }
+`,
+        w = null;
+      function X() {
+        const { business: r } = useBusinessContext(),
+          { bookingBusinessId: n } = r?.naverBooking || {},
+          { data: i } = useData(b, { variables: { id: n } }),
+          T = i?.visitorReviewStatsByBookingBusinessId?.items || w;
+        return React.useMemo(
+          () => T.reduce((d, R) => ({ ...d, [R.id]: R }), {}),
+          [T],
+        );
+      }
+      function q() {
+        const r = useParams(),
+          n = "resocId",
+          i = r[n],
+          T = r.id,
+          d = i || T,
+          R = useIsSSR(),
+          { rooms: D, LoadingComponent: f, ErrorComponent: g } = S({ skip: R });
+        return !D?.length || f || g
+          ? { rooms: D, room: null, LoadingComponent: f, ErrorComponent: g }
+          : { rooms: D, room: D.find((U) => U[n] === Number(d)) };
+      }
+      function H(r, n) {
+        const { accommodationAdditionalProperty: i, bizItemSubType: T } =
+          r || {};
+        return !i || T === "ACCOMMODATION_NIGHT"
+          ? ""
+          : i.roomType === "CAMPING_SITE" || i.roomType === "GLAMPING"
+            ? n(I18N_KEYS.CAMPNIC, "\uCEA0\uD504\uB2C9")
+            : n(I18N_KEYS.DAY_USE, "\uB370\uC774\uC720\uC988");
+      }
+      function W({
+        resrvUrl: r = "",
+        resocId: n,
+        additionalParams: i = {},
+        bookingTab: T = "details",
+      }) {
+        const d = useQueryParams(),
+          { isNxPc: R } = useProfileContext(),
+          { isNx: D } = useNxContext(),
+          { businessId: f } = useDetailRoute(),
+          g = useNxPcDetailLink(),
+          {
+            deviceType: U,
+            isIOS: V,
+            isNaverMapAppWithBookingTabNavigation: $,
+          } = useDeviceInfoContext(),
+          { locale: j } = useMultiLanguageContext();
+        return React.useMemo(() => {
+          if (!r)
+            return R
+              ? g(`/room/${n}`, { pathParams: { ...d, ...i } })
+              : {
+                  to: getEncodedUrl(
+                    `/accommodation/${f}/room/${n}`,
+                    D ? {} : { ...d, ...i },
+                  ),
+                };
+          const { userCouponSeq: J } = d,
+            x = getBookingPlaceUrl({
+              productionUrl: r,
+              isOnlyMobile: !0,
+              params: {
+                tab: T,
+                ...(J && { userCouponSeq: J }),
+                ...(V && $ && { nmapNewWindow: !0 }),
+              },
+              deviceType: U,
+              locale: j,
+            });
+          return R
+            ? {
+                href:
+                  g("/home", {
+                    pathParams: { bookingRedirectUrl: x, forceRedirect: !0 },
+                  })?.href || "",
+              }
+            : { href: x, target: "_self" };
+        }, [i, T, f, U, g, V, $, D, R, j, d, n, r]);
+===== VisitorReviews #3 LINE 307 =====
+                  if (!z) return k;
+                  const { rooms: tt } = z?.accommodationBookingDetails || {};
+                  return {
+                    ...k,
+                    accommodationBookingDetails: {
+                      ...k.accommodationBookingDetails,
+                      rooms: [...k.accommodationBookingDetails.rooms, ...tt],
+                    },
+                  };
+                },
+              }));
+          }, [J, Z, x, n, U]);
+        return {
+          ...(!(0, M.Qr)(x) && { rooms: x }),
+          roomTotal: et,
+          agencyName: nt,
+          hasMore: Z,
+          fetchMore: ot,
+          LoadingComponent: $,
+          ErrorComponent: j,
+          isFilterSelected: !!(d && R && f),
+        };
+      }
+      const b = (0, e.gql)`
+  query getVisitorReviewStats($id: String) {
+    visitorReviewStatsByBookingBusinessId(input: { bookingBusinessId: $id }) {
+      items {
+        id
+        itemId
+        score
+        count
+      }
+    }
+  }
+`,
+        w = null;
+      function X() {
+        const { business: r } = useBusinessContext(),
+          { bookingBusinessId: n } = r?.naverBooking || {},
+          { data: i } = useData(b, { variables: { id: n } }),
+          T = i?.visitorReviewStatsByBookingBusinessId?.items || w;
+        return React.useMemo(
+          () => T.reduce((d, R) => ({ ...d, [R.id]: R }), {}),
+          [T],
+        );
+      }
+      function q() {
+        const r = useParams(),
+          n = "resocId",
+          i = r[n],
+          T = r.id,
+          d = i || T,
+          R = useIsSSR(),
+          { rooms: D, LoadingComponent: f, ErrorComponent: g } = S({ skip: R });
+        return !D?.length || f || g
+          ? { rooms: D, room: null, LoadingComponent: f, ErrorComponent: g }
+          : { rooms: D, room: D.find((U) => U[n] === Number(d)) };
+      }
+      function H(r, n) {
+        const { accommodationAdditionalProperty: i, bizItemSubType: T } =
+          r || {};
+        return !i || T === "ACCOMMODATION_NIGHT"
+          ? ""
+          : i.roomType === "CAMPING_SITE" || i.roomType === "GLAMPING"
+            ? n(I18N_KEYS.CAMPNIC, "\uCEA0\uD504\uB2C9")
+            : n(I18N_KEYS.DAY_USE, "\uB370\uC774\uC720\uC988");
+      }
+      function W({
+        resrvUrl: r = "",
+        resocId: n,
+        additionalParams: i = {},
+        bookingTab: T = "details",
+      }) {
+        const d = useQueryParams(),
+          { isNxPc: R } = useProfileContext(),
+          { isNx: D } = useNxContext(),
+          { businessId: f } = useDetailRoute(),
+          g = useNxPcDetailLink(),
+          {
+            deviceType: U,
+            isIOS: V,
+            isNaverMapAppWithBookingTabNavigation: $,
+          } = useDeviceInfoContext(),
+          { locale: j } = useMultiLanguageContext();
+        return React.useMemo(() => {
+          if (!r)
+            return R
+              ? g(`/room/${n}`, { pathParams: { ...d, ...i } })
+              : {
+                  to: getEncodedUrl(
+                    `/accommodation/${f}/room/${n}`,
+                    D ? {} : { ...d, ...i },
+                  ),
+                };
+          const { userCouponSeq: J } = d,
+            x = getBookingPlaceUrl({
+              productionUrl: r,
+              isOnlyMobile: !0,
+              params: {
+                tab: T,
+                ...(J && { userCouponSeq: J }),
+                ...(V && $ && { nmapNewWindow: !0 }),
+              },
+              deviceType: U,
+              locale: j,
+            });
+          return R
+            ? {
+                href:
+                  g("/home", {
+                    pathParams: { bookingRedirectUrl: x, forceRedirect: !0 },
+                  })?.href || "",
+              }
+            : { href: x, target: "_self" };
+        }, [i, T, f, U, g, V, $, D, R, j, d, n, r]);
+      }
+      function L() {
+        const { t: r } = useTranslation(),
+          n = useIsSSR(),
+          { rooms: i } = S({ skip: n });
+        return useMemo(
+          () =>
+            Array.from(new Set(i?.map((T) => H(T, r))))
+              .filter(Boolean)
+              .sort((T, d) => d.localeCompare(T))
+              .pop(),
+          [i, r],
+        );
+      }
+      function Q() {
+===== visitorReviews #1 LINE 291 =====
+            data: V,
+            LoadingComponent: $,
+            ErrorComponent: j,
+            fetchMore: J,
+          } = (0, l.Z)(G, { variables: { input: U }, skip: r }),
+          {
+            rooms: x,
+            agencyName: nt,
+            roomTotal: et,
+          } = V?.accommodationBookingDetails || {},
+          Z = x?.length > 0 && et > x.length,
+          ot = (0, t.useCallback)(async () => {
+            Z &&
+              (await J({
+                variables: { input: { ...U, page: Math.ceil(x.length / n) } },
+                updateQuery: (k, { fetchMoreResult: z }) => {
+                  if (!z) return k;
+                  const { rooms: tt } = z?.accommodationBookingDetails || {};
+                  return {
+                    ...k,
+                    accommodationBookingDetails: {
+                      ...k.accommodationBookingDetails,
+                      rooms: [...k.accommodationBookingDetails.rooms, ...tt],
+                    },
+                  };
+                },
+              }));
+          }, [J, Z, x, n, U]);
+        return {
+          ...(!(0, M.Qr)(x) && { rooms: x }),
+          roomTotal: et,
+          agencyName: nt,
+          hasMore: Z,
+          fetchMore: ot,
+          LoadingComponent: $,
+          ErrorComponent: j,
+          isFilterSelected: !!(d && R && f),
+        };
+      }
+      const b = (0, e.gql)`
+  query getVisitorReviewStats($id: String) {
+    visitorReviewStatsByBookingBusinessId(input: { bookingBusinessId: $id }) {
+      items {
+        id
+        itemId
+        score
+        count
+      }
+    }
+  }
+`,
+        w = null;
+      function X() {
+        const { business: r } = useBusinessContext(),
+          { bookingBusinessId: n } = r?.naverBooking || {},
+          { data: i } = useData(b, { variables: { id: n } }),
+          T = i?.visitorReviewStatsByBookingBusinessId?.items || w;
+        return React.useMemo(
+          () => T.reduce((d, R) => ({ ...d, [R.id]: R }), {}),
+          [T],
+        );
+      }
+      function q() {
+        const r = useParams(),
+          n = "resocId",
+          i = r[n],
+          T = r.id,
+          d = i || T,
+          R = useIsSSR(),
+          { rooms: D, LoadingComponent: f, ErrorComponent: g } = S({ skip: R });
+        return !D?.length || f || g
+          ? { rooms: D, room: null, LoadingComponent: f, ErrorComponent: g }
+          : { rooms: D, room: D.find((U) => U[n] === Number(d)) };
+      }
+      function H(r, n) {
+        const { accommodationAdditionalProperty: i, bizItemSubType: T } =
+          r || {};
+        return !i || T === "ACCOMMODATION_NIGHT"
+          ? ""
+          : i.roomType === "CAMPING_SITE" || i.roomType === "GLAMPING"
+            ? n(I18N_KEYS.CAMPNIC, "\uCEA0\uD504\uB2C9")
+            : n(I18N_KEYS.DAY_USE, "\uB370\uC774\uC720\uC988");
+      }
+      function W({
+        resrvUrl: r = "",
+        resocId: n,
+        additionalParams: i = {},
+        bookingTab: T = "details",
+      }) {
+        const d = useQueryParams(),
+          { isNxPc: R } = useProfileContext(),
+          { isNx: D } = useNxContext(),
+          { businessId: f } = useDetailRoute(),
+          g = useNxPcDetailLink(),
+          {
+            deviceType: U,
+            isIOS: V,
+            isNaverMapAppWithBookingTabNavigation: $,
+          } = useDeviceInfoContext(),
+          { locale: j } = useMultiLanguageContext();
+        return React.useMemo(() => {
+          if (!r)
+            return R
+              ? g(`/room/${n}`, { pathParams: { ...d, ...i } })
+              : {
+                  to: getEncodedUrl(
+                    `/accommodation/${f}/room/${n}`,
+                    D ? {} : { ...d, ...i },
+                  ),
+                };
+          const { userCouponSeq: J } = d,
+            x = getBookingPlaceUrl({
+              productionUrl: r,
+              isOnlyMobile: !0,
+              params: {
+                tab: T,
+                ...(J && { userCouponSeq: J }),
+                ...(V && $ && { nmapNewWindow: !0 }),
+              },
+              deviceType: U,
+              locale: j,
+            });
+          return R
+            ? {
+                href:
+                  g("/home", {
+                    pathParams: { bookingRedirectUrl: x, forceRedirect: !0 },
+                  })?.href || "",
+              }
+            : { href: x, target: "_self" };
+===== visitorReviews #2 LINE 292 =====
+            LoadingComponent: $,
+            ErrorComponent: j,
+            fetchMore: J,
+          } = (0, l.Z)(G, { variables: { input: U }, skip: r }),
+          {
+            rooms: x,
+            agencyName: nt,
+            roomTotal: et,
+          } = V?.accommodationBookingDetails || {},
+          Z = x?.length > 0 && et > x.length,
+          ot = (0, t.useCallback)(async () => {
+            Z &&
+              (await J({
+                variables: { input: { ...U, page: Math.ceil(x.length / n) } },
+                updateQuery: (k, { fetchMoreResult: z }) => {
+                  if (!z) return k;
+                  const { rooms: tt } = z?.accommodationBookingDetails || {};
+                  return {
+                    ...k,
+                    accommodationBookingDetails: {
+                      ...k.accommodationBookingDetails,
+                      rooms: [...k.accommodationBookingDetails.rooms, ...tt],
+                    },
+                  };
+                },
+              }));
+          }, [J, Z, x, n, U]);
+        return {
+          ...(!(0, M.Qr)(x) && { rooms: x }),
+          roomTotal: et,
+          agencyName: nt,
+          hasMore: Z,
+          fetchMore: ot,
+          LoadingComponent: $,
+          ErrorComponent: j,
+          isFilterSelected: !!(d && R && f),
+        };
+      }
+      const b = (0, e.gql)`
+  query getVisitorReviewStats($id: String) {
+    visitorReviewStatsByBookingBusinessId(input: { bookingBusinessId: $id }) {
+      items {
+        id
+        itemId
+        score
+        count
+      }
+    }
+  }
+`,
+        w = null;
+      function X() {
+        const { business: r } = useBusinessContext(),
+          { bookingBusinessId: n } = r?.naverBooking || {},
+          { data: i } = useData(b, { variables: { id: n } }),
+          T = i?.visitorReviewStatsByBookingBusinessId?.items || w;
+        return React.useMemo(
+          () => T.reduce((d, R) => ({ ...d, [R.id]: R }), {}),
+          [T],
+        );
+      }
+      function q() {
+        const r = useParams(),
+          n = "resocId",
+          i = r[n],
+          T = r.id,
+          d = i || T,
+          R = useIsSSR(),
+          { rooms: D, LoadingComponent: f, ErrorComponent: g } = S({ skip: R });
+        return !D?.length || f || g
+          ? { rooms: D, room: null, LoadingComponent: f, ErrorComponent: g }
+          : { rooms: D, room: D.find((U) => U[n] === Number(d)) };
+      }
+      function H(r, n) {
+        const { accommodationAdditionalProperty: i, bizItemSubType: T } =
+          r || {};
+        return !i || T === "ACCOMMODATION_NIGHT"
+          ? ""
+          : i.roomType === "CAMPING_SITE" || i.roomType === "GLAMPING"
+            ? n(I18N_KEYS.CAMPNIC, "\uCEA0\uD504\uB2C9")
+            : n(I18N_KEYS.DAY_USE, "\uB370\uC774\uC720\uC988");
+      }
+      function W({
+        resrvUrl: r = "",
+        resocId: n,
+        additionalParams: i = {},
+        bookingTab: T = "details",
+      }) {
+        const d = useQueryParams(),
+          { isNxPc: R } = useProfileContext(),
+          { isNx: D } = useNxContext(),
+          { businessId: f } = useDetailRoute(),
+          g = useNxPcDetailLink(),
+          {
+            deviceType: U,
+            isIOS: V,
+            isNaverMapAppWithBookingTabNavigation: $,
+          } = useDeviceInfoContext(),
+          { locale: j } = useMultiLanguageContext();
+        return React.useMemo(() => {
+          if (!r)
+            return R
+              ? g(`/room/${n}`, { pathParams: { ...d, ...i } })
+              : {
+                  to: getEncodedUrl(
+                    `/accommodation/${f}/room/${n}`,
+                    D ? {} : { ...d, ...i },
+                  ),
+                };
+          const { userCouponSeq: J } = d,
+            x = getBookingPlaceUrl({
+              productionUrl: r,
+              isOnlyMobile: !0,
+              params: {
+                tab: T,
+                ...(J && { userCouponSeq: J }),
+                ...(V && $ && { nmapNewWindow: !0 }),
+              },
+              deviceType: U,
+              locale: j,
+            });
+          return R
+            ? {
+                href:
+                  g("/home", {
+                    pathParams: { bookingRedirectUrl: x, forceRedirect: !0 },
+                  })?.href || "",
+              }
+            : { href: x, target: "_self" };
+        }, [i, T, f, U, g, V, $, D, R, j, d, n, r]);
+===== visitorReviews #3 LINE 307 =====
+                  if (!z) return k;
+                  const { rooms: tt } = z?.accommodationBookingDetails || {};
+                  return {
+                    ...k,
+                    accommodationBookingDetails: {
+                      ...k.accommodationBookingDetails,
+                      rooms: [...k.accommodationBookingDetails.rooms, ...tt],
+                    },
+                  };
+                },
+              }));
+          }, [J, Z, x, n, U]);
+        return {
+          ...(!(0, M.Qr)(x) && { rooms: x }),
+          roomTotal: et,
+          agencyName: nt,
+          hasMore: Z,
+          fetchMore: ot,
+          LoadingComponent: $,
+          ErrorComponent: j,
+          isFilterSelected: !!(d && R && f),
+        };
+      }
+      const b = (0, e.gql)`
+  query getVisitorReviewStats($id: String) {
+    visitorReviewStatsByBookingBusinessId(input: { bookingBusinessId: $id }) {
+      items {
+        id
+        itemId
+        score
+        count
+      }
+    }
+  }
+`,
+        w = null;
+      function X() {
+        const { business: r } = useBusinessContext(),
+          { bookingBusinessId: n } = r?.naverBooking || {},
+          { data: i } = useData(b, { variables: { id: n } }),
+          T = i?.visitorReviewStatsByBookingBusinessId?.items || w;
+        return React.useMemo(
+          () => T.reduce((d, R) => ({ ...d, [R.id]: R }), {}),
+          [T],
+        );
+      }
+      function q() {
+        const r = useParams(),
+          n = "resocId",
+          i = r[n],
+          T = r.id,
+          d = i || T,
+          R = useIsSSR(),
+          { rooms: D, LoadingComponent: f, ErrorComponent: g } = S({ skip: R });
+        return !D?.length || f || g
+          ? { rooms: D, room: null, LoadingComponent: f, ErrorComponent: g }
+          : { rooms: D, room: D.find((U) => U[n] === Number(d)) };
+      }
+      function H(r, n) {
+        const { accommodationAdditionalProperty: i, bizItemSubType: T } =
+          r || {};
+        return !i || T === "ACCOMMODATION_NIGHT"
+          ? ""
+          : i.roomType === "CAMPING_SITE" || i.roomType === "GLAMPING"
+            ? n(I18N_KEYS.CAMPNIC, "\uCEA0\uD504\uB2C9")
+            : n(I18N_KEYS.DAY_USE, "\uB370\uC774\uC720\uC988");
+      }
+      function W({
+        resrvUrl: r = "",
+        resocId: n,
+        additionalParams: i = {},
+        bookingTab: T = "details",
+      }) {
+        const d = useQueryParams(),
+          { isNxPc: R } = useProfileContext(),
+          { isNx: D } = useNxContext(),
+          { businessId: f } = useDetailRoute(),
+          g = useNxPcDetailLink(),
+          {
+            deviceType: U,
+            isIOS: V,
+            isNaverMapAppWithBookingTabNavigation: $,
+          } = useDeviceInfoContext(),
+          { locale: j } = useMultiLanguageContext();
+        return React.useMemo(() => {
+          if (!r)
+            return R
+              ? g(`/room/${n}`, { pathParams: { ...d, ...i } })
+              : {
+                  to: getEncodedUrl(
+                    `/accommodation/${f}/room/${n}`,
+                    D ? {} : { ...d, ...i },
+                  ),
+                };
+          const { userCouponSeq: J } = d,
+            x = getBookingPlaceUrl({
+              productionUrl: r,
+              isOnlyMobile: !0,
+              params: {
+                tab: T,
+                ...(J && { userCouponSeq: J }),
+                ...(V && $ && { nmapNewWindow: !0 }),
+              },
+              deviceType: U,
+              locale: j,
+            });
+          return R
+            ? {
+                href:
+                  g("/home", {
+                    pathParams: { bookingRedirectUrl: x, forceRedirect: !0 },
+                  })?.href || "",
+              }
+            : { href: x, target: "_self" };
+        }, [i, T, f, U, g, V, $, D, R, j, d, n, r]);
+      }
+      function L() {
+        const { t: r } = useTranslation(),
+          n = useIsSSR(),
+          { rooms: i } = S({ skip: n });
+        return useMemo(
+          () =>
+            Array.from(new Set(i?.map((T) => H(T, r))))
+              .filter(Boolean)
+              .sort((T, d) => d.localeCompare(T))
+              .pop(),
+          [i, r],
+        );
+      }
+      function Q() {

@@ -1,0 +1,1703 @@
+===== VisitorReviews #1 LINE 1262 =====
+        return (
+          (0, e.useEffect)(() => {
+            y || B(i, { replace: !0 });
+          }, [B, y, i]),
+          h && h.assign({ url: i }),
+          null
+        );
+      }
+    },
+    45674: (o, d, t) => {
+      "use strict";
+      (t.r(d), t.d(d, { default: () => O }));
+      var e = t(2784),
+        a = t(98452),
+        n = t(60488),
+        r = t(35246),
+        s = t(10164),
+        l = t(3097),
+        u = t(65459),
+        v = t(66609),
+        m = t(13542),
+        c = t(2370),
+        _ = t(39218),
+        E = t(22696),
+        M = t(28009),
+        C = t(3032),
+        g = t(13822),
+        P = t(9764);
+      function p({ reviewType: T }) {
+        const { locale: f } = (0, n.BK)(),
+          D = f === "ko",
+          { businessType: h } = (0, r.Z)(),
+          { t: i } = (0, a.$G)(),
+          { LoadingComponent: y, ErrorComponent: B, business: A } = (0, s.n)(),
+          R = (0, e.useRef)(!1),
+          { data: x, LoadingComponent: L } = (0, E.R)(),
+          I = L || y,
+          U = (0, e.useMemo)(() => {
+            const S = [];
+            if (!A) return S;
+            const { base: W, fsasReviews: F, visitorReviewStats: N } = A,
+              K = N?.visitorReviewsTotal > 0 || W?.visitorReviewsTotal > 0,
+              b =
+                !K &&
+                (!N?.visitorReviewsTotal || N?.visitorReviewsTotal === 0) &&
+                _.m6.test(h),
+              H = F && F.total > 0;
+            R.current = [K, b, H].filter((j) => !!j).length < 2;
+            const X = D ? v.Z : m.Z,
+              w = Object.values(x || {}).some((j) => j?.reviewList?.length > 0),
+              Z = K && H && w,
+              V = Z
+                ? i(c.H.VISITOR, "\uBC29\uBB38\uC790")
+                : i(c.H.VISITOR_REVIEW, "\uBC29\uBB38\uC790 \uB9AC\uBDF0"),
+              k = Z
+                ? i(c.H.BLOG, "\uBE14\uB85C\uADF8")
+                : i(c.H.BLOG_REVIEW, "\uBE14\uB85C\uADF8 \uB9AC\uBDF0"),
+              Y = Z
+                ? i(c.H.PARTNER, "\uC81C\uD734")
+                : i(c.H.REVIEW, "\uB9AC\uBDF0");
+            return (
+              K &&
+                S.push(
+                  e.createElement(P.Z, {
+                    key: "visitor",
+                    subTabId: "visitor",
+                    subTabName: V,
+                    hideSubTab: R.current,
+                    subTabIcon: X,
+                  }),
+                ),
+              b &&
+                S.push(
+                  e.createElement(g.G, {
+                    key: "visitor",
+                    subTabId: "visitor",
+                    subTabName: V,
+                    subTabIcon: X,
+                  }),
+                ),
+              H &&
+                S.push(
+                  e.createElement(C.Z, {
+                    key: "ugc",
+                    subTabId: "ugc",
+                    subTabName: k,
+                    useProductSelectBox: !0,
+                    hideSubTab: R.current,
+                    reviewType: T,
+                  }),
+                ),
+              w &&
+                S.push(
+                  e.createElement(M.b, {
+                    data: x,
+                    key: "partners",
+                    subTabId: "partners",
+                    subTabName: Y,
+                  }),
+                ),
+              S
+            );
+          }, [A, h, D, x, i, T]);
+        return I || B
+          ? I || B
+          : e.createElement(
+              l.e,
+              { nClicksAreaCode: "rvw" },
+              e.createElement(u.O, { hideSubTab: R.current }, U),
+            );
+      }
+      const O = p;
+    },
+    10784: (o, d, t) => {
+      "use strict";
+      t.d(d, { t: () => M });
+      var e = t(2784),
+        a = t(12524),
+        n = t.n(a),
+        r = t(47670),
+        s = t(95358),
+        l = t(22807),
+        u = t(70069),
+        v = t(49432),
+        m = t(29491),
+        c = t(38759),
+        _ = t(13799),
+        E = t.n(_);
+      function M({
+        author: C,
+===== VisitorReviews #2 LINE 1263 =====
+          (0, e.useEffect)(() => {
+            y || B(i, { replace: !0 });
+          }, [B, y, i]),
+          h && h.assign({ url: i }),
+          null
+        );
+      }
+    },
+    45674: (o, d, t) => {
+      "use strict";
+      (t.r(d), t.d(d, { default: () => O }));
+      var e = t(2784),
+        a = t(98452),
+        n = t(60488),
+        r = t(35246),
+        s = t(10164),
+        l = t(3097),
+        u = t(65459),
+        v = t(66609),
+        m = t(13542),
+        c = t(2370),
+        _ = t(39218),
+        E = t(22696),
+        M = t(28009),
+        C = t(3032),
+        g = t(13822),
+        P = t(9764);
+      function p({ reviewType: T }) {
+        const { locale: f } = (0, n.BK)(),
+          D = f === "ko",
+          { businessType: h } = (0, r.Z)(),
+          { t: i } = (0, a.$G)(),
+          { LoadingComponent: y, ErrorComponent: B, business: A } = (0, s.n)(),
+          R = (0, e.useRef)(!1),
+          { data: x, LoadingComponent: L } = (0, E.R)(),
+          I = L || y,
+          U = (0, e.useMemo)(() => {
+            const S = [];
+            if (!A) return S;
+            const { base: W, fsasReviews: F, visitorReviewStats: N } = A,
+              K = N?.visitorReviewsTotal > 0 || W?.visitorReviewsTotal > 0,
+              b =
+                !K &&
+                (!N?.visitorReviewsTotal || N?.visitorReviewsTotal === 0) &&
+                _.m6.test(h),
+              H = F && F.total > 0;
+            R.current = [K, b, H].filter((j) => !!j).length < 2;
+            const X = D ? v.Z : m.Z,
+              w = Object.values(x || {}).some((j) => j?.reviewList?.length > 0),
+              Z = K && H && w,
+              V = Z
+                ? i(c.H.VISITOR, "\uBC29\uBB38\uC790")
+                : i(c.H.VISITOR_REVIEW, "\uBC29\uBB38\uC790 \uB9AC\uBDF0"),
+              k = Z
+                ? i(c.H.BLOG, "\uBE14\uB85C\uADF8")
+                : i(c.H.BLOG_REVIEW, "\uBE14\uB85C\uADF8 \uB9AC\uBDF0"),
+              Y = Z
+                ? i(c.H.PARTNER, "\uC81C\uD734")
+                : i(c.H.REVIEW, "\uB9AC\uBDF0");
+            return (
+              K &&
+                S.push(
+                  e.createElement(P.Z, {
+                    key: "visitor",
+                    subTabId: "visitor",
+                    subTabName: V,
+                    hideSubTab: R.current,
+                    subTabIcon: X,
+                  }),
+                ),
+              b &&
+                S.push(
+                  e.createElement(g.G, {
+                    key: "visitor",
+                    subTabId: "visitor",
+                    subTabName: V,
+                    subTabIcon: X,
+                  }),
+                ),
+              H &&
+                S.push(
+                  e.createElement(C.Z, {
+                    key: "ugc",
+                    subTabId: "ugc",
+                    subTabName: k,
+                    useProductSelectBox: !0,
+                    hideSubTab: R.current,
+                    reviewType: T,
+                  }),
+                ),
+              w &&
+                S.push(
+                  e.createElement(M.b, {
+                    data: x,
+                    key: "partners",
+                    subTabId: "partners",
+                    subTabName: Y,
+                  }),
+                ),
+              S
+            );
+          }, [A, h, D, x, i, T]);
+        return I || B
+          ? I || B
+          : e.createElement(
+              l.e,
+              { nClicksAreaCode: "rvw" },
+              e.createElement(u.O, { hideSubTab: R.current }, U),
+            );
+      }
+      const O = p;
+    },
+    10784: (o, d, t) => {
+      "use strict";
+      t.d(d, { t: () => M });
+      var e = t(2784),
+        a = t(12524),
+        n = t.n(a),
+        r = t(47670),
+        s = t(95358),
+        l = t(22807),
+        u = t(70069),
+        v = t(49432),
+        m = t(29491),
+        c = t(38759),
+        _ = t(13799),
+        E = t.n(_);
+      function M({
+        author: C,
+        cons: g,
+===== VisitorReviews #3 LINE 1266 =====
+          h && h.assign({ url: i }),
+          null
+        );
+      }
+    },
+    45674: (o, d, t) => {
+      "use strict";
+      (t.r(d), t.d(d, { default: () => O }));
+      var e = t(2784),
+        a = t(98452),
+        n = t(60488),
+        r = t(35246),
+        s = t(10164),
+        l = t(3097),
+        u = t(65459),
+        v = t(66609),
+        m = t(13542),
+        c = t(2370),
+        _ = t(39218),
+        E = t(22696),
+        M = t(28009),
+        C = t(3032),
+        g = t(13822),
+        P = t(9764);
+      function p({ reviewType: T }) {
+        const { locale: f } = (0, n.BK)(),
+          D = f === "ko",
+          { businessType: h } = (0, r.Z)(),
+          { t: i } = (0, a.$G)(),
+          { LoadingComponent: y, ErrorComponent: B, business: A } = (0, s.n)(),
+          R = (0, e.useRef)(!1),
+          { data: x, LoadingComponent: L } = (0, E.R)(),
+          I = L || y,
+          U = (0, e.useMemo)(() => {
+            const S = [];
+            if (!A) return S;
+            const { base: W, fsasReviews: F, visitorReviewStats: N } = A,
+              K = N?.visitorReviewsTotal > 0 || W?.visitorReviewsTotal > 0,
+              b =
+                !K &&
+                (!N?.visitorReviewsTotal || N?.visitorReviewsTotal === 0) &&
+                _.m6.test(h),
+              H = F && F.total > 0;
+            R.current = [K, b, H].filter((j) => !!j).length < 2;
+            const X = D ? v.Z : m.Z,
+              w = Object.values(x || {}).some((j) => j?.reviewList?.length > 0),
+              Z = K && H && w,
+              V = Z
+                ? i(c.H.VISITOR, "\uBC29\uBB38\uC790")
+                : i(c.H.VISITOR_REVIEW, "\uBC29\uBB38\uC790 \uB9AC\uBDF0"),
+              k = Z
+                ? i(c.H.BLOG, "\uBE14\uB85C\uADF8")
+                : i(c.H.BLOG_REVIEW, "\uBE14\uB85C\uADF8 \uB9AC\uBDF0"),
+              Y = Z
+                ? i(c.H.PARTNER, "\uC81C\uD734")
+                : i(c.H.REVIEW, "\uB9AC\uBDF0");
+            return (
+              K &&
+                S.push(
+                  e.createElement(P.Z, {
+                    key: "visitor",
+                    subTabId: "visitor",
+                    subTabName: V,
+                    hideSubTab: R.current,
+                    subTabIcon: X,
+                  }),
+                ),
+              b &&
+                S.push(
+                  e.createElement(g.G, {
+                    key: "visitor",
+                    subTabId: "visitor",
+                    subTabName: V,
+                    subTabIcon: X,
+                  }),
+                ),
+              H &&
+                S.push(
+                  e.createElement(C.Z, {
+                    key: "ugc",
+                    subTabId: "ugc",
+                    subTabName: k,
+                    useProductSelectBox: !0,
+                    hideSubTab: R.current,
+                    reviewType: T,
+                  }),
+                ),
+              w &&
+                S.push(
+                  e.createElement(M.b, {
+                    data: x,
+                    key: "partners",
+                    subTabId: "partners",
+                    subTabName: Y,
+                  }),
+                ),
+              S
+            );
+          }, [A, h, D, x, i, T]);
+        return I || B
+          ? I || B
+          : e.createElement(
+              l.e,
+              { nClicksAreaCode: "rvw" },
+              e.createElement(u.O, { hideSubTab: R.current }, U),
+            );
+      }
+      const O = p;
+    },
+    10784: (o, d, t) => {
+      "use strict";
+      t.d(d, { t: () => M });
+      var e = t(2784),
+        a = t(12524),
+        n = t.n(a),
+        r = t(47670),
+        s = t(95358),
+        l = t(22807),
+        u = t(70069),
+        v = t(49432),
+        m = t(29491),
+        c = t(38759),
+        _ = t(13799),
+        E = t.n(_);
+      function M({
+        author: C,
+        cons: g,
+        date: P,
+        language: p,
+        pros: O,
+===== VisitorReviews #4 LINE 3047 =====
+        r = t(95358),
+        s = t(85371),
+        l = t(35246),
+        u = t(63602),
+        v = t(98785),
+        m = t(2370),
+        c = t(1639),
+        _ = t(38759),
+        E = t(66277),
+        M = t(7591),
+        C = t(92065),
+        g = t(7370),
+        P = t(31681),
+        p = t(35892),
+        O = t.n(p);
+      const T = 4;
+      function f() {
+        (0, _.Z)(O());
+        const { businessId: D, businessType: h } = (0, l.Z)(),
+          [i, y] = (0, e.useState)(!1),
+          {
+            votedKeyword: B,
+            input: A,
+            keywordAndRatingReviewsloadMore: R,
+            onlyShowRatingReviews: x,
+            total: L,
+          } = (0, C.v_)(),
+          {
+            isPhotoUsed: I,
+            theme: U,
+            menu: S,
+            ...W
+          } = { ...A, includeContent: !1 },
+          F = { ...W, includeContent: !1 },
+          {
+            LoadingComponent: N,
+            data: K,
+            fetchMore: b,
+          } = (0, u.Z)(P.DK, { variables: { input: F, id: D } }),
+          H = (0, e.useMemo)(
+            () => K?.visitorReviews?.items || [],
+            [K?.visitorReviews?.items],
+          ),
+          X = K?.visitorReviews?.total,
+          w = (0, e.useRef)(!1);
+        ((0, e.useEffect)(() => {
+          y(L < T);
+        }, [L]),
+          (0, e.useEffect)(() => {
+            if (w.current || !i) return;
+            const V = H?.map(({ id: k }) => k);
+            V?.length > 0 &&
+              ((w.current = !0),
+              (0, g.w)({ reviewIds: V, namespace: "review" }));
+          }, [H, h, i]));
+        const Z = () => {
+          if (i === !1 && !w.current) {
+            const V = H?.map(({ id: k }) => k);
+            (V?.length > 0 && (0, g.w)({ reviewIds: V, namespace: "review" }),
+              (w.current = !0));
+          }
+          y(!i);
+        };
+        return (
+          N ||
+          (!(X > 0) || (L === 0 && !x)
+            ? null
+            : e.createElement(
+                n.Mw,
+                { className: O().visitor_review_keyword_rating_section },
+                e.createElement(n.Sh, {
+                  title: B
+                    ? e.createElement(
+                        a.cC,
+                        { i18nKey: m.H.KEYWORD_RATINGS_REVIEW },
+                        "\uD0A4\uC6CC\uB4DC\xB7\uBCC4\uC810 \uB9AC\uBDF0",
+                      )
+                    : e.createElement(
+                        a.cC,
+                        { i18nKey: m.H.RATINGS_REVIEW },
+                        "\uBCC4\uC810 \uB9AC\uBDF0",
+                      ),
+                  count: (0, c.k6)(X),
+                  extra: e.createElement(
+                    r.Z,
+                    {
+                      className: O().btn_header,
+                      "aria-haspopup": "true",
+                      "aria-expanded": i,
+                      onClick: Z,
+                      nClicks: { clickCode: "star" },
+                    },
+                    i
+                      ? e.createElement(
+                          a.cC,
+                          { i18nKey: m.H.LESS },
+                          "\uC811\uAE30",
+                        )
+                      : e.createElement(
+                          a.cC,
+                          { i18nKey: m.H.UNFOLD2 },
+                          "\uD3BC\uCCD0\uBCF4\uAE30",
+                        ),
+                    e.createElement(v.Z, {
+                      className: O().icon,
+                      "aria-hidden": "true",
+                    }),
+                  ),
+                }),
+                i &&
+                  e.createElement(
+                    e.Fragment,
+                    null,
+                    e.createElement(
+                      n.bI,
+                      null,
+                      e.createElement(
+                        M.gq,
+                        { reviews: H },
+                        e.createElement(
+                          "ul",
+                          null,
+                          H.map((V) =>
+                            e.createElement(E.nS, {
+                              key: `rating_${V.id}`,
+                              isKeywordAndRatingType: !0,
+                              review: V,
+                            }),
+                          ),
+                        ),
+===== VisitorReviews #5 LINE 3048 =====
+        s = t(85371),
+        l = t(35246),
+        u = t(63602),
+        v = t(98785),
+        m = t(2370),
+        c = t(1639),
+        _ = t(38759),
+        E = t(66277),
+        M = t(7591),
+        C = t(92065),
+        g = t(7370),
+        P = t(31681),
+        p = t(35892),
+        O = t.n(p);
+      const T = 4;
+      function f() {
+        (0, _.Z)(O());
+        const { businessId: D, businessType: h } = (0, l.Z)(),
+          [i, y] = (0, e.useState)(!1),
+          {
+            votedKeyword: B,
+            input: A,
+            keywordAndRatingReviewsloadMore: R,
+            onlyShowRatingReviews: x,
+            total: L,
+          } = (0, C.v_)(),
+          {
+            isPhotoUsed: I,
+            theme: U,
+            menu: S,
+            ...W
+          } = { ...A, includeContent: !1 },
+          F = { ...W, includeContent: !1 },
+          {
+            LoadingComponent: N,
+            data: K,
+            fetchMore: b,
+          } = (0, u.Z)(P.DK, { variables: { input: F, id: D } }),
+          H = (0, e.useMemo)(
+            () => K?.visitorReviews?.items || [],
+            [K?.visitorReviews?.items],
+          ),
+          X = K?.visitorReviews?.total,
+          w = (0, e.useRef)(!1);
+        ((0, e.useEffect)(() => {
+          y(L < T);
+        }, [L]),
+          (0, e.useEffect)(() => {
+            if (w.current || !i) return;
+            const V = H?.map(({ id: k }) => k);
+            V?.length > 0 &&
+              ((w.current = !0),
+              (0, g.w)({ reviewIds: V, namespace: "review" }));
+          }, [H, h, i]));
+        const Z = () => {
+          if (i === !1 && !w.current) {
+            const V = H?.map(({ id: k }) => k);
+            (V?.length > 0 && (0, g.w)({ reviewIds: V, namespace: "review" }),
+              (w.current = !0));
+          }
+          y(!i);
+        };
+        return (
+          N ||
+          (!(X > 0) || (L === 0 && !x)
+            ? null
+            : e.createElement(
+                n.Mw,
+                { className: O().visitor_review_keyword_rating_section },
+                e.createElement(n.Sh, {
+                  title: B
+                    ? e.createElement(
+                        a.cC,
+                        { i18nKey: m.H.KEYWORD_RATINGS_REVIEW },
+                        "\uD0A4\uC6CC\uB4DC\xB7\uBCC4\uC810 \uB9AC\uBDF0",
+                      )
+                    : e.createElement(
+                        a.cC,
+                        { i18nKey: m.H.RATINGS_REVIEW },
+                        "\uBCC4\uC810 \uB9AC\uBDF0",
+                      ),
+                  count: (0, c.k6)(X),
+                  extra: e.createElement(
+                    r.Z,
+                    {
+                      className: O().btn_header,
+                      "aria-haspopup": "true",
+                      "aria-expanded": i,
+                      onClick: Z,
+                      nClicks: { clickCode: "star" },
+                    },
+                    i
+                      ? e.createElement(
+                          a.cC,
+                          { i18nKey: m.H.LESS },
+                          "\uC811\uAE30",
+                        )
+                      : e.createElement(
+                          a.cC,
+                          { i18nKey: m.H.UNFOLD2 },
+                          "\uD3BC\uCCD0\uBCF4\uAE30",
+                        ),
+                    e.createElement(v.Z, {
+                      className: O().icon,
+                      "aria-hidden": "true",
+                    }),
+                  ),
+                }),
+                i &&
+                  e.createElement(
+                    e.Fragment,
+                    null,
+                    e.createElement(
+                      n.bI,
+                      null,
+                      e.createElement(
+                        M.gq,
+                        { reviews: H },
+                        e.createElement(
+                          "ul",
+                          null,
+                          H.map((V) =>
+                            e.createElement(E.nS, {
+                              key: `rating_${V.id}`,
+                              isKeywordAndRatingType: !0,
+                              review: V,
+                            }),
+                          ),
+                        ),
+                      ),
+===== VisitorReviews #6 LINE 3050 =====
+        u = t(63602),
+        v = t(98785),
+        m = t(2370),
+        c = t(1639),
+        _ = t(38759),
+        E = t(66277),
+        M = t(7591),
+        C = t(92065),
+        g = t(7370),
+        P = t(31681),
+        p = t(35892),
+        O = t.n(p);
+      const T = 4;
+      function f() {
+        (0, _.Z)(O());
+        const { businessId: D, businessType: h } = (0, l.Z)(),
+          [i, y] = (0, e.useState)(!1),
+          {
+            votedKeyword: B,
+            input: A,
+            keywordAndRatingReviewsloadMore: R,
+            onlyShowRatingReviews: x,
+            total: L,
+          } = (0, C.v_)(),
+          {
+            isPhotoUsed: I,
+            theme: U,
+            menu: S,
+            ...W
+          } = { ...A, includeContent: !1 },
+          F = { ...W, includeContent: !1 },
+          {
+            LoadingComponent: N,
+            data: K,
+            fetchMore: b,
+          } = (0, u.Z)(P.DK, { variables: { input: F, id: D } }),
+          H = (0, e.useMemo)(
+            () => K?.visitorReviews?.items || [],
+            [K?.visitorReviews?.items],
+          ),
+          X = K?.visitorReviews?.total,
+          w = (0, e.useRef)(!1);
+        ((0, e.useEffect)(() => {
+          y(L < T);
+        }, [L]),
+          (0, e.useEffect)(() => {
+            if (w.current || !i) return;
+            const V = H?.map(({ id: k }) => k);
+            V?.length > 0 &&
+              ((w.current = !0),
+              (0, g.w)({ reviewIds: V, namespace: "review" }));
+          }, [H, h, i]));
+        const Z = () => {
+          if (i === !1 && !w.current) {
+            const V = H?.map(({ id: k }) => k);
+            (V?.length > 0 && (0, g.w)({ reviewIds: V, namespace: "review" }),
+              (w.current = !0));
+          }
+          y(!i);
+        };
+        return (
+          N ||
+          (!(X > 0) || (L === 0 && !x)
+            ? null
+            : e.createElement(
+                n.Mw,
+                { className: O().visitor_review_keyword_rating_section },
+                e.createElement(n.Sh, {
+                  title: B
+                    ? e.createElement(
+                        a.cC,
+                        { i18nKey: m.H.KEYWORD_RATINGS_REVIEW },
+                        "\uD0A4\uC6CC\uB4DC\xB7\uBCC4\uC810 \uB9AC\uBDF0",
+                      )
+                    : e.createElement(
+                        a.cC,
+                        { i18nKey: m.H.RATINGS_REVIEW },
+                        "\uBCC4\uC810 \uB9AC\uBDF0",
+                      ),
+                  count: (0, c.k6)(X),
+                  extra: e.createElement(
+                    r.Z,
+                    {
+                      className: O().btn_header,
+                      "aria-haspopup": "true",
+                      "aria-expanded": i,
+                      onClick: Z,
+                      nClicks: { clickCode: "star" },
+                    },
+                    i
+                      ? e.createElement(
+                          a.cC,
+                          { i18nKey: m.H.LESS },
+                          "\uC811\uAE30",
+                        )
+                      : e.createElement(
+                          a.cC,
+                          { i18nKey: m.H.UNFOLD2 },
+                          "\uD3BC\uCCD0\uBCF4\uAE30",
+                        ),
+                    e.createElement(v.Z, {
+                      className: O().icon,
+                      "aria-hidden": "true",
+                    }),
+                  ),
+                }),
+                i &&
+                  e.createElement(
+                    e.Fragment,
+                    null,
+                    e.createElement(
+                      n.bI,
+                      null,
+                      e.createElement(
+                        M.gq,
+                        { reviews: H },
+                        e.createElement(
+                          "ul",
+                          null,
+                          H.map((V) =>
+                            e.createElement(E.nS, {
+                              key: `rating_${V.id}`,
+                              isKeywordAndRatingType: !0,
+                              review: V,
+                            }),
+                          ),
+                        ),
+                      ),
+                    ),
+                    H.length < X &&
+===== visitorReviews #1 LINE 1262 =====
+        return (
+          (0, e.useEffect)(() => {
+            y || B(i, { replace: !0 });
+          }, [B, y, i]),
+          h && h.assign({ url: i }),
+          null
+        );
+      }
+    },
+    45674: (o, d, t) => {
+      "use strict";
+      (t.r(d), t.d(d, { default: () => O }));
+      var e = t(2784),
+        a = t(98452),
+        n = t(60488),
+        r = t(35246),
+        s = t(10164),
+        l = t(3097),
+        u = t(65459),
+        v = t(66609),
+        m = t(13542),
+        c = t(2370),
+        _ = t(39218),
+        E = t(22696),
+        M = t(28009),
+        C = t(3032),
+        g = t(13822),
+        P = t(9764);
+      function p({ reviewType: T }) {
+        const { locale: f } = (0, n.BK)(),
+          D = f === "ko",
+          { businessType: h } = (0, r.Z)(),
+          { t: i } = (0, a.$G)(),
+          { LoadingComponent: y, ErrorComponent: B, business: A } = (0, s.n)(),
+          R = (0, e.useRef)(!1),
+          { data: x, LoadingComponent: L } = (0, E.R)(),
+          I = L || y,
+          U = (0, e.useMemo)(() => {
+            const S = [];
+            if (!A) return S;
+            const { base: W, fsasReviews: F, visitorReviewStats: N } = A,
+              K = N?.visitorReviewsTotal > 0 || W?.visitorReviewsTotal > 0,
+              b =
+                !K &&
+                (!N?.visitorReviewsTotal || N?.visitorReviewsTotal === 0) &&
+                _.m6.test(h),
+              H = F && F.total > 0;
+            R.current = [K, b, H].filter((j) => !!j).length < 2;
+            const X = D ? v.Z : m.Z,
+              w = Object.values(x || {}).some((j) => j?.reviewList?.length > 0),
+              Z = K && H && w,
+              V = Z
+                ? i(c.H.VISITOR, "\uBC29\uBB38\uC790")
+                : i(c.H.VISITOR_REVIEW, "\uBC29\uBB38\uC790 \uB9AC\uBDF0"),
+              k = Z
+                ? i(c.H.BLOG, "\uBE14\uB85C\uADF8")
+                : i(c.H.BLOG_REVIEW, "\uBE14\uB85C\uADF8 \uB9AC\uBDF0"),
+              Y = Z
+                ? i(c.H.PARTNER, "\uC81C\uD734")
+                : i(c.H.REVIEW, "\uB9AC\uBDF0");
+            return (
+              K &&
+                S.push(
+                  e.createElement(P.Z, {
+                    key: "visitor",
+                    subTabId: "visitor",
+                    subTabName: V,
+                    hideSubTab: R.current,
+                    subTabIcon: X,
+                  }),
+                ),
+              b &&
+                S.push(
+                  e.createElement(g.G, {
+                    key: "visitor",
+                    subTabId: "visitor",
+                    subTabName: V,
+                    subTabIcon: X,
+                  }),
+                ),
+              H &&
+                S.push(
+                  e.createElement(C.Z, {
+                    key: "ugc",
+                    subTabId: "ugc",
+                    subTabName: k,
+                    useProductSelectBox: !0,
+                    hideSubTab: R.current,
+                    reviewType: T,
+                  }),
+                ),
+              w &&
+                S.push(
+                  e.createElement(M.b, {
+                    data: x,
+                    key: "partners",
+                    subTabId: "partners",
+                    subTabName: Y,
+                  }),
+                ),
+              S
+            );
+          }, [A, h, D, x, i, T]);
+        return I || B
+          ? I || B
+          : e.createElement(
+              l.e,
+              { nClicksAreaCode: "rvw" },
+              e.createElement(u.O, { hideSubTab: R.current }, U),
+            );
+      }
+      const O = p;
+    },
+    10784: (o, d, t) => {
+      "use strict";
+      t.d(d, { t: () => M });
+      var e = t(2784),
+        a = t(12524),
+        n = t.n(a),
+        r = t(47670),
+        s = t(95358),
+        l = t(22807),
+        u = t(70069),
+        v = t(49432),
+        m = t(29491),
+        c = t(38759),
+        _ = t(13799),
+        E = t.n(_);
+      function M({
+        author: C,
+===== visitorReviews #2 LINE 1263 =====
+          (0, e.useEffect)(() => {
+            y || B(i, { replace: !0 });
+          }, [B, y, i]),
+          h && h.assign({ url: i }),
+          null
+        );
+      }
+    },
+    45674: (o, d, t) => {
+      "use strict";
+      (t.r(d), t.d(d, { default: () => O }));
+      var e = t(2784),
+        a = t(98452),
+        n = t(60488),
+        r = t(35246),
+        s = t(10164),
+        l = t(3097),
+        u = t(65459),
+        v = t(66609),
+        m = t(13542),
+        c = t(2370),
+        _ = t(39218),
+        E = t(22696),
+        M = t(28009),
+        C = t(3032),
+        g = t(13822),
+        P = t(9764);
+      function p({ reviewType: T }) {
+        const { locale: f } = (0, n.BK)(),
+          D = f === "ko",
+          { businessType: h } = (0, r.Z)(),
+          { t: i } = (0, a.$G)(),
+          { LoadingComponent: y, ErrorComponent: B, business: A } = (0, s.n)(),
+          R = (0, e.useRef)(!1),
+          { data: x, LoadingComponent: L } = (0, E.R)(),
+          I = L || y,
+          U = (0, e.useMemo)(() => {
+            const S = [];
+            if (!A) return S;
+            const { base: W, fsasReviews: F, visitorReviewStats: N } = A,
+              K = N?.visitorReviewsTotal > 0 || W?.visitorReviewsTotal > 0,
+              b =
+                !K &&
+                (!N?.visitorReviewsTotal || N?.visitorReviewsTotal === 0) &&
+                _.m6.test(h),
+              H = F && F.total > 0;
+            R.current = [K, b, H].filter((j) => !!j).length < 2;
+            const X = D ? v.Z : m.Z,
+              w = Object.values(x || {}).some((j) => j?.reviewList?.length > 0),
+              Z = K && H && w,
+              V = Z
+                ? i(c.H.VISITOR, "\uBC29\uBB38\uC790")
+                : i(c.H.VISITOR_REVIEW, "\uBC29\uBB38\uC790 \uB9AC\uBDF0"),
+              k = Z
+                ? i(c.H.BLOG, "\uBE14\uB85C\uADF8")
+                : i(c.H.BLOG_REVIEW, "\uBE14\uB85C\uADF8 \uB9AC\uBDF0"),
+              Y = Z
+                ? i(c.H.PARTNER, "\uC81C\uD734")
+                : i(c.H.REVIEW, "\uB9AC\uBDF0");
+            return (
+              K &&
+                S.push(
+                  e.createElement(P.Z, {
+                    key: "visitor",
+                    subTabId: "visitor",
+                    subTabName: V,
+                    hideSubTab: R.current,
+                    subTabIcon: X,
+                  }),
+                ),
+              b &&
+                S.push(
+                  e.createElement(g.G, {
+                    key: "visitor",
+                    subTabId: "visitor",
+                    subTabName: V,
+                    subTabIcon: X,
+                  }),
+                ),
+              H &&
+                S.push(
+                  e.createElement(C.Z, {
+                    key: "ugc",
+                    subTabId: "ugc",
+                    subTabName: k,
+                    useProductSelectBox: !0,
+                    hideSubTab: R.current,
+                    reviewType: T,
+                  }),
+                ),
+              w &&
+                S.push(
+                  e.createElement(M.b, {
+                    data: x,
+                    key: "partners",
+                    subTabId: "partners",
+                    subTabName: Y,
+                  }),
+                ),
+              S
+            );
+          }, [A, h, D, x, i, T]);
+        return I || B
+          ? I || B
+          : e.createElement(
+              l.e,
+              { nClicksAreaCode: "rvw" },
+              e.createElement(u.O, { hideSubTab: R.current }, U),
+            );
+      }
+      const O = p;
+    },
+    10784: (o, d, t) => {
+      "use strict";
+      t.d(d, { t: () => M });
+      var e = t(2784),
+        a = t(12524),
+        n = t.n(a),
+        r = t(47670),
+        s = t(95358),
+        l = t(22807),
+        u = t(70069),
+        v = t(49432),
+        m = t(29491),
+        c = t(38759),
+        _ = t(13799),
+        E = t.n(_);
+      function M({
+        author: C,
+        cons: g,
+===== visitorReviews #3 LINE 1266 =====
+          h && h.assign({ url: i }),
+          null
+        );
+      }
+    },
+    45674: (o, d, t) => {
+      "use strict";
+      (t.r(d), t.d(d, { default: () => O }));
+      var e = t(2784),
+        a = t(98452),
+        n = t(60488),
+        r = t(35246),
+        s = t(10164),
+        l = t(3097),
+        u = t(65459),
+        v = t(66609),
+        m = t(13542),
+        c = t(2370),
+        _ = t(39218),
+        E = t(22696),
+        M = t(28009),
+        C = t(3032),
+        g = t(13822),
+        P = t(9764);
+      function p({ reviewType: T }) {
+        const { locale: f } = (0, n.BK)(),
+          D = f === "ko",
+          { businessType: h } = (0, r.Z)(),
+          { t: i } = (0, a.$G)(),
+          { LoadingComponent: y, ErrorComponent: B, business: A } = (0, s.n)(),
+          R = (0, e.useRef)(!1),
+          { data: x, LoadingComponent: L } = (0, E.R)(),
+          I = L || y,
+          U = (0, e.useMemo)(() => {
+            const S = [];
+            if (!A) return S;
+            const { base: W, fsasReviews: F, visitorReviewStats: N } = A,
+              K = N?.visitorReviewsTotal > 0 || W?.visitorReviewsTotal > 0,
+              b =
+                !K &&
+                (!N?.visitorReviewsTotal || N?.visitorReviewsTotal === 0) &&
+                _.m6.test(h),
+              H = F && F.total > 0;
+            R.current = [K, b, H].filter((j) => !!j).length < 2;
+            const X = D ? v.Z : m.Z,
+              w = Object.values(x || {}).some((j) => j?.reviewList?.length > 0),
+              Z = K && H && w,
+              V = Z
+                ? i(c.H.VISITOR, "\uBC29\uBB38\uC790")
+                : i(c.H.VISITOR_REVIEW, "\uBC29\uBB38\uC790 \uB9AC\uBDF0"),
+              k = Z
+                ? i(c.H.BLOG, "\uBE14\uB85C\uADF8")
+                : i(c.H.BLOG_REVIEW, "\uBE14\uB85C\uADF8 \uB9AC\uBDF0"),
+              Y = Z
+                ? i(c.H.PARTNER, "\uC81C\uD734")
+                : i(c.H.REVIEW, "\uB9AC\uBDF0");
+            return (
+              K &&
+                S.push(
+                  e.createElement(P.Z, {
+                    key: "visitor",
+                    subTabId: "visitor",
+                    subTabName: V,
+                    hideSubTab: R.current,
+                    subTabIcon: X,
+                  }),
+                ),
+              b &&
+                S.push(
+                  e.createElement(g.G, {
+                    key: "visitor",
+                    subTabId: "visitor",
+                    subTabName: V,
+                    subTabIcon: X,
+                  }),
+                ),
+              H &&
+                S.push(
+                  e.createElement(C.Z, {
+                    key: "ugc",
+                    subTabId: "ugc",
+                    subTabName: k,
+                    useProductSelectBox: !0,
+                    hideSubTab: R.current,
+                    reviewType: T,
+                  }),
+                ),
+              w &&
+                S.push(
+                  e.createElement(M.b, {
+                    data: x,
+                    key: "partners",
+                    subTabId: "partners",
+                    subTabName: Y,
+                  }),
+                ),
+              S
+            );
+          }, [A, h, D, x, i, T]);
+        return I || B
+          ? I || B
+          : e.createElement(
+              l.e,
+              { nClicksAreaCode: "rvw" },
+              e.createElement(u.O, { hideSubTab: R.current }, U),
+            );
+      }
+      const O = p;
+    },
+    10784: (o, d, t) => {
+      "use strict";
+      t.d(d, { t: () => M });
+      var e = t(2784),
+        a = t(12524),
+        n = t.n(a),
+        r = t(47670),
+        s = t(95358),
+        l = t(22807),
+        u = t(70069),
+        v = t(49432),
+        m = t(29491),
+        c = t(38759),
+        _ = t(13799),
+        E = t.n(_);
+      function M({
+        author: C,
+        cons: g,
+        date: P,
+        language: p,
+        pros: O,
+===== visitorReviews #4 LINE 3047 =====
+        r = t(95358),
+        s = t(85371),
+        l = t(35246),
+        u = t(63602),
+        v = t(98785),
+        m = t(2370),
+        c = t(1639),
+        _ = t(38759),
+        E = t(66277),
+        M = t(7591),
+        C = t(92065),
+        g = t(7370),
+        P = t(31681),
+        p = t(35892),
+        O = t.n(p);
+      const T = 4;
+      function f() {
+        (0, _.Z)(O());
+        const { businessId: D, businessType: h } = (0, l.Z)(),
+          [i, y] = (0, e.useState)(!1),
+          {
+            votedKeyword: B,
+            input: A,
+            keywordAndRatingReviewsloadMore: R,
+            onlyShowRatingReviews: x,
+            total: L,
+          } = (0, C.v_)(),
+          {
+            isPhotoUsed: I,
+            theme: U,
+            menu: S,
+            ...W
+          } = { ...A, includeContent: !1 },
+          F = { ...W, includeContent: !1 },
+          {
+            LoadingComponent: N,
+            data: K,
+            fetchMore: b,
+          } = (0, u.Z)(P.DK, { variables: { input: F, id: D } }),
+          H = (0, e.useMemo)(
+            () => K?.visitorReviews?.items || [],
+            [K?.visitorReviews?.items],
+          ),
+          X = K?.visitorReviews?.total,
+          w = (0, e.useRef)(!1);
+        ((0, e.useEffect)(() => {
+          y(L < T);
+        }, [L]),
+          (0, e.useEffect)(() => {
+            if (w.current || !i) return;
+            const V = H?.map(({ id: k }) => k);
+            V?.length > 0 &&
+              ((w.current = !0),
+              (0, g.w)({ reviewIds: V, namespace: "review" }));
+          }, [H, h, i]));
+        const Z = () => {
+          if (i === !1 && !w.current) {
+            const V = H?.map(({ id: k }) => k);
+            (V?.length > 0 && (0, g.w)({ reviewIds: V, namespace: "review" }),
+              (w.current = !0));
+          }
+          y(!i);
+        };
+        return (
+          N ||
+          (!(X > 0) || (L === 0 && !x)
+            ? null
+            : e.createElement(
+                n.Mw,
+                { className: O().visitor_review_keyword_rating_section },
+                e.createElement(n.Sh, {
+                  title: B
+                    ? e.createElement(
+                        a.cC,
+                        { i18nKey: m.H.KEYWORD_RATINGS_REVIEW },
+                        "\uD0A4\uC6CC\uB4DC\xB7\uBCC4\uC810 \uB9AC\uBDF0",
+                      )
+                    : e.createElement(
+                        a.cC,
+                        { i18nKey: m.H.RATINGS_REVIEW },
+                        "\uBCC4\uC810 \uB9AC\uBDF0",
+                      ),
+                  count: (0, c.k6)(X),
+                  extra: e.createElement(
+                    r.Z,
+                    {
+                      className: O().btn_header,
+                      "aria-haspopup": "true",
+                      "aria-expanded": i,
+                      onClick: Z,
+                      nClicks: { clickCode: "star" },
+                    },
+                    i
+                      ? e.createElement(
+                          a.cC,
+                          { i18nKey: m.H.LESS },
+                          "\uC811\uAE30",
+                        )
+                      : e.createElement(
+                          a.cC,
+                          { i18nKey: m.H.UNFOLD2 },
+                          "\uD3BC\uCCD0\uBCF4\uAE30",
+                        ),
+                    e.createElement(v.Z, {
+                      className: O().icon,
+                      "aria-hidden": "true",
+                    }),
+                  ),
+                }),
+                i &&
+                  e.createElement(
+                    e.Fragment,
+                    null,
+                    e.createElement(
+                      n.bI,
+                      null,
+                      e.createElement(
+                        M.gq,
+                        { reviews: H },
+                        e.createElement(
+                          "ul",
+                          null,
+                          H.map((V) =>
+                            e.createElement(E.nS, {
+                              key: `rating_${V.id}`,
+                              isKeywordAndRatingType: !0,
+                              review: V,
+                            }),
+                          ),
+                        ),
+===== visitorReviews #5 LINE 3048 =====
+        s = t(85371),
+        l = t(35246),
+        u = t(63602),
+        v = t(98785),
+        m = t(2370),
+        c = t(1639),
+        _ = t(38759),
+        E = t(66277),
+        M = t(7591),
+        C = t(92065),
+        g = t(7370),
+        P = t(31681),
+        p = t(35892),
+        O = t.n(p);
+      const T = 4;
+      function f() {
+        (0, _.Z)(O());
+        const { businessId: D, businessType: h } = (0, l.Z)(),
+          [i, y] = (0, e.useState)(!1),
+          {
+            votedKeyword: B,
+            input: A,
+            keywordAndRatingReviewsloadMore: R,
+            onlyShowRatingReviews: x,
+            total: L,
+          } = (0, C.v_)(),
+          {
+            isPhotoUsed: I,
+            theme: U,
+            menu: S,
+            ...W
+          } = { ...A, includeContent: !1 },
+          F = { ...W, includeContent: !1 },
+          {
+            LoadingComponent: N,
+            data: K,
+            fetchMore: b,
+          } = (0, u.Z)(P.DK, { variables: { input: F, id: D } }),
+          H = (0, e.useMemo)(
+            () => K?.visitorReviews?.items || [],
+            [K?.visitorReviews?.items],
+          ),
+          X = K?.visitorReviews?.total,
+          w = (0, e.useRef)(!1);
+        ((0, e.useEffect)(() => {
+          y(L < T);
+        }, [L]),
+          (0, e.useEffect)(() => {
+            if (w.current || !i) return;
+            const V = H?.map(({ id: k }) => k);
+            V?.length > 0 &&
+              ((w.current = !0),
+              (0, g.w)({ reviewIds: V, namespace: "review" }));
+          }, [H, h, i]));
+        const Z = () => {
+          if (i === !1 && !w.current) {
+            const V = H?.map(({ id: k }) => k);
+            (V?.length > 0 && (0, g.w)({ reviewIds: V, namespace: "review" }),
+              (w.current = !0));
+          }
+          y(!i);
+        };
+        return (
+          N ||
+          (!(X > 0) || (L === 0 && !x)
+            ? null
+            : e.createElement(
+                n.Mw,
+                { className: O().visitor_review_keyword_rating_section },
+                e.createElement(n.Sh, {
+                  title: B
+                    ? e.createElement(
+                        a.cC,
+                        { i18nKey: m.H.KEYWORD_RATINGS_REVIEW },
+                        "\uD0A4\uC6CC\uB4DC\xB7\uBCC4\uC810 \uB9AC\uBDF0",
+                      )
+                    : e.createElement(
+                        a.cC,
+                        { i18nKey: m.H.RATINGS_REVIEW },
+                        "\uBCC4\uC810 \uB9AC\uBDF0",
+                      ),
+                  count: (0, c.k6)(X),
+                  extra: e.createElement(
+                    r.Z,
+                    {
+                      className: O().btn_header,
+                      "aria-haspopup": "true",
+                      "aria-expanded": i,
+                      onClick: Z,
+                      nClicks: { clickCode: "star" },
+                    },
+                    i
+                      ? e.createElement(
+                          a.cC,
+                          { i18nKey: m.H.LESS },
+                          "\uC811\uAE30",
+                        )
+                      : e.createElement(
+                          a.cC,
+                          { i18nKey: m.H.UNFOLD2 },
+                          "\uD3BC\uCCD0\uBCF4\uAE30",
+                        ),
+                    e.createElement(v.Z, {
+                      className: O().icon,
+                      "aria-hidden": "true",
+                    }),
+                  ),
+                }),
+                i &&
+                  e.createElement(
+                    e.Fragment,
+                    null,
+                    e.createElement(
+                      n.bI,
+                      null,
+                      e.createElement(
+                        M.gq,
+                        { reviews: H },
+                        e.createElement(
+                          "ul",
+                          null,
+                          H.map((V) =>
+                            e.createElement(E.nS, {
+                              key: `rating_${V.id}`,
+                              isKeywordAndRatingType: !0,
+                              review: V,
+                            }),
+                          ),
+                        ),
+                      ),
+===== visitorReviews #6 LINE 3050 =====
+        u = t(63602),
+        v = t(98785),
+        m = t(2370),
+        c = t(1639),
+        _ = t(38759),
+        E = t(66277),
+        M = t(7591),
+        C = t(92065),
+        g = t(7370),
+        P = t(31681),
+        p = t(35892),
+        O = t.n(p);
+      const T = 4;
+      function f() {
+        (0, _.Z)(O());
+        const { businessId: D, businessType: h } = (0, l.Z)(),
+          [i, y] = (0, e.useState)(!1),
+          {
+            votedKeyword: B,
+            input: A,
+            keywordAndRatingReviewsloadMore: R,
+            onlyShowRatingReviews: x,
+            total: L,
+          } = (0, C.v_)(),
+          {
+            isPhotoUsed: I,
+            theme: U,
+            menu: S,
+            ...W
+          } = { ...A, includeContent: !1 },
+          F = { ...W, includeContent: !1 },
+          {
+            LoadingComponent: N,
+            data: K,
+            fetchMore: b,
+          } = (0, u.Z)(P.DK, { variables: { input: F, id: D } }),
+          H = (0, e.useMemo)(
+            () => K?.visitorReviews?.items || [],
+            [K?.visitorReviews?.items],
+          ),
+          X = K?.visitorReviews?.total,
+          w = (0, e.useRef)(!1);
+        ((0, e.useEffect)(() => {
+          y(L < T);
+        }, [L]),
+          (0, e.useEffect)(() => {
+            if (w.current || !i) return;
+            const V = H?.map(({ id: k }) => k);
+            V?.length > 0 &&
+              ((w.current = !0),
+              (0, g.w)({ reviewIds: V, namespace: "review" }));
+          }, [H, h, i]));
+        const Z = () => {
+          if (i === !1 && !w.current) {
+            const V = H?.map(({ id: k }) => k);
+            (V?.length > 0 && (0, g.w)({ reviewIds: V, namespace: "review" }),
+              (w.current = !0));
+          }
+          y(!i);
+        };
+        return (
+          N ||
+          (!(X > 0) || (L === 0 && !x)
+            ? null
+            : e.createElement(
+                n.Mw,
+                { className: O().visitor_review_keyword_rating_section },
+                e.createElement(n.Sh, {
+                  title: B
+                    ? e.createElement(
+                        a.cC,
+                        { i18nKey: m.H.KEYWORD_RATINGS_REVIEW },
+                        "\uD0A4\uC6CC\uB4DC\xB7\uBCC4\uC810 \uB9AC\uBDF0",
+                      )
+                    : e.createElement(
+                        a.cC,
+                        { i18nKey: m.H.RATINGS_REVIEW },
+                        "\uBCC4\uC810 \uB9AC\uBDF0",
+                      ),
+                  count: (0, c.k6)(X),
+                  extra: e.createElement(
+                    r.Z,
+                    {
+                      className: O().btn_header,
+                      "aria-haspopup": "true",
+                      "aria-expanded": i,
+                      onClick: Z,
+                      nClicks: { clickCode: "star" },
+                    },
+                    i
+                      ? e.createElement(
+                          a.cC,
+                          { i18nKey: m.H.LESS },
+                          "\uC811\uAE30",
+                        )
+                      : e.createElement(
+                          a.cC,
+                          { i18nKey: m.H.UNFOLD2 },
+                          "\uD3BC\uCCD0\uBCF4\uAE30",
+                        ),
+                    e.createElement(v.Z, {
+                      className: O().icon,
+                      "aria-hidden": "true",
+                    }),
+                  ),
+                }),
+                i &&
+                  e.createElement(
+                    e.Fragment,
+                    null,
+                    e.createElement(
+                      n.bI,
+                      null,
+                      e.createElement(
+                        M.gq,
+                        { reviews: H },
+                        e.createElement(
+                          "ul",
+                          null,
+                          H.map((V) =>
+                            e.createElement(E.nS, {
+                              key: `rating_${V.id}`,
+                              isKeywordAndRatingType: !0,
+                              review: V,
+                            }),
+                          ),
+                        ),
+                      ),
+                    ),
+                    H.length < X &&
+===== after: #1 LINE 3690 =====
+                    { className: "place_thumb_icon_video" },
+                    e.createElement(_.Z, {
+                      className: "place_icon_play_right",
+                      "aria-hidden": "true",
+                    }),
+                    e.createElement(
+                      "span",
+                      { className: "place_blind" },
+                      "\uB3D9\uC601\uC0C1",
+                    ),
+                  ),
+              ),
+            );
+          },
+          L = () =>
+            y
+              ? e.createElement(
+                  "li",
+                  { className: n()(P().list_item, P().type_more) },
+                  e.createElement(u.d, {
+                    height: 195,
+                    moreLink: { to: A },
+                    laim: { code: "ptomore" },
+                  }),
+                )
+              : null;
+        return e.createElement(
+          v.Mw,
+          null,
+          e.createElement(v.Sh, { title: f }),
+          e.createElement(
+            v.bI,
+            null,
+            e.createElement(
+              "div",
+              { className: P().photo_list_area },
+              e.createElement(m.P, {
+                key: `${T}_${i.length}`,
+                items: i,
+                renderItem: x,
+                renderItemAfter: L,
+                viewportClassName: P().photo_list,
+                scrollViewOptions: {
+                  showFlickingButtonsOnHover: !0,
+                  scrollSize: 2,
+                  cameraTag: "ul",
+                  ...(h && { arrowXPos: 2 }),
+                },
+              }),
+            ),
+          ),
+        );
+      }
+    },
+    46020: (o, d, t) => {
+      "use strict";
+      t.d(d, { F: () => P });
+      var e = t(2784),
+        a = t(34261),
+        n = t.n(a),
+        r = t(35246),
+        s = t(63001),
+        l = t(63602),
+        u = t(973),
+        v = t(8160),
+        m = t(74749),
+        c = t(38759),
+        _ = t(17804),
+        E = t(50799),
+        M = t(69048),
+        C = t.n(M);
+      const g = 10;
+      function P(O, T) {
+        (0, c.Z)(C());
+        const { businessType: f, businessId: D } = (0, r.Z)(),
+          h = (0, s.Z)(),
+          { data: i = { visitorReviewPhotos: [] }, loading: y } = (0, l.Z)(p, {
+            variables: {
+              input: {
+                businessId: D,
+                businessType: f,
+                type: "FLAT",
+                ...(O && O !== "0" && { itemId: O }),
+              },
+            },
+          }),
+          B = i?.visitorReviewPhotos || [],
+          A = B.length >= g,
+          R = (0, e.useMemo)(
+            () =>
+              B.map((I, U) => {
+                const { originalUrl: S, mediaFormat: W, mediaSource: F } = I,
+                  N = W === "video";
+                return {
+                  ...I,
+                  id: `${F}_${U}`,
+                  imgUrl: N
+                    ? (0, _.gu)(S, v.h)
+                    : (0, m.cg)({ url: S, thumbnailType: "mediaViewer" }),
+                  originalUrl: N
+                    ? S
+                    : (0, m.cg)({
+                        url: S,
+                        thumbnailType: "mediaViewer_original",
+                      }),
+                  useThumbnail: N,
+                };
+              }),
+            [B],
+          ),
+          x = (0, u.Y)({ media: R, placeId: D }),
+          L = (0, E.Ne)(`/${f}/${D}/photo`, {
+            ...h,
+            filterType: "\uB9AC\uBDF0",
+          });
+        return (
+          (0, e.useEffect)(() => {
+            y || B.length < 1 || T(!0);
+          }, [y, B.length, T]),
+          {
+            photos: B,
+            hasMore: A,
+            loading: y,
+            openMediaViewer: x,
+            reviewTabUrl: L,
+          }
+        );
+      }
+      const p = (0, a.gql)`
+  query getVisitorReviewPhotosInVisitorReviewTab($input: VisitorReviewPhotosInput) {

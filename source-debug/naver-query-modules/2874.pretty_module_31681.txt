@@ -1,0 +1,563 @@
+    31681: (r, _, e) => {
+      "use strict";
+      e.d(_, {
+        Ap: () => B,
+        DK: () => o,
+        Fh: () => E,
+        Gn: () => T,
+        IW: () => i,
+        Kz: () => b,
+        LA: () => O,
+        MB: () => s,
+        MI: () => P,
+        OU: () => g,
+        Qg: () => d,
+        TB: () => l,
+        be: () => f,
+        c8: () => y,
+        hH: () => p,
+        nX: () => C,
+        vv: () => c,
+        xR: () => u,
+      });
+      var t = e(34261),
+        a = e.n(t),
+        n = e(15879);
+      const i = (0, t.gql)`
+  query getVisitorReviews($input: VisitorReviewsInput) {
+    visitorReviews(input: $input) {
+      items {
+        id
+        cursor
+        reviewId
+        rating
+        author {
+          id
+          nickname
+          from
+          imageUrl
+          borderImageUrl
+          objectId
+          url
+          review {
+            totalCount
+            imageCount
+            avgRating
+          }
+          theme {
+            totalCount
+          }
+          isFollowing
+          followerCount
+          followRequested
+        }
+        body
+        thumbnail
+        media {
+          type
+          thumbnail
+          thumbnailRatio
+          class
+          videoId
+          videoUrl
+          trailerUrl
+        }
+        tags
+        status
+        visitCount
+        viewCount
+        visited
+        created
+        reply {
+          editUrl
+          body
+          editedBy
+          created
+          date
+          replyTitle
+          isReported
+          isSuspended
+          status
+        }
+        originType
+        item {
+          name
+          code
+          options
+        }
+        language
+        highlightRanges {
+          start
+          end
+        }
+        apolloCacheId
+        translatedText
+        businessName
+        showBookingItemName
+        bookingItemName
+        votedKeywords {
+          code
+          iconUrl
+          iconCode
+          name
+        }
+        userIdno
+        loginIdno
+        receiptInfoUrl
+        reactionStat {
+          id
+          typeCount {
+            name
+            count
+          }
+          totalCount
+        }
+        hasViewerReacted {
+          id
+          reacted
+        }
+        nickname
+        showPaymentInfo
+        visitCategories {
+          code
+          name
+          keywords {
+            code
+            name
+          }
+        }
+        representativeVisitDateTime
+        showRepresentativeVisitDateTime
+      }
+      starDistribution {
+        score
+        count
+      }
+      hideProductSelectBox
+      total
+      showRecommendationSort
+      itemReviewStats {
+        score
+        count
+        itemId
+        starDistribution {
+          score
+          count
+        }
+      }
+    }
+  }
+`,
+        s = (0, t.gql)`
+  query getVisitorReviews($input: VisitorReviewsInput) {
+    visitorReviews(input: $input) {
+      ...VisitorReviews
+    }
+  }
+  ${n.IR}
+`,
+        l = (0, t.gql)`
+  query getVisitorReviewStats($id: String, $itemId: String, $businessType: String = "place") {
+    visitorReviewStats(input: { businessId: $id, itemId: $itemId, businessType: $businessType }) {
+      id
+      name
+      apolloCacheId
+      review {
+        avgRating
+        totalCount
+        scores {
+          count
+          score
+        }
+        starDistribution {
+          count
+          score
+        }
+        imageReviewCount
+        authorCount
+        maxSingleReviewScoreCount
+        maxScoreWithMaxCount
+      }
+      analysis {
+        themes {
+          code
+          label
+          count
+        }
+        menus {
+          code
+          label
+          count
+        }
+        votedKeyword {
+          totalCount
+          reviewCount
+          userCount
+          details {
+            category
+            code
+            iconUrl
+            iconCode
+            displayName
+            count
+            previousRank
+          }
+        }
+      }
+      visitorReviewsTotal
+      ratingReviewsTotal
+    }
+  }
+`,
+        p = (0, t.gql)`
+  query getVisitorReviewThemeLists($input: ThemeListsInput) {
+    themeLists(input: $input) {
+      themeLists {
+        id
+        title
+        viewCount
+        itemCount
+        reviews {
+          businessName
+          reviewBody
+          imageUrl
+        }
+        authorNickname
+        authorImageUrl
+        isFollowing
+        themeListUrl
+        authorUrl
+        cursor
+      }
+      total
+    }
+  }
+`,
+        o = (0, t.gql)`
+  query getVisitorRatingReviews($input: VisitorReviewsInput) {
+    visitorReviews(input: $input) {
+      total
+      items {
+        id
+        cursor
+        rating
+        author {
+          id
+          nickname
+          from
+          imageUrl
+          borderImageUrl
+          objectId
+          url
+          review {
+            totalCount
+            imageCount
+            avgRating
+          }
+          theme {
+            totalCount
+          }
+          isFollowing
+          followerCount
+          followRequested
+        }
+        visitCount
+        visited
+        originType
+        reply {
+          editUrl
+          body
+          editedBy
+          created
+          date
+          replyTitle
+          isReported
+          isSuspended
+          status
+        }
+        votedKeywords {
+          code
+          iconUrl
+          iconCode
+          # deprecated
+          displayName
+          # for pui
+          name
+        }
+        businessName
+        status
+        userIdno
+        loginIdno
+        receiptInfoUrl
+        reactionStat {
+          id
+          typeCount {
+            name
+            count
+          }
+          totalCount
+        }
+        hasViewerReacted {
+          id
+          reacted
+        }
+        nickname
+      }
+    }
+  }
+`,
+        m = (0, t.gql)`
+  query getPapagoTranslation($input: PapagoTranslateInput) {
+    papagoTranslate(input: $input) {
+      translatedText
+    }
+  }
+`,
+        c = (0, t.gql)`
+  query getReactionTypes {
+    reactionTypes {
+      name
+      emojiUrl
+      label
+    }
+  }
+`,
+        d = (0, t.gql)`
+  query getUserReactedType($input: UserReactedTypeInput) {
+    userReactedType(input: $input) {
+      reactionType
+    }
+  }
+`,
+        E = (0, t.gql)`
+  query getVisitorReviewStatsByBookingBusinessId($id: String, $itemIds: String) {
+    visitorReviewStatsByBookingBusinessId(input: { bookingBusinessId: $id, itemIds: $itemIds }) {
+      items {
+        id
+        itemId
+        score
+        count
+      }
+    }
+  }
+`,
+        C = (0, t.gql)`
+  fragment VisitorReviewAuthor on VisitorReviewAuthor {
+    id
+    nickname
+    from
+    imageUrl
+    objectId
+    url
+    review {
+      totalCount
+      imageCount
+      avgRating
+    }
+    theme {
+      totalCount
+    }
+    isFollowing
+    followerCount
+    followRequested
+  }
+`,
+        g = (0, t.gql)`
+  mutation FollowUser($input: FollowUserInput!) {
+    followUser(input: $input) {
+      acceptFriendsSettings
+      userId
+    }
+  }
+`,
+        u = (0, t.gql)`
+  mutation unfollowUser($input: UnfollowUserInput!) {
+    unfollowUser(input: $input) {
+      success
+      userId
+    }
+  }
+`,
+        f = (0, t.gql)`
+  fragment ViewerAuthorFragment on ViewerAuthor {
+    id
+    author {
+      id
+      nickname
+      from
+      imageUrl
+      objectId
+      url
+      review {
+        totalCount
+        imageCount
+        avgRating
+      }
+      theme {
+        totalCount
+      }
+      isFollowing
+      followerCount
+      followRequested
+    }
+    loginIdno
+    userIdno
+    cursor
+    apolloCacheId
+  }
+`,
+        P = (0, t.gql)`
+  fragment ReactionStat on ReactionStat {
+    id
+    typeCount {
+      name
+      count
+    }
+    totalCount
+  }
+`,
+        O = (0, t.gql)`
+  fragment HasViewerReacted on HasViewerReacted {
+    id
+    reacted
+  }
+`,
+        T = (0, t.gql)`
+  query getReactionAuthorsInfo($input: ReactionAuthorsInfoInput) {
+    reactionAuthorsInfo(input: $input) {
+      id
+      hasMore
+      authors {
+        id
+        author {
+          id
+          nickname
+          from
+          imageUrl
+          objectId
+          url
+          review {
+            totalCount
+            imageCount
+            avgRating
+          }
+          theme {
+            totalCount
+          }
+          isFollowing
+          followerCount
+          followRequested
+        }
+        loginIdno
+        userIdno
+        cursor
+        apolloCacheId
+      }
+      viewerInfo {
+        ...ViewerAuthorFragment
+      }
+    }
+  }
+`,
+        y = (0, t.gql)`
+  mutation CreateReaction($input: ReactionInput!) {
+    createReaction(input: $input) {
+      success
+      reactionType
+      reviewGroupId
+    }
+  }
+`,
+        B = (0, t.gql)`
+  mutation DeleteReaction($input: ReactionInput!) {
+    deleteReaction(input: $input) {
+      success
+      reactionType
+      reviewGroupId
+    }
+  }
+`,
+        v = (0, t.gql)`
+  fragment VisitorReviewMedia on VisitorReviewMedia {
+    type
+    thumbnail
+    thumbnailRatio
+    class
+    videoId
+    videoUrl
+    trailerUrl
+  }
+`,
+        h = (0, t.gql)`
+  fragment VisitorReviewReply on VisitorReviewReply {
+    editUrl
+    body
+    editedBy
+    created
+    date
+    replyTitle
+    isReported
+    isSuspended
+    status
+  }
+`,
+        D = (0, t.gql)`
+  fragment VisitorReviewThemeInfo on VisitorReviewThemeInfo {
+    theme
+    pattern
+    category
+    offsetStart
+    offsetEnd
+    similarity
+    miningValue
+  }
+`,
+        x = (0, t.gql)`
+  fragment VisitorReviewItem on VisitorReviewItem {
+    name
+    code
+    options
+  }
+`,
+        M = (0, t.gql)`
+  fragment VisitorReviewHighlightRange on VisitorReviewHighlightRange {
+    start
+    end
+  }
+`,
+        A = (0, t.gql)`
+  fragment VisitorReviewVotedKeyword on VisitorReviewVotedKeyword {
+    code
+    iconUrl
+    iconCode
+    name
+  }
+`,
+        I = (0, t.gql)`
+  fragment VisitCategory on VisitCategory {
+    code
+    name
+    keywords {
+      code
+      name
+    }
+  }
+`,
+        R = (0, t.gql)`
+  fragment VisitItemsInfo on VisitItemsInfo {
+    representItemName
+    count
+    totalPrice
+    menus {
+      name
+    }
+  }
+`,
+        b = (0, t.gql)`
+  query getReviewAwardCoupons($input: ReviewAwardsCouponsInput) {
+    reviewAwardCoupons(input: $input) {
+      total
+    }
+  }
+`;
+    },

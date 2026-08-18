@@ -1,0 +1,89 @@
+{
+  "2200.pretty.js": {
+    "modules": [
+      {
+        "id": "39218",
+        "start": 758,
+        "end": 924
+      }
+    ],
+    "counts": {
+      "VisitorReviews": 3,
+      "visitorReviews": 3,
+      "graphql": 0,
+      "operationName": 0,
+      "ApolloClient": 0,
+      "HttpLink": 0,
+      "/graphql": 0,
+      "includeReceiptPhotos": 0,
+      "after:": 0
+    }
+  },
+  "2874.pretty.js": {
+    "modules": [
+      {
+        "id": "31681",
+        "start": 5509,
+        "end": 6071
+      },
+      {
+        "id": "62118",
+        "start": 5310,
+        "end": 5345
+      }
+    ],
+    "counts": {
+      "VisitorReviews": 31,
+      "visitorReviews": 31,
+      "graphql": 2,
+      "operationName": 0,
+      "ApolloClient": 0,
+      "HttpLink": 0,
+      "/graphql": 0,
+      "includeReceiptPhotos": 1,
+      "after:": 2
+    }
+  },
+  "2962.pretty.js": {
+    "modules": [],
+    "counts": {
+      "VisitorReviews": 8,
+      "visitorReviews": 8,
+      "graphql": 0,
+      "operationName": 0,
+      "ApolloClient": 0,
+      "HttpLink": 0,
+      "/graphql": 0,
+      "includeReceiptPhotos": 0,
+      "after:": 2
+    }
+  },
+  "detail.pretty.js": {
+    "modules": [],
+    "counts": {
+      "VisitorReviews": 6,
+      "visitorReviews": 6,
+      "graphql": 0,
+      "operationName": 0,
+      "ApolloClient": 0,
+      "HttpLink": 0,
+      "/graphql": 0,
+      "includeReceiptPhotos": 0,
+      "after:": 1
+    }
+  },
+  "pui.pretty.js": {
+    "modules": [],
+    "counts": {
+      "VisitorReviews": 0,
+      "visitorReviews": 0,
+      "graphql": 0,
+      "operationName": 0,
+      "ApolloClient": 0,
+      "HttpLink": 0,
+      "/graphql": 0,
+      "includeReceiptPhotos": 0,
+      "after:": 0
+    }
+  }
+}
