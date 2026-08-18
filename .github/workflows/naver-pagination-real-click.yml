@@ -1,0 +1,116 @@
+name: Test real Naver review pagination click
+
+on:
+  push:
+    branches:
+      - tmp-review-capture-20260815
+    paths:
+      - '.github/workflows/naver-pagination-real-click.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: tmp-review-capture-20260815
+          fetch-depth: 0
+
+      - name: Record run ID
+        shell: bash
+        run: |
+          mkdir -p .capture-state
+          echo "$GITHUB_RUN_ID" > .capture-state/naver-pagination-real-click-run-id.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .capture-state/naver-pagination-real-click-run-id.txt
+          git commit -m 'Record Naver real-click test run [skip ci]' || true
+          git pull --rebase origin tmp-review-capture-20260815
+          git push origin HEAD:tmp-review-capture-20260815
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Playwright and Korean fonts
+        shell: bash
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-cjk
+          npm init -y
+          npm install playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Test real button click
+        shell: bash
+        run: |
+          cat > naver-pagination-real-click.mjs <<'EOF'
+          import { chromium } from 'playwright';
+          import fs from 'node:fs/promises';
+          const OUT='source-debug/naver-real-click';
+          await fs.rm(OUT,{recursive:true,force:true});
+          await fs.mkdir(OUT,{recursive:true});
+          const browser=await chromium.launch({headless:true,args:['--no-sandbox','--disable-dev-shm-usage','--lang=ko-KR']});
+          const context=await browser.newContext({viewport:{width:460,height:1400},locale:'ko-KR',timezoneId:'Asia/Seoul',userAgent:'Mozilla/5.0 (Linux; Android 15; SM-S938N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36',extraHTTPHeaders:{'Accept-Language':'ko-KR,ko;q=0.9'}});
+          await context.addInitScript(()=>{Object.defineProperty(navigator,'webdriver',{get:()=>undefined});});
+          const page=await context.newPage();
+          const responses=[];
+          page.on('response',async r=>{
+            if(r.url()==='https://api.place.naver.com/place/graphql'){
+              const req=r.request();
+              let data=null,text='';
+              try{data=await r.json();}catch{try{text=(await r.text()).slice(0,100000);}catch{}}
+              responses.push({status:r.status(),headers:r.headers(),postData:req.postData(),data,text});
+            }
+          });
+          await page.goto('https://m.place.naver.com/place/1177401952/review/visitor',{waitUntil:'domcontentloaded',timeout:90000});
+          await page.waitForTimeout(10000);
+          await page.screenshot({path:`${OUT}/before.png`,fullPage:true});
+          const result={beforeCards:await page.locator('li.place_apply_pui').count(),beforeButtons:await page.locator('a.fvwqf').count(),clicks:[]};
+          for(let i=0;i<4;i++){
+            const btn=page.locator('a.fvwqf').first();
+            const exists=await btn.count();
+            if(!exists){result.clicks.push({i,exists:false});break;}
+            await btn.scrollIntoViewIfNeeded();
+            const before=await page.locator('li.place_apply_pui').count();
+            const responsePromise=page.waitForResponse(r=>r.url()==='https://api.place.naver.com/place/graphql' && (r.request().postData()||'').includes('getVisitorReviews'),{timeout:30000}).catch(()=>null);
+            let clickError=null;
+            try{await btn.click({force:true,timeout:10000});}catch(e){clickError=String(e);}
+            const resp=await responsePromise;
+            let respBody=null;
+            if(resp){try{respBody=await resp.json();}catch{}}
+            let updated=false;
+            try{await page.waitForFunction(n=>document.querySelectorAll('li.place_apply_pui').length>n,before,{timeout:15000});updated=true;}catch{}
+            await page.waitForTimeout(2500);
+            const after=await page.locator('li.place_apply_pui').count();
+            result.clicks.push({i,before,after,updated,clickError,responseStatus:resp?.status()??null,responseBody:respBody,buttonCountAfter:await page.locator('a.fvwqf').count()});
+            if(after===before && !resp) break;
+          }
+          result.afterCards=await page.locator('li.place_apply_pui').count();
+          result.responseEvents=responses;
+          result.finalUrl=page.url();
+          await fs.writeFile(`${OUT}/result.json`,JSON.stringify(result,null,2),'utf8');
+          await fs.writeFile(`${OUT}/after.html`,await page.content(),'utf8');
+          await page.screenshot({path:`${OUT}/after.png`,fullPage:true});
+          console.log(JSON.stringify({beforeCards:result.beforeCards,afterCards:result.afterCards,clicks:result.clicks.map(x=>({i:x.i,before:x.before,after:x.after,updated:x.updated,responseStatus:x.responseStatus,hasErrors:!!x.responseBody?.errors,itemCount:x.responseBody?.data?.visitorReviews?.items?.length,total:x.responseBody?.data?.visitorReviews?.total,afterCursor:x.responseBody?.data?.visitorReviews?.after}))},null,2));
+          await browser.close();
+          EOF
+          node naver-pagination-real-click.mjs
+
+      - name: Commit test diagnostics
+        if: always()
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add source-debug/naver-real-click
+          if ! git diff --cached --quiet; then
+            git commit -m 'Add Naver real-click pagination diagnostics [skip ci]'
+            git pull --rebase origin tmp-review-capture-20260815
+            git push origin HEAD:tmp-review-capture-20260815
+          fi
