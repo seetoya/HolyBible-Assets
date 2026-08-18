@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-18T20:20:12.438Z",
+  "generatedAt": "2026-08-18T20:29:28.618Z",
   "viewport": {
     "width": 460,
     "height": 1400
@@ -13,82 +13,11 @@
       "httpStatus": 200,
       "finalUrl": "https://m.place.naver.com/place/1177401952/review/visitor",
       "expected": 32,
-      "markedBeforeCapture": 10,
-      "files": [
-        {
-          "sequence": 1,
-          "reviewer": "이정용28 리뷰 10사진 4 팔로우 학생들에게 열정적으로 수업해 주시고 학무모에게도 정기적으로 학생들 수업 ",
-          "fileName": "001_이정용28 리뷰 10사진 4 팔로우 학생들에게 열정적으로 수업해 주시고 학무모에게도 정기적으로 학생들 수업 .png",
-          "bytes": 37634,
-          "sha256": "ee3ca8850f0001c0b9750f91b6b03ee4b243da35695d9dc7e0d454c1aa11a44d"
-        },
-        {
-          "sequence": 2,
-          "reviewer": "win____ 리뷰 15사진 9 팔로우 정말 탁월한 선택이었어요~ 학원옮기고 시험 두번 보았어요~100점 9",
-          "fileName": "002_win____ 리뷰 15사진 9 팔로우 정말 탁월한 선택이었어요~ 학원옮기고 시험 두번 보았어요~100점 9.png",
-          "bytes": 184089,
-          "sha256": "15b86b34b88acb1e5757a18b3123b98bcde4387dfe04ef05aa9d0a09eb954faf"
-        },
-        {
-          "sequence": 3,
-          "reviewer": "코딱지66 리뷰 460사진 6 팔로우 큰아이서부터 둘째까지 원장쌤 실력은 말할것도 없고 모든 쌤들이 열정적으",
-          "fileName": "003_코딱지66 리뷰 460사진 6 팔로우 큰아이서부터 둘째까지 원장쌤 실력은 말할것도 없고 모든 쌤들이 열정적으.png",
-          "bytes": 43933,
-          "sha256": "0b1658b57fa9a1ec11c82d245f957befb6625c954ff7440a85837e2ed297ffc3"
-        },
-        {
-          "sequence": 4,
-          "reviewer": "찡찡이 smile 리뷰 5사진 1 팔로우 학생 파악이 빨라요. 아이에게 맞게 맞춤 지도가 가능해서 공부자세 ",
-          "fileName": "004_찡찡이 smile 리뷰 5사진 1 팔로우 학생 파악이 빨라요. 아이에게 맞게 맞춤 지도가 가능해서 공부자세 .png",
-          "bytes": 47022,
-          "sha256": "d5b933f27dbac1321cc42252a4f7934b794efebed19ab9635fc02a4dfb416a5e"
-        },
-        {
-          "sequence": 5,
-          "reviewer": "sti____ 리뷰 14사진 20 팔로우 원장 선생님의 열정이 정말 대단하세요👍 숙제가 다소 많긴 하지만 ",
-          "fileName": "005_sti____ 리뷰 14사진 20 팔로우 원장 선생님의 열정이 정말 대단하세요👍 숙제가 다소 많긴 하지만 .png",
-          "bytes": 42367,
-          "sha256": "4682609ccdfa4e37abc8064f29879fc74a11006f6d2138ae3c3bb318e11e7d0d"
-        },
-        {
-          "sequence": 6,
-          "reviewer": "nan____ 리뷰 5 팔로우 꼼꼼한 문제풀이와 다양한 자료제공 해주심 질문엔 섬세히 봐주고 스스로 공부할 ",
-          "fileName": "006_nan____ 리뷰 5 팔로우 꼼꼼한 문제풀이와 다양한 자료제공 해주심 질문엔 섬세히 봐주고 스스로 공부할 .png",
-          "bytes": 33228,
-          "sha256": "b8d372771814571b69195aeb5e88aad95f831efa0358ddbc5abc8f7cbf64ee17"
-        },
-        {
-          "sequence": 7,
-          "reviewer": "iove100482 리뷰 86사진 6 팔로우 선생님이 즐겁고 이해가 잘가요 학교시험 100점 맞앗어요😘 맞",
-          "fileName": "007_iove100482 리뷰 86사진 6 팔로우 선생님이 즐겁고 이해가 잘가요 학교시험 100점 맞앗어요😘 맞.png",
-          "bytes": 32716,
-          "sha256": "1750cc0075ee442afd36699a09951be577b9a702742a017573c1d121e44337dc"
-        },
-        {
-          "sequence": 8,
-          "reviewer": "dbw____ 리뷰 2사진 1 팔로우 예전에 다니던 학원 선생님이 소개해주셨던 곳인데 선생님이 잘 가르쳐주시",
-          "fileName": "008_dbw____ 리뷰 2사진 1 팔로우 예전에 다니던 학원 선생님이 소개해주셨던 곳인데 선생님이 잘 가르쳐주시.png",
-          "bytes": 28316,
-          "sha256": "71dd60999993b61bd590b61d0978941219f9dbf1abd4bdf27ffb1d7f3789f08c"
-        },
-        {
-          "sequence": 9,
-          "reviewer": "gys____ 리뷰 4사진 5 팔로우 선생님께서 수업도 잘하시고 학원 분위기도 그렇고 시스템이 잘 잡혀있어서",
-          "fileName": "009_gys____ 리뷰 4사진 5 팔로우 선생님께서 수업도 잘하시고 학원 분위기도 그렇고 시스템이 잘 잡혀있어서.png",
-          "bytes": 39925,
-          "sha256": "85d7ac3188826d9a7560f0be5a66324be908b944a02d673b3db59a2771b409a2"
-        },
-        {
-          "sequence": 10,
-          "reviewer": "min____ 리뷰 1 팔로우 선생님이 수업을 열심히 지도해주십니다. 학생들이 모를만한 것까지 잘 가르쳐주시",
-          "fileName": "010_min____ 리뷰 1 팔로우 선생님이 수업을 열심히 지도해주십니다. 학생들이 모를만한 것까지 잘 가르쳐주시.png",
-          "bytes": 36722,
-          "sha256": "6c6ea443cfd41b11ae355188612a39dbb7819c09387b56a292371392a5eea7c8"
-        }
-      ],
-      "captured": 10,
+      "markedBeforeCapture": 0,
+      "files": [],
+      "captured": 0,
       "failures": 0,
-      "status": "SUCCESS"
+      "status": "FAILED"
     },
     {
       "id": "academy1_daangn",
@@ -98,7 +27,7 @@
       "httpStatus": 200,
       "finalUrl": "https://www.daangn.com/kr/local-profile/%EC%97%90%EB%A6%AD%EC%8C%A4%EC%98%81%EC%96%B4%ED%95%99%EC%9B%90-3p2umcgadi7h/",
       "reviewMoreClicked": true,
-      "expected": null,
+      "expected": 5,
       "markedBeforeCapture": 6,
       "files": [
         {
@@ -160,8 +89,8 @@
       "files": [
         {
           "sequence": 1,
-          "reviewer": "온헤이 리뷰 15사진 8 팔로우 중등부 여름방학으로 고민끝에 결정했어요! 학원분위기가 조용한 가운데 아이들도",
-          "fileName": "001_온헤이 리뷰 15사진 8 팔로우 중등부 여름방학으로 고민끝에 결정했어요! 학원분위기가 조용한 가운데 아이들도.png",
+          "reviewer": "온헤이",
+          "fileName": "001_온헤이.png",
           "bytes": 64403,
           "sha256": "ba07eac9e670d8142e1b19422aa6abde77aee89fecc7193414af0096aaa7818c"
         }
@@ -178,7 +107,7 @@
       "httpStatus": 200,
       "finalUrl": "https://www.daangn.com/kr/local-profile/%EC%97%90%EB%A6%AD%EC%8C%A4%EC%9E%85%EC%8B%9C%EC%98%81%EC%96%B4-9ea8dgwzru8t/",
       "reviewMoreClicked": true,
-      "expected": null,
+      "expected": 4,
       "markedBeforeCapture": 10,
       "files": [
         {
@@ -257,6 +186,6 @@
       "status": "SUCCESS"
     }
   ],
-  "totalCaptured": 27,
+  "totalCaptured": 17,
   "totalFailures": 0
 }
