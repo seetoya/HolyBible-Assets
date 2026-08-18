@@ -1,0 +1,69 @@
+name: Extract Naver review bundle modules
+
+on:
+  push:
+    branches:
+      - tmp-review-capture-20260815
+    paths:
+      - '.github/workflows/review-bundle-modules.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: tmp-review-capture-20260815
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Extract modules
+        shell: bash
+        run: |
+          curl -L --retry 3 --fail 'https://g-place.pstatic.net/assets/place/place.detailReviewTab.bundle.9b8a93d5756bf8ac28a9.1786610149950.js' -o /tmp/naver-review.js
+          npx --yes prettier@3.6.2 /tmp/naver-review.js --parser babel > /tmp/naver-review.pretty.js
+          mkdir -p source-debug/modules
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          src=Path('/tmp/naver-review.pretty.js').read_text('utf-8',errors='replace')
+          # Extract webpack module blocks by module ID.
+          ids=['9764','92065','31681','7370','63602','64884','39218','99016','5290','1639','25314','89296','96447']
+          starts=[]
+          for m in re.finditer(r'(?m)^\s{4}(\d+):\s*\(',src):
+              starts.append((m.start(),m.group(1)))
+          pos_by_id={mid:pos for pos,mid in starts}
+          for mid in ids:
+              if mid not in pos_by_id: continue
+              start=pos_by_id[mid]
+              nexts=[p for p,_ in starts if p>start]
+              end=min(nexts) if nexts else len(src)
+              Path(f'source-debug/modules/module_{mid}.txt').write_text(src[start:end],'utf-8')
+          # Also save concise line hits across the pretty source.
+          terms=['visitorReviews','reviewGroupId','includeReceiptPhotos','fetchMore','cursor','page:','size:','item:','loadMore','onLoadMore','hasMore','maxItemCount']
+          lines=src.splitlines()
+          out=[]
+          for term in terms:
+              hits=[i for i,l in enumerate(lines) if term.lower() in l.lower()]
+              out.append(f'===== {term} HITS {len(hits)} =====')
+              for i in hits[:300]:
+                  out.append(f'{i+1}: {lines[i]}')
+          Path('source-debug/modules/all_hits.txt').write_text('\n'.join(out),'utf-8')
+          print('module starts',len(starts),'found',[m for m in ids if m in pos_by_id])
+          PY
+      - name: Commit module extracts
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add source-debug/modules
+          if ! git diff --cached --quiet; then
+            git commit -m 'Add Naver review module extracts [skip ci]'
+            git push origin HEAD:tmp-review-capture-20260815
+          fi
