@@ -1,0 +1,83 @@
+name: Dump Naver Apollo visitor review cache
+
+on:
+  push:
+    branches:
+      - tmp-review-capture-20260815
+    paths:
+      - '.github/workflows/naver-cache-dump.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  dump:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: tmp-review-capture-20260815
+          fetch-depth: 0
+      - name: Record run ID
+        shell: bash
+        run: |
+          mkdir -p .capture-state
+          echo "$GITHUB_RUN_ID" > .capture-state/naver-cache-dump-run-id.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .capture-state/naver-cache-dump-run-id.txt
+          git commit -m 'Record Naver cache-dump run [skip ci]' || true
+          git pull --rebase origin tmp-review-capture-20260815
+          git push origin HEAD:tmp-review-capture-20260815
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install Playwright
+        shell: bash
+        run: |
+          npm init -y
+          npm install playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Dump Apollo cache
+        shell: bash
+        run: |
+          cat > naver-cache-dump.mjs <<'EOF'
+          import { chromium } from 'playwright';
+          import fs from 'node:fs/promises';
+          const OUT='source-debug/naver-cache';await fs.rm(OUT,{recursive:true,force:true});await fs.mkdir(OUT,{recursive:true});
+          const browser=await chromium.launch({headless:true,args:['--no-sandbox','--disable-dev-shm-usage','--lang=ko-KR']});
+          const context=await browser.newContext({viewport:{width:460,height:1400},locale:'ko-KR',timezoneId:'Asia/Seoul',userAgent:'Mozilla/5.0 (Linux; Android 15; SM-S938N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36'});
+          const page=await context.newPage();
+          await page.goto('https://m.place.naver.com/place/1177401952/review/visitor',{waitUntil:'domcontentloaded',timeout:90000});await page.waitForTimeout(10000);
+          const data=await page.evaluate(()=>{
+            const card=document.querySelector('li.place_apply_pui');const fk=Object.keys(card||{}).find(k=>k.startsWith('__reactFiber$'));let f=fk?card[fk]:null,client=null,queryState=null;
+            while(f&&!client){let h=f.memoizedState,idx=0;while(h&&typeof h==='object'&&idx<150){const ms=h.memoizedState,obs=ms?.observable,input=obs?.options?.variables?.input;if(obs?.queryName==='getVisitorReviews'&&input&&('bookingBusinessId'in input||'size'in input)){client=ms.client;queryState={idx,input,query:ms.query,observable:obs};break;}h=h.next;idx++;}f=f.return;}
+            if(!client)return {error:'client not found'};
+            const cache=client.cache.extract(true);
+            const visitorEntries=[];
+            for(const [key,value] of Object.entries(cache)){
+              if(value?.__typename==='VisitorReview'||key.startsWith('VisitorReview:'))visitorEntries.push({key,value});
+            }
+            const root=cache.ROOT_QUERY||{};
+            const reviewFields={};for(const [k,v] of Object.entries(root)){if(/visitorReviews|VisitorReviews/i.test(k))reviewFields[k]=v;}
+            return {queryState:{idx:queryState.idx,input:queryState.input,queryBody:queryState.query?.loc?.source?.body,queryName:queryState.observable?.queryName},cacheKeyCount:Object.keys(cache).length,visitorCount:visitorEntries.length,visitorEntries,reviewFields,rootKeys:Object.keys(root).filter(k=>/review/i.test(k))};
+          });
+          await fs.writeFile(`${OUT}/cache.json`,JSON.stringify(data,null,2),'utf8');
+          console.log(JSON.stringify({error:data.error,cacheKeyCount:data.cacheKeyCount,visitorCount:data.visitorCount,reviewFieldKeys:Object.keys(data.reviewFields||{}),rootKeys:data.rootKeys},null,2));
+          await browser.close();
+          EOF
+          node naver-cache-dump.mjs
+      - name: Commit cache dump
+        if: always()
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add source-debug/naver-cache
+          if ! git diff --cached --quiet; then
+            git commit -m 'Add Naver Apollo cache dump [skip ci]'
+            git pull --rebase origin tmp-review-capture-20260815
+            git push origin HEAD:tmp-review-capture-20260815
+          fi
