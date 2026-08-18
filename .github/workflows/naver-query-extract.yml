@@ -1,0 +1,84 @@
+name: Extract Naver review GraphQL modules
+
+on:
+  push:
+    branches:
+      - tmp-review-capture-20260815
+    paths:
+      - '.github/workflows/naver-query-extract.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: tmp-review-capture-20260815
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Extract query modules from loaded bundles
+        shell: bash
+        run: |
+          mkdir -p source-debug/naver-query-modules /tmp/nqm
+          cat > /tmp/urls.txt <<'EOF'
+          2874 https://g-place.pstatic.net/assets/place/place.2874.bundle.9b8a93d5756bf8ac28a9.1786610149950.js
+          detail https://g-place.pstatic.net/assets/place/place.detailReviewTab.bundle.9b8a93d5756bf8ac28a9.1786610149950.js
+          pui https://g-place.pstatic.net/assets/place/place.PuiVisitorReviewCard.bundle.9b8a93d5756bf8ac28a9.1786610149950.js
+          2962 https://g-place.pstatic.net/assets/place/place.2962.bundle.9b8a93d5756bf8ac28a9.1786610149950.js
+          2200 https://g-place.pstatic.net/assets/place/place.2200.bundle.9b8a93d5756bf8ac28a9.1786610149950.js
+          EOF
+          while read -r name url; do
+            curl -L --retry 3 --fail "$url" -o "/tmp/nqm/$name.js"
+            npx --yes prettier@3.6.2 "/tmp/nqm/$name.js" --parser babel > "/tmp/nqm/$name.pretty.js"
+          done < /tmp/urls.txt
+          python3 - <<'PY'
+          from pathlib import Path
+          import re, json
+          out=Path('source-debug/naver-query-modules')
+          ids=['31681','63602','7370','39218','63001','35246','10164','62118']
+          summary={}
+          for p in sorted(Path('/tmp/nqm').glob('*.pretty.js')):
+              src=p.read_text('utf-8',errors='replace'); lines=src.splitlines()
+              starts=[]
+              for i,l in enumerate(lines):
+                  m=re.search(r'^\s*(\d+):\s*(?:\(|function\s*\(|\w+\s*=>)',l)
+                  if m: starts.append((i,m.group(1)))
+              found=[]
+              for mid in ids:
+                  cand=[i for i,m in starts if m==mid]
+                  if not cand: continue
+                  i=cand[0]; nxt=[j for j,_ in starts if j>i]; j=min(nxt) if nxt else len(lines)
+                  (out/f'{p.stem}_module_{mid}.txt').write_text('\n'.join(lines[i:j]),'utf-8')
+                  found.append({'id':mid,'start':i+1,'end':j})
+              # Save contexts for GraphQL operation names and endpoint-ish strings.
+              terms=['VisitorReviews','visitorReviews','graphql','operationName','ApolloClient','HttpLink','/graphql','includeReceiptPhotos','after:']
+              chunks=[]; counts={}
+              for term in terms:
+                  hits=[i for i,l in enumerate(lines) if term.lower() in l.lower()]
+                  counts[term]=len(hits)
+                  for n,i in enumerate(hits[:80]):
+                      chunks.append(f'===== {term} #{n+1} LINE {i+1} =====')
+                      chunks.extend(lines[max(0,i-40):min(len(lines),i+90)])
+              if chunks: (out/f'{p.stem}_graphql_contexts.txt').write_text('\n'.join(chunks),'utf-8')
+              summary[p.name]={'modules':found,'counts':counts}
+          (out/'summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2),'utf-8')
+          print(json.dumps(summary,ensure_ascii=False,indent=2))
+          PY
+      - name: Commit query extracts
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add source-debug/naver-query-modules
+          if ! git diff --cached --quiet; then
+            git commit -m 'Add Naver review query module extracts [skip ci]'
+            git pull --rebase origin tmp-review-capture-20260815
+            git push origin HEAD:tmp-review-capture-20260815
+          fi
