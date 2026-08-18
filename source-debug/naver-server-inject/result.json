@@ -1,0 +1,15 @@
+{
+  "before": 10,
+  "rounds": [
+    {
+      "round": 0,
+      "status": 405,
+      "text": "<!doctype html><html><head title=\"captcha\"><meta charset=\"UTF-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1\"/><script charset=\"utf-8\" src=\"https://ncpt.naver.com/v1/wcpt/m/challenge/wtm_captcha_v2.js?v=20260721\" defer=\"defer\"></script></head><body><div id=\"app\"></div></body><script>window.addEventListener('load', function () {\n    const container = document.getElementById('app');\n    WtmCaptcha.renderCaptcha(container, {\n        onSuccess: function () {\n            location.reload();\n        },\n    });\n});</script></html>",
+      "before": 10,
+      "after": 10,
+      "changed": false,
+      "injected": null
+    }
+  ],
+  "after": 10
+}
