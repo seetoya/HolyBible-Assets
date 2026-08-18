@@ -1,0 +1,133 @@
+name: Inspect Naver review runtime pagination
+
+on:
+  push:
+    branches:
+      - tmp-review-capture-20260815
+    paths:
+      - '.github/workflows/naver-runtime-debug.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: tmp-review-capture-20260815
+          fetch-depth: 0
+
+      - name: Record run ID
+        shell: bash
+        run: |
+          mkdir -p .capture-state
+          echo "$GITHUB_RUN_ID" > .capture-state/naver-runtime-debug-run-id.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .capture-state/naver-runtime-debug-run-id.txt
+          git commit -m 'Record Naver runtime debug run [skip ci]' || true
+          git pull --rebase origin tmp-review-capture-20260815
+          git push origin HEAD:tmp-review-capture-20260815
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Playwright
+        shell: bash
+        run: |
+          npm init -y
+          npm install playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Inspect runtime and click load-more
+        shell: bash
+        run: |
+          cat > naver-runtime-debug.mjs <<'EOF'
+          import { chromium } from 'playwright';
+          import fs from 'node:fs/promises';
+          const out='source-debug/naver-runtime';
+          await fs.rm(out,{recursive:true,force:true});
+          await fs.mkdir(out,{recursive:true});
+          const browser=await chromium.launch({headless:true,args:['--no-sandbox','--disable-dev-shm-usage','--lang=ko-KR']});
+          const ctx=await browser.newContext({viewport:{width:460,height:1400},locale:'ko-KR',timezoneId:'Asia/Seoul',userAgent:'Mozilla/5.0 (Linux; Android 15; SM-S938N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36'});
+          const page=await ctx.newPage();
+          const events=[];
+          page.on('request',r=>{const u=r.url(); if(/graphql|review|visitor|place/i.test(u)) events.push({kind:'request',method:r.method(),url:u,postData:r.postData()?.slice(0,20000)});});
+          page.on('response',async r=>{const u=r.url(); if(/graphql|review|visitor|place/i.test(u)){let body=''; try{const ct=r.headers()['content-type']||''; if(/json|text|javascript/.test(ct)) body=(await r.text()).slice(0,50000);}catch{} events.push({kind:'response',status:r.status(),url:u,body});}});
+          await page.goto('https://m.place.naver.com/place/1177401952/review/visitor',{waitUntil:'domcontentloaded',timeout:90000});
+          await page.waitForTimeout(10000);
+          const runtime=await page.evaluate(() => {
+            const keys=Object.keys(window).filter(k=>/webpack/i.test(k));
+            const result={keys,arrays:{},modules:{}};
+            for(const key of keys){
+              const v=window[key];
+              if(!Array.isArray(v)||typeof v.push!=='function') continue;
+              result.arrays[key]={length:v.length};
+              try{
+                let req;
+                v.push([[`oai-${Date.now()}-${Math.random()}`],{},r=>{req=r;}]);
+                if(req?.m){
+                  const ids=['3608','92065','9764','95011'];
+                  result.arrays[key].moduleCount=Object.keys(req.m).length;
+                  for(const id of ids){
+                    if(req.m[id]) result.modules[id]=String(req.m[id]);
+                  }
+                  result.moduleIds=Object.keys(req.m).filter(id=>['3608','92065','9764','95011'].includes(id));
+                }
+              }catch(e){result.arrays[key].error=String(e);}
+            }
+            const btn=document.querySelector('a.fvwqf');
+            return {
+              ...result,
+              button:btn?{outerHTML:btn.outerHTML,text:btn.innerText,rect:btn.getBoundingClientRect().toJSON?.()||{x:btn.getBoundingClientRect().x,y:btn.getBoundingClientRect().y,width:btn.getBoundingClientRect().width,height:btn.getBoundingClientRect().height}}:null,
+              cards:document.querySelectorAll('li.place_apply_pui').length,
+              bodyText:document.body.innerText.slice(-5000)
+            };
+          });
+          await fs.writeFile(`${out}/runtime-before.json`,JSON.stringify(runtime,null,2),'utf8');
+          for(const [id,src] of Object.entries(runtime.modules||{})) await fs.writeFile(`${out}/module-${id}.js`,src,'utf8');
+          await page.screenshot({path:`${out}/before.png`,fullPage:true});
+
+          const clickResults=[];
+          for(let i=0;i<3;i++){
+            const r=await page.evaluate(() => {
+              const btn=document.querySelector('a.fvwqf');
+              if(!btn) return {clicked:false,cards:document.querySelectorAll('li.place_apply_pui').length};
+              btn.scrollIntoView({block:'center'});
+              btn.dispatchEvent(new MouseEvent('mousedown',{bubbles:true,cancelable:true,view:window}));
+              btn.dispatchEvent(new MouseEvent('mouseup',{bubbles:true,cancelable:true,view:window}));
+              btn.dispatchEvent(new MouseEvent('click',{bubbles:true,cancelable:true,view:window}));
+              return {clicked:true,cards:document.querySelectorAll('li.place_apply_pui').length,html:btn.outerHTML};
+            });
+            await page.waitForTimeout(5000);
+            r.afterCards=await page.locator('li.place_apply_pui').count();
+            r.afterUrl=page.url();
+            r.afterButton=await page.locator('a.fvwqf').first().evaluate(el=>el.outerHTML).catch(()=>null);
+            clickResults.push(r);
+          }
+          await fs.writeFile(`${out}/click-results.json`,JSON.stringify(clickResults,null,2),'utf8');
+          await fs.writeFile(`${out}/network.json`,JSON.stringify(events,null,2),'utf8');
+          await fs.writeFile(`${out}/after.html`,await page.content(),'utf8');
+          await page.screenshot({path:`${out}/after.png`,fullPage:true});
+          await browser.close();
+          console.log(JSON.stringify({runtimeKeys:runtime.keys,moduleIds:runtime.moduleIds,clickResults,eventCount:events.length},null,2));
+          EOF
+          node naver-runtime-debug.mjs
+
+      - name: Commit runtime diagnostics
+        if: always()
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add source-debug/naver-runtime
+          if ! git diff --cached --quiet; then
+            git commit -m 'Add Naver runtime pagination diagnostics [skip ci]'
+            git pull --rebase origin tmp-review-capture-20260815
+            git push origin HEAD:tmp-review-capture-20260815
+          fi
