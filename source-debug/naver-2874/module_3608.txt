@@ -1,0 +1,178 @@
+    3608: (r, _, e) => {
+      "use strict";
+      e.d(_, { o: () => H });
+      var t = e(2784),
+        a = e(98452),
+        n = e(4830),
+        i = e(4761),
+        s = e(98365),
+        l = e(95358),
+        p = e(1400),
+        o = e(85371),
+        m = e(10164),
+        c = e(35246),
+        d = e(69097),
+        E = e(74749),
+        C = e(82291),
+        g = e(2370),
+        u = e(1639),
+        f = e(50799),
+        P = e(38759),
+        O = e(68986),
+        T = e(43573),
+        y = e(14138),
+        B = e(1723),
+        v = e(22839),
+        h = e(97610),
+        D = e(43116),
+        x = e(14870),
+        M = e(96447),
+        A = e(62110),
+        I = e(62118),
+        R = e(92065),
+        b = e(88018),
+        L = e(39382),
+        U = e(89259),
+        K = e(15649),
+        W = e.n(K);
+      function H({
+        total: N,
+        reviews: F = [],
+        isShowProductSelectBox: V = !1,
+        reviewItems: Z = [],
+        loadMoreOnClick: X = null,
+        nClicksAreaCode: q,
+        postFix: j = "*1",
+      }) {
+        (0, P.Z)(W());
+        const { isPcmap: Q } = (0, n.E)(),
+          { business: z } = (0, m.n)(),
+          {
+            mainTab: G,
+            businessType: J,
+            businessId: ae,
+            isDan: $,
+            search: re,
+          } = (0, c.Z)(),
+          ee = G === "home",
+          se = /room|stylist/.test(G),
+          Y = G === "review",
+          { popupstore: he } = z || {},
+          { status: oe } = he || {},
+          ie = ee && oe?.key !== "ENDED" && !$,
+          { t: ce } = (0, a.$G)(),
+          fe = ce(Y ? g.H.REVIEW : g.H.VISITOR_REVIEW),
+          { reviewItem: de } = (0, A.a)(),
+          { votedKeyword: me } = (0, I.h)({ reviewItem: de }),
+          { details: Ce, userCount: ue } = me || {},
+          Ee = Ce?.length > 0 && ue >= E.S9,
+          _e = (0, d.AC)("review/visitor"),
+          pe = $ ? "../review/visitor" : `/${J}/${ae}/review/visitor`,
+          {
+            showRecommendationSort: Oe,
+            hasReviewAwardCoupons: ve,
+            reviewAwardCouponsLoading: Me,
+          } = (0, R.v_)();
+        return t.createElement(
+          i.UJ,
+          null,
+          ie && t.createElement(b.n, null),
+          t.createElement(
+            s.Mw,
+            {
+              className: W().visitor_review_section,
+              "data-nclicks-area-code": q,
+            },
+            t.createElement(s.Sh, {
+              title: fe,
+              count: N ? (0, u.k6)(N) : "0",
+              showArrow: !Y && N > 3,
+              anchorProps: {
+                to: (0, f.Ne)(pe, {
+                  ...(de && { reviewItem: de }),
+                  ...(0, f.ps)(re),
+                }),
+                nClicks: { clickCode: "rvmore" },
+              },
+              ...(Y && { guide: t.createElement(O.k, null) }),
+              ...(!ee &&
+                !Y &&
+                !Q &&
+                !$ && { extra: t.createElement(T.p, null) }),
+              ...(Y && { extra: t.createElement(y.N, null) }),
+            }),
+            t.createElement(
+              s.bI,
+              null,
+              ee &&
+                V &&
+                t.createElement(
+                  "div",
+                  { className: W().product_select_area_wrapper },
+                  t.createElement(C.S, { filters: Z, onSelect: _e }),
+                ),
+              ee &&
+                !se &&
+                Ee &&
+                t.createElement(
+                  "div",
+                  { className: W().keyword_list_area },
+                  t.createElement(
+                    l.Z,
+                    {
+                      className: W().link,
+                      to: `${pe}?shouldKeywordUnfold=true`,
+                      nClicks: { clickCode: "graph" },
+                    },
+                    t.createElement(L.Z, { displayCount: 5 }),
+                  ),
+                ),
+              !ee &&
+                se &&
+                t.createElement(
+                  "div",
+                  { className: W().keyword_statistics_area_wrapper },
+                  t.createElement(U.Z, null),
+                ),
+              !ee &&
+                t.createElement(
+                  t.Fragment,
+                  null,
+                  t.createElement(
+                    p.Z,
+                    null,
+                    t.createElement(B.f, { scrollTo: "review", postFix: j }),
+                  ),
+                  !se &&
+                    t.createElement(
+                      t.Fragment,
+                      null,
+                      t.createElement(M.M, { showRecommendationSort: Oe }),
+                      t.createElement(v.z, null),
+                      t.createElement(h.A, {
+                        hasReviewAwardCoupons: ve,
+                        reviewAwardCouponsLoading: Me,
+                      }),
+                    ),
+                ),
+              Y
+                ? t.createElement(D.N, { className: W().review_list })
+                : t.createElement(D.p, { reviews: F }),
+            ),
+            Y &&
+              F.length < N &&
+              X &&
+              t.createElement(o.Z, { hasMoreContent: !0, onClick: X }),
+          ),
+          t.createElement(x.c, null),
+        );
+      }
+      function S() {
+        const { business: N } = useBusinessContext(),
+          { mainTab: F } = useDetailRoute(),
+          V = F === "home",
+          { popupstore: Z } = N,
+          { operationEndDateTime: X } = Z;
+        return X ? V && createDate(X).diffFrom() > 0 : V;
+      }
+    },

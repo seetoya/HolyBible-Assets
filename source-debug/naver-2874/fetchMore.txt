@@ -1,0 +1,2404 @@
+===== fetchMore HIT 1 LINE 5427 =====
+    },
+    7591: (r, _, e) => {
+      "use strict";
+      e.d(_, { MV: () => s, Rr: () => o, ZP: () => p, gq: () => i });
+      var t = e(2784),
+        a = e(84485);
+      const n = (0, t.createContext)([]);
+      function i({ reviews: m, children: c }) {
+        return t.createElement(n.Provider, { value: m }, c);
+      }
+      function s() {
+        return (0, t.useContext)(n);
+      }
+      const l = (0, t.createContext)(null);
+      function p({ children: m, value: c }) {
+        return t.createElement(l.Provider, { value: c }, m);
+      }
+      function o() {
+        const m = (0, t.useContext)(l);
+        return { ...m, visitedForBlind: (0, a.p)(m?.visited) };
+      }
+    },
+    66277: (
+      __unused_webpack_module,
+      __webpack_exports__,
+      __webpack_require__,
+    ) => {
+      "use strict";
+      __webpack_require__.d(__webpack_exports__, {
+        nS: () => PuiVisitorReviewCard,
+      });
+      var _loadable_component__WEBPACK_IMPORTED_MODULE_0__ =
+        __webpack_require__(77480);
+      function __loadable_isReady__(r, _) {
+        return !!__webpack_require__.m[r.resolve(_)];
+      }
+      function __loadable_requireSync__(self, props) {
+        var id = self.resolve(props);
+        return __webpack_require__(id);
+      }
+      const PuiVisitorReviewCard = (0,
+      _loadable_component__WEBPACK_IMPORTED_MODULE_0__.ZP)({
+        chunkName() {
+          return "PuiVisitorReviewCard";
+        },
+        isReady(r) {
+          return __loadable_isReady__(this, r);
+        },
+        requireAsync: () =>
+          Promise.all([
+            __webpack_require__.e(4578),
+            __webpack_require__.e(6705),
+            __webpack_require__.e(1365),
+          ]).then(__webpack_require__.bind(__webpack_require__, 2772)),
+        requireSync(r) {
+          return __loadable_requireSync__(this, r);
+        },
+        resolve() {
+          return 2772;
+        },
+      });
+    },
+    74749: (r, _, e) => {
+      "use strict";
+      e.d(_, { Rn: () => i, S9: () => a, cg: () => l });
+      var t = e(50799);
+      const a = 10,
+        n = 5,
+        i = "0",
+        s = {
+          homeTab_reviewSection: "f480_480_q95",
+          homeTab_photosection: "f180_180_q95",
+          reviewTab_reviewSection: "w1500_60_sharpen",
+          reviewTab_photoSection: "w278_sharpen",
+          photoTab: "w560_sharpen",
+          mediaViewer: "w750_q95",
+          mediaViewer_original: "w1500_60_sharpen",
+          list_image: "w278_sharpen",
+        };
+      function l({ url: p, thumbnailType: o, isVideo: m }) {
+        return m ? p : (0, t.Ne)(p, { type: s[o] });
+      }
+    },
+    62110: (r, _, e) => {
+      "use strict";
+      e.d(_, { a: () => s });
+      var t = e(2784),
+        a = e(63001),
+        n = e(35246),
+        i = e(74749);
+      function s() {
+        const l = (0, a.Z)(),
+          { businessType: p, mainTab: o, subTabs: m } = (0, n.Z)(),
+          c = (0, t.useMemo)(
+            () =>
+              /hairshop|nailshop/.test(p) && o === "stylist" && m?.[0]
+                ? m?.[0]
+                : (l.reviewItem === "noQuery" ? i.Rn : l.reviewItem) || i.Rn,
+            [p, o, l.reviewItem, m],
+          );
+        return { reviewItem: c, reviewItemChosen: c !== "0" };
+      }
+    },
+    62118: (r, _, e) => {
+      "use strict";
+      e.d(_, { h: () => p });
+      var t = e(63001),
+        a = e(35246),
+        n = e(10164),
+        i = e(63602),
+        s = e(31681);
+      const l = "0";
+      function p({ reviewItem: o = "", skip: m = !1 }) {
+        const c = (0, t.Z)(),
+          { businessType: d, businessId: E } = (0, a.Z)(),
+          { business: C } = (0, n.n)(),
+          g = C?.visitorReviewStats?.visitorReviewsTotal,
+          u = C?.base?.visitorReviewsTotal,
+          { reviewItem: f } = c || {},
+          P = o || (f === "noQuery" ? l : f) || l,
+          { data: O, loading: T } = (0, i.Z)(s.TB, {
+            variables: { id: E, itemId: P, businessType: d },
+            skip: m || !((g || u) > 0),
+          }),
+          y = O?.visitorReviewStats?.ratingReviewsTotal || 0,
+          B = O?.visitorReviewStats?.visitorReviewsTotal || 0,
+          v = O?.visitorReviewStats?.analysis?.votedKeyword,
+          h = O?.visitorReviewStats?.analysis?.menus,
+          D = O?.visitorReviewStats?.analysis?.themes;
+        return {
+          statsThemesLoading: T,
+          statsThemesData: O,
+          votedKeyword: v,
+          menus: h,
+          themes: D,
+          onlyShowRatingReviews: y === B,
+        };
+      }
+    },
+    92065: (r, _, e) => {
+      "use strict";
+      e.d(_, { v_: () => P });
+      var t = e(2784),
+        a = e(2355),
+        n = e(63001),
+        i = e(35246),
+        s = e(10164),
+        l = e(63602),
+        p = e(17493),
+        o = e(22237),
+        m = e(62118),
+        c = e(39218),
+        d = e(7370),
+        E = e(31681);
+      const C = "0",
+        g = 10;
+      function u(O, T) {
+        return O?.id
+          ? [O, ...(T || []).filter((y) => O.id !== y.id)].filter((y) => !!y)
+          : T;
+      }
+      function f(O, T) {
+        const y = O.slice(0, 3).filter((B) => !!B);
+        return (0, p.XX)([...y, ...(T || [])], "id").filter((B) => !!B);
+      }
+      function P() {
+        const O = (0, t.useRef)(!1),
+          T = (0, n.Z)(),
+          { businessType: y, businessId: B, mainTab: v } = (0, i.Z)(),
+          {
+            selectedReview: h,
+            snippetReviews: D,
+            snippetKeyword: x,
+            photoUsed: M,
+            reviewTheme: A,
+            reviewMenu: I,
+            reviewOrder: R,
+            reviewSort: b,
+            reviewItem: L,
+          } = T || {},
+          { LoadingComponent: U, ErrorComponent: K, business: W } = (0, s.n)(),
+          H = W?.naverBooking?.bookingBusinessId,
+          S = W?.base?.defaultCategoryCodeList,
+          N = (L === "noQuery" ? C : L) || C,
+          F = (0, c.p$)({ business: W, businessType: y, reviewItem: N }),
+          V = (0, o.m)(M),
+          Z = parseInt(R, 10) || void 0,
+          X = {
+            businessId: B,
+            businessType: y,
+            item: N,
+            bookingBusinessId: H,
+            size: g,
+            isPhotoUsed: V,
+            theme: A,
+            menu: I,
+            sort: b,
+            order: Z,
+            includeContent: !0,
+            getUserStats: !0,
+            includeReceiptPhotos: !0,
+            cidList: S,
+            getReactions: !0,
+            getTrailer: !0,
+          },
+          { data: q, loading: j } = (0, l.Z)(E.IW, {
+            variables: { input: { ...X, reviewIds: h } },
+            skip: !h,
+          }),
+          Q = D && x && !(V || A || I || Z || b),
+          { data: z, loading: G } = (0, l.Z)(E.IW, {
+            variables: {
+              input: { businessId: B, reviewIds: D, highlightKeyword: x },
+            },
+            skip: !Q,
+          }),
+          {
+            LoadingComponent: J,
+            ErrorComponent: ae,
+            data: $,
+            fetchMore: re,
+            loading: ee,
+          } = (0, l.Z)(E.IW, { variables: { input: X } }),
+          {
+            statsThemesLoading: se,
+            statsThemesData: Y,
+            votedKeyword: he,
+            menus: oe,
+            themes: ie,
+            onlyShowRatingReviews: ce,
+          } = (0, m.h)({ reviewItem: N }),
+          { data: fe, loading: de } = (0, l.Z)(E.vv, {}),
+          me = !(ee || se || j || G || de || J),
+          Ce = $?.visitorReviews?.itemReviewStats,
+          ue = $?.visitorReviews?.total,
+          Ee = (0, t.useCallback)(
+            (Re, Ae, Pe) => {
+              if (O.current) return;
+              const Be = Pe[Pe.length - 1].cursor;
+              ((O.current = !0),
+                Re({
+                  variables: { input: { ...Ae, after: Be }, id: B },
+                  updateQuery: (De, { fetchMoreResult: Te }) => {
+                    if (!Te) return De;
+                    const xe = Te?.visitorReviews?.items,
+                      Ie = xe.map(({ id: be }) => be);
+                    return (
+                      (0, d.w)({ reviewIds: Ie, namespace: v }),
+                      {
+                        ...De,
+                        visitorReviews: {
+                          ...De.visitorReviews,
+                          items: [...De.visitorReviews.items, ...xe],
+                        },
+                      }
+                    );
+                  },
+                }).finally(() => (O.current = !1)));
+            },
+            [B, v],
+          ),
+          _e = () => Ee(re, X, w),
+          Oe = !$?.visitorReviews?.hideProductSelectBox && F?.length > 0 && !!H,
+          { data: ve } = (0, l.Z)(a.a),
+          { myplaceNickname: Me, myplaceId: le } =
+            ve?.user?.myplace?.profile || {},
+          w = Q
+            ? f(z?.visitorReviews?.items || [], $?.visitorReviews?.items || [])
+            : u(q?.visitorReviews?.items?.[0], $?.visitorReviews?.items || []),
+          k = $?.visitorReviews?.showRecommendationSort,
+          { reactionTypes: te } = fe,
+          { data: ne, loading: ge } = (0, l.Z)(E.Kz, {
+            variables: { input: { businessId: B } },
+          }),
+          ye = ne?.reviewAwardCoupons?.total > 0;
+        return {
+          loadingOrError: U || K || ae || G,
+          reviewsLoading: J,
+          reviews: w,
+          reviewsLoadMore: _e,
+          keywordAndRatingReviewsloadMore: Ee,
+          total: ue,
+          itemReviewStats: Ce,
+          statsThemesData: Y,
+          isShowProductSelectBox: Oe,
+          votedKeyword: he,
+          menus: oe,
+          themes: ie,
+          myplaceNickname: Me,
+          myplaceId: le,
+          allDataLoaded: me,
+          onlyShowRatingReviews: ce,
+          showRecommendationSort: k,
+          reactionTypes: te,
+          input: X,
+          reviewItem: N,
+          reviewItems: F,
+          reviewAwardCouponsLoading: ge,
+          hasReviewAwardCoupons: ye,
+        };
+      }
+    },
+    31681: (r, _, e) => {
+      "use strict";
+      e.d(_, {
+        Ap: () => B,
+        DK: () => o,
+        Fh: () => E,
+        Gn: () => T,
+        IW: () => i,
+        Kz: () => b,
+        LA: () => O,
+        MB: () => s,
+        MI: () => P,
+        OU: () => g,
+        Qg: () => d,
+        TB: () => l,
+        be: () => f,
+        c8: () => y,
+        hH: () => p,
+        nX: () => C,
+        vv: () => c,
+        xR: () => u,
+      });
+      var t = e(34261),
+        a = e.n(t),
+        n = e(15879);
+      const i = (0, t.gql)`
+  query getVisitorReviews($input: VisitorReviewsInput) {
+    visitorReviews(input: $input) {
+      items {
+        id
+        cursor
+        reviewId
+        rating
+        author {
+          id
+          nickname
+          from
+          imageUrl
+          borderImageUrl
+          objectId
+          url
+          review {
+            totalCount
+            imageCount
+            avgRating
+          }
+          theme {
+            totalCount
+          }
+          isFollowing
+          followerCount
+          followRequested
+        }
+        body
+        thumbnail
+        media {
+          type
+          thumbnail
+          thumbnailRatio
+          class
+          videoId
+          videoUrl
+          trailerUrl
+        }
+        tags
+        status
+        visitCount
+        viewCount
+        visited
+        created
+        reply {
+          editUrl
+          body
+          editedBy
+          created
+          date
+          replyTitle
+          isReported
+          isSuspended
+          status
+        }
+        originType
+        item {
+          name
+          code
+          options
+        }
+        language
+        highlightRanges {
+          start
+          end
+        }
+        apolloCacheId
+        translatedText
+        businessName
+        showBookingItemName
+        bookingItemName
+        votedKeywords {
+          code
+          iconUrl
+          iconCode
+          name
+        }
+        userIdno
+        loginIdno
+        receiptInfoUrl
+        reactionStat {
+          id
+          typeCount {
+            name
+            count
+          }
+          totalCount
+        }
+        hasViewerReacted {
+          id
+          reacted
+        }
+        nickname
+        showPaymentInfo
+        visitCategories {
+          code
+          name
+          keywords {
+            code
+            name
+          }
+        }
+        representativeVisitDateTime
+        showRepresentativeVisitDateTime
+      }
+      starDistribution {
+        score
+        count
+      }
+      hideProductSelectBox
+      total
+      showRecommendationSort
+      itemReviewStats {
+        score
+        count
+        itemId
+        starDistribution {
+          score
+          count
+        }
+      }
+    }
+  }
+`,
+        s = (0, t.gql)`
+  query getVisitorReviews($input: VisitorReviewsInput) {
+    visitorReviews(input: $input) {
+      ...VisitorReviews
+    }
+  }
+  ${n.IR}
+`,
+        l = (0, t.gql)`
+  query getVisitorReviewStats($id: String, $itemId: String, $businessType: String = "place") {
+    visitorReviewStats(input: { businessId: $id, itemId: $itemId, businessType: $businessType }) {
+      id
+      name
+      apolloCacheId
+      review {
+        avgRating
+        totalCount
+        scores {
+          count
+          score
+        }
+        starDistribution {
+          count
+          score
+        }
+        imageReviewCount
+        authorCount
+        maxSingleReviewScoreCount
+        maxScoreWithMaxCount
+      }
+      analysis {
+        themes {
+          code
+          label
+          count
+        }
+        menus {
+          code
+          label
+          count
+        }
+        votedKeyword {
+          totalCount
+          reviewCount
+          userCount
+          details {
+            category
+            code
+            iconUrl
+            iconCode
+            displayName
+            count
+            previousRank
+          }
+        }
+      }
+      visitorReviewsTotal
+      ratingReviewsTotal
+    }
+  }
+`,
+        p = (0, t.gql)`
+  query getVisitorReviewThemeLists($input: ThemeListsInput) {
+    themeLists(input: $input) {
+      themeLists {
+        id
+        title
+        viewCount
+        itemCount
+        reviews {
+          businessName
+          reviewBody
+          imageUrl
+        }
+        authorNickname
+        authorImageUrl
+        isFollowing
+        themeListUrl
+        authorUrl
+        cursor
+      }
+      total
+    }
+  }
+`,
+        o = (0, t.gql)`
+  query getVisitorRatingReviews($input: VisitorReviewsInput) {
+    visitorReviews(input: $input) {
+      total
+      items {
+        id
+        cursor
+        rating
+        author {
+          id
+          nickname
+          from
+          imageUrl
+          borderImageUrl
+          objectId
+          url
+          review {
+            totalCount
+            imageCount
+            avgRating
+          }
+          theme {
+            totalCount
+          }
+          isFollowing
+          followerCount
+          followRequested
+        }
+        visitCount
+        visited
+        originType
+        reply {
+          editUrl
+          body
+          editedBy
+          created
+          date
+          replyTitle
+          isReported
+          isSuspended
+          status
+        }
+        votedKeywords {
+          code
+          iconUrl
+          iconCode
+          # deprecated
+          displayName
+          # for pui
+          name
+        }
+        businessName
+        status
+        userIdno
+        loginIdno
+        receiptInfoUrl
+        reactionStat {
+          id
+          typeCount {
+            name
+            count
+          }
+          totalCount
+===== fetchMore HIT 2 LINE 5449 =====
+    66277: (
+      __unused_webpack_module,
+      __webpack_exports__,
+      __webpack_require__,
+    ) => {
+      "use strict";
+      __webpack_require__.d(__webpack_exports__, {
+        nS: () => PuiVisitorReviewCard,
+      });
+      var _loadable_component__WEBPACK_IMPORTED_MODULE_0__ =
+        __webpack_require__(77480);
+      function __loadable_isReady__(r, _) {
+        return !!__webpack_require__.m[r.resolve(_)];
+      }
+      function __loadable_requireSync__(self, props) {
+        var id = self.resolve(props);
+        return __webpack_require__(id);
+      }
+      const PuiVisitorReviewCard = (0,
+      _loadable_component__WEBPACK_IMPORTED_MODULE_0__.ZP)({
+        chunkName() {
+          return "PuiVisitorReviewCard";
+        },
+        isReady(r) {
+          return __loadable_isReady__(this, r);
+        },
+        requireAsync: () =>
+          Promise.all([
+            __webpack_require__.e(4578),
+            __webpack_require__.e(6705),
+            __webpack_require__.e(1365),
+          ]).then(__webpack_require__.bind(__webpack_require__, 2772)),
+        requireSync(r) {
+          return __loadable_requireSync__(this, r);
+        },
+        resolve() {
+          return 2772;
+        },
+      });
+    },
+    74749: (r, _, e) => {
+      "use strict";
+      e.d(_, { Rn: () => i, S9: () => a, cg: () => l });
+      var t = e(50799);
+      const a = 10,
+        n = 5,
+        i = "0",
+        s = {
+          homeTab_reviewSection: "f480_480_q95",
+          homeTab_photosection: "f180_180_q95",
+          reviewTab_reviewSection: "w1500_60_sharpen",
+          reviewTab_photoSection: "w278_sharpen",
+          photoTab: "w560_sharpen",
+          mediaViewer: "w750_q95",
+          mediaViewer_original: "w1500_60_sharpen",
+          list_image: "w278_sharpen",
+        };
+      function l({ url: p, thumbnailType: o, isVideo: m }) {
+        return m ? p : (0, t.Ne)(p, { type: s[o] });
+      }
+    },
+    62110: (r, _, e) => {
+      "use strict";
+      e.d(_, { a: () => s });
+      var t = e(2784),
+        a = e(63001),
+        n = e(35246),
+        i = e(74749);
+      function s() {
+        const l = (0, a.Z)(),
+          { businessType: p, mainTab: o, subTabs: m } = (0, n.Z)(),
+          c = (0, t.useMemo)(
+            () =>
+              /hairshop|nailshop/.test(p) && o === "stylist" && m?.[0]
+                ? m?.[0]
+                : (l.reviewItem === "noQuery" ? i.Rn : l.reviewItem) || i.Rn,
+            [p, o, l.reviewItem, m],
+          );
+        return { reviewItem: c, reviewItemChosen: c !== "0" };
+      }
+    },
+    62118: (r, _, e) => {
+      "use strict";
+      e.d(_, { h: () => p });
+      var t = e(63001),
+        a = e(35246),
+        n = e(10164),
+        i = e(63602),
+        s = e(31681);
+      const l = "0";
+      function p({ reviewItem: o = "", skip: m = !1 }) {
+        const c = (0, t.Z)(),
+          { businessType: d, businessId: E } = (0, a.Z)(),
+          { business: C } = (0, n.n)(),
+          g = C?.visitorReviewStats?.visitorReviewsTotal,
+          u = C?.base?.visitorReviewsTotal,
+          { reviewItem: f } = c || {},
+          P = o || (f === "noQuery" ? l : f) || l,
+          { data: O, loading: T } = (0, i.Z)(s.TB, {
+            variables: { id: E, itemId: P, businessType: d },
+            skip: m || !((g || u) > 0),
+          }),
+          y = O?.visitorReviewStats?.ratingReviewsTotal || 0,
+          B = O?.visitorReviewStats?.visitorReviewsTotal || 0,
+          v = O?.visitorReviewStats?.analysis?.votedKeyword,
+          h = O?.visitorReviewStats?.analysis?.menus,
+          D = O?.visitorReviewStats?.analysis?.themes;
+        return {
+          statsThemesLoading: T,
+          statsThemesData: O,
+          votedKeyword: v,
+          menus: h,
+          themes: D,
+          onlyShowRatingReviews: y === B,
+        };
+      }
+    },
+    92065: (r, _, e) => {
+      "use strict";
+      e.d(_, { v_: () => P });
+      var t = e(2784),
+        a = e(2355),
+        n = e(63001),
+        i = e(35246),
+        s = e(10164),
+        l = e(63602),
+        p = e(17493),
+        o = e(22237),
+        m = e(62118),
+        c = e(39218),
+        d = e(7370),
+        E = e(31681);
+      const C = "0",
+        g = 10;
+      function u(O, T) {
+        return O?.id
+          ? [O, ...(T || []).filter((y) => O.id !== y.id)].filter((y) => !!y)
+          : T;
+      }
+      function f(O, T) {
+        const y = O.slice(0, 3).filter((B) => !!B);
+        return (0, p.XX)([...y, ...(T || [])], "id").filter((B) => !!B);
+      }
+      function P() {
+        const O = (0, t.useRef)(!1),
+          T = (0, n.Z)(),
+          { businessType: y, businessId: B, mainTab: v } = (0, i.Z)(),
+          {
+            selectedReview: h,
+            snippetReviews: D,
+            snippetKeyword: x,
+            photoUsed: M,
+            reviewTheme: A,
+            reviewMenu: I,
+            reviewOrder: R,
+            reviewSort: b,
+            reviewItem: L,
+          } = T || {},
+          { LoadingComponent: U, ErrorComponent: K, business: W } = (0, s.n)(),
+          H = W?.naverBooking?.bookingBusinessId,
+          S = W?.base?.defaultCategoryCodeList,
+          N = (L === "noQuery" ? C : L) || C,
+          F = (0, c.p$)({ business: W, businessType: y, reviewItem: N }),
+          V = (0, o.m)(M),
+          Z = parseInt(R, 10) || void 0,
+          X = {
+            businessId: B,
+            businessType: y,
+            item: N,
+            bookingBusinessId: H,
+            size: g,
+            isPhotoUsed: V,
+            theme: A,
+            menu: I,
+            sort: b,
+            order: Z,
+            includeContent: !0,
+            getUserStats: !0,
+            includeReceiptPhotos: !0,
+            cidList: S,
+            getReactions: !0,
+            getTrailer: !0,
+          },
+          { data: q, loading: j } = (0, l.Z)(E.IW, {
+            variables: { input: { ...X, reviewIds: h } },
+            skip: !h,
+          }),
+          Q = D && x && !(V || A || I || Z || b),
+          { data: z, loading: G } = (0, l.Z)(E.IW, {
+            variables: {
+              input: { businessId: B, reviewIds: D, highlightKeyword: x },
+            },
+            skip: !Q,
+          }),
+          {
+            LoadingComponent: J,
+            ErrorComponent: ae,
+            data: $,
+            fetchMore: re,
+            loading: ee,
+          } = (0, l.Z)(E.IW, { variables: { input: X } }),
+          {
+            statsThemesLoading: se,
+            statsThemesData: Y,
+            votedKeyword: he,
+            menus: oe,
+            themes: ie,
+            onlyShowRatingReviews: ce,
+          } = (0, m.h)({ reviewItem: N }),
+          { data: fe, loading: de } = (0, l.Z)(E.vv, {}),
+          me = !(ee || se || j || G || de || J),
+          Ce = $?.visitorReviews?.itemReviewStats,
+          ue = $?.visitorReviews?.total,
+          Ee = (0, t.useCallback)(
+            (Re, Ae, Pe) => {
+              if (O.current) return;
+              const Be = Pe[Pe.length - 1].cursor;
+              ((O.current = !0),
+                Re({
+                  variables: { input: { ...Ae, after: Be }, id: B },
+                  updateQuery: (De, { fetchMoreResult: Te }) => {
+                    if (!Te) return De;
+                    const xe = Te?.visitorReviews?.items,
+                      Ie = xe.map(({ id: be }) => be);
+                    return (
+                      (0, d.w)({ reviewIds: Ie, namespace: v }),
+                      {
+                        ...De,
+                        visitorReviews: {
+                          ...De.visitorReviews,
+                          items: [...De.visitorReviews.items, ...xe],
+                        },
+                      }
+                    );
+                  },
+                }).finally(() => (O.current = !1)));
+            },
+            [B, v],
+          ),
+          _e = () => Ee(re, X, w),
+          Oe = !$?.visitorReviews?.hideProductSelectBox && F?.length > 0 && !!H,
+          { data: ve } = (0, l.Z)(a.a),
+          { myplaceNickname: Me, myplaceId: le } =
+            ve?.user?.myplace?.profile || {},
+          w = Q
+            ? f(z?.visitorReviews?.items || [], $?.visitorReviews?.items || [])
+            : u(q?.visitorReviews?.items?.[0], $?.visitorReviews?.items || []),
+          k = $?.visitorReviews?.showRecommendationSort,
+          { reactionTypes: te } = fe,
+          { data: ne, loading: ge } = (0, l.Z)(E.Kz, {
+            variables: { input: { businessId: B } },
+          }),
+          ye = ne?.reviewAwardCoupons?.total > 0;
+        return {
+          loadingOrError: U || K || ae || G,
+          reviewsLoading: J,
+          reviews: w,
+          reviewsLoadMore: _e,
+          keywordAndRatingReviewsloadMore: Ee,
+          total: ue,
+          itemReviewStats: Ce,
+          statsThemesData: Y,
+          isShowProductSelectBox: Oe,
+          votedKeyword: he,
+          menus: oe,
+          themes: ie,
+          myplaceNickname: Me,
+          myplaceId: le,
+          allDataLoaded: me,
+          onlyShowRatingReviews: ce,
+          showRecommendationSort: k,
+          reactionTypes: te,
+          input: X,
+          reviewItem: N,
+          reviewItems: F,
+          reviewAwardCouponsLoading: ge,
+          hasReviewAwardCoupons: ye,
+        };
+      }
+    },
+    31681: (r, _, e) => {
+      "use strict";
+      e.d(_, {
+        Ap: () => B,
+        DK: () => o,
+        Fh: () => E,
+        Gn: () => T,
+        IW: () => i,
+        Kz: () => b,
+        LA: () => O,
+        MB: () => s,
+        MI: () => P,
+        OU: () => g,
+        Qg: () => d,
+        TB: () => l,
+        be: () => f,
+        c8: () => y,
+        hH: () => p,
+        nX: () => C,
+        vv: () => c,
+        xR: () => u,
+      });
+      var t = e(34261),
+        a = e.n(t),
+        n = e(15879);
+      const i = (0, t.gql)`
+  query getVisitorReviews($input: VisitorReviewsInput) {
+    visitorReviews(input: $input) {
+      items {
+        id
+        cursor
+        reviewId
+        rating
+        author {
+          id
+          nickname
+          from
+          imageUrl
+          borderImageUrl
+          objectId
+          url
+          review {
+            totalCount
+            imageCount
+            avgRating
+          }
+          theme {
+            totalCount
+          }
+          isFollowing
+          followerCount
+          followRequested
+        }
+        body
+        thumbnail
+        media {
+          type
+          thumbnail
+          thumbnailRatio
+          class
+          videoId
+          videoUrl
+          trailerUrl
+        }
+        tags
+        status
+        visitCount
+        viewCount
+        visited
+        created
+        reply {
+          editUrl
+          body
+          editedBy
+          created
+          date
+          replyTitle
+          isReported
+          isSuspended
+          status
+        }
+        originType
+        item {
+          name
+          code
+          options
+        }
+        language
+        highlightRanges {
+          start
+          end
+        }
+        apolloCacheId
+        translatedText
+        businessName
+        showBookingItemName
+        bookingItemName
+        votedKeywords {
+          code
+          iconUrl
+          iconCode
+          name
+        }
+        userIdno
+        loginIdno
+        receiptInfoUrl
+        reactionStat {
+          id
+          typeCount {
+            name
+            count
+          }
+          totalCount
+        }
+        hasViewerReacted {
+          id
+          reacted
+        }
+        nickname
+        showPaymentInfo
+        visitCategories {
+          code
+          name
+          keywords {
+            code
+            name
+          }
+        }
+        representativeVisitDateTime
+        showRepresentativeVisitDateTime
+      }
+      starDistribution {
+        score
+        count
+      }
+      hideProductSelectBox
+      total
+      showRecommendationSort
+      itemReviewStats {
+        score
+        count
+        itemId
+        starDistribution {
+          score
+          count
+        }
+      }
+    }
+  }
+`,
+        s = (0, t.gql)`
+  query getVisitorReviews($input: VisitorReviewsInput) {
+    visitorReviews(input: $input) {
+      ...VisitorReviews
+    }
+  }
+  ${n.IR}
+`,
+        l = (0, t.gql)`
+  query getVisitorReviewStats($id: String, $itemId: String, $businessType: String = "place") {
+    visitorReviewStats(input: { businessId: $id, itemId: $itemId, businessType: $businessType }) {
+      id
+      name
+      apolloCacheId
+      review {
+        avgRating
+        totalCount
+        scores {
+          count
+          score
+        }
+        starDistribution {
+          count
+          score
+        }
+        imageReviewCount
+        authorCount
+        maxSingleReviewScoreCount
+        maxScoreWithMaxCount
+      }
+      analysis {
+        themes {
+          code
+          label
+          count
+        }
+        menus {
+          code
+          label
+          count
+        }
+        votedKeyword {
+          totalCount
+          reviewCount
+          userCount
+          details {
+            category
+            code
+            iconUrl
+            iconCode
+            displayName
+            count
+            previousRank
+          }
+        }
+      }
+      visitorReviewsTotal
+      ratingReviewsTotal
+    }
+  }
+`,
+        p = (0, t.gql)`
+  query getVisitorReviewThemeLists($input: ThemeListsInput) {
+    themeLists(input: $input) {
+      themeLists {
+        id
+        title
+        viewCount
+        itemCount
+        reviews {
+          businessName
+          reviewBody
+          imageUrl
+        }
+        authorNickname
+        authorImageUrl
+        isFollowing
+        themeListUrl
+        authorUrl
+        cursor
+      }
+      total
+    }
+  }
+`,
+        o = (0, t.gql)`
+  query getVisitorRatingReviews($input: VisitorReviewsInput) {
+    visitorReviews(input: $input) {
+      total
+      items {
+        id
+        cursor
+        rating
+        author {
+          id
+          nickname
+          from
+          imageUrl
+          borderImageUrl
+          objectId
+          url
+          review {
+            totalCount
+            imageCount
+            avgRating
+          }
+          theme {
+            totalCount
+          }
+          isFollowing
+          followerCount
+          followRequested
+        }
+        visitCount
+        visited
+        originType
+        reply {
+          editUrl
+          body
+          editedBy
+          created
+          date
+          replyTitle
+          isReported
+          isSuspended
+          status
+        }
+        votedKeywords {
+          code
+          iconUrl
+          iconCode
+          # deprecated
+          displayName
+          # for pui
+          name
+        }
+        businessName
+        status
+        userIdno
+        loginIdno
+        receiptInfoUrl
+        reactionStat {
+          id
+          typeCount {
+            name
+            count
+          }
+          totalCount
+        }
+        hasViewerReacted {
+          id
+          reacted
+        }
+        nickname
+      }
+    }
+  }
+`,
+        m = (0, t.gql)`
+  query getPapagoTranslation($input: PapagoTranslateInput) {
+    papagoTranslate(input: $input) {
+      translatedText
+    }
+  }
+`,
+        c = (0, t.gql)`
+  query getReactionTypes {
+    reactionTypes {
+      name
+      emojiUrl
+===== fetchMore HIT 3 LINE 6477 =====
+                    "div",
+                    { className: u().name_inner },
+                    t.createElement(m.Z, {
+                      className: u().icon,
+                      "aria-hidden": "true",
+                    }),
+                    t.createElement(
+                      "span",
+                      { className: "place_blind" },
+                      "\uC5C5\uCCB4\uBA85",
+                    ),
+                    U.businessName,
+                  ),
+                ),
+              ),
+              K &&
+                t.createElement(
+                  s.Z,
+                  {
+                    className: u().thumb_wrapper,
+                    "aria-selected": b === 1,
+                    onClick: () => L(1),
+                    nClicks: { clickCode: "themephoto" },
+                  },
+                  K.imageUrl
+                    ? t.createElement(
+                        "div",
+                        { className: "place_thumb" },
+                        t.createElement(l.E, {
+                          className: u().img,
+                          src: K.imageUrl,
+                          width: "100%",
+                          height: "100%",
+                          alt: "",
+                          useThumbnail: !0,
+                          thumbnailOption: {
+                            width: 190,
+                            height: 190,
+                            type: "cropCenter",
+                          },
+                        }),
+                      )
+                    : t.createElement(
+                        "div",
+                        { className: u().default_image_area },
+                        t.createElement(
+                          "div",
+                          { className: "place_thumb" },
+                          t.createElement(m.Z, {
+                            className: u().icon,
+                            "aria-hidden": "true",
+                          }),
+                        ),
+                      ),
+                  t.createElement(
+                    "div",
+                    { className: u().name_area },
+                    t.createElement(
+                      "div",
+                      { className: u().name_inner },
+                      t.createElement(m.Z, {
+                        className: u().icon,
+                        "aria-hidden": "true",
+                      }),
+                      t.createElement(
+                        "span",
+                        { className: "place_blind" },
+                        "\uC5C5\uCCB4\uBA85",
+                      ),
+                      K.businessName,
+                    ),
+                  ),
+                ),
+              W &&
+                t.createElement(
+                  s.Z,
+                  {
+                    className: u().thumb_wrapper,
+                    "aria-selected": "false",
+                    href: I,
+                    target: "_blank",
+                    nClicks: { clickCode: "themephotomore" },
+                  },
+                  W.imageUrl
+                    ? t.createElement(
+                        "div",
+                        { className: "place_thumb" },
+                        t.createElement(l.E, {
+                          className: u().img,
+                          src: W.imageUrl,
+                          width: "100%",
+                          height: "100%",
+                          alt: "",
+                          useThumbnail: !0,
+                          thumbnailOption: {
+                            width: 190,
+                            height: 190,
+                            type: "cropCenter",
+                          },
+                        }),
+                        h > 3 &&
+                          t.createElement(
+                            "span",
+                            { className: u().theme_list_count },
+                            t.createElement(
+                              "span",
+                              { className: "place_blind" },
+                              "\uD14C\uB9C8\uB9AC\uC2A4\uD2B8 \uC5C5\uCCB4",
+                            ),
+                            t.createElement(
+                              "span",
+                              { className: u().count },
+                              t.createElement(
+                                i.cC,
+                                { i18nKey: d.H.COUNT_PLACES },
+                                { value: `+${h - 2}` },
+                                " \uACF3",
+                              ),
+                            ),
+                          ),
+                      )
+                    : t.createElement(
+                        "div",
+                        { className: u().default_image_area },
+                        t.createElement(
+                          "div",
+                          { className: "place_thumb" },
+                          t.createElement(m.Z, {
+                            className: u().icon,
+                            "aria-hidden": "true",
+                          }),
+                          h > 3 &&
+                            t.createElement(
+                              "span",
+                              { className: u().theme_list_count },
+                              t.createElement(
+                                "span",
+                                { className: "place_blind" },
+                                "\uD14C\uB9C8\uB9AC\uC2A4\uD2B8 \uC5C5\uCCB4",
+                              ),
+                              t.createElement(
+                                "span",
+                                { className: u().count },
+                                t.createElement(
+                                  i.cC,
+                                  { i18nKey: d.H.COUNT_PLACES },
+                                  { value: `+${h - 2}` },
+                                  " \uACF3",
+                                ),
+                              ),
+                            ),
+                        ),
+                      ),
+                  t.createElement(
+                    "div",
+                    { className: u().name_area },
+                    t.createElement(
+                      "div",
+                      { className: u().name_inner },
+                      t.createElement(m.Z, {
+                        className: u().icon,
+                        "aria-hidden": "true",
+                      }),
+                      t.createElement(
+                        "span",
+                        { className: "place_blind" },
+                        "\uC5C5\uCCB4\uBA85",
+                      ),
+                      W.businessName,
+                    ),
+                  ),
+                ),
+            ),
+            t.createElement(
+              s.Z,
+              {
+                className: n()(u().desc_area, { [u().type_2]: b === 1 }),
+                href: I,
+                target: "_blank",
+                nClicks: { clickCode: "themetext" },
+              },
+              t.createElement(
+                "div",
+                { className: u().desc_inner },
+                D[b].reviewBody,
+              ),
+            ),
+          ),
+        );
+      });
+      f.displayName = "ThemeListCard";
+    },
+    2182: (r, _, e) => {
+      "use strict";
+      e.d(_, { B: () => B });
+      var t = e(2784),
+        a = e(12524),
+        n = e.n(a),
+        i = e(98452),
+        s = e(4830),
+        l = e(98365),
+        p = e(95358),
+        o = e(88912),
+        m = e(78673),
+        c = e(85371),
+        d = e(35246),
+        E = e(63602),
+        C = e(48046),
+        g = e(2370),
+        u = e(38759),
+        f = e(33860),
+        P = e(31681),
+        O = e(35720),
+        T = e.n(O);
+      const y = 10;
+      function B({ isHomeTab: v = !1 }) {
+        (0, u.Z)(T());
+        const { isPcmap: h } = (0, s.E)(),
+          { businessId: D } = (0, d.Z)(),
+          x = { businessId: D, display: v ? 50 : 3 },
+          { data: M, fetchMore: A } = (0, E.Z)(P.hH, {
+            variables: { input: x },
+          }),
+          [I, R] = (0, t.useState)(!1),
+          [b, L] = (0, t.useState)(!1),
+          [U, K] = (0, t.useState)(!1),
+          W = () => {
+            K(!U);
+          },
+          H = M?.themeLists?.themeLists,
+          S = M?.themeLists?.total,
+          N = (0, t.useCallback)(
+            (Z, X) => {
+              const q = X[X.length - 1].cursor;
+              Z({
+                variables: { input: { businessId: D, display: y, after: q } },
+                updateQuery: (j, { fetchMoreResult: Q }) => {
+                  if (!Q) return j;
+                  const z = Q?.themeLists?.themeLists;
+                  return {
+                    ...j,
+                    themeLists: {
+                      ...j.themeLists,
+                      themeLists: [...j.themeLists.themeLists, ...z],
+                    },
+                  };
+                },
+              });
+            },
+            [D],
+          );
+        if (!(H?.length > 0)) return null;
+        const F =
+            (S > 2 && H.length < S) ||
+            (S === 3 && !I) ||
+            b ||
+            (S > 2 && S === H.length && !I && !b),
+          V = (Z) =>
+            t.createElement(f.J, { key: Z?.id, themeList: Z, isHomeTab: v });
+        return t.createElement(
+          l.Mw,
+          null,
+          t.createElement(l.Sh, {
+            title: t.createElement(
+              i.cC,
+              { i18nKey: g.H.THEMES_INCLUDING_PLACE },
+              "\uC774 \uC7A5\uC18C\uAC00 \uD3EC\uD568\uB41C \uD14C\uB9C8\uB9AC\uC2A4\uD2B8",
+            ),
+            count: S,
+            extra: t.createElement(
+              t.Fragment,
+              null,
+              t.createElement(
+                p.Z,
+                {
+                  className: T().btn_guide,
+                  "aria-haspopup": "true",
+                  "aria-expanded": U,
+                  onClick: W,
+                  nClicks: { clickCode: "themeinfo" },
+                  "data-clickoutside-guidelayer": !0,
+                },
+                t.createElement(C.Z, {
+                  className: T().icon,
+                  "aria-hidden": "true",
+                }),
+                t.createElement(
+                  "span",
+                  { className: "place_blind" },
+                  "\uC815\uB82C \uC548\uB0B4",
+                ),
+              ),
+              U &&
+                t.createElement(o.hT, {
+                  setShowGuideLayer: K,
+                  nClicks: { clickCode: "themeinfo" },
+                }),
+            ),
+          }),
+          t.createElement(
+            l.bI,
+            null,
+            v &&
+              t.createElement(
+                "div",
+                { className: T().themelist_list_area },
+                t.createElement(m.P, {
+                  items: H,
+                  renderItem: V,
+                  disableScroll: H.length === 1,
+                  scrollViewOptions: {
+                    scrollSize: 1,
+                    cameraTag: "ul",
+                    ...(h && { arrowXPos: 2 }),
+                  },
+                }),
+              ),
+            !v &&
+              t.createElement(
+                "ul",
+                { className: n()(T().themelist_list, { [T().folded]: F }) },
+                H.map((Z) =>
+                  t.createElement(f.J, { key: Z?.id, themeList: Z }),
+                ),
+              ),
+          ),
+          !v &&
+            F &&
+            t.createElement(
+              "div",
+              { className: n()(T().btn_wrapper, T().type_fold) },
+              t.createElement(c.Z, {
+                hasMoreContent: !0,
+                hasGradient: !0,
+                onClick: () => {
+                  (H.length < S && N(A, H), R(!0), L(!1));
+                },
+                nClicks: { clickCode: "thememore" },
+              }),
+            ),
+          !v &&
+            S === H.length &&
+            I &&
+            t.createElement(
+              "div",
+              { className: T().btn_wrapper },
+              t.createElement(c.Z, {
+                hasMoreContent: !0,
+                isOpen: !0,
+                onClick: () => {
+                  (R(!1), L(!0));
+                },
+                nClicks: { clickCode: "thememore" },
+              }),
+            ),
+        );
+      }
+    },
+    98973: (r, _, e) => {
+      "use strict";
+      e.d(_, { i: () => i });
+      var t = e(2370);
+      const a = "TRANSLATE",
+        n = { title: "", text: "" };
+      function i(s, l) {
+        if (!s?.graphQLErrors) return n;
+        const p = l(
+            t.H.TRY_LATER_TEXT,
+            "\uC7A0\uC2DC \uD6C4 \uB2E4\uC2DC \uC2DC\uB3C4\uD574\uC8FC\uC138\uC694.",
+          ),
+          o = s?.graphQLErrors?.find((c) => c.message === a);
+        if (!o?.translate)
+          return {
+            title: l(
+              t.H.TRANSLATE_ERROR_MESSAGE_INVALID_RESPONSE,
+              "\uC11C\uBC84 \uC751\uB2F5\uC774 \uC5C6\uC2B5\uB2C8\uB2E4.",
+            ),
+            text: p,
+          };
+        const {
+          translate: { errorCode: m },
+        } = o;
+        return m === "TIMEOUT"
+          ? {
+              title: l(
+                t.H.TRANSLATE_ERROR_MESSAGE_TIMEOUT,
+                "\uC11C\uBC84 \uC751\uB2F5\uC774 \uC9C0\uC5F0\uB418\uACE0 \uC788\uC2B5\uB2C8\uB2E4.",
+              ),
+              text: p,
+            }
+          : m === "INVALID_RESPONSE"
+            ? {
+                title: l(
+                  t.H.TRANSLATE_ERROR_MESSAGE_INVALID_RESPONSE,
+                  "\uC11C\uBC84 \uC751\uB2F5\uC774 \uC5C6\uC2B5\uB2C8\uB2E4.",
+                ),
+                text: p,
+              }
+            : m === "INVALID_REQUEST"
+              ? {
+                  title: l(
+                    t.H.TRANSLATE_ERROR_MESSAGE_INVALID_REQUEST,
+                    "\uBC88\uC5ED\uC774 \uC5B4\uB824\uC6B4 \uB0B4\uC6A9\uC785\uB2C8\uB2E4.",
+                  ),
+                  text: "",
+                }
+              : n;
+      }
+    },
+    92253: (r, _, e) => {
+      "use strict";
+      e.d(_, { AT: () => l, g_: () => o });
+      var t = e(49432),
+        a = e(50799);
+      const {
+        domain: n,
+        sogumDomain: { mobile: i },
+        myplace: { origin: s },
+      } = t.default;
+      function l(m, c) {
+        return (0, a.Ne)(`${n}${m}`, c);
+      }
+      function p(m, c) {
+        return getEncodedUrl(`${i}${m}`, c);
+      }
+      function o(m, c) {
+        return (0, a.Ne)(`${s}${m}`, c);
+      }
+    },
+    95542: (r, _, e) => {
+      var t = e(84996),
+        a = t.default;
+      if (t && t.__esModule) {
+        a.locals = {};
+        for (var n in t) t.hasOwnProperty(n) && (a.locals[n] = t[n]);
+      }
+      var i = e(21839),
+        s = { elementClassName: "_place_style_loader" };
+      if (
+        (typeof a == "string"
+          ? (a = [["16be78", a, ""]])
+          : (a[0][0] = "16be78"),
+        (r.exports = a.locals || {}),
+        (r.exports._getContent = function () {
+          return a;
+        }),
+        (r.exports._getKey = function () {
+          return "16be78";
+        }),
+        (r.exports._getCss = function () {
+          return a.toString();
+        }),
+        (r.exports._insertCss = function () {
+          return i(a, s);
+        }),
+        0)
+      )
+        var l;
+    },
+    25490: (r, _, e) => {
+      var t = e(92535),
+        a = t.default;
+      if (t && t.__esModule) {
+        a.locals = {};
+        for (var n in t) t.hasOwnProperty(n) && (a.locals[n] = t[n]);
+      }
+      var i = e(21839),
+        s = { elementClassName: "_place_style_loader" };
+      if (
+        (typeof a == "string"
+          ? (a = [["599407", a, ""]])
+          : (a[0][0] = "599407"),
+        (r.exports = a.locals || {}),
+        (r.exports._getContent = function () {
+          return a;
+        }),
+        (r.exports._getKey = function () {
+          return "599407";
+        }),
+        (r.exports._getCss = function () {
+          return a.toString();
+        }),
+        (r.exports._insertCss = function () {
+          return i(a, s);
+        }),
+        0)
+      )
+        var l;
+    },
+    40626: (r, _, e) => {
+      var t = e(48412),
+        a = t.default;
+      if (t && t.__esModule) {
+        a.locals = {};
+        for (var n in t) t.hasOwnProperty(n) && (a.locals[n] = t[n]);
+      }
+      var i = e(21839),
+        s = { elementClassName: "_place_style_loader" };
+      if (
+        (typeof a == "string"
+          ? (a = [["172259", a, ""]])
+          : (a[0][0] = "172259"),
+        (r.exports = a.locals || {}),
+        (r.exports._getContent = function () {
+          return a;
+        }),
+        (r.exports._getKey = function () {
+          return "172259";
+        }),
+        (r.exports._getCss = function () {
+          return a.toString();
+        }),
+        (r.exports._insertCss = function () {
+          return i(a, s);
+        }),
+        0)
+      )
+        var l;
+    },
+    98175: (r, _, e) => {
+      var t = e(97983),
+        a = t.default;
+      if (t && t.__esModule) {
+        a.locals = {};
+        for (var n in t) t.hasOwnProperty(n) && (a.locals[n] = t[n]);
+      }
+      var i = e(21839),
+        s = { elementClassName: "_place_style_loader" };
+      if (
+        (typeof a == "string"
+          ? (a = [["c6bbf8", a, ""]])
+          : (a[0][0] = "c6bbf8"),
+        (r.exports = a.locals || {}),
+        (r.exports._getContent = function () {
+          return a;
+        }),
+        (r.exports._getKey = function () {
+          return "c6bbf8";
+        }),
+        (r.exports._getCss = function () {
+          return a.toString();
+        }),
+        (r.exports._insertCss = function () {
+          return i(a, s);
+        }),
+        0)
+      )
+        var l;
+    },
+    56186: (r, _, e) => {
+      var t = e(88940),
+        a = t.default;
+      if (t && t.__esModule) {
+        a.locals = {};
+        for (var n in t) t.hasOwnProperty(n) && (a.locals[n] = t[n]);
+      }
+      var i = e(21839),
+        s = { elementClassName: "_place_style_loader" };
+      if (
+        (typeof a == "string"
+          ? (a = [["49a6dc", a, ""]])
+          : (a[0][0] = "49a6dc"),
+        (r.exports = a.locals || {}),
+        (r.exports._getContent = function () {
+          return a;
+        }),
+        (r.exports._getKey = function () {
+          return "49a6dc";
+        }),
+        (r.exports._getCss = function () {
+          return a.toString();
+        }),
+        (r.exports._insertCss = function () {
+          return i(a, s);
+        }),
+        0)
+      )
+        var l;
+    },
+    90414: (r, _, e) => {
+      var t = e(653),
+        a = t.default;
+      if (t && t.__esModule) {
+        a.locals = {};
+        for (var n in t) t.hasOwnProperty(n) && (a.locals[n] = t[n]);
+      }
+      var i = e(21839),
+        s = { elementClassName: "_place_style_loader" };
+      if (
+        (typeof a == "string"
+          ? (a = [["a4bf94", a, ""]])
+          : (a[0][0] = "a4bf94"),
+        (r.exports = a.locals || {}),
+        (r.exports._getContent = function () {
+          return a;
+        }),
+        (r.exports._getKey = function () {
+          return "a4bf94";
+        }),
+        (r.exports._getCss = function () {
+===== fetchMore HIT 4 LINE 6493 =====
+                t.createElement(
+                  s.Z,
+                  {
+                    className: u().thumb_wrapper,
+                    "aria-selected": b === 1,
+                    onClick: () => L(1),
+                    nClicks: { clickCode: "themephoto" },
+                  },
+                  K.imageUrl
+                    ? t.createElement(
+                        "div",
+                        { className: "place_thumb" },
+                        t.createElement(l.E, {
+                          className: u().img,
+                          src: K.imageUrl,
+                          width: "100%",
+                          height: "100%",
+                          alt: "",
+                          useThumbnail: !0,
+                          thumbnailOption: {
+                            width: 190,
+                            height: 190,
+                            type: "cropCenter",
+                          },
+                        }),
+                      )
+                    : t.createElement(
+                        "div",
+                        { className: u().default_image_area },
+                        t.createElement(
+                          "div",
+                          { className: "place_thumb" },
+                          t.createElement(m.Z, {
+                            className: u().icon,
+                            "aria-hidden": "true",
+                          }),
+                        ),
+                      ),
+                  t.createElement(
+                    "div",
+                    { className: u().name_area },
+                    t.createElement(
+                      "div",
+                      { className: u().name_inner },
+                      t.createElement(m.Z, {
+                        className: u().icon,
+                        "aria-hidden": "true",
+                      }),
+                      t.createElement(
+                        "span",
+                        { className: "place_blind" },
+                        "\uC5C5\uCCB4\uBA85",
+                      ),
+                      K.businessName,
+                    ),
+                  ),
+                ),
+              W &&
+                t.createElement(
+                  s.Z,
+                  {
+                    className: u().thumb_wrapper,
+                    "aria-selected": "false",
+                    href: I,
+                    target: "_blank",
+                    nClicks: { clickCode: "themephotomore" },
+                  },
+                  W.imageUrl
+                    ? t.createElement(
+                        "div",
+                        { className: "place_thumb" },
+                        t.createElement(l.E, {
+                          className: u().img,
+                          src: W.imageUrl,
+                          width: "100%",
+                          height: "100%",
+                          alt: "",
+                          useThumbnail: !0,
+                          thumbnailOption: {
+                            width: 190,
+                            height: 190,
+                            type: "cropCenter",
+                          },
+                        }),
+                        h > 3 &&
+                          t.createElement(
+                            "span",
+                            { className: u().theme_list_count },
+                            t.createElement(
+                              "span",
+                              { className: "place_blind" },
+                              "\uD14C\uB9C8\uB9AC\uC2A4\uD2B8 \uC5C5\uCCB4",
+                            ),
+                            t.createElement(
+                              "span",
+                              { className: u().count },
+                              t.createElement(
+                                i.cC,
+                                { i18nKey: d.H.COUNT_PLACES },
+                                { value: `+${h - 2}` },
+                                " \uACF3",
+                              ),
+                            ),
+                          ),
+                      )
+                    : t.createElement(
+                        "div",
+                        { className: u().default_image_area },
+                        t.createElement(
+                          "div",
+                          { className: "place_thumb" },
+                          t.createElement(m.Z, {
+                            className: u().icon,
+                            "aria-hidden": "true",
+                          }),
+                          h > 3 &&
+                            t.createElement(
+                              "span",
+                              { className: u().theme_list_count },
+                              t.createElement(
+                                "span",
+                                { className: "place_blind" },
+                                "\uD14C\uB9C8\uB9AC\uC2A4\uD2B8 \uC5C5\uCCB4",
+                              ),
+                              t.createElement(
+                                "span",
+                                { className: u().count },
+                                t.createElement(
+                                  i.cC,
+                                  { i18nKey: d.H.COUNT_PLACES },
+                                  { value: `+${h - 2}` },
+                                  " \uACF3",
+                                ),
+                              ),
+                            ),
+                        ),
+                      ),
+                  t.createElement(
+                    "div",
+                    { className: u().name_area },
+                    t.createElement(
+                      "div",
+                      { className: u().name_inner },
+                      t.createElement(m.Z, {
+                        className: u().icon,
+                        "aria-hidden": "true",
+                      }),
+                      t.createElement(
+                        "span",
+                        { className: "place_blind" },
+                        "\uC5C5\uCCB4\uBA85",
+                      ),
+                      W.businessName,
+                    ),
+                  ),
+                ),
+            ),
+            t.createElement(
+              s.Z,
+              {
+                className: n()(u().desc_area, { [u().type_2]: b === 1 }),
+                href: I,
+                target: "_blank",
+                nClicks: { clickCode: "themetext" },
+              },
+              t.createElement(
+                "div",
+                { className: u().desc_inner },
+                D[b].reviewBody,
+              ),
+            ),
+          ),
+        );
+      });
+      f.displayName = "ThemeListCard";
+    },
+    2182: (r, _, e) => {
+      "use strict";
+      e.d(_, { B: () => B });
+      var t = e(2784),
+        a = e(12524),
+        n = e.n(a),
+        i = e(98452),
+        s = e(4830),
+        l = e(98365),
+        p = e(95358),
+        o = e(88912),
+        m = e(78673),
+        c = e(85371),
+        d = e(35246),
+        E = e(63602),
+        C = e(48046),
+        g = e(2370),
+        u = e(38759),
+        f = e(33860),
+        P = e(31681),
+        O = e(35720),
+        T = e.n(O);
+      const y = 10;
+      function B({ isHomeTab: v = !1 }) {
+        (0, u.Z)(T());
+        const { isPcmap: h } = (0, s.E)(),
+          { businessId: D } = (0, d.Z)(),
+          x = { businessId: D, display: v ? 50 : 3 },
+          { data: M, fetchMore: A } = (0, E.Z)(P.hH, {
+            variables: { input: x },
+          }),
+          [I, R] = (0, t.useState)(!1),
+          [b, L] = (0, t.useState)(!1),
+          [U, K] = (0, t.useState)(!1),
+          W = () => {
+            K(!U);
+          },
+          H = M?.themeLists?.themeLists,
+          S = M?.themeLists?.total,
+          N = (0, t.useCallback)(
+            (Z, X) => {
+              const q = X[X.length - 1].cursor;
+              Z({
+                variables: { input: { businessId: D, display: y, after: q } },
+                updateQuery: (j, { fetchMoreResult: Q }) => {
+                  if (!Q) return j;
+                  const z = Q?.themeLists?.themeLists;
+                  return {
+                    ...j,
+                    themeLists: {
+                      ...j.themeLists,
+                      themeLists: [...j.themeLists.themeLists, ...z],
+                    },
+                  };
+                },
+              });
+            },
+            [D],
+          );
+        if (!(H?.length > 0)) return null;
+        const F =
+            (S > 2 && H.length < S) ||
+            (S === 3 && !I) ||
+            b ||
+            (S > 2 && S === H.length && !I && !b),
+          V = (Z) =>
+            t.createElement(f.J, { key: Z?.id, themeList: Z, isHomeTab: v });
+        return t.createElement(
+          l.Mw,
+          null,
+          t.createElement(l.Sh, {
+            title: t.createElement(
+              i.cC,
+              { i18nKey: g.H.THEMES_INCLUDING_PLACE },
+              "\uC774 \uC7A5\uC18C\uAC00 \uD3EC\uD568\uB41C \uD14C\uB9C8\uB9AC\uC2A4\uD2B8",
+            ),
+            count: S,
+            extra: t.createElement(
+              t.Fragment,
+              null,
+              t.createElement(
+                p.Z,
+                {
+                  className: T().btn_guide,
+                  "aria-haspopup": "true",
+                  "aria-expanded": U,
+                  onClick: W,
+                  nClicks: { clickCode: "themeinfo" },
+                  "data-clickoutside-guidelayer": !0,
+                },
+                t.createElement(C.Z, {
+                  className: T().icon,
+                  "aria-hidden": "true",
+                }),
+                t.createElement(
+                  "span",
+                  { className: "place_blind" },
+                  "\uC815\uB82C \uC548\uB0B4",
+                ),
+              ),
+              U &&
+                t.createElement(o.hT, {
+                  setShowGuideLayer: K,
+                  nClicks: { clickCode: "themeinfo" },
+                }),
+            ),
+          }),
+          t.createElement(
+            l.bI,
+            null,
+            v &&
+              t.createElement(
+                "div",
+                { className: T().themelist_list_area },
+                t.createElement(m.P, {
+                  items: H,
+                  renderItem: V,
+                  disableScroll: H.length === 1,
+                  scrollViewOptions: {
+                    scrollSize: 1,
+                    cameraTag: "ul",
+                    ...(h && { arrowXPos: 2 }),
+                  },
+                }),
+              ),
+            !v &&
+              t.createElement(
+                "ul",
+                { className: n()(T().themelist_list, { [T().folded]: F }) },
+                H.map((Z) =>
+                  t.createElement(f.J, { key: Z?.id, themeList: Z }),
+                ),
+              ),
+          ),
+          !v &&
+            F &&
+            t.createElement(
+              "div",
+              { className: n()(T().btn_wrapper, T().type_fold) },
+              t.createElement(c.Z, {
+                hasMoreContent: !0,
+                hasGradient: !0,
+                onClick: () => {
+                  (H.length < S && N(A, H), R(!0), L(!1));
+                },
+                nClicks: { clickCode: "thememore" },
+              }),
+            ),
+          !v &&
+            S === H.length &&
+            I &&
+            t.createElement(
+              "div",
+              { className: T().btn_wrapper },
+              t.createElement(c.Z, {
+                hasMoreContent: !0,
+                isOpen: !0,
+                onClick: () => {
+                  (R(!1), L(!0));
+                },
+                nClicks: { clickCode: "thememore" },
+              }),
+            ),
+        );
+      }
+    },
+    98973: (r, _, e) => {
+      "use strict";
+      e.d(_, { i: () => i });
+      var t = e(2370);
+      const a = "TRANSLATE",
+        n = { title: "", text: "" };
+      function i(s, l) {
+        if (!s?.graphQLErrors) return n;
+        const p = l(
+            t.H.TRY_LATER_TEXT,
+            "\uC7A0\uC2DC \uD6C4 \uB2E4\uC2DC \uC2DC\uB3C4\uD574\uC8FC\uC138\uC694.",
+          ),
+          o = s?.graphQLErrors?.find((c) => c.message === a);
+        if (!o?.translate)
+          return {
+            title: l(
+              t.H.TRANSLATE_ERROR_MESSAGE_INVALID_RESPONSE,
+              "\uC11C\uBC84 \uC751\uB2F5\uC774 \uC5C6\uC2B5\uB2C8\uB2E4.",
+            ),
+            text: p,
+          };
+        const {
+          translate: { errorCode: m },
+        } = o;
+        return m === "TIMEOUT"
+          ? {
+              title: l(
+                t.H.TRANSLATE_ERROR_MESSAGE_TIMEOUT,
+                "\uC11C\uBC84 \uC751\uB2F5\uC774 \uC9C0\uC5F0\uB418\uACE0 \uC788\uC2B5\uB2C8\uB2E4.",
+              ),
+              text: p,
+            }
+          : m === "INVALID_RESPONSE"
+            ? {
+                title: l(
+                  t.H.TRANSLATE_ERROR_MESSAGE_INVALID_RESPONSE,
+                  "\uC11C\uBC84 \uC751\uB2F5\uC774 \uC5C6\uC2B5\uB2C8\uB2E4.",
+                ),
+                text: p,
+              }
+            : m === "INVALID_REQUEST"
+              ? {
+                  title: l(
+                    t.H.TRANSLATE_ERROR_MESSAGE_INVALID_REQUEST,
+                    "\uBC88\uC5ED\uC774 \uC5B4\uB824\uC6B4 \uB0B4\uC6A9\uC785\uB2C8\uB2E4.",
+                  ),
+                  text: "",
+                }
+              : n;
+      }
+    },
+    92253: (r, _, e) => {
+      "use strict";
+      e.d(_, { AT: () => l, g_: () => o });
+      var t = e(49432),
+        a = e(50799);
+      const {
+        domain: n,
+        sogumDomain: { mobile: i },
+        myplace: { origin: s },
+      } = t.default;
+      function l(m, c) {
+        return (0, a.Ne)(`${n}${m}`, c);
+      }
+      function p(m, c) {
+        return getEncodedUrl(`${i}${m}`, c);
+      }
+      function o(m, c) {
+        return (0, a.Ne)(`${s}${m}`, c);
+      }
+    },
+    95542: (r, _, e) => {
+      var t = e(84996),
+        a = t.default;
+      if (t && t.__esModule) {
+        a.locals = {};
+        for (var n in t) t.hasOwnProperty(n) && (a.locals[n] = t[n]);
+      }
+      var i = e(21839),
+        s = { elementClassName: "_place_style_loader" };
+      if (
+        (typeof a == "string"
+          ? (a = [["16be78", a, ""]])
+          : (a[0][0] = "16be78"),
+        (r.exports = a.locals || {}),
+        (r.exports._getContent = function () {
+          return a;
+        }),
+        (r.exports._getKey = function () {
+          return "16be78";
+        }),
+        (r.exports._getCss = function () {
+          return a.toString();
+        }),
+        (r.exports._insertCss = function () {
+          return i(a, s);
+        }),
+        0)
+      )
+        var l;
+    },
+    25490: (r, _, e) => {
+      var t = e(92535),
+        a = t.default;
+      if (t && t.__esModule) {
+        a.locals = {};
+        for (var n in t) t.hasOwnProperty(n) && (a.locals[n] = t[n]);
+      }
+      var i = e(21839),
+        s = { elementClassName: "_place_style_loader" };
+      if (
+        (typeof a == "string"
+          ? (a = [["599407", a, ""]])
+          : (a[0][0] = "599407"),
+        (r.exports = a.locals || {}),
+        (r.exports._getContent = function () {
+          return a;
+        }),
+        (r.exports._getKey = function () {
+          return "599407";
+        }),
+        (r.exports._getCss = function () {
+          return a.toString();
+        }),
+        (r.exports._insertCss = function () {
+          return i(a, s);
+        }),
+        0)
+      )
+        var l;
+    },
+    40626: (r, _, e) => {
+      var t = e(48412),
+        a = t.default;
+      if (t && t.__esModule) {
+        a.locals = {};
+        for (var n in t) t.hasOwnProperty(n) && (a.locals[n] = t[n]);
+      }
+      var i = e(21839),
+        s = { elementClassName: "_place_style_loader" };
+      if (
+        (typeof a == "string"
+          ? (a = [["172259", a, ""]])
+          : (a[0][0] = "172259"),
+        (r.exports = a.locals || {}),
+        (r.exports._getContent = function () {
+          return a;
+        }),
+        (r.exports._getKey = function () {
+          return "172259";
+        }),
+        (r.exports._getCss = function () {
+          return a.toString();
+        }),
+        (r.exports._insertCss = function () {
+          return i(a, s);
+        }),
+        0)
+      )
+        var l;
+    },
+    98175: (r, _, e) => {
+      var t = e(97983),
+        a = t.default;
+      if (t && t.__esModule) {
+        a.locals = {};
+        for (var n in t) t.hasOwnProperty(n) && (a.locals[n] = t[n]);
+      }
+      var i = e(21839),
+        s = { elementClassName: "_place_style_loader" };
+      if (
+        (typeof a == "string"
+          ? (a = [["c6bbf8", a, ""]])
+          : (a[0][0] = "c6bbf8"),
+        (r.exports = a.locals || {}),
+        (r.exports._getContent = function () {
+          return a;
+        }),
+        (r.exports._getKey = function () {
+          return "c6bbf8";
+        }),
+        (r.exports._getCss = function () {
+          return a.toString();
+        }),
+        (r.exports._insertCss = function () {
+          return i(a, s);
+        }),
+        0)
+      )
+        var l;
+    },
+    56186: (r, _, e) => {
+      var t = e(88940),
+        a = t.default;
+      if (t && t.__esModule) {
+        a.locals = {};
+        for (var n in t) t.hasOwnProperty(n) && (a.locals[n] = t[n]);
+      }
+      var i = e(21839),
+        s = { elementClassName: "_place_style_loader" };
+      if (
+        (typeof a == "string"
+          ? (a = [["49a6dc", a, ""]])
+          : (a[0][0] = "49a6dc"),
+        (r.exports = a.locals || {}),
+        (r.exports._getContent = function () {
+          return a;
+        }),
+        (r.exports._getKey = function () {
+          return "49a6dc";
+        }),
+        (r.exports._getCss = function () {
+          return a.toString();
+        }),
+        (r.exports._insertCss = function () {
+          return i(a, s);
+        }),
+        0)
+      )
+        var l;
+    },
+    90414: (r, _, e) => {
+      var t = e(653),
+        a = t.default;
+      if (t && t.__esModule) {
+        a.locals = {};
+        for (var n in t) t.hasOwnProperty(n) && (a.locals[n] = t[n]);
+      }
+      var i = e(21839),
+        s = { elementClassName: "_place_style_loader" };
+      if (
+        (typeof a == "string"
+          ? (a = [["a4bf94", a, ""]])
+          : (a[0][0] = "a4bf94"),
+        (r.exports = a.locals || {}),
+        (r.exports._getContent = function () {
+          return a;
+        }),
+        (r.exports._getKey = function () {
+          return "a4bf94";
+        }),
+        (r.exports._getCss = function () {
+          return a.toString();
+        }),
+        (r.exports._insertCss = function () {
+          return i(a, s);
+        }),
+        0)
+      )
+        var l;
+    },
+    946: (r, _, e) => {
+      var t = e(71502),
+        a = t.default;
+      if (t && t.__esModule) {
+        a.locals = {};
+        for (var n in t) t.hasOwnProperty(n) && (a.locals[n] = t[n]);
+      }

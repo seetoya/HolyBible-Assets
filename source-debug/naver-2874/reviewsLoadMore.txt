@@ -1,0 +1,601 @@
+===== reviewsLoadMore HIT 1 LINE 5486 =====
+        },
+      });
+    },
+    74749: (r, _, e) => {
+      "use strict";
+      e.d(_, { Rn: () => i, S9: () => a, cg: () => l });
+      var t = e(50799);
+      const a = 10,
+        n = 5,
+        i = "0",
+        s = {
+          homeTab_reviewSection: "f480_480_q95",
+          homeTab_photosection: "f180_180_q95",
+          reviewTab_reviewSection: "w1500_60_sharpen",
+          reviewTab_photoSection: "w278_sharpen",
+          photoTab: "w560_sharpen",
+          mediaViewer: "w750_q95",
+          mediaViewer_original: "w1500_60_sharpen",
+          list_image: "w278_sharpen",
+        };
+      function l({ url: p, thumbnailType: o, isVideo: m }) {
+        return m ? p : (0, t.Ne)(p, { type: s[o] });
+      }
+    },
+    62110: (r, _, e) => {
+      "use strict";
+      e.d(_, { a: () => s });
+      var t = e(2784),
+        a = e(63001),
+        n = e(35246),
+        i = e(74749);
+      function s() {
+        const l = (0, a.Z)(),
+          { businessType: p, mainTab: o, subTabs: m } = (0, n.Z)(),
+          c = (0, t.useMemo)(
+            () =>
+              /hairshop|nailshop/.test(p) && o === "stylist" && m?.[0]
+                ? m?.[0]
+                : (l.reviewItem === "noQuery" ? i.Rn : l.reviewItem) || i.Rn,
+            [p, o, l.reviewItem, m],
+          );
+        return { reviewItem: c, reviewItemChosen: c !== "0" };
+      }
+    },
+    62118: (r, _, e) => {
+      "use strict";
+      e.d(_, { h: () => p });
+      var t = e(63001),
+        a = e(35246),
+        n = e(10164),
+        i = e(63602),
+        s = e(31681);
+      const l = "0";
+      function p({ reviewItem: o = "", skip: m = !1 }) {
+        const c = (0, t.Z)(),
+          { businessType: d, businessId: E } = (0, a.Z)(),
+          { business: C } = (0, n.n)(),
+          g = C?.visitorReviewStats?.visitorReviewsTotal,
+          u = C?.base?.visitorReviewsTotal,
+          { reviewItem: f } = c || {},
+          P = o || (f === "noQuery" ? l : f) || l,
+          { data: O, loading: T } = (0, i.Z)(s.TB, {
+            variables: { id: E, itemId: P, businessType: d },
+            skip: m || !((g || u) > 0),
+          }),
+          y = O?.visitorReviewStats?.ratingReviewsTotal || 0,
+          B = O?.visitorReviewStats?.visitorReviewsTotal || 0,
+          v = O?.visitorReviewStats?.analysis?.votedKeyword,
+          h = O?.visitorReviewStats?.analysis?.menus,
+          D = O?.visitorReviewStats?.analysis?.themes;
+        return {
+          statsThemesLoading: T,
+          statsThemesData: O,
+          votedKeyword: v,
+          menus: h,
+          themes: D,
+          onlyShowRatingReviews: y === B,
+        };
+      }
+    },
+    92065: (r, _, e) => {
+      "use strict";
+      e.d(_, { v_: () => P });
+      var t = e(2784),
+        a = e(2355),
+        n = e(63001),
+        i = e(35246),
+        s = e(10164),
+        l = e(63602),
+        p = e(17493),
+        o = e(22237),
+        m = e(62118),
+        c = e(39218),
+        d = e(7370),
+        E = e(31681);
+      const C = "0",
+        g = 10;
+      function u(O, T) {
+        return O?.id
+          ? [O, ...(T || []).filter((y) => O.id !== y.id)].filter((y) => !!y)
+          : T;
+      }
+      function f(O, T) {
+        const y = O.slice(0, 3).filter((B) => !!B);
+        return (0, p.XX)([...y, ...(T || [])], "id").filter((B) => !!B);
+      }
+      function P() {
+        const O = (0, t.useRef)(!1),
+          T = (0, n.Z)(),
+          { businessType: y, businessId: B, mainTab: v } = (0, i.Z)(),
+          {
+            selectedReview: h,
+            snippetReviews: D,
+            snippetKeyword: x,
+            photoUsed: M,
+            reviewTheme: A,
+            reviewMenu: I,
+            reviewOrder: R,
+            reviewSort: b,
+            reviewItem: L,
+          } = T || {},
+          { LoadingComponent: U, ErrorComponent: K, business: W } = (0, s.n)(),
+          H = W?.naverBooking?.bookingBusinessId,
+          S = W?.base?.defaultCategoryCodeList,
+          N = (L === "noQuery" ? C : L) || C,
+          F = (0, c.p$)({ business: W, businessType: y, reviewItem: N }),
+          V = (0, o.m)(M),
+          Z = parseInt(R, 10) || void 0,
+          X = {
+            businessId: B,
+            businessType: y,
+            item: N,
+            bookingBusinessId: H,
+            size: g,
+            isPhotoUsed: V,
+            theme: A,
+            menu: I,
+            sort: b,
+            order: Z,
+            includeContent: !0,
+            getUserStats: !0,
+            includeReceiptPhotos: !0,
+            cidList: S,
+            getReactions: !0,
+            getTrailer: !0,
+          },
+          { data: q, loading: j } = (0, l.Z)(E.IW, {
+            variables: { input: { ...X, reviewIds: h } },
+            skip: !h,
+          }),
+          Q = D && x && !(V || A || I || Z || b),
+          { data: z, loading: G } = (0, l.Z)(E.IW, {
+            variables: {
+              input: { businessId: B, reviewIds: D, highlightKeyword: x },
+            },
+            skip: !Q,
+          }),
+          {
+            LoadingComponent: J,
+            ErrorComponent: ae,
+            data: $,
+            fetchMore: re,
+            loading: ee,
+          } = (0, l.Z)(E.IW, { variables: { input: X } }),
+          {
+            statsThemesLoading: se,
+            statsThemesData: Y,
+            votedKeyword: he,
+            menus: oe,
+            themes: ie,
+            onlyShowRatingReviews: ce,
+          } = (0, m.h)({ reviewItem: N }),
+          { data: fe, loading: de } = (0, l.Z)(E.vv, {}),
+          me = !(ee || se || j || G || de || J),
+          Ce = $?.visitorReviews?.itemReviewStats,
+          ue = $?.visitorReviews?.total,
+          Ee = (0, t.useCallback)(
+            (Re, Ae, Pe) => {
+              if (O.current) return;
+              const Be = Pe[Pe.length - 1].cursor;
+              ((O.current = !0),
+                Re({
+                  variables: { input: { ...Ae, after: Be }, id: B },
+                  updateQuery: (De, { fetchMoreResult: Te }) => {
+                    if (!Te) return De;
+                    const xe = Te?.visitorReviews?.items,
+                      Ie = xe.map(({ id: be }) => be);
+                    return (
+                      (0, d.w)({ reviewIds: Ie, namespace: v }),
+                      {
+                        ...De,
+                        visitorReviews: {
+                          ...De.visitorReviews,
+                          items: [...De.visitorReviews.items, ...xe],
+                        },
+                      }
+                    );
+                  },
+                }).finally(() => (O.current = !1)));
+            },
+            [B, v],
+          ),
+          _e = () => Ee(re, X, w),
+          Oe = !$?.visitorReviews?.hideProductSelectBox && F?.length > 0 && !!H,
+          { data: ve } = (0, l.Z)(a.a),
+          { myplaceNickname: Me, myplaceId: le } =
+            ve?.user?.myplace?.profile || {},
+          w = Q
+            ? f(z?.visitorReviews?.items || [], $?.visitorReviews?.items || [])
+            : u(q?.visitorReviews?.items?.[0], $?.visitorReviews?.items || []),
+          k = $?.visitorReviews?.showRecommendationSort,
+          { reactionTypes: te } = fe,
+          { data: ne, loading: ge } = (0, l.Z)(E.Kz, {
+            variables: { input: { businessId: B } },
+          }),
+          ye = ne?.reviewAwardCoupons?.total > 0;
+        return {
+          loadingOrError: U || K || ae || G,
+          reviewsLoading: J,
+          reviews: w,
+          reviewsLoadMore: _e,
+          keywordAndRatingReviewsloadMore: Ee,
+          total: ue,
+          itemReviewStats: Ce,
+          statsThemesData: Y,
+          isShowProductSelectBox: Oe,
+          votedKeyword: he,
+          menus: oe,
+          themes: ie,
+          myplaceNickname: Me,
+          myplaceId: le,
+          allDataLoaded: me,
+          onlyShowRatingReviews: ce,
+          showRecommendationSort: k,
+          reactionTypes: te,
+          input: X,
+          reviewItem: N,
+          reviewItems: F,
+          reviewAwardCouponsLoading: ge,
+          hasReviewAwardCoupons: ye,
+        };
+      }
+    },
+    31681: (r, _, e) => {
+      "use strict";
+      e.d(_, {
+        Ap: () => B,
+        DK: () => o,
+        Fh: () => E,
+        Gn: () => T,
+        IW: () => i,
+        Kz: () => b,
+        LA: () => O,
+        MB: () => s,
+        MI: () => P,
+        OU: () => g,
+        Qg: () => d,
+        TB: () => l,
+        be: () => f,
+        c8: () => y,
+        hH: () => p,
+        nX: () => C,
+        vv: () => c,
+        xR: () => u,
+      });
+      var t = e(34261),
+        a = e.n(t),
+        n = e(15879);
+      const i = (0, t.gql)`
+  query getVisitorReviews($input: VisitorReviewsInput) {
+    visitorReviews(input: $input) {
+      items {
+        id
+        cursor
+        reviewId
+        rating
+        author {
+          id
+          nickname
+          from
+          imageUrl
+          borderImageUrl
+          objectId
+          url
+          review {
+            totalCount
+            imageCount
+            avgRating
+          }
+          theme {
+            totalCount
+          }
+          isFollowing
+          followerCount
+          followRequested
+        }
+        body
+        thumbnail
+        media {
+          type
+          thumbnail
+          thumbnailRatio
+          class
+          videoId
+          videoUrl
+          trailerUrl
+        }
+        tags
+        status
+        visitCount
+        viewCount
+        visited
+        created
+        reply {
+          editUrl
+          body
+          editedBy
+          created
+          date
+          replyTitle
+          isReported
+          isSuspended
+          status
+        }
+        originType
+        item {
+          name
+          code
+          options
+        }
+        language
+        highlightRanges {
+          start
+          end
+        }
+        apolloCacheId
+        translatedText
+        businessName
+        showBookingItemName
+        bookingItemName
+        votedKeywords {
+          code
+          iconUrl
+          iconCode
+          name
+        }
+        userIdno
+        loginIdno
+        receiptInfoUrl
+        reactionStat {
+          id
+          typeCount {
+            name
+            count
+          }
+          totalCount
+        }
+        hasViewerReacted {
+          id
+          reacted
+        }
+        nickname
+        showPaymentInfo
+        visitCategories {
+          code
+          name
+          keywords {
+            code
+            name
+          }
+        }
+        representativeVisitDateTime
+        showRepresentativeVisitDateTime
+      }
+      starDistribution {
+        score
+        count
+      }
+      hideProductSelectBox
+      total
+      showRecommendationSort
+      itemReviewStats {
+        score
+        count
+        itemId
+        starDistribution {
+          score
+          count
+        }
+      }
+    }
+  }
+`,
+        s = (0, t.gql)`
+  query getVisitorReviews($input: VisitorReviewsInput) {
+    visitorReviews(input: $input) {
+      ...VisitorReviews
+    }
+  }
+  ${n.IR}
+`,
+        l = (0, t.gql)`
+  query getVisitorReviewStats($id: String, $itemId: String, $businessType: String = "place") {
+    visitorReviewStats(input: { businessId: $id, itemId: $itemId, businessType: $businessType }) {
+      id
+      name
+      apolloCacheId
+      review {
+        avgRating
+        totalCount
+        scores {
+          count
+          score
+        }
+        starDistribution {
+          count
+          score
+        }
+        imageReviewCount
+        authorCount
+        maxSingleReviewScoreCount
+        maxScoreWithMaxCount
+      }
+      analysis {
+        themes {
+          code
+          label
+          count
+        }
+        menus {
+          code
+          label
+          count
+        }
+        votedKeyword {
+          totalCount
+          reviewCount
+          userCount
+          details {
+            category
+            code
+            iconUrl
+            iconCode
+            displayName
+            count
+            previousRank
+          }
+        }
+      }
+      visitorReviewsTotal
+      ratingReviewsTotal
+    }
+  }
+`,
+        p = (0, t.gql)`
+  query getVisitorReviewThemeLists($input: ThemeListsInput) {
+    themeLists(input: $input) {
+      themeLists {
+        id
+        title
+        viewCount
+        itemCount
+        reviews {
+          businessName
+          reviewBody
+          imageUrl
+        }
+        authorNickname
+        authorImageUrl
+        isFollowing
+        themeListUrl
+        authorUrl
+        cursor
+      }
+      total
+    }
+  }
+`,
+        o = (0, t.gql)`
+  query getVisitorRatingReviews($input: VisitorReviewsInput) {
+    visitorReviews(input: $input) {
+      total
+      items {
+        id
+        cursor
+        rating
+        author {
+          id
+          nickname
+          from
+          imageUrl
+          borderImageUrl
+          objectId
+          url
+          review {
+            totalCount
+            imageCount
+            avgRating
+          }
+          theme {
+            totalCount
+          }
+          isFollowing
+          followerCount
+          followRequested
+        }
+        visitCount
+        visited
+        originType
+        reply {
+          editUrl
+          body
+          editedBy
+          created
+          date
+          replyTitle
+          isReported
+          isSuspended
+          status
+        }
+        votedKeywords {
+          code
+          iconUrl
+          iconCode
+          # deprecated
+          displayName
+          # for pui
+          name
+        }
+        businessName
+        status
+        userIdno
+        loginIdno
+        receiptInfoUrl
+        reactionStat {
+          id
+          typeCount {
+            name
+            count
+          }
+          totalCount
+        }
+        hasViewerReacted {
+          id
+          reacted
+        }
+        nickname
+      }
+    }
+  }
+`,
+        m = (0, t.gql)`
+  query getPapagoTranslation($input: PapagoTranslateInput) {
+    papagoTranslate(input: $input) {
+      translatedText
+    }
+  }
+`,
+        c = (0, t.gql)`
+  query getReactionTypes {
+    reactionTypes {
+      name
+      emojiUrl
+      label
+    }
+  }
+`,
+        d = (0, t.gql)`
+  query getUserReactedType($input: UserReactedTypeInput) {
+    userReactedType(input: $input) {
+      reactionType
+    }
+  }
+`,
+        E = (0, t.gql)`
+  query getVisitorReviewStatsByBookingBusinessId($id: String, $itemIds: String) {
+    visitorReviewStatsByBookingBusinessId(input: { bookingBusinessId: $id, itemIds: $itemIds }) {
+      items {
+        id
+        itemId
+        score
+        count
+      }
+    }
+  }
+`,
+        C = (0, t.gql)`
+  fragment VisitorReviewAuthor on VisitorReviewAuthor {
+    id
+    nickname
+    from
+    imageUrl
+    objectId
+    url
+    review {
+      totalCount
+      imageCount
+      avgRating
+    }
+    theme {

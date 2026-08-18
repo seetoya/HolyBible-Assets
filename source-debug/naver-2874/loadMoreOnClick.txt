@@ -1,0 +1,601 @@
+===== loadMoreOnClick HIT 1 LINE 5072 =====
+        m = e(38759),
+        c = e(15649),
+        d = e.n(c);
+      function E({ urlQueryName: C = "photoUsed" }) {
+        (0, m.Z)(d());
+        const g = (0, i.cy)(),
+          { [C]: u } = (0, s.Z)(),
+          f = (0, o.m)(u);
+        return t.createElement(
+          n.Z,
+          {
+            className: d().btn_check,
+            role: "checkbox",
+            "aria-checked": f,
+            onClick: () => g({ [C]: !f }),
+            nClicks: { clickCode: "ptofilter" },
+          },
+          t.createElement(l.Z, { className: d().icon, "aria-hidden": "true" }),
+          t.createElement(a.cC, {
+            i18nKey: p.H.ONLY_PHOTO_VIDEO_REVIEW,
+            defaults: "\uC0AC\uC9C4/\uC601\uC0C1 \uB9AC\uBDF0\uB9CC",
+          }),
+        );
+      }
+    },
+    22839: (r, _, e) => {
+      "use strict";
+      e.d(_, { z: () => E });
+      var t = e(2784),
+        a = e(98452),
+        n = e(6555),
+        i = e(95358),
+        s = e(47670),
+        l = e(74882),
+        p = e(49432),
+        o = e(2370),
+        m = e(38759),
+        c = e(40582),
+        d = e.n(c);
+      function E() {
+        (0, m.Z)(d());
+        const [g, u] = (0, t.useState)(!1),
+          { openModal: f, closeModal: P } = (0, n.dd)(
+            n.cL.reviewCleansingSystem,
+          );
+        return t.createElement(
+          t.Fragment,
+          null,
+          t.createElement(
+            "div",
+            { className: d().review_cleansing_system_area },
+            t.createElement(
+              i.Z,
+              {
+                className: d().btn,
+                "aria-haspopup": "true",
+                "aria-expanded": g,
+                onClick: () => {
+                  (u(!0), f());
+                },
+                nClicks: { clickCode: "abusetooltip" },
+              },
+              t.createElement(
+                a.cC,
+                { i18nKey: o.H.REVIEW_CLEANSING_TEXT },
+                t.createElement(
+                  "em",
+                  null,
+                  "\uB9AC\uBDF0 \uD074\uB80C\uC9D5 \uC2DC\uC2A4\uD15C",
+                ),
+                " \uC791\uB3D9 \uC911\uC785\uB2C8\uB2E4.",
+              ),
+              t.createElement(l.Z, {
+                className: d().icon,
+                "aria-hidden": "true",
+              }),
+            ),
+          ),
+          g &&
+            t.createElement(C, {
+              closeCallback: () => {
+                u(!1);
+              },
+              closeHandler: P,
+            }),
+        );
+      }
+      function C({ closeCallback: g, closeHandler: u }) {
+        (0, m.Z)(d());
+        const [f, P] = (0, t.useState)(!1);
+        return t.createElement(
+          n.ZP,
+          {
+            position: "center",
+            className: d().modal_review_cleansing_system,
+            hashString: n.cL.reviewCleansingSystem,
+            show: f,
+            setShow: P,
+            closeCallback: g,
+          },
+          t.createElement(
+            "div",
+            { className: d().content_area },
+            t.createElement(
+              "div",
+              { className: d().img_area },
+              t.createElement(s.E, {
+                src: `${p.default.cdnOrigin}/assets/shared/images/icon_review_cleansing_system.png`,
+                width: "94",
+                height: "90",
+                alt: "",
+              }),
+            ),
+            t.createElement(
+              "div",
+              { className: d().title_area },
+              t.createElement(
+                a.cC,
+                { i18nKey: o.H.REVIEW_CLEANSING_TEXT },
+                t.createElement(
+                  "em",
+                  null,
+                  "\uB9AC\uBDF0 \uD074\uB80C\uC9D5 \uC2DC\uC2A4\uD15C",
+                ),
+                " \uC791\uB3D9 \uC911\uC785\uB2C8\uB2E4.",
+              ),
+            ),
+            t.createElement(
+              "div",
+              { className: d().text_area },
+              t.createElement(a.cC, {
+                i18nKey: o.H.MYPLACE_REVIEW_CLEANSING_TEXT1,
+                defaults:
+                  "MY\uD50C\uB808\uC774\uC2A4 \uAE30\uC900\uC5D0 \uB530\uB77C \uB192\uC740 \uC218\uC900\uC758 \uC2E0\uB8B0\uB3C4\uAC00 \uD655\uC778\uB41C \uB9AC\uBDF0\uB9CC \uB178\uCD9C\uB418\uB3C4\uB85D \uB9AC\uBDF0 \uD074\uB80C\uC9D5 \uC2DC\uC2A4\uD15C\uC774 \uC791\uB3D9 \uC911\uC785\uB2C8\uB2E4.",
+              }),
+            ),
+            t.createElement(
+              "div",
+              { className: d().text_area },
+              t.createElement(a.cC, {
+                i18nKey: o.H.MYPLACE_REVIEW_CLEANSING_TEXT2,
+                defaults:
+                  "\uD5C8\uC704 \uBC29\uBB38\uC778\uC99D, \uAD11\uACE0\uC131 \uB9AC\uBDF0 \uC791\uC131 \uB4F1\uC758 \uC774\uC0C1 \uD328\uD134\uC774 \uD0D0\uC9C0\uB418\uBA74 \uD574\uB2F9 \uB9AC\uBDF0\uB294 \uBCC4\uB3C4\uC758 \uD1B5\uC9C0 \uC5C6\uC774 \uC989\uC2DC \uBBF8\uB178\uCD9C\uB418\uBA70, \uD574\uB2F9 \uB9AC\uBDF0\uC5B4\uB294 \uC11C\uBE44\uC2A4 \uC774\uC6A9\uC5D0 \uC81C\uD55C\uC744 \uBC1B\uC744 \uC218 \uC788\uC2B5\uB2C8\uB2E4.",
+              }),
+            ),
+            t.createElement(
+              "div",
+              { className: d().link_area },
+              t.createElement(
+                i.Z,
+                {
+                  className: d().link,
+                  href: "https://m.place.naver.com/my/policy/myplace",
+                  target: "_blank",
+                },
+                t.createElement(a.cC, {
+                  i18nKey: o.H.VIEW_DETAILED_USE_POLICY,
+                  defaults:
+                    "\uC774\uC6A9\uC815\uCC45 \uC790\uC138\uD788 \uBCF4\uAE30",
+                }),
+              ),
+            ),
+          ),
+          t.createElement(
+            "div",
+            { className: d().btn_area },
+            t.createElement(
+              i.Z,
+              { className: d().btn, onClick: u },
+              t.createElement(a.cC, {
+                i18nKey: o.H.CONFIRM,
+                defaults: "\uD655\uC778",
+              }),
+            ),
+          ),
+        );
+      }
+    },
+    3608: (r, _, e) => {
+      "use strict";
+      e.d(_, { o: () => H });
+      var t = e(2784),
+        a = e(98452),
+        n = e(4830),
+        i = e(4761),
+        s = e(98365),
+        l = e(95358),
+        p = e(1400),
+        o = e(85371),
+        m = e(10164),
+        c = e(35246),
+        d = e(69097),
+        E = e(74749),
+        C = e(82291),
+        g = e(2370),
+        u = e(1639),
+        f = e(50799),
+        P = e(38759),
+        O = e(68986),
+        T = e(43573),
+        y = e(14138),
+        B = e(1723),
+        v = e(22839),
+        h = e(97610),
+        D = e(43116),
+        x = e(14870),
+        M = e(96447),
+        A = e(62110),
+        I = e(62118),
+        R = e(92065),
+        b = e(88018),
+        L = e(39382),
+        U = e(89259),
+        K = e(15649),
+        W = e.n(K);
+      function H({
+        total: N,
+        reviews: F = [],
+        isShowProductSelectBox: V = !1,
+        reviewItems: Z = [],
+        loadMoreOnClick: X = null,
+        nClicksAreaCode: q,
+        postFix: j = "*1",
+      }) {
+        (0, P.Z)(W());
+        const { isPcmap: Q } = (0, n.E)(),
+          { business: z } = (0, m.n)(),
+          {
+            mainTab: G,
+            businessType: J,
+            businessId: ae,
+            isDan: $,
+            search: re,
+          } = (0, c.Z)(),
+          ee = G === "home",
+          se = /room|stylist/.test(G),
+          Y = G === "review",
+          { popupstore: he } = z || {},
+          { status: oe } = he || {},
+          ie = ee && oe?.key !== "ENDED" && !$,
+          { t: ce } = (0, a.$G)(),
+          fe = ce(Y ? g.H.REVIEW : g.H.VISITOR_REVIEW),
+          { reviewItem: de } = (0, A.a)(),
+          { votedKeyword: me } = (0, I.h)({ reviewItem: de }),
+          { details: Ce, userCount: ue } = me || {},
+          Ee = Ce?.length > 0 && ue >= E.S9,
+          _e = (0, d.AC)("review/visitor"),
+          pe = $ ? "../review/visitor" : `/${J}/${ae}/review/visitor`,
+          {
+            showRecommendationSort: Oe,
+            hasReviewAwardCoupons: ve,
+            reviewAwardCouponsLoading: Me,
+          } = (0, R.v_)();
+        return t.createElement(
+          i.UJ,
+          null,
+          ie && t.createElement(b.n, null),
+          t.createElement(
+            s.Mw,
+            {
+              className: W().visitor_review_section,
+              "data-nclicks-area-code": q,
+            },
+            t.createElement(s.Sh, {
+              title: fe,
+              count: N ? (0, u.k6)(N) : "0",
+              showArrow: !Y && N > 3,
+              anchorProps: {
+                to: (0, f.Ne)(pe, {
+                  ...(de && { reviewItem: de }),
+                  ...(0, f.ps)(re),
+                }),
+                nClicks: { clickCode: "rvmore" },
+              },
+              ...(Y && { guide: t.createElement(O.k, null) }),
+              ...(!ee &&
+                !Y &&
+                !Q &&
+                !$ && { extra: t.createElement(T.p, null) }),
+              ...(Y && { extra: t.createElement(y.N, null) }),
+            }),
+            t.createElement(
+              s.bI,
+              null,
+              ee &&
+                V &&
+                t.createElement(
+                  "div",
+                  { className: W().product_select_area_wrapper },
+                  t.createElement(C.S, { filters: Z, onSelect: _e }),
+                ),
+              ee &&
+                !se &&
+                Ee &&
+                t.createElement(
+                  "div",
+                  { className: W().keyword_list_area },
+                  t.createElement(
+                    l.Z,
+                    {
+                      className: W().link,
+                      to: `${pe}?shouldKeywordUnfold=true`,
+                      nClicks: { clickCode: "graph" },
+                    },
+                    t.createElement(L.Z, { displayCount: 5 }),
+                  ),
+                ),
+              !ee &&
+                se &&
+                t.createElement(
+                  "div",
+                  { className: W().keyword_statistics_area_wrapper },
+                  t.createElement(U.Z, null),
+                ),
+              !ee &&
+                t.createElement(
+                  t.Fragment,
+                  null,
+                  t.createElement(
+                    p.Z,
+                    null,
+                    t.createElement(B.f, { scrollTo: "review", postFix: j }),
+                  ),
+                  !se &&
+                    t.createElement(
+                      t.Fragment,
+                      null,
+                      t.createElement(M.M, { showRecommendationSort: Oe }),
+                      t.createElement(v.z, null),
+                      t.createElement(h.A, {
+                        hasReviewAwardCoupons: ve,
+                        reviewAwardCouponsLoading: Me,
+                      }),
+                    ),
+                ),
+              Y
+                ? t.createElement(D.N, { className: W().review_list })
+                : t.createElement(D.p, { reviews: F }),
+            ),
+            Y &&
+              F.length < N &&
+              X &&
+              t.createElement(o.Z, { hasMoreContent: !0, onClick: X }),
+          ),
+          t.createElement(x.c, null),
+        );
+      }
+      function S() {
+        const { business: N } = useBusinessContext(),
+          { mainTab: F } = useDetailRoute(),
+          V = F === "home",
+          { popupstore: Z } = N,
+          { operationEndDateTime: X } = Z;
+        return X ? V && createDate(X).diffFrom() > 0 : V;
+      }
+    },
+    7591: (r, _, e) => {
+      "use strict";
+      e.d(_, { MV: () => s, Rr: () => o, ZP: () => p, gq: () => i });
+      var t = e(2784),
+        a = e(84485);
+      const n = (0, t.createContext)([]);
+      function i({ reviews: m, children: c }) {
+        return t.createElement(n.Provider, { value: m }, c);
+      }
+      function s() {
+        return (0, t.useContext)(n);
+      }
+      const l = (0, t.createContext)(null);
+      function p({ children: m, value: c }) {
+        return t.createElement(l.Provider, { value: c }, m);
+      }
+      function o() {
+        const m = (0, t.useContext)(l);
+        return { ...m, visitedForBlind: (0, a.p)(m?.visited) };
+      }
+    },
+    66277: (
+      __unused_webpack_module,
+      __webpack_exports__,
+      __webpack_require__,
+    ) => {
+      "use strict";
+      __webpack_require__.d(__webpack_exports__, {
+        nS: () => PuiVisitorReviewCard,
+      });
+      var _loadable_component__WEBPACK_IMPORTED_MODULE_0__ =
+        __webpack_require__(77480);
+      function __loadable_isReady__(r, _) {
+        return !!__webpack_require__.m[r.resolve(_)];
+      }
+      function __loadable_requireSync__(self, props) {
+        var id = self.resolve(props);
+        return __webpack_require__(id);
+      }
+      const PuiVisitorReviewCard = (0,
+      _loadable_component__WEBPACK_IMPORTED_MODULE_0__.ZP)({
+        chunkName() {
+          return "PuiVisitorReviewCard";
+        },
+        isReady(r) {
+          return __loadable_isReady__(this, r);
+        },
+        requireAsync: () =>
+          Promise.all([
+            __webpack_require__.e(4578),
+            __webpack_require__.e(6705),
+            __webpack_require__.e(1365),
+          ]).then(__webpack_require__.bind(__webpack_require__, 2772)),
+        requireSync(r) {
+          return __loadable_requireSync__(this, r);
+        },
+        resolve() {
+          return 2772;
+        },
+      });
+    },
+    74749: (r, _, e) => {
+      "use strict";
+      e.d(_, { Rn: () => i, S9: () => a, cg: () => l });
+      var t = e(50799);
+      const a = 10,
+        n = 5,
+        i = "0",
+        s = {
+          homeTab_reviewSection: "f480_480_q95",
+          homeTab_photosection: "f180_180_q95",
+          reviewTab_reviewSection: "w1500_60_sharpen",
+          reviewTab_photoSection: "w278_sharpen",
+          photoTab: "w560_sharpen",
+          mediaViewer: "w750_q95",
+          mediaViewer_original: "w1500_60_sharpen",
+          list_image: "w278_sharpen",
+        };
+      function l({ url: p, thumbnailType: o, isVideo: m }) {
+        return m ? p : (0, t.Ne)(p, { type: s[o] });
+      }
+    },
+    62110: (r, _, e) => {
+      "use strict";
+      e.d(_, { a: () => s });
+      var t = e(2784),
+        a = e(63001),
+        n = e(35246),
+        i = e(74749);
+      function s() {
+        const l = (0, a.Z)(),
+          { businessType: p, mainTab: o, subTabs: m } = (0, n.Z)(),
+          c = (0, t.useMemo)(
+            () =>
+              /hairshop|nailshop/.test(p) && o === "stylist" && m?.[0]
+                ? m?.[0]
+                : (l.reviewItem === "noQuery" ? i.Rn : l.reviewItem) || i.Rn,
+            [p, o, l.reviewItem, m],
+          );
+        return { reviewItem: c, reviewItemChosen: c !== "0" };
+      }
+    },
+    62118: (r, _, e) => {
+      "use strict";
+      e.d(_, { h: () => p });
+      var t = e(63001),
+        a = e(35246),
+        n = e(10164),
+        i = e(63602),
+        s = e(31681);
+      const l = "0";
+      function p({ reviewItem: o = "", skip: m = !1 }) {
+        const c = (0, t.Z)(),
+          { businessType: d, businessId: E } = (0, a.Z)(),
+          { business: C } = (0, n.n)(),
+          g = C?.visitorReviewStats?.visitorReviewsTotal,
+          u = C?.base?.visitorReviewsTotal,
+          { reviewItem: f } = c || {},
+          P = o || (f === "noQuery" ? l : f) || l,
+          { data: O, loading: T } = (0, i.Z)(s.TB, {
+            variables: { id: E, itemId: P, businessType: d },
+            skip: m || !((g || u) > 0),
+          }),
+          y = O?.visitorReviewStats?.ratingReviewsTotal || 0,
+          B = O?.visitorReviewStats?.visitorReviewsTotal || 0,
+          v = O?.visitorReviewStats?.analysis?.votedKeyword,
+          h = O?.visitorReviewStats?.analysis?.menus,
+          D = O?.visitorReviewStats?.analysis?.themes;
+        return {
+          statsThemesLoading: T,
+          statsThemesData: O,
+          votedKeyword: v,
+          menus: h,
+          themes: D,
+          onlyShowRatingReviews: y === B,
+        };
+      }
+    },
+    92065: (r, _, e) => {
+      "use strict";
+      e.d(_, { v_: () => P });
+      var t = e(2784),
+        a = e(2355),
+        n = e(63001),
+        i = e(35246),
+        s = e(10164),
+        l = e(63602),
+        p = e(17493),
+        o = e(22237),
+        m = e(62118),
+        c = e(39218),
+        d = e(7370),
+        E = e(31681);
+      const C = "0",
+        g = 10;
+      function u(O, T) {
+        return O?.id
+          ? [O, ...(T || []).filter((y) => O.id !== y.id)].filter((y) => !!y)
+          : T;
+      }
+      function f(O, T) {
+        const y = O.slice(0, 3).filter((B) => !!B);
+        return (0, p.XX)([...y, ...(T || [])], "id").filter((B) => !!B);
+      }
+      function P() {
+        const O = (0, t.useRef)(!1),
+          T = (0, n.Z)(),
+          { businessType: y, businessId: B, mainTab: v } = (0, i.Z)(),
+          {
+            selectedReview: h,
+            snippetReviews: D,
+            snippetKeyword: x,
+            photoUsed: M,
+            reviewTheme: A,
+            reviewMenu: I,
+            reviewOrder: R,
+            reviewSort: b,
+            reviewItem: L,
+          } = T || {},
+          { LoadingComponent: U, ErrorComponent: K, business: W } = (0, s.n)(),
+          H = W?.naverBooking?.bookingBusinessId,
+          S = W?.base?.defaultCategoryCodeList,
+          N = (L === "noQuery" ? C : L) || C,
+          F = (0, c.p$)({ business: W, businessType: y, reviewItem: N }),
+          V = (0, o.m)(M),
+          Z = parseInt(R, 10) || void 0,
+          X = {
+            businessId: B,
+            businessType: y,
+            item: N,
+            bookingBusinessId: H,
+            size: g,
+            isPhotoUsed: V,
+            theme: A,
+            menu: I,
+            sort: b,
+            order: Z,
+            includeContent: !0,
+            getUserStats: !0,
+            includeReceiptPhotos: !0,
+            cidList: S,
+            getReactions: !0,
+            getTrailer: !0,
+          },
+          { data: q, loading: j } = (0, l.Z)(E.IW, {
+            variables: { input: { ...X, reviewIds: h } },
+            skip: !h,
+          }),
+          Q = D && x && !(V || A || I || Z || b),
+          { data: z, loading: G } = (0, l.Z)(E.IW, {
+            variables: {
+              input: { businessId: B, reviewIds: D, highlightKeyword: x },
+            },
+            skip: !Q,
+          }),
+          {
+            LoadingComponent: J,
+            ErrorComponent: ae,
+            data: $,
+            fetchMore: re,
+            loading: ee,
+          } = (0, l.Z)(E.IW, { variables: { input: X } }),
+          {
+            statsThemesLoading: se,
+            statsThemesData: Y,
+            votedKeyword: he,
+            menus: oe,
+            themes: ie,
+            onlyShowRatingReviews: ce,
+          } = (0, m.h)({ reviewItem: N }),
+          { data: fe, loading: de } = (0, l.Z)(E.vv, {}),
+          me = !(ee || se || j || G || de || J),
+          Ce = $?.visitorReviews?.itemReviewStats,
+          ue = $?.visitorReviews?.total,
+          Ee = (0, t.useCallback)(
+            (Re, Ae, Pe) => {
+              if (O.current) return;
+              const Be = Pe[Pe.length - 1].cursor;
+              ((O.current = !0),
+                Re({
+                  variables: { input: { ...Ae, after: Be }, id: B },
+                  updateQuery: (De, { fetchMoreResult: Te }) => {
+                    if (!Te) return De;
+                    const xe = Te?.visitorReviews?.items,
