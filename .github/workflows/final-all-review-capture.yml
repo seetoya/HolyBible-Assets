@@ -1,0 +1,99 @@
+name: Final capture of every individual academy review
+
+on:
+  push:
+    branches:
+      - tmp-review-capture-20260815
+    paths:
+      - '.github/workflows/final-all-review-capture.yml'
+      - 'final-all-review-capture.mjs.gz.b64'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: Check out temporary branch
+        uses: actions/checkout@v4
+        with:
+          ref: tmp-review-capture-20260815
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Korean fonts and Playwright Chromium
+        shell: bash
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-cjk
+          npm init -y
+          npm install playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Restore capture script
+        shell: bash
+        run: |
+          base64 -d final-all-review-capture.mjs.gz.b64 | gunzip > /tmp/final-all-review-capture.mjs
+          node --check /tmp/final-all-review-capture.mjs
+
+      - name: Capture all individual review cards
+        id: capture
+        continue-on-error: true
+        shell: bash
+        run: node /tmp/final-all-review-capture.mjs
+
+      - name: Show captured files
+        if: always()
+        shell: bash
+        run: |
+          echo "RUN_ID=${GITHUB_RUN_ID}"
+          find final-review-cards -type f -name '*.png' -printf '%p\t%s bytes\n' 2>/dev/null | sort || true
+          cat final-review-debug/results.json 2>/dev/null || true
+
+      - name: Upload final review-card images
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ericssam-all-individual-review-cards-final
+          path: final-review-cards/
+          if-no-files-found: warn
+          retention-days: 2
+          compression-level: 0
+
+      - name: Upload capture diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ericssam-all-individual-review-cards-debug
+          path: final-review-debug/
+          if-no-files-found: warn
+          retention-days: 2
+          compression-level: 0
+
+      - name: Persist run receipt
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p .capture-state
+          printf '%s\n' "${GITHUB_RUN_ID}" > .capture-state/final-all-review-run-id.txt
+          cp final-review-debug/results.json .capture-state/final-all-review-results.json 2>/dev/null || true
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .capture-state/final-all-review-run-id.txt .capture-state/final-all-review-results.json 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record final all-review capture run [skip ci]'
+            git pull --rebase origin tmp-review-capture-20260815
+            git push origin HEAD:tmp-review-capture-20260815
+          fi
+
+      - name: Enforce successful complete capture
+        if: steps.capture.outcome != 'success'
+        shell: bash
+        run: exit 1
