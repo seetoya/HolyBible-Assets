@@ -57,12 +57,12 @@ jobs:
       - name: Restore capture script
         shell: bash
         run: |
-          base64 -d all-review-capture.mjs.gz.b64 | gunzip > /tmp/all-review-capture.mjs
-          node --check /tmp/all-review-capture.mjs
+          base64 -d all-review-capture.mjs.gz.b64 | gunzip > all-review-capture.mjs
+          node --check all-review-capture.mjs
 
       - name: Capture every review as a separate PNG
         shell: bash
-        run: node /tmp/all-review-capture.mjs
+        run: node all-review-capture.mjs
 
       - name: Show capture inventory
         if: always()
@@ -75,6 +75,10 @@ jobs:
         if: always()
         shell: bash
         run: |
+          if [ ! -d all-review-output ]; then
+            echo "No output directory"
+            exit 0
+          fi
           git add -A all-review-output
           if git diff --cached --quiet; then
             echo "No new output files"
