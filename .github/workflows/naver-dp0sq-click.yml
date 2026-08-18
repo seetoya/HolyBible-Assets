@@ -1,0 +1,94 @@
+name: Test Naver dP0sq review load-more button
+
+on:
+  push:
+    branches:
+      - tmp-review-capture-20260815
+    paths:
+      - '.github/workflows/naver-dp0sq-click.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: tmp-review-capture-20260815
+          fetch-depth: 0
+      - name: Record run ID
+        shell: bash
+        run: |
+          mkdir -p .capture-state
+          echo "$GITHUB_RUN_ID" > .capture-state/naver-dp0sq-run-id.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .capture-state/naver-dp0sq-run-id.txt
+          git commit -m 'Record Naver dP0sq test run [skip ci]' || true
+          git pull --rebase origin tmp-review-capture-20260815
+          git push origin HEAD:tmp-review-capture-20260815
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install Playwright
+        shell: bash
+        run: |
+          npm init -y
+          npm install playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Click dP0sq repeatedly
+        shell: bash
+        run: |
+          cat > naver-dp0sq-click.mjs <<'EOF'
+          import { chromium } from 'playwright';
+          import fs from 'node:fs/promises';
+          const OUT='source-debug/naver-dp0sq';await fs.rm(OUT,{recursive:true,force:true});await fs.mkdir(OUT,{recursive:true});
+          const browser=await chromium.launch({headless:true,args:['--no-sandbox','--disable-dev-shm-usage','--lang=ko-KR']});
+          const context=await browser.newContext({viewport:{width:460,height:1400},locale:'ko-KR',timezoneId:'Asia/Seoul',userAgent:'Mozilla/5.0 (Linux; Android 15; SM-S938N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36'});
+          const page=await context.newPage();
+          const gql=[];page.on('response',async r=>{if(r.url()==='https://api.place.naver.com/place/graphql'&&(r.request().postData()||'').includes('getVisitorReviews')){let body=null;try{body=await r.json();}catch{}gql.push({status:r.status(),postData:r.request().postData(),body});}});
+          await page.goto('https://m.place.naver.com/place/1177401952/review/visitor',{waitUntil:'domcontentloaded',timeout:90000});await page.waitForTimeout(10000);
+          const info=await page.evaluate(()=>[...document.querySelectorAll('a.dP0sq')].map((el,i)=>({i,text:el.innerText,html:el.outerHTML,parentText:el.parentElement?.innerText?.slice(0,1000),parentHtml:el.parentElement?.outerHTML?.slice(0,3000),rect:el.getBoundingClientRect().toJSON?.()||null}))); 
+          const result={before:await page.locator('li.place_apply_pui').count(),buttons:info,rounds:[]};
+          for(let i=0;i<5;i++){
+            const before=await page.locator('li.place_apply_pui').count();
+            const buttons=page.locator('a.dP0sq');const bc=await buttons.count();
+            if(!bc){result.rounds.push({i,error:'no dP0sq'});break;}
+            let idx=-1;
+            for(let j=0;j<bc;j++){
+              const ptext=(await buttons.nth(j).locator('xpath=..').innerText().catch(()=>''));
+              if(/리뷰|방문자/.test(ptext)||j===bc-1) idx=j;
+            }
+            const btn=buttons.nth(idx<0?bc-1:idx);await btn.scrollIntoViewIfNeeded();
+            const respPromise=page.waitForResponse(r=>r.url()==='https://api.place.naver.com/place/graphql'&&(r.request().postData()||'').includes('getVisitorReviews'),{timeout:30000}).catch(()=>null);
+            let error=null;try{await btn.click({force:true,timeout:10000});}catch(e){error=String(e);}
+            const resp=await respPromise;let body=null;if(resp){try{body=await resp.json();}catch{}}
+            let changed=false;try{await page.waitForFunction(n=>document.querySelectorAll('li.place_apply_pui').length>n,before,{timeout:20000});changed=true;}catch{}
+            await page.waitForTimeout(2500);
+            const after=await page.locator('li.place_apply_pui').count();
+            result.rounds.push({i,before,after,changed,error,responseStatus:resp?.status()??null,responseBody:body,buttonCountAfter:await page.locator('a.dP0sq').count()});
+            if(after===before&&!resp)break;
+          }
+          result.after=await page.locator('li.place_apply_pui').count();result.gql=gql;
+          await fs.writeFile(`${OUT}/result.json`,JSON.stringify(result,null,2),'utf8');
+          await page.screenshot({path:`${OUT}/after.png`,fullPage:true});
+          console.log(JSON.stringify({before:result.before,after:result.after,buttonCount:result.buttons.length,rounds:result.rounds.map(x=>({i:x.i,before:x.before,after:x.after,changed:x.changed,status:x.responseStatus,items:x.responseBody?.[0]?.data?.visitorReviews?.items?.length,total:x.responseBody?.[0]?.data?.visitorReviews?.total,afterCursor:x.responseBody?.[0]?.data?.visitorReviews?.after,errors:x.responseBody?.[0]?.errors}))},null,2));
+          await browser.close();
+          EOF
+          node naver-dp0sq-click.mjs
+      - name: Commit diagnostics
+        if: always()
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add source-debug/naver-dp0sq
+          if ! git diff --cached --quiet; then
+            git commit -m 'Add Naver dP0sq pagination diagnostics [skip ci]'
+            git pull --rebase origin tmp-review-capture-20260815
+            git push origin HEAD:tmp-review-capture-20260815
+          fi
