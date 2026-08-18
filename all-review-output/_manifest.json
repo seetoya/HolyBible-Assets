@@ -1,0 +1,262 @@
+{
+  "generatedAt": "2026-08-18T20:20:12.438Z",
+  "viewport": {
+    "width": 460,
+    "height": 1400
+  },
+  "targets": [
+    {
+      "id": "academy1_naver",
+      "academy": "에릭쌤영어학원",
+      "platform": "네이버 방문자 리뷰",
+      "url": "https://m.place.naver.com/place/1177401952/review/visitor",
+      "httpStatus": 200,
+      "finalUrl": "https://m.place.naver.com/place/1177401952/review/visitor",
+      "expected": 32,
+      "markedBeforeCapture": 10,
+      "files": [
+        {
+          "sequence": 1,
+          "reviewer": "이정용28 리뷰 10사진 4 팔로우 학생들에게 열정적으로 수업해 주시고 학무모에게도 정기적으로 학생들 수업 ",
+          "fileName": "001_이정용28 리뷰 10사진 4 팔로우 학생들에게 열정적으로 수업해 주시고 학무모에게도 정기적으로 학생들 수업 .png",
+          "bytes": 37634,
+          "sha256": "ee3ca8850f0001c0b9750f91b6b03ee4b243da35695d9dc7e0d454c1aa11a44d"
+        },
+        {
+          "sequence": 2,
+          "reviewer": "win____ 리뷰 15사진 9 팔로우 정말 탁월한 선택이었어요~ 학원옮기고 시험 두번 보았어요~100점 9",
+          "fileName": "002_win____ 리뷰 15사진 9 팔로우 정말 탁월한 선택이었어요~ 학원옮기고 시험 두번 보았어요~100점 9.png",
+          "bytes": 184089,
+          "sha256": "15b86b34b88acb1e5757a18b3123b98bcde4387dfe04ef05aa9d0a09eb954faf"
+        },
+        {
+          "sequence": 3,
+          "reviewer": "코딱지66 리뷰 460사진 6 팔로우 큰아이서부터 둘째까지 원장쌤 실력은 말할것도 없고 모든 쌤들이 열정적으",
+          "fileName": "003_코딱지66 리뷰 460사진 6 팔로우 큰아이서부터 둘째까지 원장쌤 실력은 말할것도 없고 모든 쌤들이 열정적으.png",
+          "bytes": 43933,
+          "sha256": "0b1658b57fa9a1ec11c82d245f957befb6625c954ff7440a85837e2ed297ffc3"
+        },
+        {
+          "sequence": 4,
+          "reviewer": "찡찡이 smile 리뷰 5사진 1 팔로우 학생 파악이 빨라요. 아이에게 맞게 맞춤 지도가 가능해서 공부자세 ",
+          "fileName": "004_찡찡이 smile 리뷰 5사진 1 팔로우 학생 파악이 빨라요. 아이에게 맞게 맞춤 지도가 가능해서 공부자세 .png",
+          "bytes": 47022,
+          "sha256": "d5b933f27dbac1321cc42252a4f7934b794efebed19ab9635fc02a4dfb416a5e"
+        },
+        {
+          "sequence": 5,
+          "reviewer": "sti____ 리뷰 14사진 20 팔로우 원장 선생님의 열정이 정말 대단하세요👍 숙제가 다소 많긴 하지만 ",
+          "fileName": "005_sti____ 리뷰 14사진 20 팔로우 원장 선생님의 열정이 정말 대단하세요👍 숙제가 다소 많긴 하지만 .png",
+          "bytes": 42367,
+          "sha256": "4682609ccdfa4e37abc8064f29879fc74a11006f6d2138ae3c3bb318e11e7d0d"
+        },
+        {
+          "sequence": 6,
+          "reviewer": "nan____ 리뷰 5 팔로우 꼼꼼한 문제풀이와 다양한 자료제공 해주심 질문엔 섬세히 봐주고 스스로 공부할 ",
+          "fileName": "006_nan____ 리뷰 5 팔로우 꼼꼼한 문제풀이와 다양한 자료제공 해주심 질문엔 섬세히 봐주고 스스로 공부할 .png",
+          "bytes": 33228,
+          "sha256": "b8d372771814571b69195aeb5e88aad95f831efa0358ddbc5abc8f7cbf64ee17"
+        },
+        {
+          "sequence": 7,
+          "reviewer": "iove100482 리뷰 86사진 6 팔로우 선생님이 즐겁고 이해가 잘가요 학교시험 100점 맞앗어요😘 맞",
+          "fileName": "007_iove100482 리뷰 86사진 6 팔로우 선생님이 즐겁고 이해가 잘가요 학교시험 100점 맞앗어요😘 맞.png",
+          "bytes": 32716,
+          "sha256": "1750cc0075ee442afd36699a09951be577b9a702742a017573c1d121e44337dc"
+        },
+        {
+          "sequence": 8,
+          "reviewer": "dbw____ 리뷰 2사진 1 팔로우 예전에 다니던 학원 선생님이 소개해주셨던 곳인데 선생님이 잘 가르쳐주시",
+          "fileName": "008_dbw____ 리뷰 2사진 1 팔로우 예전에 다니던 학원 선생님이 소개해주셨던 곳인데 선생님이 잘 가르쳐주시.png",
+          "bytes": 28316,
+          "sha256": "71dd60999993b61bd590b61d0978941219f9dbf1abd4bdf27ffb1d7f3789f08c"
+        },
+        {
+          "sequence": 9,
+          "reviewer": "gys____ 리뷰 4사진 5 팔로우 선생님께서 수업도 잘하시고 학원 분위기도 그렇고 시스템이 잘 잡혀있어서",
+          "fileName": "009_gys____ 리뷰 4사진 5 팔로우 선생님께서 수업도 잘하시고 학원 분위기도 그렇고 시스템이 잘 잡혀있어서.png",
+          "bytes": 39925,
+          "sha256": "85d7ac3188826d9a7560f0be5a66324be908b944a02d673b3db59a2771b409a2"
+        },
+        {
+          "sequence": 10,
+          "reviewer": "min____ 리뷰 1 팔로우 선생님이 수업을 열심히 지도해주십니다. 학생들이 모를만한 것까지 잘 가르쳐주시",
+          "fileName": "010_min____ 리뷰 1 팔로우 선생님이 수업을 열심히 지도해주십니다. 학생들이 모를만한 것까지 잘 가르쳐주시.png",
+          "bytes": 36722,
+          "sha256": "6c6ea443cfd41b11ae355188612a39dbb7819c09387b56a292371392a5eea7c8"
+        }
+      ],
+      "captured": 10,
+      "failures": 0,
+      "status": "SUCCESS"
+    },
+    {
+      "id": "academy1_daangn",
+      "academy": "에릭쌤영어학원",
+      "platform": "당근 후기",
+      "url": "https://www.daangn.com/kr/local-profile/%EC%97%90%EB%A6%AD%EC%8C%A4%EC%98%81%EC%96%B4%ED%95%99%EC%9B%90-3p2umcgadi7h/",
+      "httpStatus": 200,
+      "finalUrl": "https://www.daangn.com/kr/local-profile/%EC%97%90%EB%A6%AD%EC%8C%A4%EC%98%81%EC%96%B4%ED%95%99%EC%9B%90-3p2umcgadi7h/",
+      "reviewMoreClicked": true,
+      "expected": null,
+      "markedBeforeCapture": 6,
+      "files": [
+        {
+          "sequence": 1,
+          "reviewer": "세상돈다내꺼9",
+          "fileName": "001_세상돈다내꺼9.png",
+          "bytes": 27041,
+          "sha256": "71dfb80ab1dd53a6904c35ffc9f285a3b956950c82f41bc543aa69a4ccf9b7dd"
+        },
+        {
+          "sequence": 2,
+          "reviewer": "오여사",
+          "fileName": "002_오여사.png",
+          "bytes": 36288,
+          "sha256": "f2b416cfcf1c7dcf4ac77ce5f5aea7efefd3dc38270514a88c918ac758726f20"
+        },
+        {
+          "sequence": 3,
+          "reviewer": "쭌맘",
+          "fileName": "003_쭌맘.png",
+          "bytes": 26247,
+          "sha256": "da8373d2f22a26c8c13d1c1c3bdca8c81f5534f9a2a8ae87809faf0217982f99"
+        },
+        {
+          "sequence": 4,
+          "reviewer": "메론킥",
+          "fileName": "004_메론킥.png",
+          "bytes": 29044,
+          "sha256": "f65d7a0c47ead63fa3452dfb46966f9e90861f397361f21e3105d2a4b1fc3872"
+        },
+        {
+          "sequence": 5,
+          "reviewer": "아투더인",
+          "fileName": "005_아투더인.png",
+          "bytes": 11706,
+          "sha256": "d0ef899cd3c5f1e8e7bb7513c197d818b13a9ec86c4e24deb0b158b42154dc36"
+        },
+        {
+          "sequence": 6,
+          "reviewer": "당근당근당근당근당근",
+          "fileName": "006_당근당근당근당근당근.png",
+          "bytes": 30729,
+          "sha256": "9a7cec7ab799b299d407c8ea179ced83fa949e22f4c255992016f43520683702"
+        }
+      ],
+      "captured": 6,
+      "failures": 0,
+      "status": "SUCCESS"
+    },
+    {
+      "id": "academy2_naver",
+      "academy": "에릭쌤입시영어학원",
+      "platform": "네이버 방문자 리뷰",
+      "url": "https://m.place.naver.com/place/2076083264/review/visitor",
+      "httpStatus": 200,
+      "finalUrl": "https://m.place.naver.com/place/2076083264/review/visitor",
+      "expected": 1,
+      "markedBeforeCapture": 1,
+      "files": [
+        {
+          "sequence": 1,
+          "reviewer": "온헤이 리뷰 15사진 8 팔로우 중등부 여름방학으로 고민끝에 결정했어요! 학원분위기가 조용한 가운데 아이들도",
+          "fileName": "001_온헤이 리뷰 15사진 8 팔로우 중등부 여름방학으로 고민끝에 결정했어요! 학원분위기가 조용한 가운데 아이들도.png",
+          "bytes": 64403,
+          "sha256": "ba07eac9e670d8142e1b19422aa6abde77aee89fecc7193414af0096aaa7818c"
+        }
+      ],
+      "captured": 1,
+      "failures": 0,
+      "status": "SUCCESS"
+    },
+    {
+      "id": "academy2_daangn",
+      "academy": "에릭쌤입시영어학원",
+      "platform": "당근 후기",
+      "url": "https://www.daangn.com/kr/local-profile/%EC%97%90%EB%A6%AD%EC%8C%A4%EC%9E%85%EC%8B%9C%EC%98%81%EC%96%B4-9ea8dgwzru8t/",
+      "httpStatus": 200,
+      "finalUrl": "https://www.daangn.com/kr/local-profile/%EC%97%90%EB%A6%AD%EC%8C%A4%EC%9E%85%EC%8B%9C%EC%98%81%EC%96%B4-9ea8dgwzru8t/",
+      "reviewMoreClicked": true,
+      "expected": null,
+      "markedBeforeCapture": 10,
+      "files": [
+        {
+          "sequence": 1,
+          "reviewer": "후추후추",
+          "fileName": "001_후추후추.png",
+          "bytes": 106296,
+          "sha256": "152d1159c36ed5c6521a863e9b3f55f2a3413c4f45378aa2a3219da0f55ebcee"
+        },
+        {
+          "sequence": 2,
+          "reviewer": "미자쏭",
+          "fileName": "002_미자쏭.png",
+          "bytes": 80783,
+          "sha256": "eefa84d66623c8350305a9edf833b88bea9dea35b39f997c5da5e73309c579ef"
+        },
+        {
+          "sequence": 3,
+          "reviewer": "미니멀",
+          "fileName": "003_미니멀.png",
+          "bytes": 21454,
+          "sha256": "927dfc749529d167e72f57d0ad3785182b2db41a7237596dbb6ed5d773ed85b7"
+        },
+        {
+          "sequence": 4,
+          "reviewer": "여름",
+          "fileName": "004_여름.png",
+          "bytes": 33071,
+          "sha256": "5c99f27024dfa4e76c7e1919b3308e87098d81361a171dfde0b11b6b87d6af1a"
+        },
+        {
+          "sequence": 5,
+          "reviewer": "구름",
+          "fileName": "005_구름.png",
+          "bytes": 32188,
+          "sha256": "7fc49d12376d2bc4bae4092067e81e555ff4dc76300ccf7366daaabb7701cfdd"
+        },
+        {
+          "sequence": 6,
+          "reviewer": "둥둥맘",
+          "fileName": "006_둥둥맘.png",
+          "bytes": 23396,
+          "sha256": "0ba1ff13eba30f179933abacfb81abe2eed160e18ee1d29d4656c5093a077dad"
+        },
+        {
+          "sequence": 7,
+          "reviewer": "당근이지",
+          "fileName": "007_당근이지.png",
+          "bytes": 40175,
+          "sha256": "34501e36457c422fd4a35e1b698952b3281b42380fd137e7100ab2f3fdaa76eb"
+        },
+        {
+          "sequence": 8,
+          "reviewer": "단단",
+          "fileName": "008_단단.png",
+          "bytes": 13748,
+          "sha256": "a70a2eb1f8f8e0c91a96ba2150539f6368958ae58d37d56cc2d127633c3aae2c"
+        },
+        {
+          "sequence": 9,
+          "reviewer": "생글",
+          "fileName": "009_생글.png",
+          "bytes": 44209,
+          "sha256": "90ece203cf66c90bc233dd241e821f2af1346dc446df8663db262b92c4a90e4d"
+        },
+        {
+          "sequence": 10,
+          "reviewer": "mino",
+          "fileName": "010_mino.png",
+          "bytes": 28243,
+          "sha256": "265f336b86a80eead10fd7ba0838c588c3305f61aca2603bedc3e139d754c9da"
+        }
+      ],
+      "captured": 10,
+      "failures": 0,
+      "status": "SUCCESS"
+    }
+  ],
+  "totalCaptured": 27,
+  "totalFailures": 0
+}
