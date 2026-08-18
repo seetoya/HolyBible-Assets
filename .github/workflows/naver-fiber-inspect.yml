@@ -1,0 +1,122 @@
+name: Inspect Naver review React fibers
+
+on:
+  push:
+    branches:
+      - tmp-review-capture-20260815
+    paths:
+      - '.github/workflows/naver-fiber-inspect.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: tmp-review-capture-20260815
+          fetch-depth: 0
+      - name: Record run ID
+        shell: bash
+        run: |
+          mkdir -p .capture-state
+          echo "$GITHUB_RUN_ID" > .capture-state/naver-fiber-inspect-run-id.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .capture-state/naver-fiber-inspect-run-id.txt
+          git commit -m 'Record Naver fiber inspection run [skip ci]' || true
+          git pull --rebase origin tmp-review-capture-20260815
+          git push origin HEAD:tmp-review-capture-20260815
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install Playwright
+        shell: bash
+        run: |
+          npm init -y
+          npm install playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Inspect fibers
+        shell: bash
+        run: |
+          cat > naver-fiber-inspect.mjs <<'EOF'
+          import { chromium } from 'playwright';
+          import fs from 'node:fs/promises';
+          const OUT='source-debug/naver-fiber';await fs.rm(OUT,{recursive:true,force:true});await fs.mkdir(OUT,{recursive:true});
+          const browser=await chromium.launch({headless:true,args:['--no-sandbox','--disable-dev-shm-usage','--lang=ko-KR']});
+          const context=await browser.newContext({viewport:{width:460,height:1400},locale:'ko-KR',timezoneId:'Asia/Seoul',userAgent:'Mozilla/5.0 (Linux; Android 15; SM-S938N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36'});
+          const page=await context.newPage();
+          await page.goto('https://m.place.naver.com/place/1177401952/review/visitor',{waitUntil:'domcontentloaded',timeout:90000});await page.waitForTimeout(10000);
+          const data=await page.evaluate(()=>{
+            const el=document.querySelector('li.place_apply_pui');if(!el)return {error:'no card'};
+            const fkey=Object.keys(el).find(k=>k.startsWith('__reactFiber$'));if(!fkey)return {error:'no fiber'};
+            const rootFiber=el[fkey];
+            const seen=new WeakSet();
+            const interesting=[];
+            const summarize=(v,path,depth,owner)=>{
+              if(v==null)return;
+              const t=typeof v;
+              if(t==='function'){
+                let src='';try{src=String(v).slice(0,5000);}catch{}
+                if(/fetchMore|refetch|loadMore|visitorReviews|Apollo|query|cache|watchQuery/i.test(path+' '+(v.name||'')+' '+src)) interesting.push({owner,path,type:'function',name:v.name,source:src});
+                return;
+              }
+              if(t!=='object'||depth>4)return;
+              if(seen.has(v))return;seen.add(v);
+              let keys=[];try{keys=Object.keys(v);}catch{return;}
+              const keyText=keys.join(' ');
+              if(/fetchMore|refetch|loadMore|client|observable|query|cache|visitorReviews|networkStatus/i.test(path+' '+keyText)){
+                const snapshot={};
+                for(const k of keys.slice(0,100)){
+                  try{const x=v[k];snapshot[k]=typeof x==='function'?`[fn ${x.name||''}]`:typeof x==='object'?(x===null?null:Array.isArray(x)?`[array ${x.length}]`:`[object ${x.constructor?.name||''}]`):String(x).slice(0,500);}catch(e){snapshot[k]=`[error ${e}]`;}
+                }
+                interesting.push({owner,path,type:'object',constructor:v.constructor?.name,keys,snapshot});
+              }
+              for(const k of keys.slice(0,200)){
+                if(['return','child','sibling','alternate','stateNode','_owner'].includes(k))continue;
+                let x;try{x=v[k];}catch{continue;}
+                if(typeof x==='function'||(x&&typeof x==='object'))summarize(x,`${path}.${k}`,depth+1,owner);
+              }
+            };
+            const fibers=[];let f=rootFiber;let level=0;
+            while(f&&level<80){
+              const typeName=typeof f.type==='function'?(f.type.displayName||f.type.name||'[anonymous]'):typeof f.type==='string'?f.type:String(f.elementType?.displayName||f.elementType?.name||f.elementType||f.type);
+              const info={level,tag:f.tag,key:f.key,typeName,flags:f.flags,lanes:f.lanes,propKeys:f.memoizedProps&&typeof f.memoizedProps==='object'?Object.keys(f.memoizedProps):[],stateType:typeof f.memoizedState};
+              fibers.push(info);
+              summarize(f.memoizedProps,`fiber[${level}].memoizedProps`,0,typeName);
+              // Walk linked hook states separately.
+              let h=f.memoizedState,hi=0;
+              while(h&&typeof h==='object'&&hi<80){
+                summarize(h.memoizedState,`fiber[${level}].hook[${hi}].memoizedState`,0,typeName);
+                summarize(h.baseState,`fiber[${level}].hook[${hi}].baseState`,0,typeName);
+                summarize(h.queue,`fiber[${level}].hook[${hi}].queue`,0,typeName);
+                h=h.next;hi++;
+              }
+              info.hookCount=hi;
+              summarize(f.updateQueue,`fiber[${level}].updateQueue`,0,typeName);
+              summarize(f.dependencies,`fiber[${level}].dependencies`,0,typeName);
+              f=f.return;level++;
+            }
+            return {fibers,interesting};
+          });
+          await fs.writeFile(`${OUT}/fiber.json`,JSON.stringify(data,null,2),'utf8');
+          console.log(JSON.stringify({fiberCount:data.fibers?.length,interesting:data.interesting?.map(x=>({owner:x.owner,path:x.path,type:x.type,name:x.name,keys:x.keys?.slice(0,20)}))},null,2));
+          await browser.close();
+          EOF
+          node naver-fiber-inspect.mjs
+      - name: Commit diagnostics
+        if: always()
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add source-debug/naver-fiber
+          if ! git diff --cached --quiet; then
+            git commit -m 'Add Naver React fiber diagnostics [skip ci]'
+            git pull --rebase origin tmp-review-capture-20260815
+            git push origin HEAD:tmp-review-capture-20260815
+          fi
