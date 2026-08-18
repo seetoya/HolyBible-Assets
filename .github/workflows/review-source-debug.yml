@@ -1,0 +1,95 @@
+name: Inspect review source data
+
+on:
+  push:
+    branches:
+      - tmp-review-capture-20260815
+    paths:
+      - '.github/workflows/review-source-debug.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: tmp-review-capture-20260815
+          fetch-depth: 0
+
+      - name: Download source files
+        shell: bash
+        run: |
+          rm -rf source-debug
+          mkdir -p source-debug
+          curl -L --retry 3 --fail 'https://g-place.pstatic.net/assets/place/place.detailReviewTab.bundle.9b8a93d5756bf8ac28a9.1786610149950.js' -o /tmp/naver-review.js
+          curl -L --retry 2 'https://g-place.pstatic.net/assets/place/place.detailReviewTab.bundle.9b8a93d5756bf8ac28a9.1786610149950.js.map' -o /tmp/naver-review.js.map || true
+          curl -L --retry 3 --fail 'https://www.daangn.com/kr/local-profile/%EC%97%90%EB%A6%AD%EC%8C%A4%EC%98%81%EC%96%B4%ED%95%99%EC%9B%90-3p2umcgadi7h/' -o /tmp/daangn-main.html
+          curl -L --retry 3 --fail 'https://www.daangn.com/kr/local-profile/%EC%97%90%EB%A6%AD%EC%8C%A4%EC%9E%85%EC%8B%9C%EC%98%81%EC%96%B4-9ea8dgwzru8t/' -o /tmp/daangn-exam.html
+
+      - name: Extract relevant contexts
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re, json
+
+          out=Path('source-debug')
+          def contexts(src_path, dst, terms, radius=5000, max_each=30):
+              text=Path(src_path).read_text('utf-8',errors='replace')
+              chunks=[]
+              for term in terms:
+                  positions=[m.start() for m in re.finditer(re.escape(term),text,re.I)]
+                  chunks.append(f'\n===== TERM {term} COUNT {len(positions)} =====\n')
+                  for i,pos in enumerate(positions[:max_each]):
+                      chunks.append(f'\n--- {term} #{i} POS {pos} ---\n')
+                      chunks.append(text[max(0,pos-radius):min(len(text),pos+radius)])
+              Path(dst).write_text(''.join(chunks),'utf-8')
+              return len(text)
+
+          summary={}
+          summary['naver_js_size']=contexts('/tmp/naver-review.js',out/'naver_bundle_contexts.txt',[
+              'visitorReviews','VisitorReviewsResult','reviewGroupId','includeReceiptPhotos','getReactions','cursor','graphql','operationName','itemReviewStats'
+          ],7000,50)
+          sm=Path('/tmp/naver-review.js.map')
+          if sm.exists() and sm.stat().st_size>100:
+              summary['naver_map_size']=contexts(sm,out/'naver_sourcemap_contexts.txt',[
+                  'visitorReviews','VisitorReviewsResult','reviewGroupId','includeReceiptPhotos','getReactions','cursor','graphql'
+              ],8000,50)
+
+          for label,src,names in [
+              ('main','/tmp/daangn-main.html',['세상돈다내꺼9','오여사','쭌맘','메론킥','아투더인','당근당근당근당근당근']),
+              ('exam','/tmp/daangn-exam.html',['후추후추','미자쏭','미니멀','여름','구름','둥둥맘','당근이지','단단','생글','mino'])
+          ]:
+              text=Path(src).read_text('utf-8',errors='replace')
+              summary[f'daangn_{label}_size']=len(text)
+              terms=['후기','review','reviews','local-profile','remixContext','loaderData','business_profile',*names]
+              contexts(src,out/f'daangn_{label}_contexts.txt',terms,5000,30)
+              # Save script tags containing review markers, but limit each to 1 MB.
+              scripts=re.findall(r'<script[^>]*>(.*?)</script>',text,re.S|re.I)
+              selected=[]
+              for i,s in enumerate(scripts):
+                  if any(t in s for t in ['후추후추','세상돈다내꺼9','reviews','review','후기']):
+                      selected.append({'index':i,'length':len(s),'text':s[:1000000]})
+              (out/f'daangn_{label}_scripts.json').write_text(json.dumps(selected,ensure_ascii=False,indent=2),'utf-8')
+              summary[f'daangn_{label}_scripts']=len(scripts)
+              summary[f'daangn_{label}_selected_scripts']=len(selected)
+          (out/'summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2),'utf-8')
+          print(json.dumps(summary,ensure_ascii=False,indent=2))
+          PY
+
+      - name: Commit source diagnostics
+        if: always()
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add source-debug
+          if ! git diff --cached --quiet; then
+            git commit -m 'Add review source diagnostics [skip ci]'
+            git push origin HEAD:tmp-review-capture-20260815
+          fi
