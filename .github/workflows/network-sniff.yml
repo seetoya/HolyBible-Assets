@@ -6,7 +6,7 @@ on:
       - tmp-review-capture-20260815
     paths:
       - '.github/workflows/network-sniff.yml'
-      - 'network-sniff.mjs.gz.b64'
+      - 'network-sniff.mjs'
   workflow_dispatch:
 
 permissions:
@@ -52,7 +52,6 @@ jobs:
       - name: Run network sniffer
         shell: bash
         run: |
-          base64 -d network-sniff.mjs.gz.b64 | gunzip > network-sniff.mjs
           node --check network-sniff.mjs
           node network-sniff.mjs
 
