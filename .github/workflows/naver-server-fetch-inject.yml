@@ -1,0 +1,98 @@
+name: Test server-side Naver review fetch and cache injection
+
+on:
+  push:
+    branches:
+      - tmp-review-capture-20260815
+    paths:
+      - '.github/workflows/naver-server-fetch-inject.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: tmp-review-capture-20260815
+          fetch-depth: 0
+      - name: Record run ID
+        shell: bash
+        run: |
+          mkdir -p .capture-state
+          echo "$GITHUB_RUN_ID" > .capture-state/naver-server-inject-run-id.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .capture-state/naver-server-inject-run-id.txt
+          git commit -m 'Record Naver server-inject test run [skip ci]' || true
+          git pull --rebase origin tmp-review-capture-20260815
+          git push origin HEAD:tmp-review-capture-20260815
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install Playwright
+        shell: bash
+        run: |
+          npm init -y
+          npm install playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Fetch GraphQL server-side and inject into Apollo query
+        shell: bash
+        run: |
+          cat > naver-server-inject.mjs <<'EOF'
+          import { chromium } from 'playwright';
+          import fs from 'node:fs/promises';
+          const OUT='source-debug/naver-server-inject';await fs.rm(OUT,{recursive:true,force:true});await fs.mkdir(OUT,{recursive:true});
+          const browser=await chromium.launch({headless:true,args:['--no-sandbox','--disable-dev-shm-usage','--lang=ko-KR']});
+          const context=await browser.newContext({viewport:{width:460,height:1400},locale:'ko-KR',timezoneId:'Asia/Seoul',userAgent:'Mozilla/5.0 (Linux; Android 15; SM-S938N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36'});
+          const page=await context.newPage();
+          await page.goto('https://m.place.naver.com/place/1177401952/review/visitor',{waitUntil:'domcontentloaded',timeout:90000});await page.waitForTimeout(10000);
+          async function getState(){return await page.evaluate(()=>{
+            const card=document.querySelector('li.place_apply_pui');if(!card)return null;
+            const fk=Object.keys(card).find(k=>k.startsWith('__reactFiber$'));let f=fk?card[fk]:null;
+            while(f){let h=f.memoizedState,idx=0;while(h&&typeof h==='object'&&idx<150){const ms=h.memoizedState,obs=ms?.observable,input=obs?.options?.variables?.input;if(obs?.queryName==='getVisitorReviews'&&input&&('bookingBusinessId'in input||'size'in input)){const reviews=[...document.querySelectorAll('li.place_apply_pui')].map(li=>{const k=Object.keys(li).find(x=>x.startsWith('__reactFiber$'));let ff=k?li[k]:null;while(ff){if(ff.memoizedProps?.review?.cursor)return ff.memoizedProps.review;ff=ff.return;}return null;}).filter(Boolean);return {level:0,idx,input,headers:obs.options?.context?.headers||{},query:ms.query?.loc?.source?.body||obs.options?.query?.loc?.source?.body,lastCursor:reviews.at(-1)?.cursor,reviewIds:reviews.map(r=>r.id)};}h=h.next;idx++;}f=f.return;}return null;});}
+          const result={before:await page.locator('li.place_apply_pui').count(),rounds:[]};
+          for(let round=0;round<4;round++){
+            const state=await getState();if(!state){result.rounds.push({round,error:'state missing'});break;}
+            const payload=[{operationName:'getVisitorReviews',variables:{input:{...state.input,size:10,after:state.lastCursor}},query:state.query}];
+            let response,status,text,json;
+            try{
+              response=await context.request.post('https://api.place.naver.com/place/graphql',{headers:{'accept':'*/*','content-type':'application/json','accept-language':'ko','x-wtm-graphql':state.headers['X-WTM-GraphQL']||state.headers['x-wtm-graphql']||'','origin':'https://m.place.naver.com','referer':'https://m.place.naver.com/'},data:payload,timeout:60000});
+              status=response.status();text=await response.text();try{json=JSON.parse(text);}catch{}
+            }catch(e){result.rounds.push({round,state,error:String(e)});break;}
+            const incoming=(Array.isArray(json)?json[0]:json)?.data?.visitorReviews;
+            const before=await page.locator('li.place_apply_pui').count();
+            let injected=null;
+            if(incoming){injected=await page.evaluate(async incoming=>{
+              const card=document.querySelector('li.place_apply_pui');const fk=Object.keys(card||{}).find(k=>k.startsWith('__reactFiber$'));let f=fk?card[fk]:null;
+              while(f){let h=f.memoizedState,idx=0;while(h&&typeof h==='object'&&idx<150){const ms=h.memoizedState,obs=ms?.observable,input=obs?.options?.variables?.input;if(obs?.queryName==='getVisitorReviews'&&input&&('bookingBusinessId'in input||'size'in input)){const methods=h.next?.memoizedState?.[0];if(typeof methods?.updateQuery!=='function')return {ok:false,error:'updateQuery missing'};let detail=null;methods.updateQuery(prev=>{const oldItems=prev?.visitorReviews?.items||[];const merged=[...oldItems];for(const item of incoming.items||[]){if(!merged.some(x=>(x?.id&&item?.id&&x.id===item.id)||(x?.__ref&&item?.__ref&&x.__ref===item.__ref)))merged.push(item);}detail={old:oldItems.length,new:(incoming.items||[]).length,merged:merged.length};return {visitorReviews:{...prev.visitorReviews,...incoming,items:merged}};});return {ok:true,idx,detail};}h=h.next;idx++;}f=f.return;}return {ok:false,error:'query hook missing'};},incoming);}
+            let changed=false;try{await page.waitForFunction(n=>document.querySelectorAll('li.place_apply_pui').length>n,before,{timeout:15000});changed=true;}catch{}
+            await page.waitForTimeout(2000);
+            const after=await page.locator('li.place_apply_pui').count();
+            result.rounds.push({round,status,text:text?.slice(0,10000),responseJson:json,incomingItems:incoming?.items?.length,incomingTotal:incoming?.total,incomingAfter:incoming?.after,before,after,changed,injected});
+            if(!incoming||after===before)break;
+            if(after>=Number(incoming.total||32))break;
+          }
+          result.after=await page.locator('li.place_apply_pui').count();
+          await fs.writeFile(`${OUT}/result.json`,JSON.stringify(result,null,2),'utf8');
+          await page.screenshot({path:`${OUT}/after.png`,fullPage:true});
+          console.log(JSON.stringify({before:result.before,after:result.after,rounds:result.rounds.map(x=>({round:x.round,status:x.status,incomingItems:x.incomingItems,total:x.incomingTotal,before:x.before,after:x.after,changed:x.changed,injected:x.injected,error:x.error,responseErrors:(Array.isArray(x.responseJson)?x.responseJson[0]:x.responseJson)?.errors}))},null,2));
+          await browser.close();
+          EOF
+          node naver-server-inject.mjs
+      - name: Commit diagnostics
+        if: always()
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add source-debug/naver-server-inject
+          if ! git diff --cached --quiet; then
+            git commit -m 'Add Naver server-inject diagnostics [skip ci]'
+            git pull --rebase origin tmp-review-capture-20260815
+            git push origin HEAD:tmp-review-capture-20260815
+          fi
