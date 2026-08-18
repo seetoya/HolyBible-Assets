@@ -1,0 +1,99 @@
+name: Inspect Naver review pagination modules
+
+on:
+  push:
+    branches:
+      - tmp-review-capture-20260815
+    paths:
+      - '.github/workflows/review-chunks-inspect.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: tmp-review-capture-20260815
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Download all page JavaScript and locate modules
+        shell: bash
+        run: |
+          rm -rf /tmp/naver-js source-debug/chunks
+          mkdir -p /tmp/naver-js source-debug/chunks
+          curl -L --retry 3 --fail 'https://m.place.naver.com/place/1177401952/review/visitor' -o /tmp/page.html
+          python3 - <<'PY'
+          from pathlib import Path
+          import re, html, urllib.parse
+          text=Path('/tmp/page.html').read_text('utf-8',errors='replace')
+          urls=[]
+          for src in re.findall(r'<script[^>]+src=["\']([^"\']+)',text,re.I):
+              src=html.unescape(src)
+              if src.startswith('//'): src='https:'+src
+              elif src.startswith('/'): src=urllib.parse.urljoin('https://m.place.naver.com',src)
+              if src.startswith('http') and src not in urls: urls.append(src)
+          Path('/tmp/script_urls.txt').write_text('\n'.join(urls),'utf-8')
+          print('scripts',len(urls))
+          PY
+          i=0
+          while IFS= read -r url; do
+            i=$((i+1))
+            curl -L --retry 2 --fail "$url" -o "/tmp/naver-js/$i.js" || true
+            printf '%s\t%s\n' "$i" "$url" >> source-debug/chunks/script_index.tsv
+          done < /tmp/script_urls.txt
+          grep -l -E '(^|[^0-9])(3608|92065):' /tmp/naver-js/*.js > /tmp/matches.txt || true
+          cp /tmp/matches.txt source-debug/chunks/matches.txt
+          cat /tmp/matches.txt
+
+      - name: Extract target modules and query contexts
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re, subprocess
+          out=Path('source-debug/chunks')
+          matches=Path('/tmp/matches.txt').read_text().splitlines() if Path('/tmp/matches.txt').exists() else []
+          summary=[]
+          for p in matches:
+              idx=Path(p).stem
+              pretty=Path(f'/tmp/{idx}.pretty.js')
+              subprocess.run(['npx','--yes','prettier@3.6.2',p,'--parser','babel'],stdout=pretty.open('w'),check=False)
+              src=pretty.read_text('utf-8',errors='replace')
+              starts=[(m.start(),m.group(1)) for m in re.finditer(r'(?m)^\s{4}(\d+):\s*\(',src)]
+              pos={mid:s for s,mid in starts}
+              for mid in ['3608','92065']:
+                  if mid not in pos: continue
+                  s=pos[mid]
+                  nxt=[x for x,_ in starts if x>s]
+                  e=min(nxt) if nxt else len(src)
+                  (out/f'module_{mid}_{idx}.txt').write_text(src[s:e],'utf-8')
+                  summary.append(f'{idx}: module {mid} size {e-s}')
+              lines=src.splitlines()
+              contexts=[]
+              for term in ['reviewsLoadMore','visitorReviews','loadMoreOnClick','fetchMore','cursor','reviewGroupId','includeReceiptPhotos']:
+                  hits=[i for i,l in enumerate(lines) if term.lower() in l.lower()]
+                  contexts.append(f'===== {idx} {term} HITS {len(hits)} =====')
+                  for i in hits[:100]:
+                      contexts.append('\n'.join(lines[max(0,i-20):min(len(lines),i+21)]))
+              (out/f'contexts_{idx}.txt').write_text('\n'.join(contexts),'utf-8')
+          (out/'summary.txt').write_text('\n'.join(summary),'utf-8')
+          print('\n'.join(summary))
+          PY
+      - name: Commit chunk diagnostics
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add source-debug/chunks
+          if ! git diff --cached --quiet; then
+            git commit -m 'Add Naver pagination module diagnostics [skip ci]'
+            git pull --rebase origin tmp-review-capture-20260815
+            git push origin HEAD:tmp-review-capture-20260815
+          fi
