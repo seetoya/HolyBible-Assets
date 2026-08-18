@@ -1,0 +1,121 @@
+    9764: (o, d, t) => {
+      "use strict";
+      t.d(d, { Z: () => i });
+      var e = t(2784),
+        a = t(98452),
+        n = t(34153),
+        r = t.n(n),
+        s = t(75163),
+        l = t(4761),
+        u = t(10164),
+        v = t(11857),
+        m = t(50668),
+        c = t(23700),
+        _ = t(84209),
+        E = t(2370),
+        M = t(50799),
+        C = t(32614),
+        g = t(92065),
+        P = t(88018),
+        p = t(2182),
+        O = t(95011),
+        T = t(41524),
+        f = t(93063),
+        D = t(91374),
+        h = t(3608);
+      function i({ hideSubTab: y }) {
+        const [B, A] = (0, e.useState)(!1),
+          R = (0, e.useRef)(!1),
+          { t: x } = (0, a.$G)(),
+          L = (0, n.useNavigate)(),
+          I = (0, n.useLocation)(),
+          {
+            skipDefaultDetailTabScrollPosition: U,
+            updateDefaultDetailTabScrollPosition: S,
+          } = (0, s.F)(),
+          W = `${x(E.H.PHOTO, "\uC0AC\uC9C4")}\xB7${x(E.H.VIDEOS, "\uC601\uC0C1")} ${x(E.H.REVIEW, "\uB9AC\uBDF0")}`,
+          F = (0, M.ps)(I.search),
+          { scrollTo: N } = F,
+          { business: K } = (0, u.n)(),
+          {
+            allDataLoaded: b,
+            loadingOrError: H,
+            isShowProductSelectBox: X,
+            reviewItem: w,
+            reviewItems: Z,
+            reviews: V,
+            total: k,
+            onlyShowRatingReviews: Y,
+            reviewsLoadMore: j,
+          } = (0, g.v_)(),
+          z = K?.visitorReviewPenalty ?? null;
+        (U(),
+          (0, e.useEffect)(() => {
+            if (N === "review") {
+              (L((0, M.Ne)(I.pathname, { ...F, scrollTo: null }), {
+                replace: !0,
+              }),
+                (R.current = !0));
+              return;
+            }
+            if (R.current && b && B) {
+              const J = (0, v.Mq)();
+              (setTimeout(() => {
+                (0, C.N)(J);
+              }, 100),
+                (R.current = !1));
+            }
+          }, [L, I.pathname, F, N, S, y, b, B, Y]));
+        const Q = (0, e.useRef)(!1);
+        if (
+          ((0, e.useEffect)(() => {
+            if (N === "my") {
+              (L((0, M.Ne)(I.pathname, { ...F, scrollTo: null }), {
+                replace: !0,
+              }),
+                (Q.current = !0));
+              return;
+            }
+            if (Q.current && b && B) {
+              const J = (0, c.o)();
+              (setTimeout(() => {
+                (0, C.N)(J);
+              }, 100),
+                (Q.current = !1));
+            }
+          }, [L, I.pathname, F, N, b, B]),
+          (0, e.useEffect)(() => {
+            R.current || S();
+          }, [S]),
+          H)
+        )
+          return H;
+        const q = e.createElement(
+          e.Fragment,
+          null,
+          X && e.createElement(m.Z, { filters: Z }),
+          e.createElement(T.X, null),
+          e.createElement(D.n, { item: w, title: W, setLoaded: A }),
+          e.createElement(P.n, null),
+          e.createElement(c.Z, null),
+          e.createElement(_.Z, null),
+          e.createElement(h.o, {
+            reviews: V,
+            total: k,
+            loadMoreOnClick: j,
+            nClicksAreaCode: "rrv",
+          }),
+          e.createElement(O.V, null),
+          e.createElement(p.B, null),
+        );
+        return e.createElement(
+          l.UJ,
+          null,
+          e.createElement(
+            "div",
+            { "data-nclicks-area-code": "rrv" },
+            e.createElement(f.c, { businessId: K?.base?.id, penalty: z }, q),
+          ),
+        );
+      }
+    },

@@ -1,0 +1,80 @@
+    89296: (o, d, t) => {
+      "use strict";
+      t.d(d, { V: () => c });
+      var e = t(2784),
+        a = t(98452),
+        n = t(95358),
+        r = t(1688),
+        s = t(98785),
+        l = t(2370),
+        u = t(38759),
+        v = t(84749),
+        m = t.n(v);
+      function c() {
+        (0, u.Z)(m());
+        const [E, M] = (0, e.useState)(!1);
+        return e.createElement(
+          "div",
+          { className: m().my_paid_guide_area },
+          e.createElement(
+            n.Z,
+            {
+              className: m().btn_toggle,
+              "aria-haspopup": "true",
+              "aria-expanded": E,
+              onClick: () => M(!E),
+              nClicks: { clickCode: "moneyinfo" },
+            },
+            e.createElement(
+              "div",
+              { className: m().title },
+              e.createElement(r.Z, {
+                "aria-hidden": "true",
+                className: m().icon,
+              }),
+              e.createElement(a.cC, {
+                i18nKey: l.H.MY_PAID_TITLE,
+                defaults: "<1>\uB0B4\uB3C8\uB0B4\uC0B0</1>\uC774\uB780?",
+                components: { 1: e.createElement("em", null) },
+              }),
+            ),
+            e.createElement(
+              "div",
+              { className: m().icon_wrapper },
+              e.createElement(s.Z, {
+                className: m().icon_arrow,
+                "aria-hidden": "true",
+              }),
+            ),
+          ),
+          E &&
+            e.createElement(
+              "div",
+              { className: m().text_area },
+              e.createElement(
+                "div",
+                { className: m().text },
+                e.createElement(a.cC, {
+                  i18nKey: l.H.MY_PAID_DESCRIPTION,
+                  defaults:
+                    "\uD50C\uB808\uC774\uC2A4 \uC608\uC57D/\uC8FC\uBB38, MY\uD50C\uB808\uC774\uC2A4 \uC601\uC218\uC99D \uC778\uC99D \uB0B4\uC5ED\uC744 \uBC14\uD0D5\uC73C\uB85C \uBE14\uB85C\uADF8\uC5D0\uC11C \uB0B4\uB3C8\uB0B4\uC0B0 \uAE00\uAC10\uC744 \uCCA8\uBD80\uD558\uC5EC \uC791\uC131\uD55C \uAE00\uC785\uB2C8\uB2E4.",
+                }),
+              ),
+              e.createElement(
+                n.Z,
+                {
+                  href: "https://help.naver.com/service/5593/contents/22399?osType=COMMONOS",
+                  className: m().link,
+                  target: "_blank",
+                  nClicks: { clickCode: "moneyurl" },
+                },
+                e.createElement(a.cC, {
+                  i18nKey: l.H.MY_PAID_VIEW_MORE,
+                  defaults: "\uC790\uC138\uD788\uBCF4\uAE30",
+                }),
+              ),
+            ),
+        );
+      }
+      var _ = null;
+    },
