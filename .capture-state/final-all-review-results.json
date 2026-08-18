@@ -1,0 +1,67 @@
+[
+  {
+    "id": "academy1_naver",
+    "type": "naver",
+    "academy": "에릭쌤영어학원",
+    "platform": "네이버",
+    "url": "https://m.place.naver.com/place/1177401952/review/visitor",
+    "folder": "에릭쌤영어학원/네이버_방문자리뷰",
+    "httpStatus": 200,
+    "finalUrl": "https://m.place.naver.com/place/1177401952/review/visitor",
+    "status": "FAILED",
+    "error": "Error: Naver card count mismatch: expected 32, got 10\n    at captureNaver (file:///home/runner/work/HolyBible-Assets/HolyBible-Assets/final-all-review-capture.mjs:145:45)\n    at async file:///home/runner/work/HolyBible-Assets/HolyBible-Assets/final-all-review-capture.mjs:366:47"
+  },
+  {
+    "id": "academy1_daangn",
+    "type": "daangn",
+    "academy": "에릭쌤영어학원",
+    "platform": "당근",
+    "url": "https://www.daangn.com/kr/local-profile/%EC%97%90%EB%A6%AD%EC%8C%A4%EC%98%81%EC%96%B4%ED%95%99%EC%9B%90-3p2umcgadi7h/",
+    "folder": "에릭쌤영어학원/당근_후기",
+    "httpStatus": 200,
+    "finalUrl": "https://www.daangn.com/kr/local-profile/%EC%97%90%EB%A6%AD%EC%8C%A4%EC%98%81%EC%96%B4%ED%95%99%EC%9B%90-3p2umcgadi7h/",
+    "status": "FAILED",
+    "error": "Error: Card ancestor not found: PARK\n    at captureDaangn (file:///home/runner/work/HolyBible-Assets/HolyBible-Assets/final-all-review-capture.mjs:328:25)\n    at async file:///home/runner/work/HolyBible-Assets/HolyBible-Assets/final-all-review-capture.mjs:366:82"
+  },
+  {
+    "id": "academy2_naver",
+    "type": "naver",
+    "academy": "에릭쌤입시영어학원",
+    "platform": "네이버",
+    "url": "https://m.place.naver.com/place/2076083264/review/visitor",
+    "folder": "에릭쌤입시영어학원/네이버_방문자리뷰",
+    "httpStatus": 200,
+    "finalUrl": "https://m.place.naver.com/place/2076083264/review/visitor",
+    "expected": 1,
+    "captured": 1,
+    "files": [
+      "001_온헤이.png"
+    ],
+    "status": "SUCCESS"
+  },
+  {
+    "id": "academy2_daangn",
+    "type": "daangn",
+    "academy": "에릭쌤입시영어학원",
+    "platform": "당근",
+    "url": "https://www.daangn.com/kr/local-profile/%EC%97%90%EB%A6%AD%EC%8C%A4%EC%9E%85%EC%8B%9C%EC%98%81%EC%96%B4-9ea8dgwzru8t/",
+    "folder": "에릭쌤입시영어학원/당근_후기",
+    "httpStatus": 200,
+    "finalUrl": "https://www.daangn.com/kr/local-profile/%EC%97%90%EB%A6%AD%EC%8C%A4%EC%9E%85%EC%8B%9C%EC%98%81%EC%96%B4-9ea8dgwzru8t/",
+    "expected": 10,
+    "captured": 10,
+    "files": [
+      "001_후추후추.png",
+      "002_미자쏭.png",
+      "003_미니멀.png",
+      "004_여름.png",
+      "005_구름.png",
+      "006_둥둥맘.png",
+      "007_당근이지.png",
+      "008_단단.png",
+      "009_생글.png",
+      "010_mino.png"
+    ],
+    "status": "SUCCESS"
+  }
+]
