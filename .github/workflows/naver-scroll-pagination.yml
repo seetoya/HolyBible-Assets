@@ -1,0 +1,104 @@
+name: Test Naver review infinite-scroll pagination
+
+on:
+  push:
+    branches:
+      - tmp-review-capture-20260815
+    paths:
+      - '.github/workflows/naver-scroll-pagination.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: tmp-review-capture-20260815
+          fetch-depth: 0
+      - name: Record run ID
+        shell: bash
+        run: |
+          mkdir -p .capture-state
+          echo "$GITHUB_RUN_ID" > .capture-state/naver-scroll-pagination-run-id.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .capture-state/naver-scroll-pagination-run-id.txt
+          git commit -m 'Record Naver scroll-pagination test run [skip ci]' || true
+          git pull --rebase origin tmp-review-capture-20260815
+          git push origin HEAD:tmp-review-capture-20260815
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install Playwright
+        shell: bash
+        run: |
+          npm init -y
+          npm install playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Test scroll loading
+        shell: bash
+        run: |
+          cat > naver-scroll-pagination.mjs <<'EOF'
+          import { chromium } from 'playwright';
+          import fs from 'node:fs/promises';
+          const OUT='source-debug/naver-scroll-pagination';
+          await fs.rm(OUT,{recursive:true,force:true});await fs.mkdir(OUT,{recursive:true});
+          const browser=await chromium.launch({headless:true,args:['--no-sandbox','--disable-dev-shm-usage','--lang=ko-KR']});
+          const context=await browser.newContext({viewport:{width:460,height:1400},locale:'ko-KR',timezoneId:'Asia/Seoul',userAgent:'Mozilla/5.0 (Linux; Android 15; SM-S938N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36'});
+          const page=await context.newPage();
+          const gql=[];
+          page.on('response',async r=>{if(r.url()==='https://api.place.naver.com/place/graphql'&&(r.request().postData()||'').includes('getVisitorReviews')){let body=null;try{body=await r.json();}catch{}gql.push({status:r.status(),postData:r.request().postData(),body});}});
+          await page.goto('https://m.place.naver.com/place/1177401952/review/visitor',{waitUntil:'domcontentloaded',timeout:90000});
+          await page.waitForTimeout(10000);
+          const structure=await page.evaluate(()=>{
+            const last=[...document.querySelectorAll('li.place_apply_pui')].at(-1);if(!last)return null;
+            const ancestors=[];let n=last;
+            while(n&&ancestors.length<15){const s=getComputedStyle(n),r=n.getBoundingClientRect();ancestors.push({tag:n.tagName,class:n.className,id:n.id,scrollHeight:n.scrollHeight,clientHeight:n.clientHeight,overflowY:s.overflowY,position:s.position,rect:{top:r.top,bottom:r.bottom,height:r.height},html:n===last?null:n.outerHTML.slice(0,1500)});n=n.parentElement;}
+            const parent=last.parentElement;
+            return {lastText:last.innerText.slice(0,500),lastHtml:last.outerHTML.slice(-3000),parentHtml:parent?.outerHTML.slice(-8000),ancestors,buttons:[...document.querySelectorAll('a,button')].map(x=>({tag:x.tagName,class:x.className,text:x.innerText.trim(),html:x.outerHTML.slice(0,1000)})).filter(x=>x.text).slice(-100),docHeight:document.documentElement.scrollHeight,innerHeight:window.innerHeight,scrollY:window.scrollY};
+          });
+          await fs.writeFile(`${OUT}/structure.json`,JSON.stringify(structure,null,2),'utf8');
+          const result={before:await page.locator('li.place_apply_pui').count(),rounds:[]};
+          for(let i=0;i<6;i++){
+            const before=await page.locator('li.place_apply_pui').count();
+            const responsePromise=page.waitForResponse(r=>r.url()==='https://api.place.naver.com/place/graphql'&&(r.request().postData()||'').includes('getVisitorReviews'),{timeout:20000}).catch(()=>null);
+            const action=await page.evaluate(()=>{
+              const cards=[...document.querySelectorAll('li.place_apply_pui')];const last=cards.at(-1);if(!last)return null;
+              last.scrollIntoView({block:'end',behavior:'instant'});
+              const ancestors=[];let n=last.parentElement;
+              while(n){if(n.scrollHeight>n.clientHeight+20){n.scrollTop=n.scrollHeight;ancestors.push({tag:n.tagName,class:n.className,scrollTop:n.scrollTop,scrollHeight:n.scrollHeight,clientHeight:n.clientHeight});}n=n.parentElement;}
+              window.scrollTo({top:document.documentElement.scrollHeight,behavior:'instant'});
+              window.dispatchEvent(new Event('scroll',{bubbles:true}));
+              return {scrollY:window.scrollY,docHeight:document.documentElement.scrollHeight,ancestors};
+            });
+            const resp=await responsePromise;let body=null;if(resp){try{body=await resp.json();}catch{}}
+            let changed=false;try{await page.waitForFunction(n=>document.querySelectorAll('li.place_apply_pui').length>n,before,{timeout:15000});changed=true;}catch{}
+            await page.waitForTimeout(2000);
+            const after=await page.locator('li.place_apply_pui').count();
+            result.rounds.push({i,before,after,changed,action,responseStatus:resp?.status()??null,responseBody:body});
+            if(after===before&&!resp&&i>=2)break;
+          }
+          result.after=await page.locator('li.place_apply_pui').count();result.gql=gql;
+          await fs.writeFile(`${OUT}/result.json`,JSON.stringify(result,null,2),'utf8');
+          await page.screenshot({path:`${OUT}/after.png`,fullPage:true});
+          console.log(JSON.stringify({before:result.before,after:result.after,rounds:result.rounds.map(x=>({i:x.i,before:x.before,after:x.after,changed:x.changed,status:x.responseStatus,items:x.responseBody?.[0]?.data?.visitorReviews?.items?.length,total:x.responseBody?.[0]?.data?.visitorReviews?.total,afterCursor:x.responseBody?.[0]?.data?.visitorReviews?.after,errors:x.responseBody?.[0]?.errors}))},null,2));
+          await browser.close();
+          EOF
+          node naver-scroll-pagination.mjs
+      - name: Commit diagnostics
+        if: always()
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add source-debug/naver-scroll-pagination
+          if ! git diff --cached --quiet; then
+            git commit -m 'Add Naver scroll-pagination diagnostics [skip ci]'
+            git pull --rebase origin tmp-review-capture-20260815
+            git push origin HEAD:tmp-review-capture-20260815
+          fi
