@@ -1,0 +1,846 @@
+[
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "count"
+    ],
+    "keys": [
+      "reviewCount",
+      "__typename",
+      "reviewStarRating",
+      "followerCount"
+    ],
+    "value": {
+      "reviewCount": 16,
+      "__typename": "Count",
+      "reviewStarRating": 4.9,
+      "followerCount": 33
+    }
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "reviews",
+      "0"
+    ],
+    "keys": [
+      "extend",
+      "images",
+      "starRating",
+      "content",
+      "tags",
+      "likesCount",
+      "postStopped",
+      "user",
+      "reviewerInfo",
+      "actorRegion",
+      "createdAt",
+      "__typename",
+      "comment"
+    ],
+    "value": {
+      "extend": {
+        "productName": null,
+        "reviewCount": null,
+        "__typename": "ReviewExtend"
+      },
+      "images": [
+        {
+          "thumbnailUrl": "https://img.kr.gcp-karroter.net/BUSINESS_REVIEW/etc/202607/17854783511741d34c8941f3276a343507a17d273d417086d0738d9f1da70da65f1e21705075b0.webp?service=business-review",
+          "__typename": "LocalProfileImage"
+        }
+      ],
+      "starRating": 5,
+      "content": "영어를 싫어하던 아이가 지금은 누구보다 즐겁게 다니는 학원입니다. \n\n에릭입시영어 선생님들께서는 지친 아이들에게 항상 간식을 챙겨 주시며 에너지를 채워주시고, 작은 변화도 놓치지 않고 칭찬과 격려를 아끼지 않으십니다. \n\n특히 에릭쌤은 남자아이들이 좋아할 만한 유쾌한 입담과 재치가 있으셔서 아이도 선생님을 정말 좋아합니다.  \n무엇보다 사춘기 스위치가 제대로 켜져 아이가 학원에 가지 않으려 하는 날에는 직접 연락하시고 찾아봐 주실 만큼, 한 명 한 명을 진심으로 챙겨주시는 모습이 인상 깊었습니다. \n\n덕분에 시험 점수도 30점 이상 향상됐고, 예전에는 학원 가기 싫다고 하던 아이가 지금은 정규수업이 아닌 재량수업인 금요일에도 빠지지 않고 스스로 가서 모르는 것을 질문하며 배우고 옵니다. 그 모습만 봐도 아이가 얼마나 즐겁게 다니는지 느껴지더라고요.\n\n단순히 영어를 가르치는 곳이 아니라 아이의 성장을 지지해주시며 함께해 주는 학원이라 믿고 추천드립니다 ◡̈ ! ",
+      "tags": [],
+      "likesCount": 1,
+      "postStopped": false,
+      "user": {
+        "nickname": "후추후추",
+        "regionCheckinsCount": 16,
+        "profileImage": "",
+        "__typename": "BusinessReviewProfile"
+      },
+      "reviewerInfo": {
+        "followBusinessAccount": false,
+        "__typename": "ReviewerInfo"
+      },
+      "actorRegion": {
+        "name": "용산동",
+        "name1": "대전광역시",
+        "name2": "유성구",
+        "name3": "용산동",
+        "__typename": "BusinessReviewActorRegion"
+      },
+      "createdAt": "2026-07-31T06:13:14.358792Z",
+      "__typename": "BusinessReview",
+      "comment": null
+    }
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "reviews",
+      "0",
+      "user"
+    ],
+    "keys": [
+      "nickname",
+      "regionCheckinsCount",
+      "profileImage",
+      "__typename"
+    ],
+    "value": {
+      "nickname": "후추후추",
+      "regionCheckinsCount": 16,
+      "profileImage": "",
+      "__typename": "BusinessReviewProfile"
+    }
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "reviews",
+      "1"
+    ],
+    "keys": [
+      "extend",
+      "images",
+      "starRating",
+      "content",
+      "tags",
+      "likesCount",
+      "postStopped",
+      "user",
+      "reviewerInfo",
+      "actorRegion",
+      "createdAt",
+      "__typename",
+      "comment"
+    ],
+    "value": {
+      "extend": {
+        "productName": null,
+        "reviewCount": null,
+        "__typename": "ReviewExtend"
+      },
+      "images": [],
+      "starRating": 5,
+      "content": "아이 친구의 적극적인 소개로 큰맘먹고 학원을 옮기게 되었어요~ 첫 방문부터 좋았던 점은 와글와글 시장같는 분위기가 아닌 정갈하고 깔끔한 내부와 분위기 였어요! 차분히 집중할 수 있겠다는 생각이 뙇!! 그리고 이후에는 아이와 잘 맞는지가 가장 중요한데 첫 수업에 다녀오자마자 “선생님이 너무 좋아~~~ 엄청 재밌으시고 설명을 잘 해주셔~~“ 라는 ㅎㅎㅎ 학원 다니는 아이의 입에서 나올 수 없는 후기가 줄줄줄~ 또 하나!! 원장님과 선생님의 열정이 엄청 나십니다. 금요일은 선택 등원 인데.. 선생님께서 정규슈업이 아닌데도 상주 해 계셔요. 질문이 있거나 학습에 답답함이 있을 때 금요일에 학원에 가서 집중 트레이닝을 받을 수 있어서 너무너무 좋아요~ 여기서 포임트는!! 선택 수업이기 때문에 당연~~히 학원에 안가고 싶을 법도 한데 우리 아이가 달라졌어요!! 정규수업 만큼이나 꼬박꼬박 학원을 가네요^^ 환경, 수업 분위기, 선생님의 수업 스똬일, 무엇보다 아이가 거부감이 아닌 즐겁게 학원을 갈 수 있다는 거에 무한 무한 감사와 신뢰를 느끼고 있어요~ 벌써 몇개월 째 인데 아이의 학습 습관과 동기부여까지 신경써주시며 부모상담을 해주시니까 더 믿음이 갑니다~ 사랑해요~에릭쌤~~❤️",
+      "tags": [],
+      "likesCount": 1,
+      "postStopped": false,
+      "user": {
+        "nickname": "미자쏭",
+        "regionCheckinsCount": 20,
+        "profileImage": "",
+        "__typename": "BusinessReviewProfile"
+      },
+      "reviewerInfo": {
+        "followBusinessAccount": false,
+        "__typename": "ReviewerInfo"
+      },
+      "actorRegion": {
+        "name": "용산동",
+        "name1": "대전광역시",
+        "name2": "유성구",
+        "name3": "용산동",
+        "__typename": "BusinessReviewActorRegion"
+      },
+      "createdAt": "2026-07-29T04:29:07.344071Z",
+      "__typename": "BusinessReview",
+      "comment": null
+    }
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "reviews",
+      "1",
+      "user"
+    ],
+    "keys": [
+      "nickname",
+      "regionCheckinsCount",
+      "profileImage",
+      "__typename"
+    ],
+    "value": {
+      "nickname": "미자쏭",
+      "regionCheckinsCount": 20,
+      "profileImage": "",
+      "__typename": "BusinessReviewProfile"
+    }
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "reviews",
+      "2"
+    ],
+    "keys": [
+      "extend",
+      "images",
+      "starRating",
+      "content",
+      "tags",
+      "likesCount",
+      "postStopped",
+      "user",
+      "reviewerInfo",
+      "actorRegion",
+      "createdAt",
+      "__typename",
+      "comment"
+    ],
+    "value": {
+      "extend": {
+        "productName": null,
+        "reviewCount": null,
+        "__typename": "ReviewExtend"
+      },
+      "images": [],
+      "starRating": 5,
+      "content": "진도보다는 아이가 부족한 부분을 중요하게 생각하시는 점이 좋아서 선택하게 되었어요.이제 한달 좀 안되었지만 공부에 흥미도 생기고 원장님강의도 재미있다고 해요. 이 마음 계속 되길 바라며...^^",
+      "tags": [],
+      "likesCount": 1,
+      "postStopped": false,
+      "user": {
+        "nickname": "미니멀",
+        "regionCheckinsCount": 26,
+        "profileImage": "",
+        "__typename": "BusinessReviewProfile"
+      },
+      "reviewerInfo": {
+        "followBusinessAccount": false,
+        "__typename": "ReviewerInfo"
+      },
+      "actorRegion": {
+        "name": "용산동",
+        "name1": "대전광역시",
+        "name2": "유성구",
+        "name3": "용산동",
+        "__typename": "BusinessReviewActorRegion"
+      },
+      "createdAt": "2026-07-29T00:23:23.37115Z",
+      "__typename": "BusinessReview",
+      "comment": null
+    }
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "reviews",
+      "2",
+      "user"
+    ],
+    "keys": [
+      "nickname",
+      "regionCheckinsCount",
+      "profileImage",
+      "__typename"
+    ],
+    "value": {
+      "nickname": "미니멀",
+      "regionCheckinsCount": 26,
+      "profileImage": "",
+      "__typename": "BusinessReviewProfile"
+    }
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "reviews",
+      "3"
+    ],
+    "keys": [
+      "extend",
+      "images",
+      "starRating",
+      "content",
+      "tags",
+      "likesCount",
+      "postStopped",
+      "user",
+      "reviewerInfo",
+      "actorRegion",
+      "createdAt",
+      "__typename",
+      "comment"
+    ],
+    "value": {
+      "extend": {
+        "productName": null,
+        "reviewCount": null,
+        "__typename": "ReviewExtend"
+      },
+      "images": [],
+      "starRating": 5,
+      "content": "이사와서 입시영어학원으로  보낼만한곳이 없어 멀리 관평동까지  일년넘게다녔습니다 \n어느날 에릭영어입시학원이 생긴다는걸 보고  걱정은되었지만 무조건 가까운곳으로 옮겨야겠구나 라는 생각이 들었습니다 \n현재 고1 중1이 다니고 있습니다 \n꼼꼼한 출석체크와 열정을 가지고 내아이처럼 \n지도해주시는 원장님! 선생님 ! 이 계셔서  믿고 맡길수있는 학원입니다 \n정확한 상담 또한 더욱 믿음이 가는 에릭영어입시학원입니다 ",
+      "tags": [],
+      "likesCount": 1,
+      "postStopped": false,
+      "user": {
+        "nickname": "여름",
+        "regionCheckinsCount": 6,
+        "profileImage": "",
+        "__typename": "BusinessReviewProfile"
+      },
+      "reviewerInfo": {
+        "followBusinessAccount": false,
+        "__typename": "ReviewerInfo"
+      },
+      "actorRegion": {
+        "name": "나성동",
+        "name1": "세종특별자치시",
+        "name2": "",
+        "name3": "나성동",
+        "__typename": "BusinessReviewActorRegion"
+      },
+      "createdAt": "2026-07-28T12:19:49.255955Z",
+      "__typename": "BusinessReview",
+      "comment": null
+    }
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "reviews",
+      "3",
+      "user"
+    ],
+    "keys": [
+      "nickname",
+      "regionCheckinsCount",
+      "profileImage",
+      "__typename"
+    ],
+    "value": {
+      "nickname": "여름",
+      "regionCheckinsCount": 6,
+      "profileImage": "",
+      "__typename": "BusinessReviewProfile"
+    }
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "reviews",
+      "4"
+    ],
+    "keys": [
+      "extend",
+      "images",
+      "starRating",
+      "content",
+      "tags",
+      "likesCount",
+      "postStopped",
+      "user",
+      "reviewerInfo",
+      "actorRegion",
+      "createdAt",
+      "__typename",
+      "comment"
+    ],
+    "value": {
+      "extend": {
+        "productName": null,
+        "reviewCount": null,
+        "__typename": "ReviewExtend"
+      },
+      "images": [],
+      "starRating": 5,
+      "content": "고2 아이가 다니고 있는 영어학원입니다. 출결 관리를 꼼꼼하게 해주셔서 아이가 학원 생활을 성실하게 이어갈 수 있었고, 부족한 부분도 세심하게 체크해서 끝까지 채워주시는 점이 정말 만족스럽습니다. 특히 원장님의 열정적인 수업 덕분에 아이도 동기부여를 많이 받고 영어 실력도 향상되리라 기대가 됩니다. 학생 한 명 한 명을 신경 써서 지도해 주시는 믿음직한 학원이라 앞으로도 꾸준히 다닐 생각입니다.",
+      "tags": [],
+      "likesCount": 1,
+      "postStopped": false,
+      "user": {
+        "nickname": "구름",
+        "regionCheckinsCount": 10,
+        "profileImage": "",
+        "__typename": "BusinessReviewProfile"
+      },
+      "reviewerInfo": {
+        "followBusinessAccount": false,
+        "__typename": "ReviewerInfo"
+      },
+      "actorRegion": {
+        "name": "관평동",
+        "name1": "대전광역시",
+        "name2": "유성구",
+        "name3": "관평동",
+        "__typename": "BusinessReviewActorRegion"
+      },
+      "createdAt": "2026-07-28T08:11:34.689371Z",
+      "__typename": "BusinessReview",
+      "comment": null
+    }
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "reviews",
+      "4",
+      "user"
+    ],
+    "keys": [
+      "nickname",
+      "regionCheckinsCount",
+      "profileImage",
+      "__typename"
+    ],
+    "value": {
+      "nickname": "구름",
+      "regionCheckinsCount": 10,
+      "profileImage": "",
+      "__typename": "BusinessReviewProfile"
+    }
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "reviews",
+      "5"
+    ],
+    "keys": [
+      "extend",
+      "images",
+      "starRating",
+      "content",
+      "tags",
+      "likesCount",
+      "postStopped",
+      "user",
+      "reviewerInfo",
+      "actorRegion",
+      "createdAt",
+      "__typename",
+      "comment"
+    ],
+    "value": {
+      "extend": {
+        "productName": null,
+        "reviewCount": null,
+        "__typename": "ReviewExtend"
+      },
+      "images": [],
+      "starRating": 5,
+      "content": "고3아이 3주차 보내고 있습니다. 집앞에 열정적인 입시학원을 만날수있어서 너무좋고 아이가 쌤들과의 소통이 좋다고 합니다. 몇번 문의 드렸던곳이어서 \n고3이지만 고민없이 등록할 수 있었습니다.\n학생관리부터 체계가 잘 잡혀있는것 같아서 더욱더 신뢰가 생기네요^^",
+      "tags": [],
+      "likesCount": 1,
+      "postStopped": false,
+      "user": {
+        "nickname": "둥둥맘",
+        "regionCheckinsCount": 11,
+        "profileImage": "",
+        "__typename": "BusinessReviewProfile"
+      },
+      "reviewerInfo": {
+        "followBusinessAccount": false,
+        "__typename": "ReviewerInfo"
+      },
+      "actorRegion": {
+        "name": "용산동",
+        "name1": "대전광역시",
+        "name2": "유성구",
+        "name3": "용산동",
+        "__typename": "BusinessReviewActorRegion"
+      },
+      "createdAt": "2026-07-22T12:46:37.684145Z",
+      "__typename": "BusinessReview",
+      "comment": null
+    }
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "reviews",
+      "5",
+      "user"
+    ],
+    "keys": [
+      "nickname",
+      "regionCheckinsCount",
+      "profileImage",
+      "__typename"
+    ],
+    "value": {
+      "nickname": "둥둥맘",
+      "regionCheckinsCount": 11,
+      "profileImage": "",
+      "__typename": "BusinessReviewProfile"
+    }
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "reviews",
+      "6"
+    ],
+    "keys": [
+      "extend",
+      "images",
+      "starRating",
+      "content",
+      "tags",
+      "likesCount",
+      "postStopped",
+      "user",
+      "reviewerInfo",
+      "actorRegion",
+      "createdAt",
+      "__typename",
+      "comment"
+    ],
+    "value": {
+      "extend": {
+        "productName": null,
+        "reviewCount": null,
+        "__typename": "ReviewExtend"
+      },
+      "images": [],
+      "starRating": 5,
+      "content": "중3여자아이입니다.\n영어학원다닌지는5학년때이후로  계속 다니곤있었는데 이번에아이가 입시전문으로다니고싶다해서 상담후에 다니기로결정하고 4개월.5개월째다니고있어요.\n아이들한테 많은관심을 갖아주시는것같아서 그게 제일 마음에들고 믿음이갑니다.\n영.수는 오래  꾸준히 다는게 중요하다생각하는데...선생님들관계가중요하다생각하거든요..\n아이도 학원가는거즐거워하고 ..\n특히 시험기간에 개인교재를만들어서 아이의성향에맞게 지도해주시는것같아서 좋았습니다~\n앞으로도 꾸준히 잘 다녀서 좋은결과있었음좋겠어요^^",
+      "tags": [],
+      "likesCount": 1,
+      "postStopped": false,
+      "user": {
+        "nickname": "당근이지",
+        "regionCheckinsCount": 3,
+        "profileImage": "",
+        "__typename": "BusinessReviewProfile"
+      },
+      "reviewerInfo": {
+        "followBusinessAccount": false,
+        "__typename": "ReviewerInfo"
+      },
+      "actorRegion": {
+        "name": "용산동",
+        "name1": "대전광역시",
+        "name2": "유성구",
+        "name3": "용산동",
+        "__typename": "BusinessReviewActorRegion"
+      },
+      "createdAt": "2026-07-22T11:16:43.596926Z",
+      "__typename": "BusinessReview",
+      "comment": null
+    }
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "reviews",
+      "6",
+      "user"
+    ],
+    "keys": [
+      "nickname",
+      "regionCheckinsCount",
+      "profileImage",
+      "__typename"
+    ],
+    "value": {
+      "nickname": "당근이지",
+      "regionCheckinsCount": 3,
+      "profileImage": "",
+      "__typename": "BusinessReviewProfile"
+    }
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "reviews",
+      "7"
+    ],
+    "keys": [
+      "extend",
+      "images",
+      "starRating",
+      "content",
+      "tags",
+      "likesCount",
+      "postStopped",
+      "user",
+      "reviewerInfo",
+      "actorRegion",
+      "createdAt",
+      "__typename",
+      "comment"
+    ],
+    "value": {
+      "extend": {
+        "productName": null,
+        "reviewCount": null,
+        "__typename": "ReviewExtend"
+      },
+      "images": [],
+      "starRating": 5,
+      "content": "에릭쌤  열정도 있으시고 잘 가르쳐주신다고 그러네요..좋은학원을 찾은듯 해서 만족합니다^^",
+      "tags": [],
+      "likesCount": 1,
+      "postStopped": false,
+      "user": {
+        "nickname": "단단",
+        "regionCheckinsCount": 19,
+        "profileImage": "",
+        "__typename": "BusinessReviewProfile"
+      },
+      "reviewerInfo": {
+        "followBusinessAccount": false,
+        "__typename": "ReviewerInfo"
+      },
+      "actorRegion": {
+        "name": "관평동",
+        "name1": "대전광역시",
+        "name2": "유성구",
+        "name3": "관평동",
+        "__typename": "BusinessReviewActorRegion"
+      },
+      "createdAt": "2026-07-22T09:21:17.200908Z",
+      "__typename": "BusinessReview",
+      "comment": null
+    }
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "reviews",
+      "7",
+      "user"
+    ],
+    "keys": [
+      "nickname",
+      "regionCheckinsCount",
+      "profileImage",
+      "__typename"
+    ],
+    "value": {
+      "nickname": "단단",
+      "regionCheckinsCount": 19,
+      "profileImage": "",
+      "__typename": "BusinessReviewProfile"
+    }
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "reviews",
+      "8"
+    ],
+    "keys": [
+      "extend",
+      "images",
+      "starRating",
+      "content",
+      "tags",
+      "likesCount",
+      "postStopped",
+      "user",
+      "reviewerInfo",
+      "actorRegion",
+      "createdAt",
+      "__typename",
+      "comment"
+    ],
+    "value": {
+      "extend": {
+        "productName": null,
+        "reviewCount": null,
+        "__typename": "ReviewExtend"
+      },
+      "images": [],
+      "starRating": 5,
+      "content": "중2 딸이 에릭쌤 영어학원에 다닌 지 벌써 5개월째예요. 처음엔 아이가 학원을 잘 다닐 수 있을지 걱정이 많았는데, 지금은 만족하며 보내고 있습니다.\n가장 좋았던 점은 출결 관리가 꼼꼼하다는 거예요. 아이가 등하원할 때마다 바로 확인이 되니 마음이 놓이고, 혹시라도 결석이나 지각이 있으면 바로 안내해주셔서 신뢰가 갑니다.\n또 하나는 맞춤 교재예요. 아이 수준에 맞춰 교재를 제공해주셔서 무리 없이 따라가고 있고, 자신감도 붙는 것 같아요.\n아이 학습 관리에 신경 써주시는 학원을 만나기가 쉽지 않은데, 에릭쌤 영어학원은 꼼꼼한 출결 관리와 맞춤형 교재로 안심하고 맡길 수 있는 곳이라 추천하고 싶습니다👍",
+      "tags": [],
+      "likesCount": 1,
+      "postStopped": false,
+      "user": {
+        "nickname": "생글",
+        "regionCheckinsCount": 0,
+        "profileImage": "",
+        "__typename": "BusinessReviewProfile"
+      },
+      "reviewerInfo": {
+        "followBusinessAccount": false,
+        "__typename": "ReviewerInfo"
+      },
+      "actorRegion": {
+        "name": "관평동",
+        "name1": "대전광역시",
+        "name2": "유성구",
+        "name3": "관평동",
+        "__typename": "BusinessReviewActorRegion"
+      },
+      "createdAt": "2026-07-17T03:51:50.291511Z",
+      "__typename": "BusinessReview",
+      "comment": {
+        "content": "감사합니다^^ 아이들이 학습에 있어서 더 힘낼 수 있도록 신경쓰겠습니다. 학원과 과외의 하이브리드를 지향하면서 아이들의 질문에 적극적으로 대답해주는 학원이 되겠습니다~ 좋은 리뷰 감사드려요♡",
+        "createdAt": "2026-07-19T14:48:08.743161Z",
+        "__typename": "ReviewComment"
+      }
+    }
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "reviews",
+      "8",
+      "user"
+    ],
+    "keys": [
+      "nickname",
+      "regionCheckinsCount",
+      "profileImage",
+      "__typename"
+    ],
+    "value": {
+      "nickname": "생글",
+      "regionCheckinsCount": 0,
+      "profileImage": "",
+      "__typename": "BusinessReviewProfile"
+    }
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "reviews",
+      "9"
+    ],
+    "keys": [
+      "extend",
+      "images",
+      "starRating",
+      "content",
+      "tags",
+      "likesCount",
+      "postStopped",
+      "user",
+      "reviewerInfo",
+      "actorRegion",
+      "createdAt",
+      "__typename",
+      "comment"
+    ],
+    "value": {
+      "extend": {
+        "productName": null,
+        "reviewCount": null,
+        "__typename": "ReviewExtend"
+      },
+      "images": [],
+      "starRating": 5,
+      "content": "관평동 좀 큰 학원에서 아이 성향과 맞지 않아 영어 공부를 힘들어 했는데, 에릭샘을 만난 후 많은 변화가 생겼어요. 영어에 대한 자신감이 생기고 공부 의지도 강해졌어요. 선생님들이 아이 성향에 맞춰 꼼꼼히 지도해 주시고 항상 열정적으로 가르쳐 주셔서 매우 만족 하고 있습니다.  기말고사도 실수로 1개 틀렸다고 하네요.  ^^",
+      "tags": [],
+      "likesCount": 1,
+      "postStopped": false,
+      "user": {
+        "nickname": "mino",
+        "regionCheckinsCount": 0,
+        "profileImage": "",
+        "__typename": "BusinessReviewProfile"
+      },
+      "reviewerInfo": {
+        "followBusinessAccount": false,
+        "__typename": "ReviewerInfo"
+      },
+      "actorRegion": {
+        "name": "용산동",
+        "name1": "대전광역시",
+        "name2": "유성구",
+        "name3": "용산동",
+        "__typename": "BusinessReviewActorRegion"
+      },
+      "createdAt": "2026-07-13T08:46:10.748399Z",
+      "__typename": "BusinessReview",
+      "comment": {
+        "content": "감사합니다 ^^ 잠재력이 좋은 친구들이라고 생각하고 더 잘하기만을 바라면서 가르치고 있습니다. 아이가 공부하며 이해되지 않는 부분들을 꼭 해결해주는 저희 학원되겠습니다. 정성어린 리뷰에 감사드립니다.♡",
+        "createdAt": "2026-07-13T14:49:30.220369Z",
+        "__typename": "ReviewComment"
+      }
+    }
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "reviews",
+      "9",
+      "user"
+    ],
+    "keys": [
+      "nickname",
+      "regionCheckinsCount",
+      "profileImage",
+      "__typename"
+    ],
+    "value": {
+      "nickname": "mino",
+      "regionCheckinsCount": 0,
+      "profileImage": "",
+      "__typename": "BusinessReviewProfile"
+    }
+  }
+]

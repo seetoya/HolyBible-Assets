@@ -1,0 +1,1913 @@
+[
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "root",
+      "__strategyKeywords",
+      "data"
+    ],
+    "length": 46,
+    "sample_keys": [
+      "keyword"
+    ],
+    "sample": [
+      {
+        "keyword": "에어컨"
+      },
+      {
+        "keyword": "인테리어"
+      },
+      {
+        "keyword": "휴대폰"
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "bizPosts",
+      "2",
+      "content"
+    ],
+    "length": 31,
+    "sample_keys": [
+      "__typename",
+      "type",
+      "value"
+    ],
+    "sample": [
+      {
+        "type": "TEXT",
+        "value": "법동, 중리동, 송촌동, 읍내동 학부모님께 알려드립니다.\n",
+        "__typename": "Content"
+      },
+      {
+        "type": "TEXT",
+        "value": "\n",
+        "__typename": "Content"
+      },
+      {
+        "type": "TEXT",
+        "value": "에릭쌤영어학원 학생들이 26년 1학기 기말고사에서 좋은 결과를 만들어냈습니다.\n",
+        "__typename": "Content"
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "bizPosts",
+      "7",
+      "content"
+    ],
+    "length": 25,
+    "sample_keys": [
+      "__typename",
+      "type",
+      "value"
+    ],
+    "sample": [
+      {
+        "type": "TEXT",
+        "value": "우리 아이 영어, 열심히 하는데 점수가 잘 오르지 않나요?\n",
+        "__typename": "Content"
+      },
+      {
+        "type": "TEXT",
+        "value": "\n",
+        "__typename": "Content"
+      },
+      {
+        "type": "TEXT",
+        "value": "대덕구 중리동·법동·송촌동 인근\n",
+        "__typename": "Content"
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "root",
+      "__locationSelectModal",
+      "fallbackLocations"
+    ],
+    "length": 20,
+    "sample_keys": [
+      "depth",
+      "id",
+      "name",
+      "name1",
+      "name1Id",
+      "name2",
+      "name2Id",
+      "name3",
+      "name3Id"
+    ],
+    "sample": [
+      {
+        "id": 6543,
+        "name1": "인천광역시",
+        "name2": "연수구",
+        "name3": "송도동",
+        "name": "송도동",
+        "name1Id": 825,
+        "name2Id": 876,
+        "name3Id": 6543,
+        "depth": 3
+      },
+      {
+        "id": 6035,
+        "name1": "서울특별시",
+        "name2": "강남구",
+        "name3": "역삼동",
+        "name": "역삼동",
+        "name1Id": 1,
+        "name2Id": 381,
+        "name3Id": 6035,
+        "depth": 3
+      },
+      {
+        "id": 3662,
+        "name1": "경상남도",
+        "name2": "양산시",
+        "name3": "물금읍",
+        "name": "물금읍",
+        "name1Id": 3464,
+        "name2Id": 3661,
+        "name3Id": 3662,
+        "depth": 3
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "bizPosts",
+      "5",
+      "content"
+    ],
+    "length": 20,
+    "sample_keys": [
+      "__typename",
+      "type",
+      "value"
+    ],
+    "sample": [
+      {
+        "type": "TEXT",
+        "value": "에릭쌤 영어학원의 원생들은 특별한 관리를 받습니다\n",
+        "__typename": "Content"
+      },
+      {
+        "type": "TEXT",
+        "value": "\n",
+        "__typename": "Content"
+      },
+      {
+        "type": "TEXT",
+        "value": "꼼꼼한 과제체크와 학생 개개인에 대한 분석\n",
+        "__typename": "Content"
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "bizPosts",
+      "6",
+      "content"
+    ],
+    "length": 14,
+    "sample_keys": [
+      "__typename",
+      "type",
+      "value"
+    ],
+    "sample": [
+      {
+        "type": "TEXT",
+        "value": "2028과 2032 교육과정에 발 맞추어 아이들을 하나하나 진정성 있게 케어하고 세밀하고 철두철미한 과제관리와 학슺시스템, 학원은 학원다워야 한다는 원장의 교육방침에 따라 모든 선생님들이 학생들의 실력향상을 위해 최선을 다하는 입시영어 전문 학원 에릭쌤영어학원입니다.\n",
+        "__typename": "Content"
+      },
+      {
+        "type": "TEXT",
+        "value": "\n",
+        "__typename": "Content"
+      },
+      {
+        "type": "TEXT",
+        "value": "매년 인 서울 메아저 대학 졸업생들을 배출하고, 열심히 지도함으로 엘리트를 양성하는 그런 학원.\n",
+        "__typename": "Content"
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "bizPosts",
+      "9",
+      "content"
+    ],
+    "length": 14,
+    "sample_keys": [
+      "__typename",
+      "type",
+      "value"
+    ],
+    "sample": [
+      {
+        "type": "TEXT",
+        "value": "명석고 1학년 화,목 6시부터 7시반\n",
+        "__typename": "Content"
+      },
+      {
+        "type": "TEXT",
+        "value": "동대전고, 송촌고 1학년은 7시반부터 9시까지\n",
+        "__typename": "Content"
+      },
+      {
+        "type": "TEXT",
+        "value": "동대전고와 송촌고는 인원이 거의 다 찼습니다.\n",
+        "__typename": "Content"
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "bizPosts"
+    ],
+    "length": 10,
+    "sample_keys": [
+      "__typename",
+      "content",
+      "counter",
+      "createdAt",
+      "id",
+      "images",
+      "title",
+      "updatedAt"
+    ],
+    "sample": [
+      {
+        "id": "/kr/business-post/2%ED%95%99%EA%B8%B0%EB%B6%80%ED%84%B0-%EC%B4%88%EB%93%B1-5-6%ED%95%99%EB%85%84-%EC%8B%A0%EA%B7%9C-%EB%AA%A8%EC%A7%91%EC%9D%84-%EC%8B%9C%EC%9E%91%ED%95%A9%EB%8B%88%EB%8B%A4-todtjc4b6xtw/",
+        "title": "2학기부터 초등 5·6학년 신규 모집을 시작합니다",
+        "createdAt": "2026-07-26T02:02:37.120Z",
+        "updatedAt": "2026-07-26T02:05:22.796Z",
+        "content": [
+          {
+            "type": "TEXT",
+            "value": "에릭쌤영어학원은 그동안 중·고등 내신과 입시 영어를 전문으로 지도하며 많은 학생들의 성적 향상을 함께 만들어 왔습니다.\n\n이번 2학기부터는 초등학교 5·6학년 학생도 모집합니다.\n\n초등 시기는 단순히 영어를 재미있게 배우는 시기가 아니라,\n중학교 영어와 고등학교 내신까지 이어지는 기초를 만드는 가장 중요한 시기입니다.\n\n에릭쌤영어학원에서는\n\n- 중학교 영어를 미리 준비하는 문법 기초\n- 독해력과 어휘력 향상\n- 영어를 스스로 공부하는 습관\n- 중학교 내신을 대비하는 학습법\n\n을 체계적으로 지도합니다.\n\n📍 법동 이편한세상, 보람아파트, 삼익소월아파트 인근\n\n📍 중리시장·법동전통시장에서도 가까운 위치\n\n중·고등 입시를 아는 선생님에게 처음부터 제대로 배우고 싶은 초등 5·6학년 학생이라면 상담을 받아보세요.\n\n2학기 소수정예(반 최대 12인) 신규 모집\n상담 예약 후 등록 선착순 12인만 반을 편성합니다.\n",
+            "__typename": "Content"
+          }
+        ],
+        "counter": {
+          "bookmarkCount": 1,
+          "commentCount": 0,
+          "__typename": "Counter"
+        },
+        "images": [
+          {
+            "thumbnailUrl": "https://img.kr.gcp-karroter.net/business-profile/business-profile/2729166/1785031197567/RklMRV9LSVRfNDgwMDAyMzUzNTQ3NDI5MjY=.png?q=82&s=300x300&t=crop&service=business-post",
+            "__typename": "BusinessPostMediaObject"
+          },
+          {
+            "thumbnailUrl": "https://img.kr.gcp-karroter.net/business-profile/business-profile/2729166/1785031197472/RklMRV9LSVRfNzc5NzE5NzAzODg3NjQ2Mw==.png?q=82&s=300x300&t=crop&service=business-post",
+            "__typename": "BusinessPostMediaObject"
+          }
+        ],
+        "__typename": "BusinessPost"
+      },
+      {
+        "id": "/kr/business-post/%EC%97%AC%EB%A6%84%EB%B0%A9%ED%95%99-%EC%98%81%EC%96%B4-%ED%95%99%EC%8A%B5-%EC%A7%80%EA%B8%88%EB%B6%80%ED%84%B0-%EC%B0%A8%EA%B7%BC%EC%B0%A8%EA%B7%BC-%EC%A4%80%EB%B9%84%ED%95%B4%EC%9A%94-vaze7h4bg78t/",
+        "title": "여름방학 영어 학습, 지금부터 차근차근 준비해요",
+        "createdAt": "2026-07-11T21:36:19.649Z",
+        "updatedAt": "2026-07-11T21:36:19.649Z",
+        "content": [
+          {
+            "type": "TEXT",
+            "value": "안녕하세요, 에릭쌤영어학원입니다.\n",
+            "__typename": "Content"
+          },
+          {
+            "type": "TEXT",
+            "value": "여름방학은 부족했던 영어 기본기를 다시 잡고, 다음 학기 내신을 미리 준비하기 좋은 시기입니다.\n",
+            "__typename": "Content"
+          },
+          {
+            "type": "TEXT",
+            "value": "\n",
+            "__typename": "Content"
+          },
+          {
+            "type": "TEXT",
+            "value": "에릭쌤영어학원에서는 학생별 현재 실력과 학교 진도에 맞춰 어휘, 문법, 독해를 균형 있게 점검하고 있습니다.\n",
+            "__typename": "Content"
+          },
+          {
+            "type": "TEXT",
+            "value": "특히 중학생은 학교별 시험 유형에 맞춘 내신 대비, 고등 진학을 앞둔 학생은 독해력과 문장 분석력을 함께 강화할 수 있도록 지도합니다.\n",
+            "__typename": "Content"
+          },
+          {
+            "type": "TEXT",
+            "value": "\n",
+            "__typename": "Content"
+          },
+          {
+            "type": "TEXT",
+            "value": "방학 동안 영어 공부 방향이 고민된다면 편하게 문의해 주세요.\n",
+            "__typename": "Content"
+          },
+          {
+            "type": "TEXT",
+            "value": "학생에게 필요한 학습 포인트를 함께 확인해 드리겠습니다.\n",
+            "__typename": "Content"
+          }
+        ],
+        "counter": {
+          "bookmarkCount": 0,
+          "commentCount": 0,
+          "__typename": "Counter"
+        },
+        "images": [],
+        "__typename": "BusinessPost"
+      },
+      {
+        "id": "/kr/business-post/%EC%86%A1%EC%B4%8C%EA%B3%A0-97%EC%A0%90-1%EB%93%B1%EA%B8%89-%ED%99%95%EC%A0%95-ysyd1hcstyv8/",
+        "title": "송촌고 97점, 1등급 확정",
+        "createdAt": "2026-07-02T11:05:34.148Z",
+        "updatedAt": "2026-07-02T11:07:03.014Z",
+        "content": [
+          {
+            "type": "TEXT",
+            "value": "법동, 중리동, 송촌동, 읍내동 학부모님께 알려드립니다.\n",
+            "__typename": "Content"
+          },
+          {
+            "type": "TEXT",
+            "value": "\n",
+            "__typename": "Content"
+          },
+          {
+            "type": "TEXT",
+            "value": "에릭쌤영어학원 학생들이 26년 1학기 기말고사에서 좋은 결과를 만들어냈습니다.\n",
+            "__typename": "Content"
+          },
+          {
+            "type": "TEXT",
+            "value": "\n",
+            "__typename": "Content"
+          },
+          {
+            "type": "TEXT",
+            "value": "송촌고 1학년 김00 97점, 1등급 확정\n",
+            "__typename": "Content"
+          },
+          {
+            "type": "TEXT",
+            "value": "송촌고 1학년 최00 38점 상승\n",
+            "__typename": "Content"
+          },
+          {
+            "type": "TEXT",
+            "value": "명석고 2학년 조00 90점대, 1등급 확정\n",
+            "__typename": "Content"
+          },
+          {
+            "type": "TEXT",
+            "value": "대화중 3학년 황00 97점\n",
+            "__typename": "Content"
+          },
+          {
+            "type": "TEXT",
+            "value": "매봉중 2학년 박00 중간, 기말 연속 100점\n",
+            "__typename": "Content"
+          },
+          {
+            "type": "TEXT",
+            "value": "매봉중 2학년 박00 90점\n",
+            "__typename": "Content"
+          },
+          {
+            "type": "TEXT",
+            "value": "법동중 3학년 이00 100점\n",
+            "__typename": "Content"
+          },
+          {
+            "type": "TEXT",
+            "value": "법동중 3학년 홍00 95점\n",
+            "__typename": "Content"
+          },
+          {
+            "type": "TEXT",
+            "value": "\n",
+            "__typename": "Content"
+          },
+          {
+            "type": "TEXT",
+            "value": "중등 2학년 전체 평균 90점 이상\n",
+            "__typename": "Content"
+          },
+          {
+            "type": "TEXT",
+            "value": "중학교 3학년 전체 평균 90점 이상\n",
+            "__typename": "Content"
+          },
+          {
+            "type": "TEXT",
+            "value": "\n",
+            "__typename": "Content"
+          },
+          {
+            "type": "TEXT",
+            "value": "영어 성적은 우연히 오르지 않습니다.\n",
+            "__typename": "Content"
+          },
+          {
+            "type": "TEXT",
+            "value": "\n",
+            "__typename": "Content"
+          },
+          {
+            "type": "TEXT",
+            "value": "학생마다 부족한 부분을 정확히 찾고, 학교별 시험 범위와 출제 유형에 맞춰 반복적으로 관리해야 합니다.\n",
+            "__typename": "Content"
+          },
+          {
+            "type": "TEXT",
+            "value": "\n",
+            "__typename": "Content"
+          },
+          {
+            "type": "TEXT",
+            "value": "에릭쌤영어학원은 단어, 문법, 본문, 독해, 서술형, 오답까지 시험 전까지 꼼꼼하게 관리합니다.\n",
+            "__typename": "Content"
+          },
+          {
+            "type": "TEXT",
+            "value": "\n",
+            "__typename": "Content"
+          },
+          {
+            "type": "TEXT",
+            "value": "특히 법동, 중리동, 송촌동, 읍내동 생활권 학생들이 학교 시험에서 실제로 점수를 올릴 수 있도록 학생별 약점과 학교별 내신 대비를 함께 진행합니다.\n",
+            "__typename": "Content"
+          },
+          {
+            "type": "TEXT",
+            "value": "\n",
+            "__typename": "Content"
+          },
+          {
+            "type": "TEXT",
+            "value": "이번 시험 결과가 아쉬웠다면 다음 시험 준비는 지금부터 달라져야 합니다.\n",
+            "__typename": "Content"
+          },
+          {
+            "type": "TEXT",
+            "value": "\n",
+            "__typename": "Content"
+          },
+          {
+            "type": "TEXT",
+            "value": "우리 아이 영어 내신이 고민이시라면 편하게 채팅 주세요.\n",
+            "__typename": "Content"
+          },
+          {
+            "type": "TEXT",
+            "value": "현재 학년, 학교, 최근 시험 점수를 알려주시면 어떤 부분부터 잡아야 할지 안내드리겠습니다.\n",
+            "__typename": "Content"
+          },
+          {
+            "type": "TEXT",
+            "value": "\n",
+            "__typename": "Content"
+          },
+          {
+            "type": "TEXT",
+            "value": "믿을 수 있는 관리, 확실한 성적 향상\n",
+            "__typename": "Content"
+          },
+          {
+            "type": "TEXT",
+            "value": "에릭쌤영어학원입니다.\n",
+            "__typename": "Content"
+          }
+        ],
+        "counter": {
+          "bookmarkCount": 0,
+          "commentCount": 0,
+          "__typename": "Counter"
+        },
+        "images": [
+          {
+            "thumbnailUrl": "https://img.kr.gcp-karroter.net/business-profile/bizPlatform/profile/center_biz_1310501/1782990072969/RklMRV9LSVRfMzc3Mzg4MTc1ODk1OTc5Ng==.png?q=82&s=300x300&t=crop&service=business-post",
+            "__typename": "BusinessPostMediaObject"
+          },
+          {
+            "thumbnailUrl": "https://img.kr.gcp-karroter.net/business-profile/bizPlatform/profile/center_biz_1310501/1782990072435/RklMRV9LSVRfNDI5Nzc0NTk5MTY5OTU4NA==.png?q=82&s=300x300&t=crop&service=business-post",
+            "__typename": "BusinessPostMediaObject"
+          },
+          {
+            "thumbnailUrl": "https://img.kr.gcp-karroter.net/business-profile/bizPlatform/profile/center_biz_1310501/1782990071750/RklMRV9LSVRfMTc2MDE2MzQ1NzkyMzk2MQ==.png?q=82&s=300x300&t=crop&service=business-post",
+            "__typename": "BusinessPostMediaObject"
+          },
+          {
+            "thumbnailUrl": "https://img.kr.gcp-karroter.net/business-profile/bizPlatform/profile/center_biz_1310501/1782990071817/RklMRV9LSVRfMjU2MDMxMjQ4MjI5Nzc5NzQ=.png?q=82&s=300x300&t=crop&service=business-post",
+            "__typename": "BusinessPostMediaObject"
+          },
+          {
+            "thumbnailUrl": "https://img.kr.gcp-karroter.net/business-profile/bizPlatform/profile/center_biz_1310501/1782990072365/RklMRV9LSVRfMTg2NTUwMDQ5MDU2MzEzNzg=.png?q=82&s=300x300&t=crop&service=business-post",
+            "__typename": "BusinessPostMediaObject"
+          },
+          {
+            "thumbnailUrl": "https://img.kr.gcp-karroter.net/business-profile/bizPlatform/profile/center_biz_1310501/1782990072047/RklMRV9LSVRfNTU3MDY5NzA2NzU1MTM5Mg==.png?q=82&s=300x300&t=crop&service=business-post",
+            "__typename": "BusinessPostMediaObject"
+          },
+          {
+            "thumbnailUrl": "https://img.kr.gcp-karroter.net/business-profile/bizPlatform/profile/center_biz_1310501/1782990073045/RklMRV9LSVRfMzM0NzAzMjYyMjQzMTY1Nw==.png?q=82&s=300x300&t=crop&service=business-post",
+            "__typename": "BusinessPostMediaObject"
+          },
+          {
+            "thumbnailUrl": "https://img.kr.gcp-karroter.net/business-profile/bizPlatform/profile/center_biz_1310501/1782990072721/RklMRV9LSVRfOTkxNTcxOTE0MTAzMzk0.png?q=82&s=300x300&t=crop&service=business-post",
+            "__typename": "BusinessPostMediaObject"
+          },
+          {
+            "thumbnailUrl": "https://img.kr.gcp-karroter.net/business-profile/bizPlatform/profile/center_biz_1310501/1782990072227/RklMRV9LSVRfMTQ4ODE1MDAyMTk5OTMzMTY=.png?q=82&s=300x300&t=crop&service=business-post",
+            "__typename": "BusinessPostMediaObject"
+          },
+          {
+            "thumbnailUrl": "https://img.kr.gcp-karroter.net/business-profile/bizPlatform/profile/center_biz_1310501/1782990072776/RklMRV9LSVRfNDIwOTYyNDIzMzI3OTgxNQ==.png?q=82&s=300x300&t=crop&service=business-post",
+            "__typename": "BusinessPostMediaObject"
+          }
+        ],
+        "__typename": "BusinessPost"
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "bizPosts",
+      "2",
+      "images"
+    ],
+    "length": 10,
+    "sample_keys": [
+      "__typename",
+      "thumbnailUrl"
+    ],
+    "sample": [
+      {
+        "thumbnailUrl": "https://img.kr.gcp-karroter.net/business-profile/bizPlatform/profile/center_biz_1310501/1782990072969/RklMRV9LSVRfMzc3Mzg4MTc1ODk1OTc5Ng==.png?q=82&s=300x300&t=crop&service=business-post",
+        "__typename": "BusinessPostMediaObject"
+      },
+      {
+        "thumbnailUrl": "https://img.kr.gcp-karroter.net/business-profile/bizPlatform/profile/center_biz_1310501/1782990072435/RklMRV9LSVRfNDI5Nzc0NTk5MTY5OTU4NA==.png?q=82&s=300x300&t=crop&service=business-post",
+        "__typename": "BusinessPostMediaObject"
+      },
+      {
+        "thumbnailUrl": "https://img.kr.gcp-karroter.net/business-profile/bizPlatform/profile/center_biz_1310501/1782990071750/RklMRV9LSVRfMTc2MDE2MzQ1NzkyMzk2MQ==.png?q=82&s=300x300&t=crop&service=business-post",
+        "__typename": "BusinessPostMediaObject"
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "bizPosts",
+      "4",
+      "content"
+    ],
+    "length": 10,
+    "sample_keys": [
+      "__typename",
+      "type",
+      "value"
+    ],
+    "sample": [
+      {
+        "type": "TEXT",
+        "value": "법동 중리동 이편한 세상 옆, 중리중, 중리초 옆에 위치한 트라이 건물 5층에 영어학원이 있다는 사실 알고 계셨나요?\n",
+        "__typename": "Content"
+      },
+      {
+        "type": "TEXT",
+        "value": "\n",
+        "__typename": "Content"
+      },
+      {
+        "type": "TEXT",
+        "value": "실력위주의 학습, 2028교육과정, 2032 교육과정을 대비하는 에릭쌤 영어학원은 고려대학교 영어영문학을 전공하고 입시강의 경력 18년차의 영어선생님과 실력파 선생님들이 아이들 하나하나 소규모 그룹식 수업으로 케어하면서 아이들을 지도합니다.\n",
+        "__typename": "Content"
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "reviews"
+    ],
+    "length": 10,
+    "sample_keys": [
+      "__typename",
+      "actorRegion",
+      "comment",
+      "content",
+      "createdAt",
+      "extend",
+      "images",
+      "likesCount",
+      "postStopped",
+      "reviewerInfo",
+      "starRating",
+      "tags",
+      "user"
+    ],
+    "sample": [
+      {
+        "extend": {
+          "productName": null,
+          "reviewCount": null,
+          "__typename": "ReviewExtend"
+        },
+        "images": [],
+        "starRating": 5,
+        "content": "아이을 이 학원에 보낸지 중학생 때 부터 보냈어요 제일 좋은 과외도 시켜보고 둔산동 송촌동 좋다는 학원들 다 보내 봤지만 학생을 위한 선생님의 열정이 남다르시고 실력과 품격을 다 갖추고 있어 부모로써 우선 마음이 편해지고 게다가 아이가 잘 따르니 좋습니다.",
+        "tags": [],
+        "likesCount": 2,
+        "postStopped": false,
+        "user": {
+          "nickname": "세상돈다내꺼9",
+          "regionCheckinsCount": 4,
+          "profileImage": "",
+          "__typename": "BusinessReviewProfile"
+        },
+        "reviewerInfo": {
+          "followBusinessAccount": false,
+          "__typename": "ReviewerInfo"
+        },
+        "actorRegion": {
+          "name": "중리동",
+          "name1": "대전광역시",
+          "name2": "대덕구",
+          "name3": "중리동",
+          "__typename": "BusinessReviewActorRegion"
+        },
+        "createdAt": "2026-07-03T04:57:48.236303Z",
+        "__typename": "BusinessReview",
+        "comment": {
+          "content": "감사합니다^^ 과분한 칭찬에 너무도 감사하면서도 몸둘 바를 모르겠네요. 아이들이 학습하며 힘을 내기 위해서는 때론 선생님이 웃기기도하고, 장난도 치고, 때론 다정하고 엄하게 해주면서 아이들이 어른이 되어가는 과정을 사랑스러운 마음으로 바라봐주어야 한다 생각합니다. 졸업시켜도 항상 사랑받은 기억으로 채워줄 수 있도록 마음다해 지도하겠습니다♡",
+          "createdAt": "2026-07-13T14:56:01.017485Z",
+          "__typename": "ReviewComment"
+        }
+      },
+      {
+        "extend": {
+          "productName": null,
+          "reviewCount": null,
+          "__typename": "ReviewExtend"
+        },
+        "images": [],
+        "starRating": 5,
+        "content": "영어과외를 그만두게 되어 알아보던중 알게된 곳입니다. 처음엔 아이 다니는 학교 학생이 없어 힘들다는 답변을 듣고 다시 알아보고 있을때 전화가 오셨네요. 1명이라도 가르쳐 보시겠다며 전화를 다시 주셨는데 어찌나 그 원장님의 목소리에 열정이 넘치시는지 아- 잘 선택했구나 하고 지금은 열심히 다니고 있고 선생님의 피드백 전화도 많은 도움이 됩니다. 하나하나 신경 많이 써주시는 그런 부분들이 어디에도 없을 감동입니다.",
+        "tags": [],
+        "likesCount": 2,
+        "postStopped": false,
+        "user": {
+          "nickname": "오여사",
+          "regionCheckinsCount": 15,
+          "profileImage": "",
+          "__typename": "BusinessReviewProfile"
+        },
+        "reviewerInfo": {
+          "followBusinessAccount": false,
+          "__typename": "ReviewerInfo"
+        },
+        "actorRegion": {
+          "name": "신탄진동",
+          "name1": "대전광역시",
+          "name2": "대덕구",
+          "name3": "신탄진동",
+          "__typename": "BusinessReviewActorRegion"
+        },
+        "createdAt": "2026-07-02T12:28:02.864601Z",
+        "__typename": "BusinessReview",
+        "comment": {
+          "content": "감사합니다^^ 마음으로 가르치는 저희가 되겠습니다. 부모님 다음으로 아이들의 인생에 영향을 주는게 선생님이라 생각해요. 아이들의 학습에 답답함을 풀어줄 수 있게 많이 돕겠습니다♡",
+          "createdAt": "2026-07-13T14:52:08.442731Z",
+          "__typename": "ReviewComment"
+        }
+      },
+      {
+        "extend": {
+          "productName": null,
+          "reviewCount": null,
+          "__typename": "ReviewExtend"
+        },
+        "images": [],
+        "starRating": 5,
+        "content": "선생님과 원장님 께서 항상 열정적 이시고 열심히 가르쳐 주시는거 같고 학생들 얘기에 귀기울여 주시고 아이들 먼저 생각해 주셔서 너무 감사해요 아이들 공부 하는 모습을 사진도 찍어 보내 주시고 여러 모로 마음에 들어요 성적도 꾸준히 올라가고에릭쌤으로 보내길 참 잘 한거 같아요",
+        "tags": [],
+        "likesCount": 1,
+        "postStopped": false,
+        "user": {
+          "nickname": "쭌맘",
+          "regionCheckinsCount": 1,
+          "profileImage": "",
+          "__typename": "BusinessReviewProfile"
+        },
+        "reviewerInfo": {
+          "followBusinessAccount": false,
+          "__typename": "ReviewerInfo"
+        },
+        "actorRegion": {
+          "name": "법1동",
+          "name1": "대전광역시",
+          "name2": "대덕구",
+          "name3": "법1동",
+          "__typename": "BusinessReviewActorRegion"
+        },
+        "createdAt": "2026-07-02T11:50:56.489967Z",
+        "__typename": "BusinessReview",
+        "comment": null
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "root",
+      "__footer",
+      "data",
+      "FooterNavSections",
+      "1",
+      "NavLink"
+    ],
+    "length": 9,
+    "sample_keys": [
+      "NavLinkExternal",
+      "NavLinkLabel",
+      "NavLinkLink",
+      "SuffixArrowIcon"
+    ],
+    "sample": [
+      {
+        "NavLinkLink": "/kr/buy-sell/",
+        "NavLinkLabel": "중고거래",
+        "NavLinkExternal": false,
+        "SuffixArrowIcon": false
+      },
+      {
+        "NavLinkLink": "/kr/local-profile/",
+        "NavLinkLabel": "동네업체",
+        "NavLinkExternal": false,
+        "SuffixArrowIcon": false
+      },
+      {
+        "NavLinkLink": "/kr/cars/",
+        "NavLinkLabel": "중고차",
+        "NavLinkExternal": false,
+        "SuffixArrowIcon": false
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "root",
+      "__gnb",
+      "data",
+      "GNBSubLink",
+      "NavLinkWithSubLinks"
+    ],
+    "length": 8,
+    "sample_keys": [
+      "Link",
+      "SubLinks"
+    ],
+    "sample": [
+      {
+        "Link": {
+          "NavLinkLink": "/kr/buy-sell/s/",
+          "NavLinkLabel": "중고거래",
+          "NavLinkExternal": false,
+          "SuffixArrowIcon": false
+        },
+        "SubLinks": null
+      },
+      {
+        "Link": {
+          "NavLinkLink": "/kr/local-profile/s/",
+          "NavLinkLabel": "동네업체",
+          "NavLinkExternal": false,
+          "SuffixArrowIcon": false
+        },
+        "SubLinks": null
+      },
+      {
+        "Link": {
+          "NavLinkLink": "/kr/cars/s/",
+          "NavLinkLabel": "중고차",
+          "NavLinkExternal": false,
+          "SuffixArrowIcon": false
+        },
+        "SubLinks": [
+          {
+            "NavLinkLink": "/kr/cars/s/",
+            "NavLinkLabel": "중고차 검색",
+            "NavLinkExternal": false,
+            "SuffixArrowIcon": false
+          },
+          {
+            "NavLinkLink": "https://cardealer.daangn.com/",
+            "NavLinkLabel": "딜러용 서비스",
+            "NavLinkExternal": true,
+            "SuffixArrowIcon": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "root",
+      "__footer",
+      "data",
+      "FooterCompanyInfoSection"
+    ],
+    "length": 8,
+    "sample_keys": [
+      "CompanyInfoContent",
+      "CompanyInfoTitle"
+    ],
+    "sample": [
+      {
+        "CompanyInfoTitle": "대표",
+        "CompanyInfoContent": "김용현, 황도연"
+      },
+      {
+        "CompanyInfoTitle": "사업자번호",
+        "CompanyInfoContent": "375-87-00088"
+      },
+      {
+        "CompanyInfoTitle": "직업정보제공사업 신고번호",
+        "CompanyInfoContent": "J1200020200016"
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "bizPosts",
+      "1",
+      "content"
+    ],
+    "length": 8,
+    "sample_keys": [
+      "__typename",
+      "type",
+      "value"
+    ],
+    "sample": [
+      {
+        "type": "TEXT",
+        "value": "안녕하세요, 에릭쌤영어학원입니다.\n",
+        "__typename": "Content"
+      },
+      {
+        "type": "TEXT",
+        "value": "여름방학은 부족했던 영어 기본기를 다시 잡고, 다음 학기 내신을 미리 준비하기 좋은 시기입니다.\n",
+        "__typename": "Content"
+      },
+      {
+        "type": "TEXT",
+        "value": "\n",
+        "__typename": "Content"
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "root",
+      "__footer",
+      "data",
+      "FooterBottomSection"
+    ],
+    "length": 6,
+    "sample_keys": [
+      "NavLinkExternal",
+      "NavLinkLabel",
+      "NavLinkLink",
+      "SuffixArrowIcon"
+    ],
+    "sample": [
+      {
+        "NavLinkLink": "https://www.daangn.com/policy/terms/",
+        "NavLinkLabel": "이용약관",
+        "NavLinkExternal": true,
+        "SuffixArrowIcon": false
+      },
+      {
+        "NavLinkLink": "https://privacy-policy.daangn.com/",
+        "NavLinkLabel": "개인정보처리방침",
+        "NavLinkExternal": true,
+        "SuffixArrowIcon": false
+      },
+      {
+        "NavLinkLink": "https://cs.kr.karrotmarket.com/wv/faqs/slug/operation_policy",
+        "NavLinkLabel": "운영정책",
+        "NavLinkExternal": true,
+        "SuffixArrowIcon": false
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "root",
+      "__footer",
+      "data",
+      "FooterNavSections"
+    ],
+    "length": 5,
+    "sample_keys": [
+      "NavLink",
+      "NavLinksSectionTitle"
+    ],
+    "sample": [
+      {
+        "NavLink": [
+          {
+            "NavLinkLink": "https://about.daangn.com/",
+            "NavLinkLabel": "당근 소개",
+            "NavLinkExternal": true,
+            "SuffixArrowIcon": false
+          },
+          {
+            "NavLinkLink": "https://www.daangnpay.com/",
+            "NavLinkLabel": "당근페이 소개",
+            "NavLinkExternal": true,
+            "SuffixArrowIcon": false
+          },
+          {
+            "NavLinkLink": "https://careers.daangn.com/",
+            "NavLinkLabel": "채용",
+            "NavLinkExternal": true,
+            "SuffixArrowIcon": false
+          }
+        ],
+        "NavLinksSectionTitle": "회사"
+      },
+      {
+        "NavLink": [
+          {
+            "NavLinkLink": "/kr/buy-sell/",
+            "NavLinkLabel": "중고거래",
+            "NavLinkExternal": false,
+            "SuffixArrowIcon": false
+          },
+          {
+            "NavLinkLink": "/kr/local-profile/",
+            "NavLinkLabel": "동네업체",
+            "NavLinkExternal": false,
+            "SuffixArrowIcon": false
+          },
+          {
+            "NavLinkLink": "/kr/cars/",
+            "NavLinkLabel": "중고차",
+            "NavLinkExternal": false,
+            "SuffixArrowIcon": false
+          },
+          {
+            "NavLinkLink": "/kr/community/",
+            "NavLinkLabel": "동네생활",
+            "NavLinkExternal": false,
+            "SuffixArrowIcon": false
+          },
+          {
+            "NavLinkLink": "/kr/group/",
+            "NavLinkLabel": "모임",
+            "NavLinkExternal": false,
+            "SuffixArrowIcon": false
+          },
+          {
+            "NavLinkLink": "https://jobs.daangn.com/?referrer=daangn_web&referrer_context=daangn_web.footer",
+            "NavLinkLabel": "알바/과외/레슨",
+            "NavLinkExternal": true,
+            "SuffixArrowIcon": false
+          },
+          {
+            "NavLinkLink": "https://realty.daangn.com/",
+            "NavLinkLabel": "부동산",
+            "NavLinkExternal": true,
+            "SuffixArrowIcon": false
+          },
+          {
+            "NavLinkLink": "https://cafe.daangn.com/",
+            "NavLinkLabel": "카페",
+            "NavLinkExternal": true,
+            "SuffixArrowIcon": false
+          },
+          {
+            "NavLinkLink": "https://chat.daangn.com/login",
+            "NavLinkLabel": "채팅하기",
+            "NavLinkExternal": true,
+            "SuffixArrowIcon": false
+          }
+        ],
+        "NavLinksSectionTitle": "탐색"
+      },
+      {
+        "NavLink": [
+          {
+            "NavLinkLink": "https://business.daangn.com/",
+            "NavLinkLabel": "당근 비즈니스",
+            "NavLinkExternal": true,
+            "SuffixArrowIcon": false
+          },
+          {
+            "NavLinkLink": "mailto:contact@daangn.com",
+            "NavLinkLabel": "제휴 문의",
+            "NavLinkExternal": true,
+            "SuffixArrowIcon": false
+          },
+          {
+            "NavLinkLink": "mailto:ad@daangn.com",
+            "NavLinkLabel": "광고 문의",
+            "NavLinkExternal": true,
+            "SuffixArrowIcon": false
+          }
+        ],
+        "NavLinksSectionTitle": "비즈니스"
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "pricing",
+      "pricings"
+    ],
+    "length": 5,
+    "sample_keys": [
+      "__typename",
+      "description",
+      "isRepresentative",
+      "maxPrice",
+      "name",
+      "orderNumber",
+      "price",
+      "priceKind"
+    ],
+    "sample": [
+      {
+        "name": "초등부",
+        "description": "중등 진학을 준비하는 초등학교 4,5,6학년 모집합니다",
+        "isRepresentative": false,
+        "orderNumber": 0,
+        "price": 200000,
+        "maxPrice": null,
+        "priceKind": "FIXED",
+        "__typename": "BusinessPricing"
+      },
+      {
+        "name": "중등기본",
+        "description": "1시간 반 수업, 주 2회 수업, 시험기간 보충, 내신대비, 입시영어",
+        "isRepresentative": false,
+        "orderNumber": 0,
+        "price": 250000,
+        "maxPrice": null,
+        "priceKind": "FIXED",
+        "__typename": "BusinessPricing"
+      },
+      {
+        "name": "고등기본",
+        "description": "1시간 반 수업, 주 2회 수업, 시험기간 보충, 내신대비, 입시영어",
+        "isRepresentative": false,
+        "orderNumber": 0,
+        "price": 300000,
+        "maxPrice": null,
+        "priceKind": "FIXED",
+        "__typename": "BusinessPricing"
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "businessVerification",
+      "licenses",
+      "0",
+      "meta"
+    ],
+    "length": 4,
+    "sample_keys": [
+      "__typename",
+      "caption",
+      "type",
+      "value"
+    ],
+    "sample": [
+      {
+        "type": "TEXT",
+        "value": "4709301520",
+        "caption": "사업자번호",
+        "__typename": "Meta"
+      },
+      {
+        "type": "TEXT",
+        "value": "에릭쌤영어학원",
+        "caption": "상호명",
+        "__typename": "Meta"
+      },
+      {
+        "type": "TEXT",
+        "value": "윤은총",
+        "caption": "대표자명",
+        "__typename": "Meta"
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "bizPosts",
+      "8",
+      "images"
+    ],
+    "length": 4,
+    "sample_keys": [
+      "__typename",
+      "thumbnailUrl"
+    ],
+    "sample": [
+      {
+        "thumbnailUrl": "https://img.kr.gcp-karroter.net/business-profile/business-profile/2729166/1779293692038/RklMRV9LSVRfNjIwODI3MjAwNTU0NjY5OQ==.jpeg?q=82&s=300x300&t=crop&service=business-post",
+        "__typename": "BusinessPostMediaObject"
+      },
+      {
+        "thumbnailUrl": "https://img.kr.gcp-karroter.net/business-profile/business-profile/2729166/1779293691007/RklMRV9LSVRfMDI4NDQ0MTYxNzc2NTgxMzc4.jpeg?q=82&s=300x300&t=crop&service=business-post",
+        "__typename": "BusinessPostMediaObject"
+      },
+      {
+        "thumbnailUrl": "https://img.kr.gcp-karroter.net/business-profile/business-profile/2729166/1779293692055/RklMRV9LSVRfMDI2OTU1MTcxNzU2MDIwMjQ2.jpeg?q=82&s=300x300&t=crop&service=business-post",
+        "__typename": "BusinessPostMediaObject"
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "root",
+      "__footer",
+      "data",
+      "FooterSocialSection"
+    ],
+    "length": 3,
+    "sample_keys": [
+      "SocialLink",
+      "SocialName"
+    ],
+    "sample": [
+      {
+        "SocialName": "facebook",
+        "SocialLink": "https://www.facebook.com/daangn/"
+      },
+      {
+        "SocialName": "instagram",
+        "SocialLink": "https://www.instagram.com/daangn/"
+      },
+      {
+        "SocialName": "youtube",
+        "SocialLink": "https://www.youtube.com/@daangn_official"
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "root",
+      "__footer",
+      "data",
+      "FooterNavSections",
+      "0",
+      "NavLink"
+    ],
+    "length": 3,
+    "sample_keys": [
+      "NavLinkExternal",
+      "NavLinkLabel",
+      "NavLinkLink",
+      "SuffixArrowIcon"
+    ],
+    "sample": [
+      {
+        "NavLinkLink": "https://about.daangn.com/",
+        "NavLinkLabel": "당근 소개",
+        "NavLinkExternal": true,
+        "SuffixArrowIcon": false
+      },
+      {
+        "NavLinkLink": "https://www.daangnpay.com/",
+        "NavLinkLabel": "당근페이 소개",
+        "NavLinkExternal": true,
+        "SuffixArrowIcon": false
+      },
+      {
+        "NavLinkLink": "https://careers.daangn.com/",
+        "NavLinkLabel": "채용",
+        "NavLinkExternal": true,
+        "SuffixArrowIcon": false
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "root",
+      "__footer",
+      "data",
+      "FooterNavSections",
+      "2",
+      "NavLink"
+    ],
+    "length": 3,
+    "sample_keys": [
+      "NavLinkExternal",
+      "NavLinkLabel",
+      "NavLinkLink",
+      "SuffixArrowIcon"
+    ],
+    "sample": [
+      {
+        "NavLinkLink": "https://business.daangn.com/",
+        "NavLinkLabel": "당근 비즈니스",
+        "NavLinkExternal": true,
+        "SuffixArrowIcon": false
+      },
+      {
+        "NavLinkLink": "mailto:contact@daangn.com",
+        "NavLinkLabel": "제휴 문의",
+        "NavLinkExternal": true,
+        "SuffixArrowIcon": false
+      },
+      {
+        "NavLinkLink": "mailto:ad@daangn.com",
+        "NavLinkLabel": "광고 문의",
+        "NavLinkExternal": true,
+        "SuffixArrowIcon": false
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "root",
+      "__footer",
+      "data",
+      "FooterNavSections",
+      "3",
+      "NavLink"
+    ],
+    "length": 3,
+    "sample_keys": [
+      "NavLinkExternal",
+      "NavLinkLabel",
+      "NavLinkLink",
+      "SuffixArrowIcon"
+    ],
+    "sample": [
+      {
+        "NavLinkLink": "https://karrotmarket.com/ca/",
+        "NavLinkLabel": "Canada",
+        "NavLinkExternal": true,
+        "SuffixArrowIcon": true
+      },
+      {
+        "NavLinkLink": "https://karrotmarket.com/us/",
+        "NavLinkLabel": "United States",
+        "NavLinkExternal": true,
+        "SuffixArrowIcon": true
+      },
+      {
+        "NavLinkLink": "https://karrotmarket.com/jp/",
+        "NavLinkLabel": "日本",
+        "NavLinkExternal": true,
+        "SuffixArrowIcon": true
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "root",
+      "__footer",
+      "data",
+      "FooterNavSections",
+      "4",
+      "NavLink"
+    ],
+    "length": 3,
+    "sample_keys": [
+      "NavLinkExternal",
+      "NavLinkLabel",
+      "NavLinkLink",
+      "SuffixArrowIcon"
+    ],
+    "sample": [
+      {
+        "NavLinkLink": "mailto:ir@daangn.com",
+        "NavLinkLabel": "IR",
+        "NavLinkExternal": true,
+        "SuffixArrowIcon": false
+      },
+      {
+        "NavLinkLink": "mailto:pr@daangn.com",
+        "NavLinkLabel": "PR",
+        "NavLinkExternal": true,
+        "SuffixArrowIcon": false
+      },
+      {
+        "NavLinkLink": "https://daangn.com/wv/faqs",
+        "NavLinkLabel": "고객센터",
+        "NavLinkExternal": true,
+        "SuffixArrowIcon": false
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "reviews",
+      "9",
+      "tags"
+    ],
+    "length": 3,
+    "sample_keys": [
+      "__typename",
+      "content"
+    ],
+    "sample": [
+      {
+        "content": "친절해요",
+        "__typename": "Tag"
+      },
+      {
+        "content": "가격이 싸요",
+        "__typename": "Tag"
+      },
+      {
+        "content": "만족스러워요",
+        "__typename": "Tag"
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "root",
+      "__gnb",
+      "data",
+      "GNBSubLink",
+      "NavLinkWithSubLinks",
+      "2",
+      "SubLinks"
+    ],
+    "length": 2,
+    "sample_keys": [
+      "NavLinkExternal",
+      "NavLinkLabel",
+      "NavLinkLink",
+      "SuffixArrowIcon"
+    ],
+    "sample": [
+      {
+        "NavLinkLink": "/kr/cars/s/",
+        "NavLinkLabel": "중고차 검색",
+        "NavLinkExternal": false,
+        "SuffixArrowIcon": false
+      },
+      {
+        "NavLinkLink": "https://cardealer.daangn.com/",
+        "NavLinkLabel": "딜러용 서비스",
+        "NavLinkExternal": true,
+        "SuffixArrowIcon": true
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "root",
+      "__gnb",
+      "data",
+      "GNBSubLink",
+      "NavLinkWithSubLinks",
+      "5",
+      "SubLinks"
+    ],
+    "length": 2,
+    "sample_keys": [
+      "NavLinkExternal",
+      "NavLinkLabel",
+      "NavLinkLink",
+      "SuffixArrowIcon"
+    ],
+    "sample": [
+      {
+        "NavLinkLink": "https://jobs.daangn.com/?referrer=daangn_web&referrer_context=daangn_web.gnb",
+        "NavLinkLabel": "알바 검색",
+        "NavLinkExternal": true,
+        "SuffixArrowIcon": false
+      },
+      {
+        "NavLinkLink": "https://jobs.daangn.com/s?jobTasks=%5B%22TUTORING%22%5D&referrer=daangn_web&referrer_context=daangn_web.gnb",
+        "NavLinkLabel": "과외/레슨 검색",
+        "NavLinkExternal": true,
+        "SuffixArrowIcon": false
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "businessVerification",
+      "licenses"
+    ],
+    "length": 2,
+    "sample_keys": [
+      "__typename",
+      "label",
+      "meta"
+    ],
+    "sample": [
+      {
+        "meta": [
+          {
+            "type": "TEXT",
+            "value": "4709301520",
+            "caption": "사업자번호",
+            "__typename": "Meta"
+          },
+          {
+            "type": "TEXT",
+            "value": "에릭쌤영어학원",
+            "caption": "상호명",
+            "__typename": "Meta"
+          },
+          {
+            "type": "TEXT",
+            "value": "윤은총",
+            "caption": "대표자명",
+            "__typename": "Meta"
+          },
+          {
+            "type": "TEXT",
+            "value": "대전광역시 대덕구 법동 287-2",
+            "caption": "소재지",
+            "__typename": "Meta"
+          }
+        ],
+        "label": "사업자등록증",
+        "__typename": "License"
+      },
+      {
+        "meta": [
+          {
+            "type": "TEXT",
+            "value": "0426244833",
+            "caption": "전화번호",
+            "__typename": "Meta"
+          }
+        ],
+        "label": "선택적 사업자인증",
+        "__typename": "License"
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "bizPosts",
+      "0",
+      "images"
+    ],
+    "length": 2,
+    "sample_keys": [
+      "__typename",
+      "thumbnailUrl"
+    ],
+    "sample": [
+      {
+        "thumbnailUrl": "https://img.kr.gcp-karroter.net/business-profile/business-profile/2729166/1785031197567/RklMRV9LSVRfNDgwMDAyMzUzNTQ3NDI5MjY=.png?q=82&s=300x300&t=crop&service=business-post",
+        "__typename": "BusinessPostMediaObject"
+      },
+      {
+        "thumbnailUrl": "https://img.kr.gcp-karroter.net/business-profile/business-profile/2729166/1785031197472/RklMRV9LSVRfNzc5NzE5NzAzODg3NjQ2Mw==.png?q=82&s=300x300&t=crop&service=business-post",
+        "__typename": "BusinessPostMediaObject"
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "bizPosts",
+      "4",
+      "images"
+    ],
+    "length": 2,
+    "sample_keys": [
+      "__typename",
+      "thumbnailUrl"
+    ],
+    "sample": [
+      {
+        "thumbnailUrl": "https://img.kr.gcp-karroter.net/business-profile/business-profile/2729166/1782067218428/RklMRV9LSVRfOTQwMTU1NDcyOTU4OTgwMw==.jpeg?q=82&s=300x300&t=crop&service=business-post",
+        "__typename": "BusinessPostMediaObject"
+      },
+      {
+        "thumbnailUrl": "https://img.kr.gcp-karroter.net/business-profile/business-profile/2729166/1782067218399/RklMRV9LSVRfNjczNzIyNTA4OTAzNTA2OQ==.jpeg?q=82&s=300x300&t=crop&service=business-post",
+        "__typename": "BusinessPostMediaObject"
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "bizPosts",
+      "8",
+      "content"
+    ],
+    "length": 2,
+    "sample_keys": [
+      "__typename",
+      "type",
+      "value"
+    ],
+    "sample": [
+      {
+        "type": "TEXT",
+        "value": "화,목반 명석고, 송촌고1학년 학생들 기말대비 25년 6월 모의고사 자료를 제작완료 및 지급하였습니다.\n",
+        "__typename": "Content"
+      },
+      {
+        "type": "TEXT",
+        "value": "\n",
+        "__typename": "Content"
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "reviews",
+      "6",
+      "tags"
+    ],
+    "length": 2,
+    "sample_keys": [
+      "__typename",
+      "content"
+    ],
+    "sample": [
+      {
+        "content": "친절해요",
+        "__typename": "Tag"
+      },
+      {
+        "content": "만족스러워요",
+        "__typename": "Tag"
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "reviews",
+      "7",
+      "tags"
+    ],
+    "length": 2,
+    "sample_keys": [
+      "__typename",
+      "content"
+    ],
+    "sample": [
+      {
+        "content": "친절해요",
+        "__typename": "Tag"
+      },
+      {
+        "content": "만족스러워요",
+        "__typename": "Tag"
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "businessVerification",
+      "licenses",
+      "1",
+      "meta"
+    ],
+    "length": 1,
+    "sample_keys": [
+      "__typename",
+      "caption",
+      "type",
+      "value"
+    ],
+    "sample": [
+      {
+        "type": "TEXT",
+        "value": "0426244833",
+        "caption": "전화번호",
+        "__typename": "Meta"
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "bizPosts",
+      "0",
+      "content"
+    ],
+    "length": 1,
+    "sample_keys": [
+      "__typename",
+      "type",
+      "value"
+    ],
+    "sample": [
+      {
+        "type": "TEXT",
+        "value": "에릭쌤영어학원은 그동안 중·고등 내신과 입시 영어를 전문으로 지도하며 많은 학생들의 성적 향상을 함께 만들어 왔습니다.\n\n이번 2학기부터는 초등학교 5·6학년 학생도 모집합니다.\n\n초등 시기는 단순히 영어를 재미있게 배우는 시기가 아니라,\n중학교 영어와 고등학교 내신까지 이어지는 기초를 만드는 가장 중요한 시기입니다.\n\n에릭쌤영어학원에서는\n\n- 중학교 영어를 미리 준비하는 문법 기초\n- 독해력과 어휘력 향상\n- 영어를 스스로 공부하는 습관\n- 중학교 내신을 대비하는 학습법\n\n을 체계적으로 지도합니다.\n\n📍 법동 이편한세상, 보람아파트, 삼익소월아파트 인근\n\n📍 중리시장·법동전통시장에서도 가까운 위치\n\n중·고등 입시를 아는 선생님에게 처음부터 제대로 배우고 싶은 초등 5·6학년 학생이라면 상담을 받아보세요.\n\n2학기 소수정예(반 최대 12인) 신규 모집\n상담 예약 후 등록 선착순 12인만 반을 편성합니다.\n",
+        "__typename": "Content"
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "bizPosts",
+      "3",
+      "content"
+    ],
+    "length": 1,
+    "sample_keys": [
+      "__typename",
+      "type",
+      "value"
+    ],
+    "sample": [
+      {
+        "type": "TEXT",
+        "value": "아이들이 정말 공부하는 학원, 공부할 권리를 찾는 학원이 되게 더욱 성실히 지도하겠습니다\n",
+        "__typename": "Content"
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "bizPosts",
+      "3",
+      "images"
+    ],
+    "length": 1,
+    "sample_keys": [
+      "__typename",
+      "thumbnailUrl"
+    ],
+    "sample": [
+      {
+        "thumbnailUrl": "https://img.kr.gcp-karroter.net/business-profile/business-profile/2729166/1782333419005/RklMRV9LSVRfMzIxNzM1MTEyNDU4Njc0MjY=.jpeg?q=82&s=300x300&t=crop&service=business-post",
+        "__typename": "BusinessPostMediaObject"
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "bizPosts",
+      "5",
+      "images"
+    ],
+    "length": 1,
+    "sample_keys": [
+      "__typename",
+      "thumbnailUrl"
+    ],
+    "sample": [
+      {
+        "thumbnailUrl": "https://img.kr.gcp-karroter.net/business-profile/business-profile/2729166/1780761685506/RklMRV9LSVRfMTEyOTc1ODAxOTIyOTU0OTg=.png?q=82&s=300x300&t=crop&service=business-post",
+        "__typename": "BusinessPostMediaObject"
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "bizPosts",
+      "6",
+      "images"
+    ],
+    "length": 1,
+    "sample_keys": [
+      "__typename",
+      "thumbnailUrl"
+    ],
+    "sample": [
+      {
+        "thumbnailUrl": "https://img.kr.gcp-karroter.net/business-profile/business-profile/2729166/1780693455582/RklMRV9LSVRfNjgyMTU0MTA2Nzk4MjYwMw==.png?q=82&s=300x300&t=crop&service=business-post",
+        "__typename": "BusinessPostMediaObject"
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "bizPosts",
+      "7",
+      "images"
+    ],
+    "length": 1,
+    "sample_keys": [
+      "__typename",
+      "thumbnailUrl"
+    ],
+    "sample": [
+      {
+        "thumbnailUrl": "https://img.kr.gcp-karroter.net/business-profile/bizPlatform/profile/center_biz_1310501/1780691941406/RklMRV9LSVRfNzA4ODk0NDYxNzIwNjEwNw==.png?q=82&s=300x300&t=crop&service=business-post",
+        "__typename": "BusinessPostMediaObject"
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "bizPosts",
+      "9",
+      "images"
+    ],
+    "length": 1,
+    "sample_keys": [
+      "__typename",
+      "thumbnailUrl"
+    ],
+    "sample": [
+      {
+        "thumbnailUrl": "https://img.kr.gcp-karroter.net/business-profile/business-profile/2729166/1774984812983/RklMRV9LSVRfMjgxOTI3NTk0OTU3ODY4OQ==.jpeg?q=82&s=300x300&t=crop&service=business-post",
+        "__typename": "BusinessPostMediaObject"
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "reviews",
+      "5",
+      "tags"
+    ],
+    "length": 1,
+    "sample_keys": [
+      "__typename",
+      "content"
+    ],
+    "sample": [
+      {
+        "content": "친절해요",
+        "__typename": "Tag"
+      }
+    ]
+  },
+  {
+    "path": [
+      "state",
+      "loaderData",
+      "routes/kr.local-profile.$local_profile_id",
+      "localProfile",
+      "reviews",
+      "8",
+      "tags"
+    ],
+    "length": 1,
+    "sample_keys": [
+      "__typename",
+      "content"
+    ],
+    "sample": [
+      {
+        "content": "만족스러워요",
+        "__typename": "Tag"
+      }
+    ]
+  }
+]
