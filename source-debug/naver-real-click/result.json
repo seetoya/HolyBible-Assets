@@ -1,0 +1,19 @@
+{
+  "beforeCards": 10,
+  "beforeButtons": 1,
+  "clicks": [
+    {
+      "i": 0,
+      "before": 10,
+      "after": 10,
+      "updated": false,
+      "clickError": null,
+      "responseStatus": null,
+      "responseBody": null,
+      "buttonCountAfter": 1
+    }
+  ],
+  "afterCards": 10,
+  "responseEvents": [],
+  "finalUrl": "https://m.place.naver.com/place/1177401952/review/visitor"
+}
