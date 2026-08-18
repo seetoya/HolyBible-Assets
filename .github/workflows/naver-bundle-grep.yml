@@ -1,0 +1,104 @@
+name: Locate Naver review pagination modules
+
+on:
+  push:
+    branches:
+      - tmp-review-capture-20260815
+    paths:
+      - '.github/workflows/naver-bundle-grep.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: tmp-review-capture-20260815
+          fetch-depth: 0
+
+      - name: Record run ID
+        shell: bash
+        run: |
+          mkdir -p .capture-state
+          echo "$GITHUB_RUN_ID" > .capture-state/naver-bundle-grep-run-id.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .capture-state/naver-bundle-grep-run-id.txt
+          git commit -m 'Record Naver bundle grep run [skip ci]' || true
+          git pull --rebase origin tmp-review-capture-20260815
+          git push origin HEAD:tmp-review-capture-20260815
+
+      - name: Download loaded Naver bundles and grep modules
+        shell: bash
+        run: |
+          rm -rf /tmp/naver-bundles source-debug/naver-bundle-grep
+          mkdir -p /tmp/naver-bundles source-debug/naver-bundle-grep
+          cat > /tmp/urls.txt <<'EOF'
+          https://g-place.pstatic.net/assets/place/place.commonModulesReact-spring.bundle.9b8a93d5756bf8ac28a9.1786610149950.js
+          https://g-place.pstatic.net/assets/place/place.commonModulesEgjs.bundle.9b8a93d5756bf8ac28a9.1786610149950.js
+          https://g-place.pstatic.net/assets/place/place.2962.bundle.9b8a93d5756bf8ac28a9.1786610149950.js
+          https://g-place.pstatic.net/assets/place/place.4381.bundle.9b8a93d5756bf8ac28a9.1786610149950.js
+          https://g-place.pstatic.net/assets/place/place.2200.bundle.9b8a93d5756bf8ac28a9.1786610149950.js
+          https://g-place.pstatic.net/assets/place/place.8541.bundle.9b8a93d5756bf8ac28a9.1786610149950.js
+          https://g-place.pstatic.net/assets/place/place.placeDetail.bundle.9b8a93d5756bf8ac28a9.1786610149950.js
+          https://g-place.pstatic.net/assets/place/place.inlineVideoPlayer.bundle.9b8a93d5756bf8ac28a9.1786610149950.js
+          https://g-place.pstatic.net/assets/place/place.iconsLabels.bundle.9b8a93d5756bf8ac28a9.1786610149950.js
+          https://g-place.pstatic.net/assets/place/place.4487.bundle.9b8a93d5756bf8ac28a9.1786610149950.js
+          https://g-place.pstatic.net/assets/place/place.7864.bundle.9b8a93d5756bf8ac28a9.1786610149950.js
+          https://g-place.pstatic.net/assets/place/place.2874.bundle.9b8a93d5756bf8ac28a9.1786610149950.js
+          https://g-place.pstatic.net/assets/place/place.detailReviewTab.bundle.9b8a93d5756bf8ac28a9.1786610149950.js
+          https://g-place.pstatic.net/assets/place/place.PuiAirportProvider.bundle.9b8a93d5756bf8ac28a9.1786610149950.js
+          https://g-place.pstatic.net/assets/place/place.MediaViewer.bundle.9b8a93d5756bf8ac28a9.1786610149950.js
+          https://g-place.pstatic.net/assets/place/place.6705.bundle.9b8a93d5756bf8ac28a9.1786610149950.js
+          https://g-place.pstatic.net/assets/place/place.PuiVisitorReviewCard.bundle.9b8a93d5756bf8ac28a9.1786610149950.js
+          https://g-place.pstatic.net/assets/place/place.PuiAnchorProvider.bundle.9b8a93d5756bf8ac28a9.1786610149950.js
+          https://g-place.pstatic.net/assets/place/place.PuiReviewCard.bundle.9b8a93d5756bf8ac28a9.1786610149950.js
+          https://g-place.pstatic.net/assets/place/place.PuiReviewFollowButton.bundle.9b8a93d5756bf8ac28a9.1786610149950.js
+          EOF
+          i=0
+          while IFS= read -r url; do
+            i=$((i+1))
+            name=$(printf '%02d_%s' "$i" "$(basename "$url")")
+            curl -L --retry 3 --fail "$url" -o "/tmp/naver-bundles/$name"
+            printf '%s\t%s\n' "$name" "$url" >> source-debug/naver-bundle-grep/index.tsv
+          done < /tmp/urls.txt
+          python3 - <<'PY'
+          from pathlib import Path
+          import re, json
+          srcdir=Path('/tmp/naver-bundles')
+          out=Path('source-debug/naver-bundle-grep')
+          terms=['92065','3608','visitorReviews','reviewsLoadMore','includeReceiptPhotos','reviewGroupId','fetchMore','loadMoreOnClick','cursor']
+          summary={}
+          for p in sorted(srcdir.glob('*.js')):
+              text=p.read_text('utf-8',errors='replace')
+              hits={t:[m.start() for m in re.finditer(re.escape(t),text,re.I)] for t in terms}
+              if any(hits.values()):
+                  summary[p.name]={t:len(v) for t,v in hits.items()}
+                  chunks=[]
+                  for term,positions in hits.items():
+                      if not positions: continue
+                      chunks.append(f'\n===== {term} COUNT {len(positions)} =====\n')
+                      for n,pos in enumerate(positions[:100]):
+                          chunks.append(f'\n--- {term} #{n} POS {pos} ---\n')
+                          chunks.append(text[max(0,pos-12000):min(len(text),pos+24000)])
+                  (out/f'{p.name}.contexts.txt').write_text(''.join(chunks),'utf-8')
+          (out/'summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2),'utf-8')
+          print(json.dumps(summary,ensure_ascii=False,indent=2))
+          PY
+
+      - name: Commit grep results
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add source-debug/naver-bundle-grep
+          if ! git diff --cached --quiet; then
+            git commit -m 'Add Naver loaded-bundle grep results [skip ci]'
+            git pull --rebase origin tmp-review-capture-20260815
+            git push origin HEAD:tmp-review-capture-20260815
+          fi
