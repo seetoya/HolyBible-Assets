@@ -1,0 +1,123 @@
+name: Test Apollo fetchMore hook for Naver visitor reviews
+
+on:
+  push:
+    branches:
+      - tmp-review-capture-20260815
+    paths:
+      - '.github/workflows/naver-fetchmore-hook.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: tmp-review-capture-20260815
+          fetch-depth: 0
+      - name: Record run ID
+        shell: bash
+        run: |
+          mkdir -p .capture-state
+          echo "$GITHUB_RUN_ID" > .capture-state/naver-fetchmore-hook-run-id.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .capture-state/naver-fetchmore-hook-run-id.txt
+          git commit -m 'Record Naver fetchMore-hook test run [skip ci]' || true
+          git pull --rebase origin tmp-review-capture-20260815
+          git push origin HEAD:tmp-review-capture-20260815
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install Playwright
+        shell: bash
+        run: |
+          npm init -y
+          npm install playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Invoke visitor-review fetchMore hook
+        shell: bash
+        run: |
+          cat > naver-fetchmore-hook.mjs <<'EOF'
+          import { chromium } from 'playwright';
+          import fs from 'node:fs/promises';
+          const OUT='source-debug/naver-fetchmore-hook';await fs.rm(OUT,{recursive:true,force:true});await fs.mkdir(OUT,{recursive:true});
+          const browser=await chromium.launch({headless:true,args:['--no-sandbox','--disable-dev-shm-usage','--lang=ko-KR']});
+          const context=await browser.newContext({viewport:{width:460,height:1400},locale:'ko-KR',timezoneId:'Asia/Seoul',userAgent:'Mozilla/5.0 (Linux; Android 15; SM-S938N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36'});
+          const page=await context.newPage();
+          const net=[];page.on('response',async r=>{if(r.url()==='https://api.place.naver.com/place/graphql'&&(r.request().postData()||'').includes('getVisitorReviews')){let body=null;try{body=await r.json();}catch{}net.push({status:r.status(),postData:r.request().postData(),body});}});
+          await page.goto('https://m.place.naver.com/place/1177401952/review/visitor',{waitUntil:'domcontentloaded',timeout:90000});await page.waitForTimeout(10000);
+          const result={before:await page.locator('li.place_apply_pui').count(),rounds:[]};
+          for(let round=0;round<3;round++){
+            const before=await page.locator('li.place_apply_pui').count();
+            const call=await page.evaluate(async()=>{
+              const card=document.querySelector('li.place_apply_pui');if(!card)return {ok:false,error:'no card'};
+              const fk=Object.keys(card).find(k=>k.startsWith('__reactFiber$'));if(!fk)return {ok:false,error:'no fiber'};
+              let f=card[fk],target=null,level=0;
+              while(f&&level<100){
+                let h=f.memoizedState,idx=0;
+                while(h&&typeof h==='object'&&idx<150){
+                  const ms=h.memoizedState;
+                  const obs=ms?.observable;
+                  const input=obs?.options?.variables?.input;
+                  if(obs?.queryName==='getVisitorReviews'&&input&&('bookingBusinessId'in input||'size'in input)){
+                    const next=h.next?.memoizedState?.[0];
+                    if(typeof next?.fetchMore==='function'){target={hook:h,methods:next,input,queryName:obs.queryName,level,idx};break;}
+                  }
+                  h=h.next;idx++;
+                }
+                if(target)break;f=f.return;level++;
+              }
+              if(!target)return {ok:false,error:'visitor query hook not found'};
+              const reviews=[...document.querySelectorAll('li.place_apply_pui')].map(li=>{
+                const k=Object.keys(li).find(x=>x.startsWith('__reactFiber$'));let ff=k?li[k]:null;
+                while(ff){if(ff.memoizedProps?.review?.cursor)return ff.memoizedProps.review;ff=ff.return;}return null;
+              }).filter(Boolean);
+              const last=reviews.at(-1);if(!last?.cursor)return {ok:false,error:'last cursor missing',reviews:reviews.length};
+              let updateCalls=[];
+              try{
+                const response=await target.methods.fetchMore({
+                  variables:{input:{...target.input,size:10,after:last.cursor}},
+                  updateQuery:(prev,{fetchMoreResult})=>{
+                    const oldItems=prev?.visitorReviews?.items||[];
+                    const newItems=fetchMoreResult?.visitorReviews?.items||[];
+                    const merged=[...oldItems];
+                    for(const item of newItems){if(!merged.some(x=>(x?.__ref&&item?.__ref&&x.__ref===item.__ref)||(x?.id&&item?.id&&x.id===item.id)))merged.push(item);}
+                    updateCalls.push({old:oldItems.length,new:newItems.length,merged:merged.length,after:fetchMoreResult?.visitorReviews?.after,total:fetchMoreResult?.visitorReviews?.total});
+                    if(!fetchMoreResult)return prev;
+                    return {visitorReviews:{...prev.visitorReviews,...fetchMoreResult.visitorReviews,items:merged}};
+                  }
+                });
+                return {ok:true,level:target.level,idx:target.idx,beforeReviews:reviews.length,lastId:last.id,lastCursor:last.cursor,input:target.input,responseData:response?.data,updateCalls};
+              }catch(e){return {ok:false,error:String(e),stack:e?.stack,level:target.level,idx:target.idx,input:target.input,updateCalls};}
+            });
+            let changed=false;try{await page.waitForFunction(n=>document.querySelectorAll('li.place_apply_pui').length>n,before,{timeout:20000});changed=true;}catch{}
+            await page.waitForTimeout(2500);
+            const after=await page.locator('li.place_apply_pui').count();
+            result.rounds.push({round,before,after,changed,call,networkEvents:net.length});
+            if(!call.ok)break;
+          }
+          result.after=await page.locator('li.place_apply_pui').count();result.network=net;
+          await fs.writeFile(`${OUT}/result.json`,JSON.stringify(result,null,2),'utf8');
+          await page.screenshot({path:`${OUT}/after.png`,fullPage:true});
+          console.log(JSON.stringify({before:result.before,after:result.after,rounds:result.rounds.map(x=>({round:x.round,before:x.before,after:x.after,changed:x.changed,ok:x.call.ok,error:x.call.error,hook:[x.call.level,x.call.idx],updateCalls:x.call.updateCalls,responseItems:x.call.responseData?.visitorReviews?.items?.length,networkEvents:x.networkEvents}))},null,2));
+          await browser.close();
+          EOF
+          node naver-fetchmore-hook.mjs
+      - name: Commit diagnostics
+        if: always()
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add source-debug/naver-fetchmore-hook
+          if ! git diff --cached --quiet; then
+            git commit -m 'Add Naver fetchMore-hook diagnostics [skip ci]'
+            git pull --rebase origin tmp-review-capture-20260815
+            git push origin HEAD:tmp-review-capture-20260815
+          fi
