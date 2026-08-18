@@ -1,0 +1,94 @@
+name: Test Naver DOM click pagination
+
+on:
+  push:
+    branches:
+      - tmp-review-capture-20260815
+    paths:
+      - '.github/workflows/naver-dom-click.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: tmp-review-capture-20260815
+          fetch-depth: 0
+      - name: Record run ID
+        shell: bash
+        run: |
+          mkdir -p .capture-state
+          echo "$GITHUB_RUN_ID" > .capture-state/naver-dom-click-run-id.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .capture-state/naver-dom-click-run-id.txt
+          git commit -m 'Record Naver DOM-click test run [skip ci]' || true
+          git pull --rebase origin tmp-review-capture-20260815
+          git push origin HEAD:tmp-review-capture-20260815
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install Playwright
+        shell: bash
+        run: |
+          npm init -y
+          npm install playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Test DOM click
+        shell: bash
+        run: |
+          cat > naver-dom-click.mjs <<'EOF'
+          import { chromium } from 'playwright';
+          import fs from 'node:fs/promises';
+          const OUT='source-debug/naver-dom-click';
+          await fs.rm(OUT,{recursive:true,force:true}); await fs.mkdir(OUT,{recursive:true});
+          const browser=await chromium.launch({headless:true,args:['--no-sandbox','--disable-dev-shm-usage','--lang=ko-KR']});
+          const context=await browser.newContext({viewport:{width:460,height:1400},locale:'ko-KR',timezoneId:'Asia/Seoul',userAgent:'Mozilla/5.0 (Linux; Android 15; SM-S938N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36'});
+          const page=await context.newPage();
+          await page.goto('https://m.place.naver.com/place/1177401952/review/visitor',{waitUntil:'domcontentloaded',timeout:90000});
+          await page.waitForTimeout(10000);
+          const result={before:await page.locator('li.place_apply_pui').count(),clicks:[]};
+          for(let i=0;i<3;i++){
+            const before=await page.locator('li.place_apply_pui').count();
+            const responsePromise=page.waitForResponse(r=>r.url()==='https://api.place.naver.com/place/graphql'&&(r.request().postData()||'').includes('getVisitorReviews'),{timeout:30000}).catch(()=>null);
+            const evalResult=await page.evaluate(()=>{
+              const btn=document.querySelector('a.fvwqf');
+              if(!btn)return {ok:false};
+              btn.scrollIntoView({block:'center'});
+              btn.click();
+              return {ok:true,html:btn.outerHTML};
+            });
+            const resp=await responsePromise;
+            let body=null,text=null;
+            if(resp){try{body=await resp.json();}catch{try{text=await resp.text();}catch{}}}
+            let changed=false;try{await page.waitForFunction(n=>document.querySelectorAll('li.place_apply_pui').length>n,before,{timeout:20000});changed=true;}catch{}
+            await page.waitForTimeout(3000);
+            const after=await page.locator('li.place_apply_pui').count();
+            result.clicks.push({i,before,after,changed,evalResult,responseStatus:resp?.status()??null,requestPostData:resp?.request().postData()??null,responseBody:body,responseText:text});
+            if(!resp)break;
+          }
+          result.after=await page.locator('li.place_apply_pui').count();
+          await fs.writeFile(`${OUT}/result.json`,JSON.stringify(result,null,2),'utf8');
+          await page.screenshot({path:`${OUT}/after.png`,fullPage:true});
+          console.log(JSON.stringify({before:result.before,after:result.after,clicks:result.clicks.map(x=>({i:x.i,before:x.before,after:x.after,changed:x.changed,status:x.responseStatus,items:x.responseBody?.[0]?.data?.visitorReviews?.items?.length,total:x.responseBody?.[0]?.data?.visitorReviews?.total,afterCursor:x.responseBody?.[0]?.data?.visitorReviews?.after,errors:x.responseBody?.[0]?.errors}))},null,2));
+          await browser.close();
+          EOF
+          node naver-dom-click.mjs
+      - name: Commit diagnostics
+        if: always()
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add source-debug/naver-dom-click
+          if ! git diff --cached --quiet; then
+            git commit -m 'Add Naver DOM-click diagnostics [skip ci]'
+            git pull --rebase origin tmp-review-capture-20260815
+            git push origin HEAD:tmp-review-capture-20260815
+          fi
