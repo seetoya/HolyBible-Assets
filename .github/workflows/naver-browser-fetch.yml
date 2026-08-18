@@ -1,0 +1,105 @@
+name: Test browser-origin Naver review pagination fetch
+
+on:
+  push:
+    branches:
+      - tmp-review-capture-20260815
+    paths:
+      - '.github/workflows/naver-browser-fetch.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: tmp-review-capture-20260815
+          fetch-depth: 0
+      - name: Record run ID
+        shell: bash
+        run: |
+          mkdir -p .capture-state
+          echo "$GITHUB_RUN_ID" > .capture-state/naver-browser-fetch-run-id.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .capture-state/naver-browser-fetch-run-id.txt
+          git commit -m 'Record Naver browser-fetch test run [skip ci]' || true
+          git pull --rebase origin tmp-review-capture-20260815
+          git push origin HEAD:tmp-review-capture-20260815
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install Playwright
+        shell: bash
+        run: |
+          npm init -y
+          npm install playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Capture initial request and browser fetch next page
+        shell: bash
+        run: |
+          cat > naver-browser-fetch.mjs <<'EOF'
+          import { chromium } from 'playwright';
+          import fs from 'node:fs/promises';
+          const OUT='source-debug/naver-browser-fetch';await fs.rm(OUT,{recursive:true,force:true});await fs.mkdir(OUT,{recursive:true});
+          const browser=await chromium.launch({headless:true,args:['--no-sandbox','--disable-dev-shm-usage','--lang=ko-KR']});
+          const context=await browser.newContext({viewport:{width:460,height:1400},locale:'ko-KR',timezoneId:'Asia/Seoul',userAgent:'Mozilla/5.0 (Linux; Android 15; SM-S938N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36'});
+          await context.addInitScript(()=>{Object.defineProperty(navigator,'webdriver',{get:()=>undefined});});
+          const page=await context.newPage();
+          const initial=[];
+          page.on('request',async r=>{
+            if(r.url()==='https://api.place.naver.com/place/graphql'&&(r.postData()||'').includes('getVisitorReviews')){
+              initial.push({method:r.method(),url:r.url(),postData:r.postData(),headers:await r.allHeaders(),resourceType:r.resourceType()});
+            }
+          });
+          const responses=[];
+          page.on('response',async r=>{
+            if(r.url()==='https://api.place.naver.com/place/graphql'&&(r.request().postData()||'').includes('getVisitorReviews')){
+              let body=null,text=null;try{body=await r.json();}catch{try{text=(await r.text()).slice(0,200000);}catch{}}
+              responses.push({status:r.status(),headers:await r.allHeaders(),body,text});
+            }
+          });
+          await page.goto('https://m.place.naver.com/place/1177401952/review/visitor',{waitUntil:'domcontentloaded',timeout:90000});await page.waitForTimeout(12000);
+          const state=await page.evaluate(()=>{
+            const reviews=[...document.querySelectorAll('li.place_apply_pui')].map(li=>{const k=Object.keys(li).find(x=>x.startsWith('__reactFiber$'));let f=k?li[k]:null;while(f){if(f.memoizedProps?.review?.cursor)return f.memoizedProps.review;f=f.return;}return null;}).filter(Boolean);
+            return {count:reviews.length,lastCursor:reviews.at(-1)?.cursor,ids:reviews.map(r=>r.id),cookies:document.cookie,origin:location.origin};
+          });
+          const req=initial.find(x=>{try{const j=JSON.parse(x.postData);const arr=Array.isArray(j)?j:[j];return arr.some(o=>o.operationName==='getVisitorReviews'&&o.variables?.input?.size===10&&o.variables?.input?.businessId==='1177401952');}catch{return false;}})||initial.at(-1);
+          let manual=null;
+          if(req&&state.lastCursor){
+            const parsed=JSON.parse(req.postData);const arr=Array.isArray(parsed)?parsed:[parsed];for(const op of arr){if(op.operationName==='getVisitorReviews'){op.variables.input={...op.variables.input,size:10,after:state.lastCursor};}}
+            const safeHeaders={};
+            for(const [k,v] of Object.entries(req.headers||{})){
+              const lk=k.toLowerCase();if(['accept','accept-language','content-type','x-wtm-graphql','x-apollo-operation-name'].includes(lk))safeHeaders[k]=v;
+            }
+            manual=await page.evaluate(async({body,headers})=>{
+              try{
+                const r=await fetch('https://api.place.naver.com/place/graphql',{method:'POST',mode:'cors',credentials:'include',cache:'no-store',redirect:'follow',referrer:'https://m.place.naver.com/',referrerPolicy:'strict-origin-when-cross-origin',headers,body});
+                const text=await r.text();let json=null;try{json=JSON.parse(text);}catch{}
+                return {ok:r.ok,status:r.status,statusText:r.statusText,type:r.type,url:r.url,headers:[...r.headers.entries()],text:text.slice(0,200000),json};
+              }catch(e){return {error:String(e),stack:e?.stack};}
+            },{body:JSON.stringify(arr),headers:safeHeaders});
+          }
+          const result={state,initial,initialResponses:responses,selectedRequest:req,manual};
+          await fs.writeFile(`${OUT}/result.json`,JSON.stringify(result,null,2),'utf8');
+          console.log(JSON.stringify({state,initialCount:initial.length,selectedHeaders:req?.headers,manual:{ok:manual?.ok,status:manual?.status,error:manual?.error,items:manual?.json?.[0]?.data?.visitorReviews?.items?.length,total:manual?.json?.[0]?.data?.visitorReviews?.total,after:manual?.json?.[0]?.data?.visitorReviews?.after,errors:manual?.json?.[0]?.errors,textStart:manual?.text?.slice(0,300)}},null,2));
+          await browser.close();
+          EOF
+          node naver-browser-fetch.mjs
+      - name: Commit diagnostics
+        if: always()
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add source-debug/naver-browser-fetch
+          if ! git diff --cached --quiet; then
+            git commit -m 'Add Naver browser-fetch diagnostics [skip ci]'
+            git pull --rebase origin tmp-review-capture-20260815
+            git push origin HEAD:tmp-review-capture-20260815
+          fi
