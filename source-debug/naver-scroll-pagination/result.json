@@ -1,0 +1,112 @@
+{
+  "before": 10,
+  "rounds": [
+    {
+      "i": 0,
+      "before": 10,
+      "after": 10,
+      "changed": false,
+      "action": {
+        "scrollY": 3301,
+        "docHeight": 4701,
+        "ancestors": [
+          {
+            "tag": "DIV",
+            "class": "",
+            "scrollTop": 0,
+            "scrollHeight": 4701,
+            "clientHeight": 1400
+          },
+          {
+            "tag": "BODY",
+            "class": "place_on_mobileweb",
+            "scrollTop": 0,
+            "scrollHeight": 4701,
+            "clientHeight": 1400
+          },
+          {
+            "tag": "HTML",
+            "class": "",
+            "scrollTop": 3301,
+            "scrollHeight": 4701,
+            "clientHeight": 1400
+          }
+        ]
+      },
+      "responseStatus": null,
+      "responseBody": null
+    },
+    {
+      "i": 1,
+      "before": 10,
+      "after": 10,
+      "changed": false,
+      "action": {
+        "scrollY": 3301,
+        "docHeight": 4701,
+        "ancestors": [
+          {
+            "tag": "DIV",
+            "class": "",
+            "scrollTop": 0,
+            "scrollHeight": 4701,
+            "clientHeight": 1400
+          },
+          {
+            "tag": "BODY",
+            "class": "place_on_mobileweb",
+            "scrollTop": 0,
+            "scrollHeight": 4701,
+            "clientHeight": 1400
+          },
+          {
+            "tag": "HTML",
+            "class": "",
+            "scrollTop": 3301,
+            "scrollHeight": 4701,
+            "clientHeight": 1400
+          }
+        ]
+      },
+      "responseStatus": null,
+      "responseBody": null
+    },
+    {
+      "i": 2,
+      "before": 10,
+      "after": 10,
+      "changed": false,
+      "action": {
+        "scrollY": 3301,
+        "docHeight": 4701,
+        "ancestors": [
+          {
+            "tag": "DIV",
+            "class": "",
+            "scrollTop": 0,
+            "scrollHeight": 4701,
+            "clientHeight": 1400
+          },
+          {
+            "tag": "BODY",
+            "class": "place_on_mobileweb",
+            "scrollTop": 0,
+            "scrollHeight": 4701,
+            "clientHeight": 1400
+          },
+          {
+            "tag": "HTML",
+            "class": "",
+            "scrollTop": 3301,
+            "scrollHeight": 4701,
+            "clientHeight": 1400
+          }
+        ]
+      },
+      "responseStatus": null,
+      "responseBody": null
+    }
+  ],
+  "after": 10,
+  "gql": []
+}
