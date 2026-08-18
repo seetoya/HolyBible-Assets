@@ -1,0 +1,112 @@
+{
+  "02_place.commonModulesEgjs.bundle.9b8a93d5756bf8ac28a9.1786610149950.js": {
+    "92065": 0,
+    "3608": 0,
+    "visitorReviews": 0,
+    "reviewsLoadMore": 0,
+    "includeReceiptPhotos": 0,
+    "reviewGroupId": 0,
+    "fetchMore": 0,
+    "loadMoreOnClick": 0,
+    "cursor": 86
+  },
+  "03_place.2962.bundle.9b8a93d5756bf8ac28a9.1786610149950.js": {
+    "92065": 0,
+    "3608": 0,
+    "visitorReviews": 10,
+    "reviewsLoadMore": 0,
+    "includeReceiptPhotos": 0,
+    "reviewGroupId": 2,
+    "fetchMore": 0,
+    "loadMoreOnClick": 0,
+    "cursor": 1
+  },
+  "05_place.2200.bundle.9b8a93d5756bf8ac28a9.1786610149950.js": {
+    "92065": 0,
+    "3608": 0,
+    "visitorReviews": 3,
+    "reviewsLoadMore": 0,
+    "includeReceiptPhotos": 0,
+    "reviewGroupId": 0,
+    "fetchMore": 3,
+    "loadMoreOnClick": 0,
+    "cursor": 0
+  },
+  "06_place.8541.bundle.9b8a93d5756bf8ac28a9.1786610149950.js": {
+    "92065": 0,
+    "3608": 0,
+    "visitorReviews": 5,
+    "reviewsLoadMore": 0,
+    "includeReceiptPhotos": 0,
+    "reviewGroupId": 7,
+    "fetchMore": 0,
+    "loadMoreOnClick": 0,
+    "cursor": 4
+  },
+  "07_place.placeDetail.bundle.9b8a93d5756bf8ac28a9.1786610149950.js": {
+    "92065": 0,
+    "3608": 0,
+    "visitorReviews": 2,
+    "reviewsLoadMore": 0,
+    "includeReceiptPhotos": 0,
+    "reviewGroupId": 0,
+    "fetchMore": 0,
+    "loadMoreOnClick": 0,
+    "cursor": 1
+  },
+  "11_place.7864.bundle.9b8a93d5756bf8ac28a9.1786610149950.js": {
+    "92065": 0,
+    "3608": 0,
+    "visitorReviews": 0,
+    "reviewsLoadMore": 0,
+    "includeReceiptPhotos": 0,
+    "reviewGroupId": 1,
+    "fetchMore": 0,
+    "loadMoreOnClick": 0,
+    "cursor": 0
+  },
+  "12_place.2874.bundle.9b8a93d5756bf8ac28a9.1786610149950.js": {
+    "92065": 4,
+    "3608": 1,
+    "visitorReviews": 37,
+    "reviewsLoadMore": 2,
+    "includeReceiptPhotos": 1,
+    "reviewGroupId": 4,
+    "fetchMore": 4,
+    "loadMoreOnClick": 1,
+    "cursor": 7
+  },
+  "13_place.detailReviewTab.bundle.9b8a93d5756bf8ac28a9.1786610149950.js": {
+    "92065": 3,
+    "3608": 1,
+    "visitorReviews": 8,
+    "reviewsLoadMore": 2,
+    "includeReceiptPhotos": 0,
+    "reviewGroupId": 2,
+    "fetchMore": 3,
+    "loadMoreOnClick": 1,
+    "cursor": 0
+  },
+  "15_place.MediaViewer.bundle.9b8a93d5756bf8ac28a9.1786610149950.js": {
+    "92065": 0,
+    "3608": 0,
+    "visitorReviews": 0,
+    "reviewsLoadMore": 0,
+    "includeReceiptPhotos": 0,
+    "reviewGroupId": 1,
+    "fetchMore": 0,
+    "loadMoreOnClick": 0,
+    "cursor": 0
+  },
+  "17_place.PuiVisitorReviewCard.bundle.9b8a93d5756bf8ac28a9.1786610149950.js": {
+    "92065": 1,
+    "3608": 0,
+    "visitorReviews": 0,
+    "reviewsLoadMore": 0,
+    "includeReceiptPhotos": 0,
+    "reviewGroupId": 13,
+    "fetchMore": 2,
+    "loadMoreOnClick": 0,
+    "cursor": 4
+  }
+}
