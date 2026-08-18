@@ -1,0 +1,36 @@
+{
+  "before": 10,
+  "buttons": [
+    {
+      "i": 0,
+      "text": "더보기",
+      "html": "<a href=\"#\" role=\"button\" class=\"dP0sq\"><span class=\"YqDZw\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 13 8\" class=\"EhXBV\" aria-hidden=\"true\"><path d=\"M6.5,7.7L0.1,1.4l0.7-0.7l5.6,5.6l5.6-5.6l0.7,0.7L6.5,7.7z\"></path></svg></span><span class=\"place_blind\">더보기</span></a>",
+      "parentText": "더보기",
+      "parentHtml": "<div class=\"IUbn3\"><a href=\"#\" role=\"button\" class=\"dP0sq\"><span class=\"YqDZw\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 13 8\" class=\"EhXBV\" aria-hidden=\"true\"><path d=\"M6.5,7.7L0.1,1.4l0.7-0.7l5.6,5.6l5.6-5.6l0.7,0.7L6.5,7.7z\"></path></svg></span><span class=\"place_blind\">더보기</span></a></div>",
+      "rect": {
+        "x": 16,
+        "y": 585,
+        "width": 428,
+        "height": 36,
+        "top": 585,
+        "right": 444,
+        "bottom": 621,
+        "left": 16
+      }
+    }
+  ],
+  "rounds": [
+    {
+      "i": 0,
+      "before": 10,
+      "after": 10,
+      "changed": false,
+      "error": null,
+      "responseStatus": null,
+      "responseBody": null,
+      "buttonCountAfter": 1
+    }
+  ],
+  "after": 10,
+  "gql": []
+}
