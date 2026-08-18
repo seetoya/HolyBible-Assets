@@ -1,0 +1,67 @@
+name: Pretty-print Naver review bundle
+
+on:
+  push:
+    branches:
+      - tmp-review-capture-20260815
+    paths:
+      - '.github/workflows/review-bundle-pretty.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: tmp-review-capture-20260815
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Download and format bundle
+        shell: bash
+        run: |
+          curl -L --retry 3 --fail 'https://g-place.pstatic.net/assets/place/place.detailReviewTab.bundle.9b8a93d5756bf8ac28a9.1786610149950.js' -o /tmp/naver-review.js
+          npx --yes prettier@3.6.2 /tmp/naver-review.js --parser babel > /tmp/naver-review.pretty.js
+          mkdir -p source-debug
+          grep -n -C 35 -E 'visitorReviews|VisitorReviewsResult|includeReceiptPhotos|reviewGroupId|fetchMore|loadMore|cursor|itemReviewStats|useInfinite' /tmp/naver-review.pretty.js > source-debug/naver_pretty_grep.txt || true
+          python3 - <<'PY'
+          from pathlib import Path
+          import re, json
+          src=Path('/tmp/naver-review.pretty.js').read_text('utf-8',errors='replace')
+          out=[]
+          terms=['visitorReviews','includeReceiptPhotos','reviewGroupId','fetchMore','cursor']
+          lines=src.splitlines()
+          for term in terms:
+              hits=[i for i,l in enumerate(lines) if term.lower() in l.lower()]
+              out.append(f'===== {term} HITS {len(hits)} =====')
+              for n,i in enumerate(hits[:100]):
+                  out.append(f'--- {term} #{n} LINE {i+1} ---')
+                  out.extend(lines[max(0,i-50):min(len(lines),i+51)])
+          Path('source-debug/naver_pretty_contexts.txt').write_text('\n'.join(out),'utf-8')
+          # Extract likely GraphQL template/string expressions that mention visitorReviews.
+          candidates=[]
+          for m in re.finditer(r'visitorReviews',src,re.I):
+              s=max(0,m.start()-15000); e=min(len(src),m.end()+15000)
+              candidates.append(src[s:e])
+          Path('source-debug/naver_graphql_candidates.txt').write_text('\n\n===== NEXT =====\n\n'.join(candidates),'utf-8')
+          print('pretty lines',len(lines),'hits',{t:sum(t.lower() in l.lower() for l in lines) for t in terms})
+          PY
+
+      - name: Commit formatted diagnostics
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add source-debug/naver_pretty_grep.txt source-debug/naver_pretty_contexts.txt source-debug/naver_graphql_candidates.txt
+          if ! git diff --cached --quiet; then
+            git commit -m 'Add formatted Naver review bundle diagnostics [skip ci]'
+            git push origin HEAD:tmp-review-capture-20260815
+          fi
