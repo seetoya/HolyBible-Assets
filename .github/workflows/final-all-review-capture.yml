@@ -54,14 +54,14 @@ jobs:
       - name: Restore capture script
         shell: bash
         run: |
-          base64 -d final-all-review-capture.mjs.gz.b64 | gunzip > /tmp/final-all-review-capture.mjs
-          node --check /tmp/final-all-review-capture.mjs
+          base64 -d final-all-review-capture.mjs.gz.b64 | gunzip > final-all-review-capture.mjs
+          node --check final-all-review-capture.mjs
 
       - name: Capture all individual review cards
         id: capture
         continue-on-error: true
         shell: bash
-        run: node /tmp/final-all-review-capture.mjs
+        run: node final-all-review-capture.mjs
 
       - name: Show captured files
         if: always()
