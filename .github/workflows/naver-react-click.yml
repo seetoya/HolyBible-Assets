@@ -1,0 +1,115 @@
+name: Test Naver review React onClick pagination
+
+on:
+  push:
+    branches:
+      - tmp-review-capture-20260815
+    paths:
+      - '.github/workflows/naver-react-click.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: tmp-review-capture-20260815
+          fetch-depth: 0
+      - name: Record run ID
+        shell: bash
+        run: |
+          mkdir -p .capture-state
+          echo "$GITHUB_RUN_ID" > .capture-state/naver-react-click-run-id.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .capture-state/naver-react-click-run-id.txt
+          git commit -m 'Record Naver React-click test run [skip ci]' || true
+          git pull --rebase origin tmp-review-capture-20260815
+          git push origin HEAD:tmp-review-capture-20260815
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install Playwright
+        shell: bash
+        run: |
+          npm init -y
+          npm install playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Invoke React click handler
+        shell: bash
+        run: |
+          cat > naver-react-click.mjs <<'EOF'
+          import { chromium } from 'playwright';
+          import fs from 'node:fs/promises';
+          const OUT='source-debug/naver-react-click';
+          await fs.rm(OUT,{recursive:true,force:true}); await fs.mkdir(OUT,{recursive:true});
+          const browser=await chromium.launch({headless:true,args:['--no-sandbox','--disable-dev-shm-usage','--lang=ko-KR']});
+          const context=await browser.newContext({viewport:{width:460,height:1400},locale:'ko-KR',timezoneId:'Asia/Seoul',userAgent:'Mozilla/5.0 (Linux; Android 15; SM-S938N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36'});
+          const page=await context.newPage();
+          const net=[];
+          page.on('response',async r=>{if(r.url()==='https://api.place.naver.com/place/graphql'&&(r.request().postData()||'').includes('getVisitorReviews')){let data=null;try{data=await r.json();}catch{}net.push({status:r.status(),postData:r.request().postData(),data});}});
+          await page.goto('https://m.place.naver.com/place/1177401952/review/visitor',{waitUntil:'domcontentloaded',timeout:90000});
+          await page.waitForTimeout(10000);
+          const result={before:await page.locator('li.place_apply_pui').count(),inspections:[],clicks:[]};
+          result.inspections=await page.evaluate(()=>{
+            const btn=document.querySelector('a.fvwqf');
+            if(!btn)return [];
+            const nodes=[btn,btn.firstElementChild,btn.parentElement].filter(Boolean);
+            return nodes.map((el,idx)=>{
+              const keys=Object.keys(el).filter(k=>k.startsWith('__react')||k.startsWith('_react'));
+              const vals={};
+              for(const k of keys){
+                try{const v=el[k]; vals[k]={type:typeof v,propKeys:v&&typeof v==='object'?Object.keys(v).slice(0,100):[],hasOnClick:!!v?.onClick,onClickSource:v?.onClick?String(v.onClick).slice(0,3000):null};}catch(e){vals[k]={error:String(e)};}
+              }
+              return {idx,tag:el.tagName,html:el.outerHTML,keys,vals};
+            });
+          });
+          for(let i=0;i<4;i++){
+            const before=await page.locator('li.place_apply_pui').count();
+            const call=await page.evaluate(async()=>{
+              const btn=document.querySelector('a.fvwqf');
+              if(!btn)return {ok:false,reason:'no button'};
+              const nodes=[btn,btn.firstElementChild,btn.parentElement].filter(Boolean);
+              for(const el of nodes){
+                for(const k of Object.keys(el)){
+                  if(!k.startsWith('__reactProps$'))continue;
+                  const props=el[k];
+                  if(typeof props?.onClick==='function'){
+                    let prevented=false,stopped=false;
+                    const evt={preventDefault(){prevented=true;},stopPropagation(){stopped=true;},currentTarget:el,target:el,nativeEvent:{},persist(){},isDefaultPrevented:()=>prevented,isPropagationStopped:()=>stopped};
+                    try{const ret=props.onClick(evt);if(ret&&typeof ret.then==='function')await ret;return {ok:true,key:k,source:String(props.onClick).slice(0,1000),prevented,stopped,returned:typeof ret};}catch(e){return {ok:false,key:k,error:String(e),stack:e?.stack};}
+                  }
+                }
+              }
+              return {ok:false,reason:'no handler'};
+            });
+            let changed=false;try{await page.waitForFunction(n=>document.querySelectorAll('li.place_apply_pui').length>n,before,{timeout:20000});changed=true;}catch{}
+            await page.waitForTimeout(2000);
+            const after=await page.locator('li.place_apply_pui').count();
+            result.clicks.push({i,before,after,changed,call,networkEvents:net.length});
+            if(after===before&&!call.ok)break;
+          }
+          result.after=await page.locator('li.place_apply_pui').count();result.network=net;
+          await fs.writeFile(`${OUT}/result.json`,JSON.stringify(result,null,2),'utf8');
+          await page.screenshot({path:`${OUT}/after.png`,fullPage:true});
+          console.log(JSON.stringify({before:result.before,after:result.after,clicks:result.clicks,network:net.map(x=>({status:x.status,items:x.data?.[0]?.data?.visitorReviews?.items?.length,total:x.data?.[0]?.data?.visitorReviews?.total,after:x.data?.[0]?.data?.visitorReviews?.after,errors:x.data?.[0]?.errors}))},null,2));
+          await browser.close();
+          EOF
+          node naver-react-click.mjs
+      - name: Commit diagnostics
+        if: always()
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add source-debug/naver-react-click
+          if ! git diff --cached --quiet; then
+            git commit -m 'Add Naver React-click diagnostics [skip ci]'
+            git pull --rebase origin tmp-review-capture-20260815
+            git push origin HEAD:tmp-review-capture-20260815
+          fi
