@@ -1,0 +1,550 @@
+1228-        );
+1229-      }
+1230-    },
+1231-    45674: (o, d, t) => {
+1232-      "use strict";
+1233-      (t.r(d), t.d(d, { default: () => O }));
+1234-      var e = t(2784),
+1235-        a = t(98452),
+1236-        n = t(60488),
+1237-        r = t(35246),
+1238-        s = t(10164),
+1239-        l = t(3097),
+1240-        u = t(65459),
+1241-        v = t(66609),
+1242-        m = t(13542),
+1243-        c = t(2370),
+1244-        _ = t(39218),
+1245-        E = t(22696),
+1246-        M = t(28009),
+1247-        C = t(3032),
+1248-        g = t(13822),
+1249-        P = t(9764);
+1250-      function p({ reviewType: T }) {
+1251-        const { locale: f } = (0, n.BK)(),
+1252-          D = f === "ko",
+1253-          { businessType: h } = (0, r.Z)(),
+1254-          { t: i } = (0, a.$G)(),
+1255-          { LoadingComponent: y, ErrorComponent: B, business: A } = (0, s.n)(),
+1256-          R = (0, e.useRef)(!1),
+1257-          { data: x, LoadingComponent: L } = (0, E.R)(),
+1258-          I = L || y,
+1259-          U = (0, e.useMemo)(() => {
+1260-            const S = [];
+1261-            if (!A) return S;
+1262-            const { base: W, fsasReviews: F, visitorReviewStats: N } = A,
+1263:              K = N?.visitorReviewsTotal > 0 || W?.visitorReviewsTotal > 0,
+1264-              b =
+1265-                !K &&
+1266:                (!N?.visitorReviewsTotal || N?.visitorReviewsTotal === 0) &&
+1267-                _.m6.test(h),
+1268-              H = F && F.total > 0;
+1269-            R.current = [K, b, H].filter((j) => !!j).length < 2;
+1270-            const X = D ? v.Z : m.Z,
+1271-              w = Object.values(x || {}).some((j) => j?.reviewList?.length > 0),
+1272-              Z = K && H && w,
+1273-              V = Z
+1274-                ? i(c.H.VISITOR, "\uBC29\uBB38\uC790")
+1275-                : i(c.H.VISITOR_REVIEW, "\uBC29\uBB38\uC790 \uB9AC\uBDF0"),
+1276-              k = Z
+1277-                ? i(c.H.BLOG, "\uBE14\uB85C\uADF8")
+1278-                : i(c.H.BLOG_REVIEW, "\uBE14\uB85C\uADF8 \uB9AC\uBDF0"),
+1279-              Y = Z
+1280-                ? i(c.H.PARTNER, "\uC81C\uD734")
+1281-                : i(c.H.REVIEW, "\uB9AC\uBDF0");
+1282-            return (
+1283-              K &&
+1284-                S.push(
+1285-                  e.createElement(P.Z, {
+1286-                    key: "visitor",
+1287-                    subTabId: "visitor",
+1288-                    subTabName: V,
+1289-                    hideSubTab: R.current,
+1290-                    subTabIcon: X,
+1291-                  }),
+1292-                ),
+1293-              b &&
+1294-                S.push(
+1295-                  e.createElement(g.G, {
+1296-                    key: "visitor",
+1297-                    subTabId: "visitor",
+1298-                    subTabName: V,
+1299-                    subTabIcon: X,
+1300-                  }),
+1301-                ),
+--
+2300-        s = t(34153),
+2301-        l = t.n(s),
+2302-        u = t(60488),
+2303-        v = t(75163),
+2304-        m = t(98365),
+2305-        c = t(95358),
+2306-        _ = t(88912),
+2307-        E = t(85371),
+2308-        M = t(63001),
+2309-        C = t(35246),
+2310-        g = t(10164),
+2311-        P = t(63602),
+2312-        p = t(50668),
+2313-        O = t(48046),
+2314-        T = t(24902),
+2315-        f = t(30743),
+2316-        D = t(82138),
+2317-        h = t(2370),
+2318-        i = t(25314),
+2319-        y = t(50799),
+2320-        B = t(1639),
+2321-        A = t(38759),
+2322-        R = t(89296),
+2323-        x = t(99016),
+2324-        L = t(5290),
+2325-        I = t(39218),
+2326-        U = t(96447),
+2327-        S = t(64884),
+2328-        W = t.n(S);
+2329-      const F = (Z, V) => {
+2330-        const { baseList: k, newList: Y, reviewItem: j } = V,
+2331-          z = (0, i.Qe)(Z, `${j}.page`);
+2332-        switch (V.type) {
+2333-          case "base":
+2334-            return { ...Z, [j]: { ...k, page: 1, isDataLoaded: !0 } };
+2335:          case "loadMore":
+2336-            return { ...Z, [j]: { ...Y, page: z + 1 } };
+2337-          default:
+2338-            return Z;
+2339-        }
+2340-      };
+2341-      function N(Z = [], V) {
+2342-        let k = "";
+2343-        return (
+2344-          Z.forEach(({ id: Y, name: j, queryName: z }) => {
+2345-            V === Y && (k = z || j);
+2346-          }),
+2347-          k
+2348-        );
+2349-      }
+2350-      const K = 10,
+2351-        b = {
+2352-          isDataLoaded: !1,
+2353-          page: 0,
+2354-          fsasReviews: { items: [], maxItemCount: 0 },
+2355-        },
+2356-        H = ["list", "photoView"];
+2357-      function X({
+2358-        useProductSelectBox: Z,
+2359-        hideSubTab: V,
+2360-        reviewType: k = I.$B.list,
+2361-        subTabId: Y,
+2362-        subTabName: j,
+2363-      }) {
+2364-        (0, A.Z)(W());
+2365-        const z = (0, s.useNavigate)(),
+2366-          { locale: Q } = (0, u.BK)(),
+2367-          q = (0, s.useLocation)(),
+2368-          J = (0, M.Z)(),
+2369-          { selectedBlogGdid: G, reviewSort: $ } = J,
+2370-          { updateDefaultDetailTabScrollPosition: ee } = (0, v.F)();
+--
+2395-              : "noQuery",
+2396-          be = (0, e.useMemo)(
+2397-            () =>
+2398-              (re || [])
+2399-                .filter(({ id: ne }) => !!ne)
+2400-                .reduce((ne, { id: oe }) => {
+2401-                  const ae = ne;
+2402-                  return (
+2403-                    (ae[oe] = { page: 1, fsasReviews: {}, isDataLoaded: !1 }),
+2404-                    ae
+2405-                  );
+2406-                }, {}),
+2407-            [re],
+2408-          ),
+2409-          [Ee, fe] = (0, e.useReducer)(F, be),
+2410-          Le = (re && te && te !== "noQuery" && N(re, te)) || null,
+2411-          ve = {
+2412-            businessId: ie,
+2413-            businessType: de,
+2414-            page: 0,
+2415-            display: K,
+2416-            deviceType: "mobile",
+2417-            query: Le,
+2418-            excludeGdids: Re,
+2419-            ...(G && { topGdid: G }),
+2420-            reviewSort: $,
+2421-          },
+2422-          { data: Ke } = (0, P.Z)(x.b, {
+2423-            variables: { input: { ...ve, buyWithMyMoneyType: !0 } },
+2424-          }),
+2425-          Me = (Ke?.fsasReviews?.total || 0) > 0,
+2426-          {
+2427-            LoadingComponent: ce,
+2428-            ErrorComponent: Pe,
+2429-            data: ue,
+2430:            fetchMore: Se,
+2431-          } = (0, P.Z)(x.b, {
+2432-            variables: { input: { ...ve, buyWithMyMoneyType: le } },
+2433-          }),
+2434-          We = () =>
+2435-            Se({
+2436-              variables: {
+2437-                input: {
+2438-                  ...ve,
+2439-                  buyWithMyMoneyType: le,
+2440-                  page: (Ee[te] || b).page,
+2441-                },
+2442-              },
+2443:              updateQuery: (ne, { fetchMoreResult: oe }) => {
+2444-                if (!oe) return ne;
+2445-                const { items: ae, ...Xe } = oe.fsasReviews,
+2446-                  Ge = {
+2447-                    ...Ee[te],
+2448-                    fsasReviews: {
+2449-                      items: [...Ee[te].fsasReviews.items, ...ae],
+2450-                      ...Xe,
+2451-                    },
+2452-                  };
+2453-                return (
+2454:                  fe({ type: "loadMore", reviewItem: te, newList: Ge }),
+2455-                  null
+2456-                );
+2457-              },
+2458-            });
+2459-        ((0, e.useEffect)(() => {
+2460-          !ce &&
+2461-            ue?.fsasReviews &&
+2462-            fe({ type: "base", reviewItem: te, baseList: ue });
+2463-        }, [ce, ue, te]),
+2464-          (0, e.useEffect)(() => {
+2465-            const { type: ne, ...oe } = J;
+2466-            if (ne === se) return;
+2467-            const ae = oe;
+2468-            (se && (ae.type = se),
+2469-              z((0, y.Ne)(q.pathname, ae), { replace: !0 }));
+2470-          }, [z, q.pathname, se, J]));
+2471-        const Ue = Ee[te] || b,
+2472-          {
+2473-            isDataLoaded: De,
+2474-            fsasReviews: { items: pe, maxItemCount: He, total: Te },
+2475-          } = Ue,
+2476-          Ne = (0, e.useMemo)(() => {
+2477-            const ne = new Set(me?.excludeTargets?.review || []);
+2478-            return (pe || []).filter((ae) => ae && !ne.has(ae.reviewId));
+2479-          }, [pe, me]),
+2480-          [ge, ye] = (0, e.useState)(!1),
+2481-          Fe = () => {
+2482-            ye(!ge);
+2483-          };
+2484-        if (he) return he;
+2485-        if (Oe || Pe) return Oe || Pe;
+2486-        const Ze = !ce && De && pe,
+2487-          Ve = _e === "review" && De && pe.length < He,
+2488-          we = Z && re && re.length > 1 && Q === "ko",
+2489-          Be = Me && le;
+--
+2995-        label
+2996-      }
+2997-    }
+2998-  }
+2999-`;
+3000-    },
+3001-    95011: (o, d, t) => {
+3002-      "use strict";
+3003-      t.d(d, { V: () => f });
+3004-      var e = t(2784),
+3005-        a = t(98452),
+3006-        n = t(98365),
+3007-        r = t(95358),
+3008-        s = t(85371),
+3009-        l = t(35246),
+3010-        u = t(63602),
+3011-        v = t(98785),
+3012-        m = t(2370),
+3013-        c = t(1639),
+3014-        _ = t(38759),
+3015-        E = t(66277),
+3016-        M = t(7591),
+3017-        C = t(92065),
+3018-        g = t(7370),
+3019-        P = t(31681),
+3020-        p = t(35892),
+3021-        O = t.n(p);
+3022-      const T = 4;
+3023-      function f() {
+3024-        (0, _.Z)(O());
+3025-        const { businessId: D, businessType: h } = (0, l.Z)(),
+3026-          [i, y] = (0, e.useState)(!1),
+3027-          {
+3028-            votedKeyword: B,
+3029-            input: A,
+3030:            keywordAndRatingReviewsloadMore: R,
+3031-            onlyShowRatingReviews: x,
+3032-            total: L,
+3033-          } = (0, C.v_)(),
+3034-          {
+3035-            isPhotoUsed: I,
+3036-            theme: U,
+3037-            menu: S,
+3038-            ...W
+3039-          } = { ...A, includeContent: !1 },
+3040-          F = { ...W, includeContent: !1 },
+3041-          {
+3042-            LoadingComponent: N,
+3043-            data: K,
+3044:            fetchMore: b,
+3045-          } = (0, u.Z)(P.DK, { variables: { input: F, id: D } }),
+3046-          H = (0, e.useMemo)(
+3047:            () => K?.visitorReviews?.items || [],
+3048:            [K?.visitorReviews?.items],
+3049-          ),
+3050:          X = K?.visitorReviews?.total,
+3051-          w = (0, e.useRef)(!1);
+3052-        ((0, e.useEffect)(() => {
+3053-          y(L < T);
+3054-        }, [L]),
+3055-          (0, e.useEffect)(() => {
+3056-            if (w.current || !i) return;
+3057-            const V = H?.map(({ id: k }) => k);
+3058-            V?.length > 0 &&
+3059-              ((w.current = !0),
+3060-              (0, g.w)({ reviewIds: V, namespace: "review" }));
+3061-          }, [H, h, i]));
+3062-        const Z = () => {
+3063-          if (i === !1 && !w.current) {
+3064-            const V = H?.map(({ id: k }) => k);
+3065-            (V?.length > 0 && (0, g.w)({ reviewIds: V, namespace: "review" }),
+3066-              (w.current = !0));
+3067-          }
+3068-          y(!i);
+3069-        };
+3070-        return (
+3071-          N ||
+3072-          (!(X > 0) || (L === 0 && !x)
+3073-            ? null
+3074-            : e.createElement(
+3075-                n.Mw,
+3076-                { className: O().visitor_review_keyword_rating_section },
+3077-                e.createElement(n.Sh, {
+3078-                  title: B
+3079-                    ? e.createElement(
+3080-                        a.cC,
+3081-                        { i18nKey: m.H.KEYWORD_RATINGS_REVIEW },
+3082-                        "\uD0A4\uC6CC\uB4DC\xB7\uBCC4\uC810 \uB9AC\uBDF0",
+3083-                      )
+3084-                    : e.createElement(
+3085-                        a.cC,
+--
+3593-      const p = { width: 180, height: 180, type: "w278_sharpen" };
+3594-      function O({ item: T, title: f, setLoaded: D }) {
+3595-        (0, E.Z)(P());
+3596-        const { isPcmap: h } = (0, r.E)(),
+3597-          {
+3598-            photos: i,
+3599-            hasMore: y,
+3600-            loading: B,
+3601-            reviewTabUrl: A,
+3602-            openMediaViewer: R,
+3603-          } = (0, M.F)(T, D);
+3604-        if (B || i.length < 1) return null;
+3605-        const x = (
+3606-            {
+3607-              viewId: I,
+3608-              originalUrl: U,
+3609-              video: S,
+3610-              mediaFormat: W,
+3611-              visitorReview: F,
+3612-            },
+3613-            N,
+3614-          ) => {
+3615-            const K = S?.trailerUrl,
+3616-              b = W === "video";
+3617-            return e.createElement(
+3618-              "li",
+3619-              { className: P().list_item, key: I },
+3620-              e.createElement(
+3621-                s.Z,
+3622-                {
+3623-                  className: n()("place_thumb", { place_type_video: b }),
+3624-                  onClick: () => R(N),
+3625-                  nClicks: {
+3626-                    clickCode: b ? "video" : "photo",
+3627-                    rank: N + 1,
+3628:                    reviewId: F?.reviewGroupId,
+3629-                  },
+3630-                },
+3631-                e.createElement(l.E, {
+3632-                  className: P().img,
+3633-                  useThumbnail: b,
+3634-                  thumbnailOption: b ? p : void 0,
+3635-                  src: (0, C.cg)({
+3636-                    url: U,
+3637-                    thumbnailType: "reviewTab_photoSection",
+3638-                    isVideo: b,
+3639-                  }),
+3640-                  width: "100%",
+3641-                  height: 195,
+3642-                  alt: `\uBC29\uBB38\uC790\uB9AC\uBDF0\uC0AC\uC9C4 ${N + 1}`,
+3643-                }),
+3644-                b &&
+3645-                  K &&
+3646-                  e.createElement(c.b, { trailerUrl: K, useBackground: !0 }),
+3647-                b &&
+3648-                  e.createElement(
+3649-                    "span",
+3650-                    { className: "place_thumb_icon_video" },
+3651-                    e.createElement(_.Z, {
+3652-                      className: "place_icon_play_right",
+3653-                      "aria-hidden": "true",
+3654-                    }),
+3655-                    e.createElement(
+3656-                      "span",
+3657-                      { className: "place_blind" },
+3658-                      "\uB3D9\uC601\uC0C1",
+3659-                    ),
+3660-                  ),
+3661-              ),
+3662-            );
+3663-          },
+--
+3769-          {
+3770-            photos: B,
+3771-            hasMore: A,
+3772-            loading: y,
+3773-            openMediaViewer: x,
+3774-            reviewTabUrl: L,
+3775-          }
+3776-        );
+3777-      }
+3778-      const p = (0, a.gql)`
+3779-  query getVisitorReviewPhotosInVisitorReviewTab($input: VisitorReviewPhotosInput) {
+3780-    visitorReviewPhotos(input: $input) {
+3781-      viewId
+3782-      originalUrl
+3783-      mediaFormat
+3784-      mediaSource
+3785-      description
+3786-      visitorReview {
+3787-        visitCount
+3788-        visitCategories {
+3789-          code
+3790-          name
+3791-          keywords {
+3792-            code
+3793-            name
+3794-          }
+3795-        }
+3796-        votedKeywords {
+3797-          code
+3798-          iconUrl
+3799-          iconCode
+3800-          name
+3801-        }
+3802-        isFollowing
+3803-        rating
+3804:        reviewGroupId
+3805-        reviewId
+3806-      }
+3807-      photoType
+3808-      relation
+3809-      title
+3810-      date
+3811-      link
+3812-      sourceTitle
+3813-      externalLink {
+3814-        title
+3815-        url
+3816-      }
+3817-      author {
+3818-        id
+3819-        nickname
+3820-        from
+3821-        imageUrl
+3822-        objectId
+3823-        url
+3824-        borderImageUrl
+3825-      }
+3826-      originType
+3827-      video {
+3828-        videoId
+3829-        videoUrl
+3830-        trailerUrl
+3831-      }
+3832-    }
+3833-  }
+3834-`;
+3835-    },
+3836-    9764: (o, d, t) => {
+3837-      "use strict";
+3838-      t.d(d, { Z: () => i });
+3839-      var e = t(2784),
+--
+3905-        if (
+3906-          ((0, e.useEffect)(() => {
+3907-            if (N === "my") {
+3908-              (L((0, M.Ne)(I.pathname, { ...F, scrollTo: null }), {
+3909-                replace: !0,
+3910-              }),
+3911-                (Q.current = !0));
+3912-              return;
+3913-            }
+3914-            if (Q.current && b && B) {
+3915-              const J = (0, c.o)();
+3916-              (setTimeout(() => {
+3917-                (0, C.N)(J);
+3918-              }, 100),
+3919-                (Q.current = !1));
+3920-            }
+3921-          }, [L, I.pathname, F, N, b, B]),
+3922-          (0, e.useEffect)(() => {
+3923-            R.current || S();
+3924-          }, [S]),
+3925-          H)
+3926-        )
+3927-          return H;
+3928-        const q = e.createElement(
+3929-          e.Fragment,
+3930-          null,
+3931-          X && e.createElement(m.Z, { filters: Z }),
+3932-          e.createElement(T.X, null),
+3933-          e.createElement(D.n, { item: w, title: W, setLoaded: A }),
+3934-          e.createElement(P.n, null),
+3935-          e.createElement(c.Z, null),
+3936-          e.createElement(_.Z, null),
+3937-          e.createElement(h.o, {
+3938-            reviews: V,
+3939-            total: k,
+3940:            loadMoreOnClick: j,
+3941-            nClicksAreaCode: "rrv",
+3942-          }),
+3943-          e.createElement(O.V, null),
+3944-          e.createElement(p.B, null),
+3945-        );
+3946-        return e.createElement(
+3947-          l.UJ,
+3948-          null,
+3949-          e.createElement(
+3950-            "div",
+3951-            { "data-nclicks-area-code": "rrv" },
+3952-            e.createElement(f.c, { businessId: K?.base?.id, penalty: z }, q),
+3953-          ),
+3954-        );
+3955-      }
+3956-    },
+3957-    15888: (o, d, t) => {
+3958-      "use strict";
+3959-      t.d(d, { a: () => l });
+3960-      var e = t(2784),
+3961-        a = t(32173);
+3962-      const n = 365,
+3963-        r = 5;
+3964-      function s(u) {
+3965-        return `place_visitor_review_penalty_reveal_${u}`;
+3966-      }
+3967-      function l(u, v) {
+3968-        const m = u ? s(u) : "",
+3969-          [c, _] = (0, a.fP)(m ? [m] : []),
+3970-          E = (m && Number(c[m])) || 0,
+3971-          M = E >= r,
+3972-          [C, g] = (0, e.useState)(!1),
+3973-          P = v === "Step4",
+3974-          p = v === "Step5" || v === "Step6" || v === "Step7",
+3975-          O = P && !M && !C,
