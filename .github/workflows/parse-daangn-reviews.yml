@@ -1,0 +1,88 @@
+name: Parse Daangn review source data
+
+on:
+  push:
+    branches:
+      - tmp-review-capture-20260815
+    paths:
+      - '.github/workflows/parse-daangn-reviews.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  parse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: tmp-review-capture-20260815
+          fetch-depth: 0
+      - name: Download and parse
+        shell: bash
+        run: |
+          mkdir -p source-debug/daangn-parsed
+          curl -L --retry 3 --fail 'https://www.daangn.com/kr/local-profile/%EC%97%90%EB%A6%AD%EC%8C%A4%EC%98%81%EC%96%B4%ED%95%99%EC%9B%90-3p2umcgadi7h/' -o /tmp/main.html
+          curl -L --retry 3 --fail 'https://www.daangn.com/kr/local-profile/%EC%97%90%EB%A6%AD%EC%8C%A4%EC%9E%85%EC%8B%9C%EC%98%81%EC%96%B4-9ea8dgwzru8t/' -o /tmp/exam.html
+          python3 - <<'PY'
+          from pathlib import Path
+          import re, json
+
+          def parse(label,path):
+              text=Path(path).read_text('utf-8',errors='replace')
+              scripts=re.findall(r'<script[^>]*>(.*?)</script>',text,re.S|re.I)
+              target=next((s for s in scripts if 'window.__remixContext' in s),None)
+              if not target: raise RuntimeError('remix context not found')
+              raw=target.split('=',1)[1].strip()
+              if raw.endswith(';'): raw=raw[:-1]
+              root=json.loads(raw)
+              nodes=[]; lists=[]
+              def walk(v,p):
+                  if isinstance(v,dict):
+                      ks=[str(k).lower() for k in v.keys()]
+                      values=[x for x in v.values() if isinstance(x,str)]
+                      joined=' '.join(values)
+                      score=sum(any(t in k for t in ['review','rating','author','writer','nickname','content','profile']) for k in ks)
+                      if score>=2 or any(n in joined for n in ['세상돈다내꺼9','후추후추','미자쏭','오여사']):
+                          nodes.append({'path':p,'keys':list(v.keys()),'value':v})
+                      for k,x in v.items(): walk(x,p+[str(k)])
+                  elif isinstance(v,list):
+                      if v and all(isinstance(x,dict) for x in v):
+                          sample_keys=sorted({str(k) for x in v[:5] for k in x.keys()})
+                          lists.append({'path':p,'length':len(v),'sample_keys':sample_keys,'sample':v[:3]})
+                      for i,x in enumerate(v): walk(x,p+[str(i)])
+              walk(root,[])
+              # Deduplicate nodes by JSON text, retain useful-sized objects.
+              unique=[]; seen=set()
+              for n in nodes:
+                  blob=json.dumps(n['value'],ensure_ascii=False,sort_keys=True)
+                  if blob in seen: continue
+                  seen.add(blob)
+                  if len(blob)>200000: n['value']='[omitted oversized object]'
+                  unique.append(n)
+              Path(f'source-debug/daangn-parsed/{label}_nodes.json').write_text(json.dumps(unique,ensure_ascii=False,indent=2),'utf-8')
+              Path(f'source-debug/daangn-parsed/{label}_lists.json').write_text(json.dumps(sorted(lists,key=lambda x:x['length'],reverse=True),ensure_ascii=False,indent=2),'utf-8')
+              # Human-readable paths containing review-like lists.
+              lines=[]
+              for item in sorted(lists,key=lambda x:x['length'],reverse=True):
+                  if any(t in '/'.join(item['path']).lower() for t in ['review','profile','loader']) or any(any(t in k.lower() for t in ['review','rating','content','writer','nickname']) for k in item['sample_keys']):
+                      lines.append(f"PATH {'/'.join(item['path'])} LEN {item['length']} KEYS {item['sample_keys']}")
+                      for s in item['sample']:
+                          lines.append(json.dumps(s,ensure_ascii=False)[:5000])
+              Path(f'source-debug/daangn-parsed/{label}_summary.txt').write_text('\n'.join(lines),'utf-8')
+              print(label,'nodes',len(unique),'lists',len(lists))
+          parse('main','/tmp/main.html')
+          parse('exam','/tmp/exam.html')
+          PY
+      - name: Commit parsed output
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add source-debug/daangn-parsed
+          if ! git diff --cached --quiet; then
+            git commit -m 'Add parsed Daangn review diagnostics [skip ci]'
+            git push origin HEAD:tmp-review-capture-20260815
+          fi
