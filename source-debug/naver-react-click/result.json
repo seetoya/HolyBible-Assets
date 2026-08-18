@@ -1,0 +1,220 @@
+{
+  "before": 10,
+  "inspections": [
+    {
+      "idx": 0,
+      "tag": "A",
+      "html": "<a href=\"#\" role=\"button\" class=\"fvwqf\"><span class=\"TeItc\">펼쳐서 더보기<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 14 8\" class=\"E4qxG\" aria-hidden=\"true\"><path d=\"M7,7.7L0.6,1.4l0.7-0.7L7,6.3l5.6-5.6l0.7,0.7L7,7.7z\"></path></svg></span></a>",
+      "keys": [
+        "__reactFiber$l057bif8fi",
+        "__reactProps$l057bif8fi"
+      ],
+      "vals": {
+        "__reactFiber$l057bif8fi": {
+          "type": "object",
+          "propKeys": [
+            "tag",
+            "key",
+            "elementType",
+            "type",
+            "stateNode",
+            "return",
+            "child",
+            "sibling",
+            "index",
+            "ref",
+            "pendingProps",
+            "memoizedProps",
+            "updateQueue",
+            "memoizedState",
+            "dependencies",
+            "mode",
+            "flags",
+            "subtreeFlags",
+            "deletions",
+            "lanes",
+            "childLanes",
+            "alternate"
+          ],
+          "hasOnClick": false,
+          "onClickSource": null
+        },
+        "__reactProps$l057bif8fi": {
+          "type": "object",
+          "propKeys": [
+            "href",
+            "target",
+            "onClick",
+            "role",
+            "className",
+            "children"
+          ],
+          "hasOnClick": true,
+          "onClickSource": "Ee=>{X||Ee.preventDefault(),(0,h.Gd)(X)&&Ee.preventDefault(),te&&Y&&(0,g.Xm)((0,h.Ne)(C,{clid:L,r:\"f\",n_ad_group_type:Ue,n_query:Z})),Re&&P(Ee),g.L.getLogger({isNx:Ae,laimAreaId:I||ae,laimIndex:ye,laim:{contentId:G,...k||{code:\"\"}},nClicks:{contentId:G,...O},event:Ee,href:w(X||\"\",J,pe)}).log(),oe[\"data-for-biz-catcher\"]&&(Ee.preventDefault(),sendToBizCatcher(Ee.currentTarget));const be=Object.keys(oe||{}).filter(ke=>ke.startsWith(\"data-clickoutside\"));if(be?.length>0){Ee.stopPropagation();const[ke]=be,Ge=new CustomEvent(E.A,{bubbles:!0,cancelable:!0,detail:{originalEvent:Ee,attribute:ke}});document.dispatchEvent(Ge)}Le&&M(X)&&q({headerHeight:0,mainHeight:0,shouldSendData:!0}),B&&ge(-1),ve&&typeof le==\"string\"&&le.startsWith(\"http\")&&window.open(le),!(!ce||te)&&!Ee.defaultPrevented&&Ee.button===0&&(!K||K===\"_self\")&&!j(Ee)&&(Ee.preventDefault(),ge(ce,{replace:A}))}"
+        }
+      }
+    },
+    {
+      "idx": 1,
+      "tag": "SPAN",
+      "html": "<span class=\"TeItc\">펼쳐서 더보기<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 14 8\" class=\"E4qxG\" aria-hidden=\"true\"><path d=\"M7,7.7L0.6,1.4l0.7-0.7L7,6.3l5.6-5.6l0.7,0.7L7,7.7z\"></path></svg></span>",
+      "keys": [
+        "__reactFiber$l057bif8fi",
+        "__reactProps$l057bif8fi"
+      ],
+      "vals": {
+        "__reactFiber$l057bif8fi": {
+          "type": "object",
+          "propKeys": [
+            "tag",
+            "key",
+            "elementType",
+            "type",
+            "stateNode",
+            "return",
+            "child",
+            "sibling",
+            "index",
+            "ref",
+            "pendingProps",
+            "memoizedProps",
+            "updateQueue",
+            "memoizedState",
+            "dependencies",
+            "mode",
+            "flags",
+            "subtreeFlags",
+            "deletions",
+            "lanes",
+            "childLanes",
+            "alternate"
+          ],
+          "hasOnClick": false,
+          "onClickSource": null
+        },
+        "__reactProps$l057bif8fi": {
+          "type": "object",
+          "propKeys": [
+            "className",
+            "children"
+          ],
+          "hasOnClick": false,
+          "onClickSource": null
+        }
+      }
+    },
+    {
+      "idx": 2,
+      "tag": "DIV",
+      "html": "<div class=\"lfH3O\"><a href=\"#\" role=\"button\" class=\"fvwqf\"><span class=\"TeItc\">펼쳐서 더보기<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 14 8\" class=\"E4qxG\" aria-hidden=\"true\"><path d=\"M7,7.7L0.6,1.4l0.7-0.7L7,6.3l5.6-5.6l0.7,0.7L7,7.7z\"></path></svg></span></a></div>",
+      "keys": [
+        "__reactFiber$l057bif8fi",
+        "__reactProps$l057bif8fi"
+      ],
+      "vals": {
+        "__reactFiber$l057bif8fi": {
+          "type": "object",
+          "propKeys": [
+            "tag",
+            "key",
+            "elementType",
+            "type",
+            "stateNode",
+            "return",
+            "child",
+            "sibling",
+            "index",
+            "ref",
+            "pendingProps",
+            "memoizedProps",
+            "updateQueue",
+            "memoizedState",
+            "dependencies",
+            "mode",
+            "flags",
+            "subtreeFlags",
+            "deletions",
+            "lanes",
+            "childLanes",
+            "alternate"
+          ],
+          "hasOnClick": false,
+          "onClickSource": null
+        },
+        "__reactProps$l057bif8fi": {
+          "type": "object",
+          "propKeys": [
+            "className",
+            "children"
+          ],
+          "hasOnClick": false,
+          "onClickSource": null
+        }
+      }
+    }
+  ],
+  "clicks": [
+    {
+      "i": 0,
+      "before": 10,
+      "after": 10,
+      "changed": false,
+      "call": {
+        "ok": true,
+        "key": "__reactProps$l057bif8fi",
+        "source": "Ee=>{X||Ee.preventDefault(),(0,h.Gd)(X)&&Ee.preventDefault(),te&&Y&&(0,g.Xm)((0,h.Ne)(C,{clid:L,r:\"f\",n_ad_group_type:Ue,n_query:Z})),Re&&P(Ee),g.L.getLogger({isNx:Ae,laimAreaId:I||ae,laimIndex:ye,laim:{contentId:G,...k||{code:\"\"}},nClicks:{contentId:G,...O},event:Ee,href:w(X||\"\",J,pe)}).log(),oe[\"data-for-biz-catcher\"]&&(Ee.preventDefault(),sendToBizCatcher(Ee.currentTarget));const be=Object.keys(oe||{}).filter(ke=>ke.startsWith(\"data-clickoutside\"));if(be?.length>0){Ee.stopPropagation();const[ke]=be,Ge=new CustomEvent(E.A,{bubbles:!0,cancelable:!0,detail:{originalEvent:Ee,attribute:ke}});document.dispatchEvent(Ge)}Le&&M(X)&&q({headerHeight:0,mainHeight:0,shouldSendData:!0}),B&&ge(-1),ve&&typeof le==\"string\"&&le.startsWith(\"http\")&&window.open(le),!(!ce||te)&&!Ee.defaultPrevented&&Ee.button===0&&(!K||K===\"_self\")&&!j(Ee)&&(Ee.preventDefault(),ge(ce,{replace:A}))}",
+        "prevented": true,
+        "stopped": false,
+        "returned": "undefined"
+      },
+      "networkEvents": 0
+    },
+    {
+      "i": 1,
+      "before": 10,
+      "after": 10,
+      "changed": false,
+      "call": {
+        "ok": true,
+        "key": "__reactProps$l057bif8fi",
+        "source": "Ee=>{X||Ee.preventDefault(),(0,h.Gd)(X)&&Ee.preventDefault(),te&&Y&&(0,g.Xm)((0,h.Ne)(C,{clid:L,r:\"f\",n_ad_group_type:Ue,n_query:Z})),Re&&P(Ee),g.L.getLogger({isNx:Ae,laimAreaId:I||ae,laimIndex:ye,laim:{contentId:G,...k||{code:\"\"}},nClicks:{contentId:G,...O},event:Ee,href:w(X||\"\",J,pe)}).log(),oe[\"data-for-biz-catcher\"]&&(Ee.preventDefault(),sendToBizCatcher(Ee.currentTarget));const be=Object.keys(oe||{}).filter(ke=>ke.startsWith(\"data-clickoutside\"));if(be?.length>0){Ee.stopPropagation();const[ke]=be,Ge=new CustomEvent(E.A,{bubbles:!0,cancelable:!0,detail:{originalEvent:Ee,attribute:ke}});document.dispatchEvent(Ge)}Le&&M(X)&&q({headerHeight:0,mainHeight:0,shouldSendData:!0}),B&&ge(-1),ve&&typeof le==\"string\"&&le.startsWith(\"http\")&&window.open(le),!(!ce||te)&&!Ee.defaultPrevented&&Ee.button===0&&(!K||K===\"_self\")&&!j(Ee)&&(Ee.preventDefault(),ge(ce,{replace:A}))}",
+        "prevented": true,
+        "stopped": false,
+        "returned": "undefined"
+      },
+      "networkEvents": 0
+    },
+    {
+      "i": 2,
+      "before": 10,
+      "after": 10,
+      "changed": false,
+      "call": {
+        "ok": true,
+        "key": "__reactProps$l057bif8fi",
+        "source": "Ee=>{X||Ee.preventDefault(),(0,h.Gd)(X)&&Ee.preventDefault(),te&&Y&&(0,g.Xm)((0,h.Ne)(C,{clid:L,r:\"f\",n_ad_group_type:Ue,n_query:Z})),Re&&P(Ee),g.L.getLogger({isNx:Ae,laimAreaId:I||ae,laimIndex:ye,laim:{contentId:G,...k||{code:\"\"}},nClicks:{contentId:G,...O},event:Ee,href:w(X||\"\",J,pe)}).log(),oe[\"data-for-biz-catcher\"]&&(Ee.preventDefault(),sendToBizCatcher(Ee.currentTarget));const be=Object.keys(oe||{}).filter(ke=>ke.startsWith(\"data-clickoutside\"));if(be?.length>0){Ee.stopPropagation();const[ke]=be,Ge=new CustomEvent(E.A,{bubbles:!0,cancelable:!0,detail:{originalEvent:Ee,attribute:ke}});document.dispatchEvent(Ge)}Le&&M(X)&&q({headerHeight:0,mainHeight:0,shouldSendData:!0}),B&&ge(-1),ve&&typeof le==\"string\"&&le.startsWith(\"http\")&&window.open(le),!(!ce||te)&&!Ee.defaultPrevented&&Ee.button===0&&(!K||K===\"_self\")&&!j(Ee)&&(Ee.preventDefault(),ge(ce,{replace:A}))}",
+        "prevented": true,
+        "stopped": false,
+        "returned": "undefined"
+      },
+      "networkEvents": 0
+    },
+    {
+      "i": 3,
+      "before": 10,
+      "after": 10,
+      "changed": false,
+      "call": {
+        "ok": true,
+        "key": "__reactProps$l057bif8fi",
+        "source": "Ee=>{X||Ee.preventDefault(),(0,h.Gd)(X)&&Ee.preventDefault(),te&&Y&&(0,g.Xm)((0,h.Ne)(C,{clid:L,r:\"f\",n_ad_group_type:Ue,n_query:Z})),Re&&P(Ee),g.L.getLogger({isNx:Ae,laimAreaId:I||ae,laimIndex:ye,laim:{contentId:G,...k||{code:\"\"}},nClicks:{contentId:G,...O},event:Ee,href:w(X||\"\",J,pe)}).log(),oe[\"data-for-biz-catcher\"]&&(Ee.preventDefault(),sendToBizCatcher(Ee.currentTarget));const be=Object.keys(oe||{}).filter(ke=>ke.startsWith(\"data-clickoutside\"));if(be?.length>0){Ee.stopPropagation();const[ke]=be,Ge=new CustomEvent(E.A,{bubbles:!0,cancelable:!0,detail:{originalEvent:Ee,attribute:ke}});document.dispatchEvent(Ge)}Le&&M(X)&&q({headerHeight:0,mainHeight:0,shouldSendData:!0}),B&&ge(-1),ve&&typeof le==\"string\"&&le.startsWith(\"http\")&&window.open(le),!(!ce||te)&&!Ee.defaultPrevented&&Ee.button===0&&(!K||K===\"_self\")&&!j(Ee)&&(Ee.preventDefault(),ge(ce,{replace:A}))}",
+        "prevented": true,
+        "stopped": false,
+        "returned": "undefined"
+      },
+      "networkEvents": 0
+    }
+  ],
+  "after": 10,
+  "network": []
+}
