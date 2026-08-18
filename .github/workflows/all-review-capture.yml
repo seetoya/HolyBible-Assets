@@ -6,10 +6,15 @@ on:
       - tmp-review-capture-20260815
     paths:
       - '.github/workflows/all-review-capture.yml'
+      - 'all-review-capture.mjs.gz.b64'
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
+
+concurrency:
+  group: all-individual-review-captures
+  cancel-in-progress: true
 
 jobs:
   capture:
@@ -21,6 +26,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: tmp-review-capture-20260815
+          fetch-depth: 0
+          persist-credentials: true
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -39,21 +46,33 @@ jobs:
       - name: Restore capture script
         shell: bash
         run: |
-          cat <<'B64' | base64 -d | gunzip > /tmp/all-review-capture.mjs
-          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
-          B64
+          base64 -d all-review-capture.mjs.gz.b64 | gunzip > /tmp/all-review-capture.mjs
           node --check /tmp/all-review-capture.mjs
 
-      - name: Capture all individual reviews
+      - name: Capture every review as a separate PNG
         shell: bash
         run: node /tmp/all-review-capture.mjs
 
-      - name: Show capture counts
+      - name: Show capture inventory
         if: always()
         shell: bash
         run: |
           find all-review-output -type f -name '*.png' -printf '%p\t%s bytes\n' 2>/dev/null | sort || true
           cat all-review-output/_manifest.json 2>/dev/null || true
+
+      - name: Persist capture files on temporary branch
+        if: always()
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A all-review-output
+          if git diff --cached --quiet; then
+            echo "No new output files"
+          else
+            git commit -m "Add all individual academy review screenshots [skip ci]"
+            git push origin HEAD:tmp-review-capture-20260815
+          fi
 
       - name: Upload individual review screenshots
         if: always()
